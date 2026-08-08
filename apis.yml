@@ -1,23 +1,148 @@
 aid: banqu
 name: BanQu
-description: 'BanQu is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  BanQu is a Minnetonka, Minnesota supply-chain traceability and sustainability software company whose
+  blockchain-backed (non-crypto, distributed-ledger) platform gives brands farm-to-shelf visibility across
+  agriculture, recycling, apparel, beauty, and mining supply chains. The platform records assets, transfers,
+  transactions, and supplier form data against verifiable identities for smallholder farmers, waste pickers,
+  and other last-mile suppliers, and layers on compliance and reporting products for EUDR due diligence,
+  Extended Producer Responsibility, B-BBEE, Scope 3 carbon accounting, lifecycle assessment, plastic and
+  carbon credits, living income and wage, and anti-forced/child-labour screening. Its production REST API
+  (OpenAPI 3.0.3, 134 paths / 191 operations, served live at https://banqu.app/api/v1/schema) covers
+  authentication and API tokens, profiles and profile sharing, organizations, roles and capabilities,
+  connections, assets and asset categories, transfers, transactions, transformations, payment adjustments,
+  forms and form data entries, attachments, notifications, and three automation surfaces — Smart Contracts,
+  Data Processors, and Validation Workflows.
+image: https://cdn.prod.website-files.com/639a714d409fd7284b16da02/639e8cdd882c7f42845de0fa_BanQu_Opengraph.jpg
 url: https://raw.githubusercontent.com/api-evangelist/banqu/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
-- Company
-apis: []
+- supply-chain
+- traceability
+- sustainability
+- esg
+- agriculture
+- procurement
+- compliance
+- blockchain
+- eudr
+- carbon-accounting
+- recycling
+- smallholder-farmers
+- distributed-ledger
+- supplier-management
+apis:
+- name: BanQu API
+  description: >-
+    Production REST API behind the BanQu platform, documented with OpenAPI 3.0.3 and served live from the
+    application host. Resource-oriented URLs, JSON in and out, HTTP verbs and status codes for errors, JWT
+    bearer authentication with long-lived API tokens issued from /auth/api-tokens. 134 paths and 191
+    operations across 25 tagged capability groups: Authentication, User Profile, User Profile Sharing,
+    Public Profiles, Connections, Organizations, Organization Associates / Roles / Features, Assets, Asset
+    Categories, Asset Transactions, Asset Transfers, Asset Transfer Claiming, Asset Transformations, Asset
+    Sharing, Payment Adjustments, Forms, Form Data Entries, Attachments, Smart Contracts, Data Processors,
+    Validation Workflows, Tutorials, and Notifications.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - supply-chain
+  - traceability
+  - sustainability
+  - agriculture
+  - procurement
+  - compliance
+  - supplier-management
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-openapi-original.json
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Overlay
+    url: overlays/banqu-openapi-overlay.yaml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+common:
+- type: Website
+  url: https://www.banqu.co/
+- type: Documentation
+  url: https://api.banqu.app/openapi
+- type: APIReference
+  url: https://api.banqu.app/openapi
+- type: OpenAPI
+  url: openapi/banqu-openapi-original.json
+- type: Login
+  url: https://banqu.app/
+- type: Support
+  url: https://www.banqu.co/support-policy
+- type: Blog
+  url: https://www.banqu.co/blog
+- type: PrivacyPolicy
+  url: https://www.banqu.co/privacy-policy
+- type: Authentication
+  url: authentication/banqu-authentication.yml
+- type: Conventions
+  url: conventions/banqu-conventions.yml
+- type: ErrorCatalog
+  url: errors/banqu-problem-types.yml
+- type: DataModel
+  url: data-model/banqu-data-model.yml
+- type: Conformance
+  url: conformance/banqu-conformance.yml
+- type: Lifecycle
+  url: lifecycle/banqu-lifecycle.yml
+- type: Overlay
+  url: overlays/banqu-openapi-overlay.yaml
+- type: Webhooks
+  url: asyncapi/banqu-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Packages
+  url: packages/banqu-packages.yml
+- type: LLMsTxt
+  url: llms/banqu-llms.txt
+- type: WellKnown
+  url: well-known/banqu-well-known.yml
+- type: DomainSecurity
+  url: security/banqu-domain-security.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-common:
-- type: Website
-  url: https://www.hiive.com/securities/banqu-stock
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: machine-readable-contract-found
+  detail: >-
+    BanQu publishes no developer portal, but a live OpenAPI 3.0.3 document (134 paths, 191
+    operations, 188 schemas) is served unauthenticated at https://banqu.app/api/v1/schema and
+    rendered by a Swagger UI at https://api.banqu.app/openapi — found only by probing the API host
+    root after every banqu.co docs/developer subdomain came back NXDOMAIN.
+  evidence:
+  - url: https://banqu.app/api/v1/schema
+    status: 200
+  - url: https://api.banqu.app/openapi
+    status: 200
+  - url: https://docs.banqu.co/
+    status: 0
+  checked: '2026-08-06'
