@@ -1,0 +1,228 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/banqu-openapi-original.json
+
+summary: >-
+  Entity graph derived from the 188 schemas and 134 paths of the BanQu OpenAPI. The core is a
+  chain-of-custody model: an Asset is owned by an account, moves between accounts as Asset Transfers,
+  and one or more transfers are grouped into a Transaction (buy / sell / transfer / deposit /
+  transformation). Identity is carried by Profiles and Orgs joined by Connections; contextual data is
+  captured through Forms and Form Data Entries; and three automation surfaces (Smart Contracts, Data
+  Processors, Validation Workflows) operate over the same endpoints.
+
+id_conventions:
+  account_id:
+    schema: AccountInfo.id
+    shape: fixed-length 32-character string
+  connection_id:
+    note: >-
+      A connection may be addressed by userId, orgId, inviteId, a verified email, a verified
+      phoneNumber, a userName, or an externalId — the path parameter accepts any of them.
+  form_entry_id:
+    note: >-
+      entryId accepts either a BanQu id or a double-pipe-separated (||) list of globally primary
+      field values, ordered as the fields appear in the UI.
+  timestamps: numeric epoch milliseconds (ImmutableTimestamp / meta.created / meta.lastModified)
+
+entities:
+- name: Profile
+  schema: Profile
+  description: Identity record for a person, including emails, phone numbers, photo, and sections.
+  paths: [/profile, /profile/sections, /profile/standard, /profile/photo, /profile/forms]
+- name: Org
+  schema: Org
+  description: Organization account; may be an enterprise root with sub-orgs.
+  paths: [/orgs, '/orgs/{orgId}']
+- name: OrgAssociate
+  schema: OrgAssociate
+  description: A user attached to an org, carrying one or more org roles.
+  paths: [/orgs/current/associates, '/orgs/current/associates/{userId}']
+- name: OrgRole
+  schema: OrgRole
+  description: Named permission bundle (create/read/update/delete per capability) inside an org.
+  paths: [/orgs/current/roles, /orgs/current/capabilities]
+- name: Connection
+  schema: Connection
+  description: A relationship between the acting account and another identity or organization.
+  paths: [/connections, '/connections/{connectionId}']
+- name: Asset
+  schema: Asset
+  description: A tracked commodity/product unit with code, description, unit of measure, and prices.
+  paths: [/assets, '/assets/{assetId}']
+- name: AssetCategory
+  schema: AssetCategory
+  description: Classification bucket for assets.
+  paths: [/assets/categories]
+- name: AssetHolder
+  schema: AssetHolder
+  description: An account currently holding quantity of an asset.
+  paths: ['/assets/{assetId}/holders']
+- name: AssetTransferOperation
+  schema: AssetTransferOperation
+  description: A single movement of asset quantity from a sender to a receiver.
+  paths: [/transfers, '/transfers/{transferId}', '/assets/{assetId}/transfers']
+- name: Transaction
+  schema: Transaction
+  description: >-
+    A grouping of transfer operations representing one economic event; oneOf ExchangeTransaction,
+    AssetDepositTransaction, AssetTransformationTransaction, RevertTransaction.
+  paths: [/transactions, '/transactions/{transactionId}']
+- name: PaymentAdjustment
+  schema: PaymentAdjustment
+  description: Currency or percentage adjustment applied to the payment leg of a buy/sell transaction.
+  paths: [/payment-adjustments, '/payment-adjustments/{paymentAdjustmentId}']
+- name: PaymentDestination
+  schema: PaymentDestination
+  description: >-
+    Where a payment is delivered - a BanQu agency or a mobile-money provider.
+  enum_providers: [banqu-agency, mtn-zambia, 6dot50pay-zaf, mtn-uganda, tigo-tanzania, celbux-zaf, airtel, zamtel, vodacom]
+- name: Form
+  schema: Form
+  description: A structured questionnaire definition made of groups, sections, and typed fields.
+  paths: [/forms, '/forms/{formId}']
+- name: FormDataEntry
+  schema: FormDataEntry
+  description: >-
+    A submitted instance of a form, with an approval/denial/review/reject/withdraw lifecycle and
+    assignable responders.
+  paths: ['/forms/{formId}/data-entries', '/forms/{formId}/data-entries/{entryId}']
+- name: AssetShare
+  schema: AssetShare
+  description: A scoped, shareable view of assets and their transfers granted to another party.
+  paths: [/assets/shares, '/assets/shares/{shareId}']
+- name: PackagedShareProfile
+  schema: PackagedShareProfile
+  description: A packaged bundle of profile, asset, connection, geo and transaction data shared out.
+  paths: [/profile-shared-packages, '/profile-shared-packages/{id}']
+- name: SmartContract
+  schema: SmartContract
+  description: Trigger-plus-steps automation that reacts to a system event.
+  paths: [/smart-contracts, '/smart-contracts/{contractId}']
+- name: DataProcessor
+  schema: DataProcessor
+  description: CSV/XLSX parser plus workflow steps for importing custom-format supplier files.
+  paths: [/data-processors, '/data-processors/{processorId}']
+- name: ValidationWorkflow
+  schema: ValidationWorkflowDetails
+  description: Custom validation attached to a write action, run before the action is allowed.
+  paths: [/validation-workflows, '/validation-workflows/{workflowId}']
+- name: Attachment
+  schema: Attachment
+  description: Uploaded file reference; upload URLs are minted via GET /aws/upload-url.
+  paths: [/aws/upload-url]
+
+relationships:
+- from: Org
+  to: OrgAssociate
+  type: has_many
+  via: orgId
+- from: OrgAssociate
+  to: OrgRole
+  type: has_many
+  via: OrgAssociateRoles
+- from: OrgRole
+  to: OrgCapabilities
+  type: has_one
+  via: capabilities
+- from: Org
+  to: Org
+  type: has_many
+  via: enterprise root -> sub-orgs (License.limitPer enterprise|suborg)
+- from: Profile
+  to: Connection
+  type: has_many
+  via: connectionId
+- from: Connection
+  to: Profile
+  type: has_one
+  via: profile
+- from: Asset
+  to: AssetCategory
+  type: belongs_to
+  via: category
+- from: Asset
+  to: AssetHolder
+  type: has_many
+  via: /assets/{assetId}/holders
+- from: Asset
+  to: AssetTransferOperation
+  type: has_many
+  via: assetId
+- from: Asset
+  to: Form
+  type: has_one
+  via: Asset references Form (per-asset data capture)
+- from: AssetTransferOperation
+  to: Transaction
+  type: belongs_to
+  via: transactionId
+- from: AssetTransferOperation
+  to: Profile
+  type: belongs_to
+  via: senderId
+- from: AssetTransferOperation
+  to: Profile
+  type: belongs_to
+  via: receiverId
+- from: AssetTransferOperation
+  to: Asset
+  type: belongs_to
+  via: assetId
+- from: AssetTransferOperation
+  to: Asset
+  type: belongs_to
+  via: exchangingAssetId
+- from: AssetTransferOperation
+  to: PaymentDestination
+  type: has_one
+  via: paymentDestination
+- from: AssetTransferOperation
+  to: AssetTransferOperation
+  type: has_many
+  via: SourceOperations (chain of custody back to prior transfers)
+- from: Transaction
+  to: PaymentAdjustment
+  type: has_many
+  via: transactionId
+- from: Form
+  to: FormDataEntry
+  type: has_many
+  via: formId
+- from: FormDataEntry
+  to: Profile
+  type: has_many
+  via: responders
+- from: AssetShare
+  to: AssetTransferOperation
+  type: has_many
+  via: /assets/shares/{shareId}/transfers
+- from: SmartContract
+  to: SmartContractTrigger
+  type: belongs_to
+  via: workflow.triggerId
+- from: SmartContract
+  to: SmartContractAction
+  type: has_many
+  via: workflow.steps[].action
+- from: ValidationWorkflow
+  to: SmartContractAction
+  type: belongs_to
+  via: workflow.validatedActionId
+- from: DataProcessor
+  to: Attachment
+  type: has_one
+  via: sample
+
+chain_of_custody:
+  schema: ChainOfCustody
+  note: >-
+    The traceability primitive. GET /assets/{assetId}/sources and
+    GET /transfers/{transferId}/sources walk a transfer back to the operations that supplied it, and
+    AssetTransformationOperation records inputs being consumed into a new output asset - this is how
+    a finished good is traced to the farms it came from.
+
+geo:
+  schemas: [GeoCoordinates, GeoJsonFeatureCollection, GeoJsonGeometryObject, EffectiveLocation]
+  note: >-
+    Locations are modelled as GeoJSON feature collections, which is what makes plot-level
+    deforestation (EUDR) evidence expressible through the same API.

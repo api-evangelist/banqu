@@ -1,0 +1,90 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/banqu-openapi-original.json
+docs: https://api.banqu.app/openapi
+
+format: http-status
+media_type: application/json
+rfc9457: false
+note: >-
+  BanQu does not use RFC 9457 problem+json. The published OpenAPI declares a set of shared
+  components.responses keyed by bare HTTP status code, each carrying only a human-readable
+  description and no error schema, so an agent cannot bind to a machine-readable error body from
+  the spec alone. The one observable error envelope is the platform's routing 404, confirmed live
+  against https://api.banqu.app/ — {"message": "<path> endpoint does not exist", "url": "<path>"} —
+  which suggests a {message, url} shape, but that shape is NOT declared in the spec and must not
+  be assumed for application-level errors.
+
+envelope:
+  observed:
+    example: '{"message":"/openapi.json endpoint does not exist","url":"/openapi.json"}'
+    source: probed https://api.banqu.app/openapi.json -> 404 application/json
+    declared_in_spec: false
+  declared:
+    schema: null
+    note: components.responses entries carry description only, no content/schema
+
+problems:
+- status: 400
+  title: Bad Request
+  detail: >-
+    The request is formatted incorrectly, most likely some of the required parameters are missed
+  source: openapi components.responses/400
+  operations_declaring: 83
+- status: 401
+  title: Unauthorized
+  detail: User is not authenticated or session has expired
+  source: openapi components.responses/401
+  operations_declaring: 136
+- status: 403
+  title: Forbidden
+  detail: Not authorized to access selected resource
+  source: openapi components.responses/403
+  operations_declaring: 66
+- status: 404
+  title: Not Found
+  detail: Requested resource could not be found
+  source: openapi components.responses/404
+  operations_declaring: 89
+- status: 409
+  title: Conflict
+  detail: >-
+    The request could not be completed due to a conflict with the current state of the target
+    resource
+  source: openapi components.responses/409
+  operations_declaring: 1
+- status: 422
+  title: Unprocessable Request
+  detail: >-
+    The server understands the content type of the request entity and the syntax of the request is
+    correct, but was unable to process the contained instructions
+  source: openapi components.responses/422
+  operations_declaring: 25
+- status: 429
+  title: Too Many Requests
+  detail: >-
+    The user has sent too many requests in a given amount of time ("rate limiting").
+  source: openapi components.responses/429
+  operations_declaring: 0
+  note: >-
+    Defined as a shared response component but referenced by ZERO of the 191 operations, and no
+    RateLimit/Retry-After headers appear anywhere in the spec. Rate limiting exists in the
+    vocabulary but is not documented as a contract on any endpoint.
+
+success_semantics:
+- status: 201
+  title: Created
+  headers:
+  - name: Location
+    description: Url of the created entity
+- status: 202
+  title: Accepted
+  detail: Request accepted for processing; processing not complete
+- status: 204
+  title: No Content
+
+gaps:
+- No error body schema is declared for any 4xx response.
+- No error code registry, no error `type` URIs, no remediation guidance.
+- 429 is declared but never wired to an operation; no rate-limit headers documented.
+- Every response description is generic HTTP prose, not BanQu-specific failure semantics.

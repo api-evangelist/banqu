@@ -1,0 +1,154 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/banqu-openapi-original.json
+docs: https://api.banqu.app/openapi
+
+summary: >-
+  Cross-cutting runtime semantics of the BanQu API, derived from the live OpenAPI 3.0.3 document
+  served at https://banqu.app/api/v1/schema. BanQu states its own design intent in info.description:
+  "organized around REST ... predictable, resource-oriented URLs ... HTTP response codes to indicate
+  API errors ... built-in HTTP features, like HTTP verbs ... and JSON for input and output."
+
+style:
+  architecture: REST
+  media_type: application/json
+  exceptions:
+  - multipart/form-data on the profile photo upload
+  - text/csv on GET /connections/csv
+  base_url: https://banqu.app/api/v1
+  versioning: uri-path
+  version_in_url: v1
+  spec_version: 3.3.4
+
+authentication:
+  scheme: http bearer
+  bearer_format: JWT
+  applied: global (root-level security requires Bearer on every operation)
+  header_note: >-
+    The AuthTokens schema documents the token as being supplied in an `X-BQ-Token` header, while
+    components.securitySchemes declares a standard HTTP Bearer scheme. Both appear in the published
+    spec; the spec does not reconcile them.
+  token_kinds:
+  - kind: session token
+    issued_by: POST /auth/accounts/{accountId}/token
+    lifetime: short-lived, paired with a refreshToken (tokenExpires / refreshTokenExpires)
+  - kind: persistent API token
+    issued_by: POST /auth/api-tokens
+    note: >-
+      "Token will be written to the response body only once and will not be stored within the BanQu
+      system." Requires the caller's current password in the request body. Listable via
+      GET /auth/api-tokens, revocable via DELETE /auth/api-tokens/{id}, with created/expires stamps.
+  multi_account: >-
+    GET /auth/accounts lists every account (personal + org) an identity can act as; a token is then
+    minted per account, so account selection is an explicit auth step, not a request header.
+
+pagination:
+  style: offset-limit
+  params:
+  - name: offset
+    in: query
+    type: number
+    default: 0
+    minimum: 0
+    description: 0-based index of the first element
+  - name: limit
+    in: query
+    type: number
+    default: 20
+    minimum: 1
+    description: Number of items per page
+  response_envelope: null
+  note: >-
+    Declared as reusable components.parameters (Offset, Limit). No cursor/keyset option, no
+    total-count or next-link field is declared in the spec.
+
+sorting:
+  param: sortBy
+  format: comma-separated field:direction pairs
+  example: 'status:asc,created:desc'
+
+filtering:
+  free_text:
+    param: search
+    description: A space-separated list of keywords to search items by
+  structured:
+    endpoint: POST /connections/filter
+    note: complex connection filters are posted as a body rather than encoded in the query string
+  domain_filters:
+  - codes (comma-separated asset codes on transaction queries)
+  - transactionKind (buy, sell, transfer, deposit, transformation, draft-locked, draft-unlocked)
+
+idempotency:
+  idempotency_key_header: false
+  note: >-
+    NO idempotency key mechanism is documented anywhere in the spec — the strings "idempotent" and
+    "Idempotency-Key" do not appear. Retry safety rests only on HTTP verb semantics (PUT/PATCH/DELETE)
+    plus one natural-key affordance: form data entries can be addressed by
+    `entryId` = a double-pipe-separated (||) list of globally primary field values instead of a BanQu
+    id, which makes upsert-by-business-key possible for form submissions. Batch writes
+    (POST /transactions/batch, POST /assets/{assetId}/transfers/batch) carry no dedupe token.
+
+rate_limiting:
+  documented: false
+  headers: []
+  note: >-
+    A 429 response component exists but is referenced by zero operations, and no RateLimit-*,
+    X-RateLimit-* or Retry-After headers are declared. Clients cannot discover limits from the contract.
+
+request_tracing:
+  correlation_header: null
+  note: No request-id / trace-id header is documented in the spec or observed on responses.
+
+side_effect_control:
+  param: preventNotify
+  in: query
+  type: boolean
+  description: >-
+    "If truthy, the notifications triggered by the endpoint will be suppressed" — a reusable
+    parameter that lets an integration write data without firing user notifications, which is the
+    convention bulk importers and agents should use.
+
+soft_delete:
+  pattern: DELETE followed by POST .../restore
+  restorable_resources:
+  - assets (POST /assets/{assetId}/restore)
+  - forms (POST /forms/{formId}/restore)
+  - form data entries (POST /forms/{formId}/data-entries/{entryId}/restore)
+  - organizations (POST /orgs/{orgId}/restore)
+  - smart contracts (POST /smart-contracts/{contractId}/restore)
+  - data processors (POST /data-processors/{processorId}/restore)
+  - validation workflows (POST /validation-workflows/{workflowId}/restore)
+  note: >-
+    Deletion is reversible across most first-class resources — an unusually consistent convention,
+    and the safest single fact for an agent operating on this API to know.
+
+resource_metadata:
+  schema: ScimResourceMetadata
+  fields:
+  - displayName
+  - meta.resourceType
+  - meta.created (epoch milliseconds, number)
+  - meta.lastModified (epoch milliseconds, number)
+  note: >-
+    BanQu reuses SCIM-style resource metadata (meta.resourceType/created/lastModified) on several
+    collections. Timestamps are numeric epoch milliseconds, not RFC 3339 strings.
+
+concurrency:
+  etag: false
+  if_match: false
+  note: >-
+    No ETag / If-Match / If-None-Match support is declared. GET /profile returns a lastModified
+    timestamp and the NewProfileTimestamp response returns the new lastModified after a write, which
+    is the closest thing to an optimistic-concurrency signal in the contract.
+
+errors: errors/banqu-problem-types.yml
+authentication_artifact: authentication/banqu-authentication.yml
+lifecycle: lifecycle/banqu-lifecycle.yml
+data_model: data-model/banqu-data-model.yml
+
+gaps:
+- No idempotency keys on any write, including the two batch endpoints.
+- No documented rate limits and no rate-limit response headers.
+- No request-correlation header.
+- No operationId on any of the 191 operations, so tooling must synthesize identifiers from method+path.
+- No response envelope or total-count on paginated collections.

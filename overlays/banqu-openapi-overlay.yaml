@@ -1,0 +1,98 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the BanQu API
+  version: 1.0.0
+extends: openapi/banqu-openapi-original.json
+x-generated: '2026-08-06'
+x-method: generated
+x-source: >-
+  Derived from the live OpenAPI 3.0.3 document at https://banqu.app/api/v1/schema plus the artifacts
+  in this repository. The original spec is never mutated; every enhancement below is expressed as an
+  overlay action.
+actions:
+- target: $.info
+  update:
+    contact:
+      name: BanQu Support
+      email: info@banqu.co
+      url: https://www.banqu.co/support-policy
+    x-apievangelist-profile: https://apievangelist.com/providers/banqu
+    x-apievangelist-reviewed: '2026-08-06'
+    x-apievangelist-artifacts:
+      authentication: authentication/banqu-authentication.yml
+      conventions: conventions/banqu-conventions.yml
+      errors: errors/banqu-problem-types.yml
+      data_model: data-model/banqu-data-model.yml
+      lifecycle: lifecycle/banqu-lifecycle.yml
+      conformance: conformance/banqu-conformance.yml
+      webhooks: asyncapi/banqu-webhooks.yml
+      skills: skills/_index.yml
+- target: $.info
+  update:
+    x-apievangelist-findings:
+      operation_ids: >-
+        None of the 191 operations declares an operationId. Every generator, SDK, MCP bridge and
+        agent tool built against this spec must synthesize identifiers from method+path, and any two
+        tools will synthesize them differently. Adding stable operationIds is the single
+        highest-leverage change to this document.
+      operation_summaries: >-
+        No operation declares a `summary`; several declare only a terse `description`. Tag-level
+        descriptions exist for 8 of the 25 tags.
+      error_schemas: >-
+        The shared 4xx response components carry a description but no content or schema, so no error
+        body is machine-readable from the contract.
+      rate_limits: >-
+        A 429 response component is defined but referenced by zero operations, and no rate-limit
+        headers are declared.
+      idempotency: >-
+        No idempotency-key mechanism, including on the two batch write endpoints
+        (POST /transactions/batch and POST /assets/{assetId}/transfers/batch).
+      auth_header: >-
+        components.securitySchemes declares HTTP Bearer while components.schemas.AuthTokens
+        documents an X-BQ-Token header. The two statements conflict.
+      server_url: >-
+        servers[0].url is "https://banqu.app:443/api/v1" - the explicit :443 is redundant for https
+        and breaks some strict URL parsers and code generators.
+- target: $.servers
+  update:
+  - url: https://banqu.app/api/v1
+    description: >-
+      Production (API Evangelist normalization of the published
+      "https://banqu.app:443/api/v1" - same host, redundant default port removed)
+- target: $.tags
+  update:
+  - name: Authentication
+    description: >-
+      Account discovery, short-lived session tokens, and persistent API tokens. Start here: list
+      accounts, mint a token for the account you intend to act as, then call everything else.
+  - name: Assets
+    description: >-
+      Tracked commodity or product units - the nouns that move through the chain of custody.
+  - name: Asset Transfers
+    description: >-
+      Movements of asset quantity between accounts. /sources on a transfer or an asset is what makes
+      farm-to-shelf traceability queryable.
+  - name: Forms
+    description: >-
+      Structured questionnaire definitions used to capture supplier, plot, and compliance evidence.
+  - name: Form Data Entries
+    description: >-
+      Submitted form instances with an approve / deny / review / reject / withdraw lifecycle.
+      Entries may be addressed by a double-pipe-separated natural key instead of a BanQu id.
+  - name: Public Profiles
+    description: Read-only supplier profile data shared to the acting account by another party.
+  - name: Attachments
+    description: Pre-signed upload URL minting for files referenced by assets, forms, and processors.
+  - name: Notifications
+    description: >-
+      Polled notification feed. Writes accept a `preventNotify` query parameter to suppress
+      notification side effects during bulk import.
+- target: $.components.parameters.Limit
+  update:
+    x-apievangelist-note: >-
+      No maximum is declared. Clients should not assume an unbounded page size.
+- target: $.components.responses['429']
+  update:
+    x-apievangelist-note: >-
+      Defined but referenced by zero operations, and no RateLimit-* or Retry-After headers are
+      declared. Treat rate limits as undocumented and back off on 429 regardless.

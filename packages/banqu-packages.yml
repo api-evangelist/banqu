@@ -1,0 +1,36 @@
+generated: '2026-08-06'
+method: searched
+source: public package registry searches + banqu.co and api.banqu.app docs surface
+
+packages: []
+
+searched:
+  result: >-
+    No first-party BanQu client library exists in any public package registry, and neither the
+    marketing site nor the Swagger UI at https://api.banqu.app/openapi links to an SDK, a code
+    sample, or a source repository. Integrators are expected to call the REST API directly or use
+    CSV upload. Because there is no official SDK, no `type: SDKs` pointer is wired in apis.yml.
+  registries:
+  - registry: npm
+    query: banqu
+    result: no first-party package (registry search returned no BanQu-published package)
+  - registry: pypi
+    query: banqu
+    result: 404
+  - registry: rubygems
+    query: banqu
+    result: empty result set
+  - registry: packagist
+    query: banqu
+    result: no first-party package (only unrelated "banque"/"Pay by Bank" matches)
+  - registry: crates.io
+    query: banqu
+    result: no first-party package
+  - registry: nuget
+    query: banqu
+    result: no first-party package (only the unrelated "Banquo" Selenium helper)
+  github:
+    org: null
+    note: >-
+      No BanQu, Inc. GitHub organization was found. github.com/banqu is an unrelated individual
+      account holding forks of magento, oceanbase and odoo.

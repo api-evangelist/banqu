@@ -1,0 +1,83 @@
+generated: '2026-08-06'
+method: searched
+source: https://api.banqu.app/openapi
+docs: https://www.banqu.co/support-policy
+
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://banqu.app/api/v1
+  build_version: 3.3.4
+  version_source: >-
+    info.version in the live OpenAPI, which tracks the platform release (the app shell reports the
+    same 3.3.4 in its Sentry release tag) rather than an API contract version.
+  policy_url: null
+  note: >-
+    There is no published versioning policy. The path segment has been v1 while the underlying build
+    version moves, so consumers have no signal that distinguishes an additive release from a
+    breaking one.
+
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  note: >-
+    Zero of the 191 operations carry `deprecated: true`, and the strings "deprecat" and "Sunset" do
+    not appear anywhere in the spec. No deprecation policy page was found on banqu.co.
+
+change_log:
+  url: null
+  note: >-
+    No changelog, release-notes, or API-updates page was found. The only version signal a consumer
+    can observe is info.version in the live schema document, which requires polling.
+
+status_page:
+  url: null
+  probes:
+  - url: https://status.banqu.co/
+    status: NXDOMAIN
+  - url: https://status.banqu.app/
+    status: NXDOMAIN
+  note: No public status page exists on any BanQu domain.
+
+sla:
+  url: https://www.banqu.co/support-policy
+  uptime_target: null
+  response_targets: null
+  severity_levels:
+  - level: 'Severity 1'
+    definition: >-
+      Complete loss of service - system crashed, critical features unavailable, or severe data
+      corruption.
+  - level: 'Severity 2'
+    definition: >-
+      Significant loss of service - defective features impacting users with no workaround available.
+  - level: 'Severity 3'
+    definition: Minor loss of service - non-critical issues with an operational workaround.
+  tiers: [Basic Care, Premium Care]
+  note: >-
+    The published Support Policy defines severity tiers and states BanQu will "use commercially
+    reasonable efforts to promptly respond to the logged cases based on published Service Level
+    policies", but the numeric response times and any uptime commitment sit in the referenced
+    Service Level policies, which are not public. Support is delivered through a customer support
+    portal, not a public channel.
+
+support:
+  portal: https://www.banqu.co/support-policy
+  contact_email: info@banqu.co
+  phone: '+1 (833) 600-0010'
+  helpdesk_vendor: Zendesk (banqu.zendesk.com - 403 to anonymous requests)
+
+soft_delete_and_restore:
+  note: >-
+    Resource lifecycle inside the API is unusually well defined even though the API's own lifecycle
+    is not - assets, forms, form data entries, orgs, smart contracts, data processors, and
+    validation workflows all support DELETE followed by a POST .../restore. See
+    conventions/banqu-conventions.yml.
+
+gaps:
+- No status page.
+- No changelog or release notes.
+- No deprecation policy, no Sunset/Deprecation header support, no deprecated operations flagged.
+- No published uptime target or numeric response-time SLA.

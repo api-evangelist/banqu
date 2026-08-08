@@ -1,0 +1,96 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/banqu-openapi-original.json
+docs: https://www.banqu.co/platform
+
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    Live OpenAPI 3.0.3 document served at https://banqu.app/api/v1/schema and rendered by a
+    Swagger UI at https://api.banqu.app/openapi. 134 paths, 191 operations, 188 component schemas.
+- id: rest
+  conforms: true
+  evidence: >-
+    info.description states the API is "organized around REST ... resource-oriented URLs ... HTTP
+    verbs ... JSON for input and output", and the path design bears it out.
+- id: json
+  conforms: true
+  evidence: application/json is the request and response media type on effectively every operation.
+- id: jwt-rfc7519
+  conforms: true
+  evidence: components.securitySchemes.Bearer declares type http, scheme bearer, bearerFormat JWT.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 security scheme, no authorization/token URLs, no scopes. Auth is password-plus-token
+    (POST /auth/api-tokens requires the user's current password) and per-account token minting.
+- id: oidc
+  conforms: false
+  evidence: No openIdConnect scheme; /.well-known/openid-configuration returns 404 on every host.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    No application/problem+json anywhere in the spec; shared 4xx responses carry a description only,
+    with no error schema.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www.banqu.co, banqu.app, and api.banqu.app.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header is declared or documented.
+- id: rfc8615-well-known
+  conforms: false
+  evidence: No /.well-known/ document of any kind returned 200 on any BanQu host.
+- id: scim2
+  conforms: partial
+  evidence: >-
+    The spec defines a ScimResourceMetadata schema (displayName + meta.resourceType/created/
+    lastModified) reused across collections, and an OrgRole/OrgCapabilities permission model, but
+    exposes no /scim/v2 endpoints, no ServiceProviderConfig, and no SCIM media types. SCIM shapes
+    are borrowed; SCIM protocol conformance is not claimed and not present.
+- id: geojson-rfc7946
+  conforms: true
+  evidence: >-
+    GeoJsonFeatureCollection and GeoJsonGeometryObject schemas back EffectiveLocation and the
+    /geo-data endpoints - the mechanism plot-level EUDR evidence rides on.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No AsyncAPI document and no published event catalog. The nearest surface is customer-configured
+    Smart Contract `request` steps - see asyncapi/banqu-webhooks.yml.
+- id: mcp
+  conforms: false
+  evidence: >-
+    No MCP server. POST tools/list returned 404 on banqu.app/mcp, api.banqu.app/mcp and
+    banqu.app/api/v1/mcp; mcp.banqu.co and mcp.banqu.app do not resolve.
+- id: a2a
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json return 404 on every BanQu host.
+
+compliance_claims:
+- claim: 'GDPR/SSAE16 Compliant'
+  source: https://www.banqu.co/platform
+  verified: false
+  note: >-
+    Stated as a platform feature bullet on BanQu's own marketing site. No trust center, no
+    certification page, no attestation report, and no auditor is named; the privacy policy makes no
+    certification claim. Recorded as a vendor claim, not as evidence of a published compliance
+    program - which is why no `type: Compliance` pointer is wired in apis.yml.
+- claim: 'Role-based permissions, security and optional auditor access'
+  source: https://www.banqu.co/platform
+  verified: partial
+  note: >-
+    The RBAC half is corroborated by the API - OrgRole, OrgCapabilities and Permissions model
+    create/read/update/delete per capability, with GET /orgs/current/capabilities exposing the
+    effective permission set.
+
+regulatory_context:
+  note: >-
+    BanQu sells into regulated reporting regimes rather than being certified against them. Its
+    product surface targets EU Deforestation Regulation (EUDR) due diligence, Extended Producer
+    Responsibility, South African B-BBEE, GHG Protocol Scope 3 accounting, and lifecycle assessment.
+    These are the customer's obligations that the platform produces evidence for; they are not
+    conformance claims about the API itself.
+  regimes: [EUDR, EPR, B-BBEE, GHG-Protocol-Scope-3, LCA]

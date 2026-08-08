@@ -1,0 +1,69 @@
+generated: '2026-08-06'
+method: generated
+source: >-
+  Packaged Agent Skills generated from BanQu's live OpenAPI 3.0.3 document
+  (openapi/banqu-openapi-original.json, harvested verbatim from https://banqu.app/api/v1/schema).
+  The spec declares ZERO operationIds across all 191 operations, so every step in every skill is
+  grounded in an HTTP method + path pair verified verbatim against the spec rather than an
+  operationId. Cross-cutting rules cite ../authentication/, ../conventions/, ../errors/ and
+  ../data-model/.
+searched:
+  provider_published_skills: null
+  note: >-
+    No provider-published Agent Skill, AGENTS.md, or llms.txt was found on any BanQu host
+    (https://www.banqu.co/llms.txt, https://banqu.app/llms.txt and https://api.banqu.app/llms.txt all
+    returned 404). These skills are API Evangelist work, not BanQu's.
+skills:
+- file: banqu-authenticate-and-select-account.md
+  name: Authenticate and select a BanQu account
+  api: openapi/banqu-openapi-original.json
+  operations:
+  - 'GET /auth/accounts'
+  - 'POST /auth/accounts/{accountId}/token'
+  - 'POST /auth/api-tokens'
+  - 'GET /auth/api-tokens'
+  - 'DELETE /auth/api-tokens/{id}'
+  - 'GET /orgs/current/capabilities'
+- file: banqu-trace-an-asset-to-source.md
+  name: Trace an asset back to source
+  api: openapi/banqu-openapi-original.json
+  operations:
+  - 'GET /assets'
+  - 'GET /assets/{assetId}'
+  - 'GET /assets/{assetId}/sources'
+  - 'GET /assets/{assetId}/history'
+  - 'GET /assets/{assetId}/holders'
+  - 'GET /transfers/{transferId}/sources'
+  - 'GET /transactions/{transactionId}/operations'
+  - 'GET /shared-profile/{ownerId}'
+  - 'GET /shared-profile/{ownerId}/geo-data'
+- file: banqu-record-a-supplier-purchase.md
+  name: Record a supplier purchase
+  api: openapi/banqu-openapi-original.json
+  operations:
+  - 'GET /connections'
+  - 'POST /connections'
+  - 'POST /connections/filter'
+  - 'POST /connections/{connectionId}/resend'
+  - 'GET /assets'
+  - 'POST /transactions'
+  - 'POST /transactions/batch'
+  - 'POST /assets/{assetId}/transfers'
+  - 'POST /payment-adjustments'
+  - 'POST /transactions/{transactionId}/finalize'
+  - 'GET /transactions/{transactionId}'
+- file: banqu-collect-and-approve-supplier-form-data.md
+  name: Collect and approve supplier form data
+  api: openapi/banqu-openapi-original.json
+  operations:
+  - 'GET /forms'
+  - 'GET /forms/{formId}'
+  - 'POST /forms/{formId}/assign'
+  - 'GET /forms/{formId}/data-entries'
+  - 'POST /forms/{formId}/data-entries'
+  - 'PATCH /forms/{formId}/data-entries/{entryId}'
+  - 'POST /forms/{formId}/data-entries/{entryId}/submit'
+  - 'POST /forms/{formId}/data-entries/{entryId}/review'
+  - 'POST /forms/{formId}/data-entries/{entryId}/approval'
+  - 'POST /forms/{formId}/data-entries/{entryId}/denial'
+  - 'GET /aws/upload-url'

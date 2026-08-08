@@ -1,0 +1,144 @@
+generated: '2026-08-06'
+method: derived
+status: candidate
+source: openapi/banqu-openapi-original.json
+
+published_server: null
+searched:
+  note: >-
+    No BanQu-operated MCP server exists. This file is a CANDIDATE tool shape derived from the live
+    OpenAPI, not a server BanQu runs. It deliberately carries NO `type: MCPServer` pointer in
+    apis.yml - wiring one would credit BanQu with an agent surface it does not operate.
+  probes:
+  - url: https://banqu.app/mcp
+    status: 404
+  - url: https://api.banqu.app/mcp
+    status: 404
+  - url: https://banqu.app/api/v1/mcp
+    status: 404
+  - url: https://www.banqu.co/mcp
+    status: 405
+  - url: https://mcp.banqu.app/
+    status: NXDOMAIN
+  - url: https://mcp.banqu.co/
+    status: NXDOMAIN
+  registries_checked:
+  - npm (registry search "banqu") - no first-party package
+  - PyPI (/pypi/banqu/json) - 404
+
+server:
+  name: banqu
+  transport: http
+  url: null
+
+auth_model:
+  scheme: http bearer (JWT)
+  note: >-
+    A future MCP server would inherit BanQu's persistent API tokens (POST /auth/api-tokens) and the
+    per-account token minting step (GET /auth/accounts then POST /auth/accounts/{accountId}/token) -
+    account selection is an explicit part of the auth flow and would have to be modelled as a tool
+    or a server config, not inferred.
+
+tool_naming_caveat: >-
+  The BanQu OpenAPI declares ZERO operationIds across all 191 operations, so no tool name below is
+  taken from the provider. Every `name` here is synthesized from HTTP method plus path by API
+  Evangelist; `source_operation` carries the real, verifiable method+path.
+
+tools:
+- name: list_assets
+  description: List assets owned by the acting account.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /assets'
+- name: create_asset
+  description: Create a new tracked asset.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /assets'
+- name: get_asset
+  description: Retrieve a single asset by id.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /assets/{assetId}'
+- name: list_asset_holders
+  description: List accounts currently holding quantity of an asset.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /assets/{assetId}/holders'
+- name: get_asset_sources
+  description: Walk an asset back to the transfer operations that supplied it (chain of custody).
+  source_operation: 'openapi/banqu-openapi-original.json#GET /assets/{assetId}/sources'
+- name: get_asset_history
+  description: Retrieve the full movement history of an asset.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /assets/{assetId}/history'
+- name: create_asset_transfer
+  description: Transfer asset quantity from the acting account to a receiver.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /assets/{assetId}/transfers'
+- name: create_asset_transfers_batch
+  description: Create multiple asset transfers in one call.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /assets/{assetId}/transfers/batch'
+- name: list_transfers
+  description: List transfer operations visible to the acting account.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /transfers'
+- name: get_transfer_sources
+  description: Walk a transfer back to its source operations.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /transfers/{transferId}/sources'
+- name: confirm_transfer_receipt
+  description: Confirm receipt of an inbound transfer.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /transfers/{transferId}/confirmReceipt'
+- name: list_transactions
+  description: List buy/sell/transfer/deposit/transformation transactions.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /transactions'
+- name: create_transaction
+  description: Create a transaction grouping one or more transfers.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /transactions'
+- name: create_transactions_batch
+  description: Create multiple transactions in one call.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /transactions/batch'
+- name: finalize_transaction
+  description: Finalize a draft transaction.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /transactions/{transactionId}/finalize'
+- name: transform_assets
+  description: Consume input assets into a new output asset (processing/transformation step).
+  source_operation: 'openapi/banqu-openapi-original.json#POST /assets/transformations'
+- name: list_connections
+  description: List connected identities and organizations.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /connections'
+- name: create_connection
+  description: Invite or create a connection to a supplier or organization.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /connections'
+- name: filter_connections
+  description: Query connections with a structured filter body.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /connections/filter'
+- name: export_connections_csv
+  description: Export the connection list as CSV.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /connections/csv'
+- name: list_forms
+  description: List form definitions available to the acting account.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /forms'
+- name: list_form_data_entries
+  description: List submitted entries for a form.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /forms/{formId}/data-entries'
+- name: create_form_data_entry
+  description: Submit a new form data entry.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /forms/{formId}/data-entries'
+- name: approve_form_data_entry
+  description: Approve a submitted form data entry.
+  source_operation: 'openapi/banqu-openapi-original.json#POST /forms/{formId}/data-entries/{entryId}/approval'
+- name: list_payment_adjustments
+  description: List payment adjustments on buy/sell transactions.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /payment-adjustments'
+- name: list_orgs
+  description: List organizations accessible to the acting identity.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /orgs'
+- name: list_org_capabilities
+  description: Retrieve the effective permission set of the current organization.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /orgs/current/capabilities'
+- name: get_shared_profile
+  description: Read a shared supplier profile granted to the acting account.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /shared-profile/{ownerId}'
+- name: list_smart_contracts
+  description: List automation workflows that react to system events.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /smart-contracts'
+- name: list_notifications
+  description: Read the notification feed.
+  source_operation: 'openapi/banqu-openapi-original.json#GET /notifications'
+
+coverage:
+  rest_operations_total: 191
+  tools_proposed: 30
+  note: >-
+    Deliberately a marquee subset, not a 1:1 mirror of all 191 operations. Destructive verbs
+    (DELETE, restore, org/role administration) are excluded from the candidate surface.

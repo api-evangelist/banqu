@@ -1,0 +1,108 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/banqu-openapi-original.json
+docs: https://api.banqu.app/openapi
+
+asyncapi_published: false
+webhook_catalog_published: false
+
+summary: >-
+  BanQu publishes no AsyncAPI document and no fixed webhook catalog. What it does publish, in the
+  live OpenAPI, is a customer-configurable outbound-HTTP surface: Smart Contracts are described as
+  "Automation workflows that react to system events", and one of the step types a workflow may
+  contain is a `request` step that issues an arbitrary HTTP call to a customer-supplied URL with
+  customer-supplied headers. That is a webhook in effect - the event source is BanQu, the receiver is
+  the integrator - but the event vocabulary is discovered at runtime, not from a document.
+
+surface:
+  kind: configurable-outbound-request
+  resource: Smart Contracts
+  create: POST /smart-contracts
+  read: GET /smart-contracts, GET /smart-contracts/{contractId}
+  update: PUT /smart-contracts/{contractId}
+  delete: DELETE /smart-contracts/{contractId}
+  history: GET /smart-contracts/{contractId}/history
+  restore: POST /smart-contracts/{contractId}/restore
+
+trigger_catalog:
+  discovery: GET /smart-contracts/triggers
+  detail: GET /smart-contracts/triggers/{triggerId}
+  schema: SmartContractTrigger (id, title)
+  published_list: null
+  gated: true
+  note: >-
+    The set of system events that can start a workflow is returned by the API at runtime and is
+    authentication-gated (401/403 without a token). The spec declares only the trigger envelope, not
+    the event names, so the event vocabulary cannot be enumerated from public material. It is NOT
+    fabricated here.
+
+action_catalog:
+  discovery: GET /smart-contracts/actions
+  detail: GET /smart-contracts/actions/{actionId}
+  filter: '?type=read|write'
+  schema: SmartContractAction (id, title, groups[], description)
+  note: >-
+    An action id is a base64-encoded JSON object of the form {method, path} naming an OpenAPI
+    endpoint to execute - so the action catalog is a projection of the same 191 REST operations.
+
+step_types:
+- type: filter
+  schema: WorkflowFilter
+  description: Conditional gate expressed as an expression over workflow variables.
+- type: uniqueness-filter
+  schema: WorkflowUniquenessFilter
+  description: Drops repeats within the workflow run.
+- type: map
+  schema: WorkflowMapping
+  description: Maps trigger payload fields onto the input of the next step.
+- type: action
+  schema: WorkflowAction
+  description: >-
+    Executes a BanQu OpenAPI endpoint; `action` is base64 {method, path}. This is the internal
+    (inbound) branch.
+- type: request
+  schema: WorkflowRequest
+  description: >-
+    Issues an outbound HTTP call. Fields - method (get|list|post|put|patch|delete|head|options),
+    url (string), headers (map of string). This is the branch that makes Smart Contracts function
+    as webhooks toward an integrator's endpoint.
+  required: [type, method, url]
+
+security:
+  workflow_identity:
+    field: SmartContract.authToken
+    note: >-
+      A workflow may carry a write-only authToken it runs as; authTokenSig is returned read-only for
+      presence/uniqueness validation. Validation Workflows additionally expose `authenticatedAs`
+      (user + account display name) so an operator can see which identity a workflow acts as.
+  receiver_verification:
+    signature_header: null
+    hmac: false
+    replay_protection: null
+    note: >-
+      No inbound signature scheme is documented for the outbound `request` step - the integrator
+      controls the headers, so any shared-secret verification must be configured by the customer.
+
+related_automation:
+- resource: Data Processors
+  paths: [/data-processors, '/data-processors/{processorId}/process', '/data-processors/{processorId}/stop', '/data-processors/{processorId}/validate']
+  note: >-
+    Asynchronous ingestion of custom CSV/XLSX supplier files through the same WorkflowSteps machinery.
+    POST .../process is the only 202-Accepted-shaped path family in the API, and completion is
+    polled rather than pushed.
+- resource: Validation Workflows
+  paths: [/validation-workflows]
+  note: >-
+    Runs custom validation before any write action identified by validatedActionId - synchronous, not
+    an event surface, but built from the same steps.
+- resource: Notifications
+  paths: [/notifications]
+  note: >-
+    Read-only notification feed, polled. The reusable `preventNotify` query parameter suppresses
+    notification side effects on writes.
+
+gaps:
+- No AsyncAPI document.
+- No published list of event/trigger names; the catalog is auth-gated and runtime-only.
+- No delivery guarantees, retry policy, or dead-letter behaviour documented.
+- No webhook signature/verification scheme.

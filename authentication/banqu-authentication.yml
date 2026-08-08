@@ -1,0 +1,100 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/banqu-openapi-original.json
+docs: https://api.banqu.app/openapi
+
+summary:
+  types:
+  - http
+  api_key_in: []
+  oauth2_flows: []
+  applied: global
+  note: >-
+    A single security scheme, applied at the document root, so every one of the 191 operations
+    requires it. No OAuth 2.0, no OpenID Connect, no API-key-in-query, no mutual TLS.
+
+schemes:
+- name: Bearer
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Your authentication token
+  sources:
+  - openapi/banqu-openapi-original.json
+
+header_discrepancy:
+  declared_scheme: 'Authorization: Bearer <jwt>'
+  documented_alternative: X-BQ-Token
+  evidence: >-
+    components.schemas.AuthTokens.token is described as "Token that needs to be provided in the
+    X-BQ-Token header of auth-protected API requests", while components.securitySchemes.Bearer
+    declares a standard HTTP Bearer scheme. Both statements are in the same published document and
+    the document does not reconcile them. Recorded, not resolved - confirming which header the
+    gateway honours requires a credential.
+
+token_kinds:
+- kind: session
+  issue: POST /auth/accounts/{accountId}/token
+  schema: AuthTokens
+  fields: [token, tokenExpires, refreshToken, refreshTokenExpires]
+  lifetime: short-lived, refreshable
+  description: Account-specific short-lived authentication token.
+- kind: api-token
+  issue: POST /auth/api-tokens
+  list: GET /auth/api-tokens
+  revoke: DELETE /auth/api-tokens/{id}
+  schema: ApiTokenCreationParameters (ApiTokenInfo + password)
+  fields: [id, title, created, expires]
+  description: >-
+    "Create persistent token for API requests authentication. Token will be written to the response
+    body only once and will not be stored within the BanQu system." Minting one requires the calling
+    user's current password in the request body, so machine credentials are derived from a human
+    account rather than issued to a client application.
+  rotation: >-
+    Tokens carry created and expires timestamps and are individually revocable, but no rotation
+    policy or maximum lifetime is published.
+
+account_selection:
+  discovery: GET /auth/accounts
+  schema: AccountInfo (id 32-char, displayName, logo, isOrg)
+  note: >-
+    One identity may act as several accounts (personal and organizational). The account is chosen
+    when the token is minted, not per request, so an integration holds one token per account it
+    operates as. This is the single most important auth fact for an automated client.
+
+signup:
+  paths:
+  - POST /auth/signup
+  - GET /auth/signup/{token}
+  - POST /auth/signup/{token}
+  note: Invite-token based onboarding; there is no public self-serve developer signup.
+
+authorization_model:
+  kind: role-based, per organization
+  capabilities: GET /orgs/current/capabilities
+  roles: GET /orgs/current/roles, POST /orgs/current/roles
+  schema: OrgCapabilities / Permissions - a map of capability name to a set of
+    create | read | update | delete
+  note: >-
+    Permissions are expressed as CRUD verbs per capability and administered through org roles. There
+    is no OAuth scope surface, so scopes/ is intentionally absent - authorization is server-side RBAC,
+    not token-scoped delegation. A token inherits whatever its underlying user can do, which means an
+    agent holding a BanQu API token cannot be least-privileged at the token level.
+
+workflow_identity:
+  fields: [SmartContract.authToken, ValidationWorkflowDetails.authToken, authTokenSig, authenticatedAs]
+  note: >-
+    Automation objects store a write-only auth token and expose a signature plus an `authenticatedAs`
+    display name so operators can see which identity a workflow runs as.
+
+transport_security:
+  https_only: true
+  hsts: true
+  evidence: security/banqu-domain-security.yml
+
+gaps:
+- No OAuth 2.0 or OIDC; no delegated authorization for third-party apps.
+- No token scopes - least privilege is only achievable by creating a purpose-built user.
+- API token minting requires a human password, so there is no pure machine-to-machine credential.
+- The Authorization-Bearer vs X-BQ-Token discrepancy is unresolved in the published contract.
+- No /.well-known/openid-configuration or oauth-authorization-server on any host (all 404).
