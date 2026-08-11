@@ -1,0 +1,39 @@
+# Kin Score artifact — banqu — 2026-08-10T111628
+# The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
+---
+kin_score:
+  slug: banqu
+  schema_version: 0.9.1
+  scored_at: '2026-08-10'
+  run_ts: 2026-08-10T111628
+  composite: 37.1
+  band: thin
+  facets:
+    discoverability: 92.6
+    contract_quality: 55.4
+    governance: 11.5
+    operational_transparency: 7.9
+    developer_ergonomics: 34.2
+    commercial_clarity: 23.7
+  agent_readiness:
+    score: 34.9
+    band: agent-ready
+    dimensions:
+      spec_presence: true
+      agentic_access: false
+      mcp_server: false
+      auth_clarity: true
+      idempotency: false
+      error_semantics: documented
+      openapi_examples: false
+      rate_limit_signal: false
+      event_surface_described: derived
+      agent_skills: derived
+      well_known_catalog: true
+      consent_identity: false
+      agent_card: false
+      dry_run_mode: false
+  provenance:
+    mcp: derived
+    skills: derived
+    conformance: derived

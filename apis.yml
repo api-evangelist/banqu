@@ -36,29 +36,16 @@ tags:
 - distributed-ledger
 - supplier-management
 apis:
-- name: BanQu API
-  description: >-
-    Production REST API behind the BanQu platform, documented with OpenAPI 3.0.3 and served live from the
-    application host. Resource-oriented URLs, JSON in and out, HTTP verbs and status codes for errors, JWT
-    bearer authentication with long-lived API tokens issued from /auth/api-tokens. 134 paths and 191
-    operations across 25 tagged capability groups: Authentication, User Profile, User Profile Sharing,
-    Public Profiles, Connections, Organizations, Organization Associates / Roles / Features, Assets, Asset
-    Categories, Asset Transactions, Asset Transfers, Asset Transfer Claiming, Asset Transformations, Asset
-    Sharing, Payment Adjustments, Forms, Form Data Entries, Attachments, Smart Contracts, Data Processors,
-    Validation Workflows, Tutorials, and Notifications.
+- aid: banqu:banqu-asset-categories-api
+  name: BanQu Asset Categories API
+  description: The Asset Categories API from BanQu — 2 operation(s) for asset categories.
   humanURL: https://api.banqu.app/openapi
   baseURL: https://banqu.app/api/v1
   tags:
-  - supply-chain
-  - traceability
-  - sustainability
-  - agriculture
-  - procurement
-  - compliance
-  - supplier-management
+  - Asset Categories
   properties:
   - type: OpenAPI
-    url: openapi/banqu-openapi-original.json
+    url: openapi/banqu-asset-categories-api-openapi.yml
   - type: Documentation
     url: https://api.banqu.app/openapi
   - type: APIReference
@@ -71,13 +58,587 @@ apis:
     url: errors/banqu-problem-types.yml
   - type: DataModel
     url: data-model/banqu-data-model.yml
-  - type: Overlay
-    url: overlays/banqu-openapi-overlay.yaml
   - type: Webhooks
     url: asyncapi/banqu-webhooks.yml
-  - type: AgentSkill
-    url: skills/_index.yml
+- aid: banqu:banqu-asset-sharing-api
+  name: BanQu Asset Sharing API
+  description: The Asset Sharing API from BanQu — 6 operation(s) for asset sharing.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Asset Sharing
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-asset-sharing-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-asset-transactions-api
+  name: BanQu Asset Transactions API
+  description: Asset exchange/buy/sell transactions that consist of multiple asset transfers
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Asset Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-asset-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-asset-transfer-claiming-api
+  name: BanQu Asset Transfer Claiming API
+  description: The Asset Transfer Claiming API from BanQu — 3 operation(s) for asset transfer claiming.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Asset Transfer Claiming
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-asset-transfer-claiming-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-asset-transfers-api
+  name: BanQu Asset Transfers API
+  description: Asset transfers from one owner to another
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Asset Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-asset-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-asset-transformations-api
+  name: BanQu Asset Transformations API
+  description: The Asset Transformations API from BanQu — 1 operation(s) for asset transformations.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Asset Transformations
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-asset-transformations-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-assets-api
+  name: BanQu Assets API
+  description: The Assets API from BanQu — 4 operation(s) for assets.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-assets-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-attachments-api
+  name: BanQu Attachments API
+  description: The Attachments API from BanQu — 1 operation(s) for attachments.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-authentication-api
+  name: BanQu Authentication API
+  description: The Authentication API from BanQu — 6 operation(s) for authentication.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-connections-api
+  name: BanQu Connections API
+  description: Connected organizations and identitites
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-connections-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-data-processors-api
+  name: BanQu Data Processors API
+  description: Automation workflows for custom formats import
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Data Processors
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-data-processors-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-form-data-entries-api
+  name: BanQu Form Data Entries API
+  description: Form assignments and submitted form data entries
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Form Data Entries
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-form-data-entries-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-forms-api
+  name: BanQu Forms API
+  description: The Forms API from BanQu — 6 operation(s) for forms.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-forms-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-notifications-api
+  name: BanQu Notifications API
+  description: The Notifications API from BanQu — 1 operation(s) for notifications.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-organization-associates-api
+  name: BanQu Organization Associates API
+  description: The Organization Associates API from BanQu — 2 operation(s) for organization associates.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Organization Associates
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-organization-associates-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-organization-features-api
+  name: BanQu Organization Features API
+  description: The Organization Features API from BanQu — 1 operation(s) for organization features.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Organization Features
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-organization-features-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-organization-roles-api
+  name: BanQu Organization Roles API
+  description: Organization Roles and Permissions
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Organization Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-organization-roles-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-organizations-api
+  name: BanQu Organizations API
+  description: Organization accounts
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-payment-adjustments-api
+  name: BanQu Payment Adjustments API
+  description: Adjustments of payments on buy/sell transactions
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Payment Adjustments
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-payment-adjustments-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-public-profiles-api
+  name: BanQu Public Profiles API
+  description: The Public Profiles API from BanQu — 10 operation(s) for public profiles.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Public Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-public-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-smart-contracts-api
+  name: BanQu Smart Contracts API
+  description: Automation workflows that react to system events
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Smart Contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-smart-contracts-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-tutorials-api
+  name: BanQu Tutorials API
+  description: Interactive system guides
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Tutorials
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-tutorials-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-user-profile-api
+  name: BanQu User Profile API
+  description: The User Profile API from BanQu — 7 operation(s) for user profile.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - User Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-user-profile-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-user-profile-sharing-api
+  name: BanQu User Profile Sharing API
+  description: The User Profile Sharing API from BanQu — 11 operation(s) for user profile sharing.
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - User Profile Sharing
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-user-profile-sharing-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
+- aid: banqu:banqu-validation-workflows-api
+  name: BanQu Validation Workflows API
+  description: Automation workflows for custom validations on any write API actions
+  humanURL: https://api.banqu.app/openapi
+  baseURL: https://banqu.app/api/v1
+  tags:
+  - Validation Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/banqu-validation-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://api.banqu.app/openapi
+  - type: APIReference
+    url: https://api.banqu.app/openapi
+  - type: Authentication
+    url: authentication/banqu-authentication.yml
+  - type: Conventions
+    url: conventions/banqu-conventions.yml
+  - type: ErrorCatalog
+    url: errors/banqu-problem-types.yml
+  - type: DataModel
+    url: data-model/banqu-data-model.yml
+  - type: Webhooks
+    url: asyncapi/banqu-webhooks.yml
 common:
+- type: MCPServer
+  url: mcp/banqu-mcp.yml
 - type: Website
   url: https://www.banqu.co/
 - type: Documentation
@@ -85,7 +646,7 @@ common:
 - type: APIReference
   url: https://api.banqu.app/openapi
 - type: OpenAPI
-  url: openapi/banqu-openapi-original.json
+  url: openapi/_original/banqu-openapi-original.json
 - type: Login
   url: https://banqu.app/
 - type: Support
