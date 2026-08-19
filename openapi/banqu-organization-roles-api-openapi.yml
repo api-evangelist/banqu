@@ -1,0 +1,261 @@
+openapi: 3.2.0
+info:
+  title: BanQu Organization Roles API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Organization Roles
+  description: Organization Roles and Permissions
+paths:
+  /orgs/current/roles:
+    get:
+      description: List roles available in current org account
+      tags:
+      - Organization Roles
+      responses:
+        '200':
+          description: List of roles in organization
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                  - $ref: '#/components/schemas/OrgRole'
+                  - $ref: '#/components/schemas/ScimResourceMetadata'
+        '404':
+          $ref: '#/components/responses/404'
+    post:
+      description: Create org account role
+      tags:
+      - Organization Roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  $ref: '#/components/schemas/EditableOrgRole'
+              required:
+              - role
+      responses:
+        '204':
+          $ref: '#/components/responses/201'
+        '400':
+          $ref: '#/components/responses/400'
+  /orgs/current/roles/{roleId}:
+    patch:
+      description: Modify org account role
+      tags:
+      - Organization Roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  $ref: '#/components/schemas/EditableOrgRole'
+              required:
+              - role
+      parameters:
+      - in: path
+        name: roleId
+        description: ID of the role to modify
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/201'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      description: Remove org account role
+      tags:
+      - Organization Roles
+      parameters:
+      - in: path
+        name: roleId
+        description: ID of the role to modify
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404'
+  /orgs/current/capabilities:
+    get:
+      description: List all organization capabilities
+      tags:
+      - Organization Roles
+      responses:
+        '200':
+          description: List of roles in organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgCapabilities'
+components:
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+  schemas:
+    ScimResourceMetadata:
+      type: object
+      readOnly: true
+      properties:
+        displayName:
+          type: string
+          readOnly: true
+        meta:
+          type: object
+          properties:
+            resourceType:
+              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
+      required:
+      - displayName
+      - meta
+    OrgCapabilities:
+      type: object
+      description: Capabilities of organization account
+      additionalProperties:
+        type: array
+        items:
+          type: string
+          enum:
+          - create
+          - read
+          - update
+          - delete
+        uniqueItems: true
+    EditableOrgRole:
+      type: object
+      description: Organization role
+      properties:
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/LocalizedName'
+        type:
+          type: string
+          enum:
+          - associate
+          - connection
+        description:
+          $ref: '#/components/schemas/LocalizedDescription'
+        permissions:
+          type: object
+          additionalProperties:
+            type: array
+            uniqueItems: true
+            items:
+              type: string
+        ownerId:
+          type: string
+          maxLength: 32
+      additionalProperties: false
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
+    LocalizedDescription:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            maxLength: 80
+        additionalProperties:
+          maxLength: 80
+    OrgRole:
+      type: object
+      description: Organization role
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          $ref: '#/components/schemas/LocalizedName'
+        description:
+          $ref: '#/components/schemas/LocalizedDescription'
+        permissions:
+          $ref: '#/components/schemas/OrgCapabilities'
+        predefined:
+          type: boolean
+          description: Indicates that role is defined by system and is immutable
+        shared:
+          type: boolean
+          description: Indicates that role is not owned by current org but is shared from a connected one
+        type:
+          type: string
+          description: Defines on which entity the role can be applied
+          enum:
+          - associate
+          - connection
+        ownerDisplayName:
+          type: string
+        ownerId:
+          type: string
+      required:
+      - name
+      - description
+      - permissions
+      - type
+    LocalizedName:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            minLength: 2
+            maxLength: 20
+        additionalProperties:
+          minLength: 2
+          maxLength: 20
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

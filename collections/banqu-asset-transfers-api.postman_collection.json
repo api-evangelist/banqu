@@ -1,0 +1,3726 @@
+{
+  "item": [
+    {
+      "id": "9ee5d537-96c6-4c5b-a1a9-cd8348eb140c",
+      "name": "Asset Transfers",
+      "description": {
+        "content": "Asset transfers from one owner to another",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3998a756-cf36-47ad-8607-6b511afc675d",
+          "name": "Initiate asset transfer",
+          "request": {
+            "name": "Initiate asset transfer",
+            "description": {
+              "content": "Initiate asset transfer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId",
+                "transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receiverId\": \"<string>\",\n  \"qty\": \"<number>\",\n  \"destinationProvider\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"destinationType\": \"<string>\",\n  \"sourceOperations\": [\n    {\n      \"id\": \"<string>\",\n      \"sourcedQty\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"sourcedQty\": \"<number>\"\n    }\n  ],\n  \"properties\": \"<object>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": \"<double>\",\n    \"lon\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad62c9fc-5e54-4b0d-83ff-b7efb331a422",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"qty\": \"<number>\",\n  \"destinationProvider\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"destinationType\": \"<string>\",\n  \"sourceOperations\": [\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    },\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    }\n  ],\n  \"properties\": \"<object>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8a630e9-00a2-4346-9a11-544d3fb7eec8",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"qty\": \"<number>\",\n  \"destinationProvider\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"destinationType\": \"<string>\",\n  \"sourceOperations\": [\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    },\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    }\n  ],\n  \"properties\": \"<object>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c664f65-222f-4a3b-a024-6222cbf260cb",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"qty\": \"<number>\",\n  \"destinationProvider\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"destinationType\": \"<string>\",\n  \"sourceOperations\": [\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    },\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    }\n  ],\n  \"properties\": \"<object>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf6d63c6-12b4-476c-b36d-38340fa5a790",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"qty\": \"<number>\",\n  \"destinationProvider\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"destinationType\": \"<string>\",\n  \"sourceOperations\": [\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    },\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    }\n  ],\n  \"properties\": \"<object>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "783f8b34-4a57-41a6-b1be-05aa780dbffc",
+          "name": "Get asset history",
+          "request": {
+            "name": "Get asset history",
+            "description": {
+              "content": "Get asset history",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bd46e95-5427-412c-b0bf-c89c507e3de0",
+              "name": "List of asset history records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    {\n      \"initialBalance\": 8171.452740657383,\n      \"totalQty\": 9111.0328721495,\n      \"transfers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"startTime\": 1568894551000,\n      \"endTime\": 1568894551000\n    },\n    {\n      \"initialBalance\": 3105.8304700165672,\n      \"totalQty\": 7971.217688764036,\n      \"transfers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"startTime\": 1568894551000,\n      \"endTime\": 1568894551000\n    }\n  ],\n  [\n    {\n      \"initialBalance\": 6960.006513798416,\n      \"totalQty\": 1142.495801576936,\n      \"transfers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"startTime\": 1568894551000,\n      \"endTime\": 1568894551000\n    },\n    {\n      \"initialBalance\": 7939.71211117903,\n      \"totalQty\": 9345.437760976323,\n      \"transfers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"startTime\": 1568894551000,\n      \"endTime\": 1568894551000\n    }\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e4fa65c-4ffa-45c0-ac08-ed2f2ccac32c",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9da3e1ce-71e2-497d-ae71-f2fb68cead2f",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9346db7b-3619-49fc-9380-97328d21a582",
+          "name": "List asset holders",
+          "request": {
+            "name": "List asset holders",
+            "description": {
+              "content": "List asset holders",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId",
+                "holders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "819d66ed-cb66-4352-ae9e-0be768683b2f",
+              "name": "List of asset holders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "holders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"00000000000000000000000000000000\",\n    \"balance\": 1108.1157073557956,\n    \"displayName\": \"string\",\n    \"emails\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      }\n    ],\n    \"photos\": [\n      {\n        \"value\": \"stri\",\n        \"type\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"isOrg\": true\n  },\n  {\n    \"id\": \"00000000000000000000000000000000\",\n    \"balance\": 9467.3950122411,\n    \"displayName\": \"string\",\n    \"emails\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      }\n    ],\n    \"photos\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      }\n    ],\n    \"isOrg\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4522c50c-e553-4fa3-a937-9c6b3a89f870",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "holders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1743633-b50e-4187-b1c3-1aa0cd0aefce",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "holders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55912549-3c98-4639-85a6-8710a2ac5d63",
+          "name": "Deposit asset to account",
+          "request": {
+            "name": "Deposit asset to account",
+            "description": {
+              "content": "Deposit asset to account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId",
+                "holders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"holderId\": \"<string>\",\n  \"qty\": \"<number>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": \"<double>\",\n    \"lon\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e1cbf09-b0c3-46ad-8dcc-004454c084c2",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "holders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"holderId\": \"00000000000000000000000000000000\",\n  \"qty\": \"<number>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f4cbc28-732a-4bc5-b7d2-54720b9ca27d",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "holders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"holderId\": \"00000000000000000000000000000000\",\n  \"qty\": \"<number>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56f20871-f075-4d05-b534-462c0a79b623",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "holders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"holderId\": \"00000000000000000000000000000000\",\n  \"qty\": \"<number>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24efd615-480c-4d0a-b3ba-d6f1790871bf",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "holders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"holderId\": \"00000000000000000000000000000000\",\n  \"qty\": \"<number>\",\n  \"message\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea63c25c-fa03-4baf-a025-54bc17bd07e6",
+          "name": "List operations that can be used as sources for transfers of this asset",
+          "request": {
+            "name": "List operations that can be used as sources for transfers of this asset",
+            "description": {
+              "content": "List operations that can be used as sources for transfers of this asset",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\"; if not specified, will be sorted by transfer date)"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A space-separated list of keywords to search items by"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeNonPositive",
+                  "value": "false",
+                  "description": "Include operations with zero or negative available quantity when double-sourcing is allowed"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Serialized (custom format) transfer properties filter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60fc2233-f1c9-48a3-b515-c402744ba01f",
+              "name": "List of available operations that can serve as sources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeNonPositive",
+                      "value": "false"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of records available for paging purposes",
+                  "key": "X-Total-Count",
+                  "value": "8218.885307649696"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total count before applying search or filters",
+                  "key": "X-Total-Before-Filter",
+                  "value": "8218.885307649696"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"00000000000000000000000000000000\",\n    \"type\": \"deposit\",\n    \"qty\": 5543.173391208736,\n    \"availableQty\": 5687.486266612613,\n    \"sent\": 1354.623229219003,\n    \"uom\": \"KG\",\n    \"code\": \"string\",\n    \"location\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    },\n    \"message\": \"string\",\n    \"transactionId\": \"00000000000000000000000000000000\",\n    \"sender\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": true\n    },\n    \"senderUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"properties\": {}\n  },\n  {\n    \"id\": \"00000000000000000000000000000000\",\n    \"type\": \"transfer\",\n    \"qty\": 9976.286427932844,\n    \"availableQty\": 1843.6233758752173,\n    \"sent\": 2178.1488001549965,\n    \"uom\": \"KG\",\n    \"code\": \"string\",\n    \"location\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    },\n    \"message\": \"string\",\n    \"transactionId\": \"00000000000000000000000000000000\",\n    \"sender\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": false\n    },\n    \"senderUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"properties\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eefb49c5-2d1b-4949-87ef-526ef774e912",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeNonPositive",
+                      "value": "false"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fcf21976-8c51-48e0-8e62-d3764ee7bbb5",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeNonPositive",
+                      "value": "false"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2db1a131-5500-4422-b1ca-751cb5499967",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeNonPositive",
+                      "value": "false"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65c3fd03-71aa-4eb6-a30e-a5ae351a0cf7",
+          "name": "Initiate multiple asset transfers",
+          "request": {
+            "name": "Initiate multiple asset transfers",
+            "description": {
+              "content": "Initiate multiple asset transfers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId",
+                "transfers",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"receiver\": {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\"\n    }\n  },\n  {\n    \"receiver\": {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0320d9dc-163d-4ac0-bc24-80f2a7773ad1",
+              "name": "List of asset transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "transfers",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  },\n  {\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"initiated\": 9011.901878494591\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33504b04-2d36-479d-94c8-c82a4c190463",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "transfers",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  },\n  {\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b5a44f4-c2f0-4455-8ed2-907cbdca3b13",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "transfers",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  },\n  {\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0af415fb-0c58-45c6-80aa-310c81338f67",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "transfers",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  },\n  {\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"qty\": \"<number>\",\n    \"destinationProvider\": \"<string>\",\n    \"destinationId\": \"<string>\",\n    \"properties\": \"<object>\",\n    \"message\": \"<string>\",\n    \"preventNotify\": \"<boolean>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "281fb227-d3ed-4be4-bd82-75d6a5a91064",
+          "name": "List asset transfers",
+          "request": {
+            "name": "List asset transfers",
+            "description": {
+              "content": "List asset transfers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "Filter transfers by owner. One of [me, sub] for own and sub account transfers. If omitted, not filtered by owner"
+                },
+                {
+                  "disabled": false,
+                  "key": "assetId",
+                  "value": "<string>",
+                  "description": "Filter transfers by one `assetId`. Cannot be specified together with `assetIds` param"
+                },
+                {
+                  "disabled": false,
+                  "key": "assetIds",
+                  "value": "<string>",
+                  "description": "Filter transfers by one or multiple `assetId`'s. Multiple assetId values should be separated by commas. Cannot be specified together with `assetId` param"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<number>",
+                  "description": "Get transfer after specific time. The value should contain a valid JavaScript Timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "till",
+                  "value": "<number>",
+                  "description": "Get transfer before specific time. The value should contain a valid JavaScript Timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountIds",
+                  "value": "<string>",
+                  "description": "Filter transfers by one or multiple `accountId`'s. Multiple accountId values should be separated by commas"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeReverted",
+                  "value": "<boolean>",
+                  "description": "Include reverted transfers in output. Defaults to `false`"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourcesGroupingMethod",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "codes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of codes to filter transactions. If omitted, not filtered by code"
+                },
+                {
+                  "disabled": false,
+                  "key": "transactionKind",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "503883e7-f073-42e0-abf7-acb8031d1c91",
+              "name": "List of account transfers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "till",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "accountIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeReverted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionKind",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of records available for paging purposes",
+                  "key": "X-Total-Count",
+                  "value": "8218.885307649696"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"senderId\": \"00000000000000000000000000000000\",\n    \"receiverId\": \"00000000000000000000000000000000\",\n    \"assetId\": \"00000000000000000000000000000000\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"transactionId\": \"00000000000000000000000000000000\",\n    \"direction\": \"out\",\n    \"exchangingAssetId\": \"00000000000000000000000000000000\",\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"uom\": \"KG\",\n    \"qty\": 1,\n    \"isCredit\": false,\n    \"sent\": 1568894551000,\n    \"claimToken\": \"string\",\n    \"hasClaimToken\": true,\n    \"claimed\": 1568894551000,\n    \"received\": 1568894551000,\n    \"message\": \"string\",\n    \"price\": 1500.2639573349152,\n    \"priceCurrency\": \"USD\",\n    \"sender\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": false,\n      \"externalId\": \"string\"\n    },\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": false,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"externalId\": \"string\"\n    },\n    \"destination\": {\n      \"id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"provider\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"initiatedBy\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"initiatedByUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"agency\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    },\n    \"agent\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"properties\": {\n      \"poNumber\": \"000001\",\n      \"stockCode\": \"7b35e21b717844\"\n    },\n    \"assetAttachments\": [\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"draft\": false,\n    \"sourceOperations\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      }\n    ],\n    \"explicitAvailableQty\": 9061.340368606454,\n    \"availableQty\": 8089.403571637708,\n    \"receivedQty\": 3875.3021197113603,\n    \"receiverComment\": \"string\",\n    \"partiallyConfirmedQty\": 8473.368117711963,\n    \"partiallyConfirmedShare\": 411.593719616975,\n    \"sourcesCount\": 8501.792863202934,\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  },\n  {\n    \"senderId\": \"00000000000000000000000000000000\",\n    \"receiverId\": \"00000000000000000000000000000000\",\n    \"assetId\": \"00000000000000000000000000000000\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"transactionId\": \"00000000000000000000000000000000\",\n    \"direction\": \"in\",\n    \"exchangingAssetId\": \"00000000000000000000000000000000\",\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"uom\": \"KG\",\n    \"qty\": 1,\n    \"isCredit\": false,\n    \"sent\": 1568894551000,\n    \"claimToken\": \"string\",\n    \"hasClaimToken\": false,\n    \"claimed\": 1568894551000,\n    \"received\": 1568894551000,\n    \"message\": \"string\",\n    \"price\": 5259.384528391157,\n    \"priceCurrency\": \"USD\",\n    \"sender\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": true,\n      \"externalId\": \"string\"\n    },\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": true,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"externalId\": \"string\"\n    },\n    \"destination\": {\n      \"id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"provider\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"initiatedBy\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"initiatedByUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"agency\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    },\n    \"agent\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"properties\": {\n      \"poNumber\": \"000001\",\n      \"stockCode\": \"7b35e21b717844\"\n    },\n    \"assetAttachments\": [\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"draft\": true,\n    \"sourceOperations\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      }\n    ],\n    \"explicitAvailableQty\": 6866.316291873262,\n    \"availableQty\": 6138.389338741054,\n    \"receivedQty\": 9504.937373607403,\n    \"receiverComment\": \"string\",\n    \"partiallyConfirmedQty\": 2027.326385168262,\n    \"partiallyConfirmedShare\": 2639.8716997662696,\n    \"sourcesCount\": 8282.66336134844,\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ea0ee5f-e37d-4426-9c87-891a472a4df9",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "till",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "accountIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeReverted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionKind",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c74d082-44c3-42b1-8588-aa63d4dca171",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "till",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "accountIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeReverted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionKind",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "add9ab5b-2a13-49a4-9086-52991eb5c0e7",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "till",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "accountIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeReverted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionKind",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bae3fbbf-002a-4900-a4c1-939cc83f8941",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "till",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "accountIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeReverted",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionKind",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce27bc90-74ad-408c-8f8e-fdd32aef1674",
+          "name": "Get asset operation by id in own account",
+          "request": {
+            "name": "Get asset operation by id in own account",
+            "description": {
+              "content": "Get asset operation by id in own account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":transferId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transferId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "845e68ca-0b78-45f5-b2a9-a61e7007583b",
+              "name": "Asset operation details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"senderId\": \"00000000000000000000000000000000\",\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"assetId\": \"00000000000000000000000000000000\",\n  \"id\": \"00000000000000000000000000000000\",\n  \"transactionId\": \"00000000000000000000000000000000\",\n  \"direction\": \"out\",\n  \"exchangingAssetId\": \"00000000000000000000000000000000\",\n  \"code\": \"string\",\n  \"description\": \"string\",\n  \"uom\": \"KG\",\n  \"qty\": 1,\n  \"isCredit\": true,\n  \"sent\": 1568894551000,\n  \"claimToken\": \"string\",\n  \"hasClaimToken\": false,\n  \"claimed\": 1568894551000,\n  \"received\": 1568894551000,\n  \"message\": \"string\",\n  \"price\": 9750.838110694323,\n  \"priceCurrency\": \"USD\",\n  \"sender\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"isOrg\": true,\n    \"externalId\": \"string\"\n  },\n  \"receiver\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"isOrg\": false,\n    \"photoUrl\": \"string\",\n    \"photoEtag\": \"string\",\n    \"externalId\": \"string\"\n  },\n  \"destination\": {\n    \"id\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"initiatedBy\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\"\n  },\n  \"initiatedByUser\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\"\n  },\n  \"agency\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"address\": \"string\"\n  },\n  \"agent\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\"\n  },\n  \"properties\": {\n    \"poNumber\": \"000001\",\n    \"stockCode\": \"7b35e21b717844\"\n  },\n  \"assetAttachments\": [\n    {\n      \"downloadUrl\": \"string\",\n      \"fileName\": \"string\",\n      \"fileSize\": 8275.250828053491,\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"8c09681a8c7e21b84372e790672b7b0d\"\n    },\n    {\n      \"downloadUrl\": \"string\",\n      \"fileName\": \"string\",\n      \"fileSize\": 270.2014193209179,\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"2a78c04dff6df32c5fb126133155cbee\"\n    }\n  ],\n  \"draft\": true,\n  \"sourceOperations\": [\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    },\n    {\n      \"id\": \"00000000000000000000000000000000\",\n      \"sourcedQty\": \"<number>\"\n    }\n  ],\n  \"explicitAvailableQty\": 1968.7953928035695,\n  \"availableQty\": 7178.229416005362,\n  \"receivedQty\": 5994.143807191882,\n  \"receiverComment\": \"string\",\n  \"partiallyConfirmedQty\": 8125.628049218328,\n  \"partiallyConfirmedShare\": 1059.478859440549,\n  \"sourcesCount\": 2107.6306171743963,\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d82447b1-5c6c-4a26-b1ad-58b7022447cc",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "46516d30-34fc-4ab8-8a57-9b866d1bef6a",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "956dda41-e676-4b59-9c03-5cfa83f3b55d",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7e36c1f-1b8a-49c6-8cd1-a1e430e68999",
+          "name": "List asset transfer sources",
+          "request": {
+            "name": "List asset transfer sources",
+            "description": {
+              "content": "List asset transfer sources",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":transferId",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "participantsType",
+                  "value": "all"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourcesGroupingMethod",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transferId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d47e2d7-ce19-45d5-9ff8-514c95b798cb",
+              "name": "List of transfers that provided an amount of asset that was transferred in given transfer",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participantsType",
+                      "value": "all"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of records available for paging purposes",
+                  "key": "X-Total-Count",
+                  "value": "8218.885307649696"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"senderId\": \"00000000000000000000000000000000\",\n    \"receiverId\": \"00000000000000000000000000000000\",\n    \"assetId\": \"00000000000000000000000000000000\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"transactionId\": \"00000000000000000000000000000000\",\n    \"direction\": \"out\",\n    \"exchangingAssetId\": \"00000000000000000000000000000000\",\n    \"code\": \"stri\",\n    \"description\": \"string\",\n    \"uom\": \"KG\",\n    \"qty\": 1,\n    \"isCredit\": false,\n    \"sent\": 1568894551000,\n    \"claimToken\": \"string\",\n    \"hasClaimToken\": true,\n    \"claimed\": 1568894551000,\n    \"received\": 1568894551000,\n    \"message\": \"string\",\n    \"price\": 4803.336155131433,\n    \"priceCurrency\": \"USD\",\n    \"sender\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": false,\n      \"externalId\": \"string\"\n    },\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": true,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"externalId\": \"string\"\n    },\n    \"destination\": {\n      \"id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"provider\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"initiatedBy\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"initiatedByUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"agency\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    },\n    \"agent\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"properties\": {\n      \"poNumber\": \"000001\",\n      \"stockCode\": \"7b35e21b717844\"\n    },\n    \"assetAttachments\": [\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"draft\": true,\n    \"sourceOperations\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      }\n    ],\n    \"explicitAvailableQty\": 3146.2416064582576,\n    \"availableQty\": 3580.1732883978034,\n    \"receivedQty\": 419.9139195404611,\n    \"receiverComment\": \"string\",\n    \"partiallyConfirmedQty\": 3252.652893915763,\n    \"partiallyConfirmedShare\": 3270.704279189004,\n    \"sourcesCount\": 8730.234031853814,\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  },\n  {\n    \"senderId\": \"00000000000000000000000000000000\",\n    \"receiverId\": \"00000000000000000000000000000000\",\n    \"assetId\": \"00000000000000000000000000000000\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"transactionId\": \"00000000000000000000000000000000\",\n    \"direction\": \"in\",\n    \"exchangingAssetId\": \"00000000000000000000000000000000\",\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"uom\": \"KG\",\n    \"qty\": 1,\n    \"isCredit\": false,\n    \"sent\": 1568894551000,\n    \"claimToken\": \"string\",\n    \"hasClaimToken\": true,\n    \"claimed\": 1568894551000,\n    \"received\": 1568894551000,\n    \"message\": \"string\",\n    \"price\": 8791.63053000238,\n    \"priceCurrency\": \"USD\",\n    \"sender\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": true,\n      \"externalId\": \"string\"\n    },\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": false,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"externalId\": \"string\"\n    },\n    \"destination\": {\n      \"id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"provider\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"initiatedBy\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"initiatedByUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"agency\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    },\n    \"agent\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"properties\": {\n      \"poNumber\": \"000001\",\n      \"stockCode\": \"7b35e21b717844\"\n    },\n    \"assetAttachments\": [\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"draft\": false,\n    \"sourceOperations\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      }\n    ],\n    \"explicitAvailableQty\": 676.7165552031884,\n    \"availableQty\": 1708.064011755387,\n    \"receivedQty\": 2802.206841394623,\n    \"receiverComment\": \"string\",\n    \"partiallyConfirmedQty\": 9229.037854005916,\n    \"partiallyConfirmedShare\": 8330.215135660888,\n    \"sourcesCount\": 7573.753018814617,\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2db0ffd2-a086-433a-a37a-322d779b3d23",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participantsType",
+                      "value": "all"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b4d6be8a-68e4-4908-8b47-b996c6e85a61",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participantsType",
+                      "value": "all"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d3d851e-a8bf-4729-a86f-1529613878c7",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participantsType",
+                      "value": "all"
+                    },
+                    {
+                      "key": "sourcesGroupingMethod",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c10149d8-ec0a-40a7-bfac-1c1ee7b98280",
+          "name": "Confirm transfer receiving",
+          "request": {
+            "name": "Confirm transfer receiving",
+            "description": {
+              "content": "Confirm transfer receiving",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":transferId",
+                "confirmReceipt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transferId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": \"<number>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f386a3cd-5427-42d2-990d-3d0d42e38e9c",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "confirmReceipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 1,\n  \"comment\": \"Part of it was lost\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "080253c8-df72-456b-b405-f24597e75472",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "confirmReceipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 1,\n  \"comment\": \"Part of it was lost\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d59c093b-e58d-4bed-b81e-8d76d5b43bad",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "confirmReceipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 1,\n  \"comment\": \"Part of it was lost\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65235113-f27b-4a6c-8c1f-c0325b7f7b3b",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "confirmReceipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 1,\n  \"comment\": \"Part of it was lost\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f9ef4ac-0faa-423e-8138-28047ae21437",
+          "name": "Reject transfer receiving",
+          "request": {
+            "name": "Reject transfer receiving",
+            "description": {
+              "content": "Reject transfer receiving",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":transferId",
+                "rejectReceipt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transferId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "925d32b1-5727-4901-a66c-4a08494f556d",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "rejectReceipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"It was lost\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "931707b5-3a5e-4a90-bc8b-3ea2b69abea5",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "rejectReceipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"It was lost\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1392d25c-320e-49ae-88e9-ef59e57a74b3",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "rejectReceipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"It was lost\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "026400ca-3d79-4797-a447-97f63ee1ffda",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "rejectReceipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"It was lost\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72c7c715-3087-43ad-a9e7-c8d953d988e0",
+          "name": "Resend claim token for pending transfer",
+          "request": {
+            "name": "Resend claim token for pending transfer",
+            "description": {
+              "content": "Resend claim token for pending transfer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfers",
+                ":transferId",
+                "resendClaimToken"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transferId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25af7ae2-398d-49a7-bd43-56c7a9562fa2",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "resendClaimToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e696dfa4-3fb2-4f56-855b-fa396327412c",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "resendClaimToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "973270b0-dcc8-4990-b2f8-2b07063483ee",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "resendClaimToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84efc831-b32d-4bf9-9b0d-e1c3ff01f79e",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "resendClaimToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98c128c8-8def-42e6-8c83-68ff729848fa",
+              "name": "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfers",
+                    ":transferId",
+                    "resendClaimToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transferId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aedf1df1-e9af-4d9d-92c6-16ce6c9baba9",
+    "name": "BanQu Asset Transfers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

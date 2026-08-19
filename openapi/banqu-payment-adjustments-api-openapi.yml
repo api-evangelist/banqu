@@ -1,0 +1,275 @@
+openapi: 3.2.0
+info:
+  title: BanQu Payment Adjustments API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Payment Adjustments
+  description: Adjustments of payments on buy/sell transactions
+paths:
+  /payment-adjustments:
+    get:
+      description: Get payment adjustments
+      tags:
+      - Payment Adjustments
+      parameters:
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/SortBy'
+      - in: query
+        name: archived
+        schema:
+          type: string
+          enum:
+          - '1'
+          - '0'
+        description: a 1/0 flag to indicate archived payment adjustments. Default is '0'.
+      responses:
+        '200':
+          description: A list of payment adjustments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentAdjustmentList'
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      description: Register payment adjustment
+      tags:
+      - Payment Adjustments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentAdjustment'
+      responses:
+        '201':
+          $ref: '#/components/responses/201'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+  /payment-adjustments/{paymentAdjustmentId}:
+    parameters:
+    - name: paymentAdjustmentId
+      description: Unique id of a payment adjustment
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      description: Get a payment adjustment by id
+      tags:
+      - Payment Adjustments
+      responses:
+        '200':
+          description: Payment adjustment model
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PaymentAdjustment'
+                - $ref: '#/components/schemas/ScimResourceMetadata'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      description: Modify a payment adjustment
+      tags:
+      - Payment Adjustments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentAdjustment'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      description: Restore a payment adjustment
+      tags:
+      - Payment Adjustments
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+    delete:
+      description: Archive a payment adjustment
+      tags:
+      - Payment Adjustments
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+components:
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+  parameters:
+    SortBy:
+      name: sortBy
+      in: query
+      schema:
+        type: string
+      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
+      required: false
+    Offset:
+      name: offset
+      in: query
+      schema:
+        type: number
+        minimum: 0
+        default: 0
+      description: 0-based index of the first element
+      required: false
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: number
+        default: 20
+        minimum: 1
+      description: Number or items per page
+      required: false
+  schemas:
+    ScimResourceMetadata:
+      type: object
+      readOnly: true
+      properties:
+        displayName:
+          type: string
+          readOnly: true
+        meta:
+          type: object
+          properties:
+            resourceType:
+              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
+      required:
+      - displayName
+      - meta
+    PaymentAdjustmentList:
+      type: array
+      items:
+        allOf:
+        - $ref: '#/components/schemas/PaymentAdjustment'
+        - $ref: '#/components/schemas/ScimResourceMetadata'
+    CurrencyPaymentAdjustment:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+          - charge
+          - allowance
+        calculationType:
+          type: string
+          enum:
+          - currency
+        amount:
+          type: number
+          minimum: 0
+        currency:
+          type: string
+        flexible:
+          type: boolean
+        min:
+          type: number
+          minimum: 0
+        max:
+          type: number
+          minimum: 0
+        archived:
+          type: boolean
+          readOnly: true
+      required:
+      - title
+      - type
+      - flexible
+      - calculationType
+      - currency
+    PaymentAdjustment:
+      oneOf:
+      - $ref: '#/components/schemas/PercentagePaymentAdjustment'
+      - $ref: '#/components/schemas/CurrencyPaymentAdjustment'
+    PercentagePaymentAdjustment:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+          - charge
+          - allowance
+        calculationType:
+          type: string
+          enum:
+          - percentage
+        percent:
+          type: number
+          minimum: 0
+        flexible:
+          type: boolean
+        min:
+          type: number
+          minimum: 0
+        max:
+          type: number
+          minimum: 0
+        archived:
+          type: boolean
+          readOnly: true
+      required:
+      - title
+      - type
+      - flexible
+      - calculationType
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

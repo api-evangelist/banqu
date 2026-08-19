@@ -1,0 +1,49 @@
+openapi: 3.2.0
+info:
+  title: BanQu Attachments API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Attachments
+paths:
+  /aws/upload-url:
+    get:
+      tags:
+      - Attachments
+      description: Pre-signed URL
+      parameters:
+      - name: contentType
+        description: type of content for file that is going to be uploaded
+        in: query
+        schema:
+          type: string
+        required: true
+      - name: fileName
+        description: fileName
+        in: query
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: reSignedUrl Target url to upload user file
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/401'
+components:
+  responses:
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

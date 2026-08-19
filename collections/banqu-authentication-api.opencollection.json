@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Authentication API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /auth/api-tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/auth/api-tokens"
+          },
+          "docs": "Get available API tokens"
+        },
+        {
+          "info": {
+            "name": "POST /auth/api-tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/auth/api-tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create persistent token for API requests authentication.\nToken will be written to the response body only once and will not be stored within the BanQu system"
+        },
+        {
+          "info": {
+            "name": "DELETE /auth/api-tokens/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/auth/api-tokens/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "API token identifier"
+              }
+            ]
+          },
+          "docs": "Remove API token"
+        },
+        {
+          "info": {
+            "name": "GET /auth/accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/auth/accounts"
+          },
+          "docs": "List available accounts"
+        },
+        {
+          "info": {
+            "name": "POST /auth/accounts/{accountId}/token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/auth/accounts/:accountId/token",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create account-specific short-lived authentication token"
+        },
+        {
+          "info": {
+            "name": "POST /auth/signup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/auth/signup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sign up user"
+        },
+        {
+          "info": {
+            "name": "GET /auth/signup/{token}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/auth/signup/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get user invite info"
+        },
+        {
+          "info": {
+            "name": "POST /auth/signup/{token}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/auth/signup/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sign up user by invite"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

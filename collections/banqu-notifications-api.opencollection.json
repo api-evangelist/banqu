@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Notifications API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/notifications"
+          },
+          "docs": "Get User Notifications"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

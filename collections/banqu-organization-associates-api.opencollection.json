@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Organization Associates API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Associates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /orgs/current/associates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/current/associates"
+          },
+          "docs": "List org account associates"
+        },
+        {
+          "info": {
+            "name": "POST /orgs/current/associates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/orgs/current/associates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add org account associate"
+        },
+        {
+          "info": {
+            "name": "PATCH /orgs/current/associates/{userId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/orgs/current/associates/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify org associate/invite roles"
+        },
+        {
+          "info": {
+            "name": "DELETE /orgs/current/associates/{userId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/orgs/current/associates/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove org associate/invite"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2418 @@
+{
+  "item": [
+    {
+      "id": "36b3bc6b-d2de-418f-9147-667245e42eff",
+      "name": "User Profile Sharing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a7a41687-3638-4681-907f-249f7d22168a",
+          "name": "Get profile sharing settings",
+          "request": {
+            "name": "Get profile sharing settings",
+            "description": {
+              "content": "Get profile sharing settings",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "sharing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e3ff1e6-25a0-4dba-ad11-3ec0070d0187",
+              "name": "Sharing settings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "sharing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"publicEnabled\": true,\n  \"publicSections\": [\n    \"string\",\n    \"string\"\n  ],\n  \"connectionsEnabled\": false,\n  \"connectionsSections\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ed56cae-fc21-4a8b-9f72-b1fa610bf3e2",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "sharing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03bc97fd-9167-4502-b9bb-5cad5194f828",
+          "name": "Change profile sharing settings",
+          "request": {
+            "name": "Change profile sharing settings",
+            "description": {
+              "content": "Change profile sharing settings",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "sharing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"publicEnabled\": \"<boolean>\",\n  \"publicSections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"connectionsEnabled\": \"<boolean>\",\n  \"connectionsSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dee88f72-24b6-4fcd-8585-25cbd713fd13",
+              "name": "Sharing settings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "sharing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"publicEnabled\": \"<boolean>\",\n  \"publicSections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"connectionsEnabled\": \"<boolean>\",\n  \"connectionsSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"publicEnabled\": \"<boolean>\",\n  \"publicSections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"connectionsEnabled\": \"<boolean>\",\n  \"connectionsSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db201319-2036-4e0b-abdc-ca4bef1c2f4c",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "sharing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"publicEnabled\": \"<boolean>\",\n  \"publicSections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"connectionsEnabled\": \"<boolean>\",\n  \"connectionsSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd91f7ab-f36b-40ac-be74-63e77861d8b7",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "sharing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"publicEnabled\": \"<boolean>\",\n  \"publicSections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"connectionsEnabled\": \"<boolean>\",\n  \"connectionsSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6216d8b5-a954-426e-903a-5f2f667ddce2",
+          "name": "List packaged profile shares",
+          "request": {
+            "name": "List packaged profile shares",
+            "description": {
+              "content": "List packaged profile shares",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae191efc-402b-4933-b4c9-02605aefa6c4",
+              "name": "List of profile share packages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"assets\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bucket\": \"string\",\n    \"connections\": \"string\",\n    \"createdAt\": 3750,\n    \"expiresAt\": 7652,\n    \"ownerId\": \"string\",\n    \"sections\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": \"string\"\n  },\n  {\n    \"assets\": [\n      \"string\",\n      \"string\"\n    ],\n    \"bucket\": \"string\",\n    \"connections\": \"string\",\n    \"createdAt\": 4408,\n    \"expiresAt\": 4588,\n    \"ownerId\": \"string\",\n    \"sections\": [\n      \"string\",\n      \"string\"\n    ],\n    \"state\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8142b91a-47bf-4c7d-816c-d2bbca9ec18d",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ece95a7b-128c-402f-ab35-97445e78ddcb",
+          "name": "Create packaged profile share",
+          "request": {
+            "name": "Create packaged profile share",
+            "description": {
+              "content": "Create packaged profile share",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresAt\": \"<integer>\",\n  \"sectionConfigurations\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c64bd26-87d9-40ef-b5a9-a8ac8fc8e28e",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresAt\": \"<integer>\",\n  \"sectionConfigurations\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d59ea132-1ec0-4802-a227-7224b5ed37ee",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresAt\": \"<integer>\",\n  \"sectionConfigurations\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "764f757e-e1c2-4188-9f81-64eeba56f3fe",
+          "name": "Get packaged profile share details",
+          "request": {
+            "name": "Get packaged profile share details",
+            "description": {
+              "content": "Get packaged profile share details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) sharing id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5dabfeb7-7e19-4bc0-9d8e-80d0a33d649f",
+              "name": "Particular packaged share profile data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"addresses\": [\n    {\n      \"country\": \"string\",\n      \"locality\": \"string\",\n      \"postalCode\": \"string\",\n      \"streetAddress\": \"string\"\n    },\n    {\n      \"country\": \"string\",\n      \"locality\": \"string\",\n      \"postalCode\": \"string\",\n      \"streetAddress\": \"string\"\n    }\n  ],\n  \"displayName\": \"string\",\n  \"emails\": [\n    {\n      \"primary\": false,\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"primary\": true,\n      \"type\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"created\": 1391,\n    \"lastModified\": 8686,\n    \"resourceType\": \"string\"\n  },\n  \"name\": {\n    \"familyName\": \"string\",\n    \"formatted\": \"string\",\n    \"givenName\": \"string\"\n  },\n  \"photos\": [\n    {\n      \"etag\": \"string\",\n      \"primary\": true,\n      \"value\": \"string\"\n    },\n    {\n      \"etag\": \"string\",\n      \"primary\": false,\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "810d3606-ce84-48dd-a094-0e520f183271",
+          "name": "Delete packaged profile share",
+          "request": {
+            "name": "Delete packaged profile share",
+            "description": {
+              "content": "Delete packaged profile share",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) sharing id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fda2502a-19e8-41f7-8c48-d74881b9f9bc",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0448889c-166b-4ac5-80d4-ec2111b15a14",
+          "name": "List packaged profile share assets",
+          "request": {
+            "name": "List packaged profile share assets",
+            "description": {
+              "content": "List packaged profile share assets",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages",
+                ":id",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) sharing id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c3c91f1-d539-4acd-96cc-b8d66a82fc8b",
+              "name": "A list of assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    {\n      \"uom\": \"KG\",\n      \"isCredit\": false,\n      \"id\": \"00000000000000000000000000000000\",\n      \"code\": \"string\",\n      \"balance\": 7947.843371067792,\n      \"description\": \"string\"\n    },\n    {\n      \"uom\": \"KG\",\n      \"isCredit\": true,\n      \"id\": \"00000000000000000000000000000000\",\n      \"code\": \"string\",\n      \"balance\": 7424.645171758984,\n      \"description\": \"string\"\n    }\n  ],\n  [\n    {\n      \"uom\": \"KG\",\n      \"isCredit\": false,\n      \"id\": \"00000000000000000000000000000000\",\n      \"code\": \"string\",\n      \"balance\": 7055.0075082848225,\n      \"description\": \"string\"\n    },\n    {\n      \"uom\": \"KG\",\n      \"isCredit\": true,\n      \"id\": \"00000000000000000000000000000000\",\n      \"code\": \"string\",\n      \"balance\": 7637.2452354243405,\n      \"description\": \"string\"\n    }\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3adcc643-2ac3-4a6e-beac-fb8e00912114",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68ac6279-827e-49a1-8919-5651576fce06",
+          "name": "List packaged profile share transactions",
+          "request": {
+            "name": "List packaged profile share transactions",
+            "description": {
+              "content": "List packaged profile share transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages",
+                ":id",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) sharing id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ae19d34-3bed-4e34-9451-89ad1462840d",
+              "name": "A list of transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"reason\": \"string\",\n    \"effectiveDate\": \"1999-09-02T15:18:46.370Z\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  },\n  {\n    \"reason\": \"string\",\n    \"effectiveDate\": \"1992-08-01T01:18:14.325Z\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c8be462-d47f-480e-9afb-3db3f61ed72f",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6e7fd3f-60b9-45a5-a06f-04a0e1ce559b",
+          "name": "List packaged profile share connections",
+          "request": {
+            "name": "List packaged profile share connections",
+            "description": {
+              "content": "List packaged profile share connections",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages",
+                ":id",
+                "connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) sharing id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc710955-e95c-408e-b5a8-29230c76a11b",
+              "name": "A list of connections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"schemas\": [\n      \"string\",\n      \"string\"\n    ],\n    \"externalId\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"User\",\n      \"created\": 8994.79537732923,\n      \"lastModified\": 6289.944894296033,\n      \"location\": \"https://NOT.iyphBUsx-NgUlwTY\"\n    },\n    \"displayName\": \"string\",\n    \"name\": {\n      \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n      \"honorificPrefix\": \"Ms.\",\n      \"givenName\": \"Barbara\",\n      \"middleName\": \"Jane\",\n      \"familyName\": \"Jensen\",\n      \"honorificSuffix\": \"III\"\n    },\n    \"userName\": \"lXLlXL\",\n    \"emails\": [\n      {\n        \"value\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"ims\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      }\n    ],\n    \"photos\": [\n      {\n        \"value\": \"https://example.com/avatar.jpg\",\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"primary\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"etag\": \"00000000000000000000000000000000\"\n      }\n    ],\n    \"addresses\": [\n      {\n        \"type\": \"home\",\n        \"formatted\": \"string\",\n        \"streetAddress\": \"string\",\n        \"locality\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"US\"\n      }\n    ],\n    \"preferredLanguage\": \"en\",\n    \"locale\": \"en-za\",\n    \"urn:banqu:schemas:scim:User:identification\": {},\n    \"urn:banqu:schemas:extensions:connection\": {\n      \"pending\": false,\n      \"direction\": \"out\",\n      \"assignedAssociates\": [\n        \"stringstringstringstringstringst\",\n        \"stringstringstringstringstringst\"\n      ]\n    },\n    \"urn:banqu:schemas:scim:User:zOkHmfj\": {}\n  },\n  {\n    \"id\": \"string\",\n    \"schemas\": [\n      \"string\",\n      \"string\"\n    ],\n    \"externalId\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"User\",\n      \"created\": 6400.7621653856595,\n      \"lastModified\": 691.7917907948479,\n      \"location\": \"http://rSzVrtJmhNyOsGtAIKPZfRR.ccmeK1AE4DnVxqGW5QjnUtwuvSQ29GLlvKO4fRBElpFBl6MqCBS4vgAo+mAzj\"\n    },\n    \"displayName\": \"string\",\n    \"name\": {\n      \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n      \"honorificPrefix\": \"Ms.\",\n      \"givenName\": \"Barbara\",\n      \"middleName\": \"Jane\",\n      \"familyName\": \"Jensen\",\n      \"honorificSuffix\": \"III\"\n    },\n    \"userName\": \"ki_uki_u\",\n    \"emails\": [\n      {\n        \"value\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"ims\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"photos\": [\n      {\n        \"value\": \"https://example.com/avatar.jpg\",\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"primary\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"etag\": \"00000000000000000000000000000000\"\n      }\n    ],\n    \"addresses\": [\n      {\n        \"type\": \"home\",\n        \"formatted\": \"string\",\n        \"streetAddress\": \"string\",\n        \"locality\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"US\"\n      }\n    ],\n    \"preferredLanguage\": \"en\",\n    \"locale\": \"en-gb\",\n    \"urn:banqu:schemas:scim:User:identification\": {},\n    \"urn:banqu:schemas:extensions:connection\": {\n      \"pending\": true,\n      \"direction\": \"out\",\n      \"assignedAssociates\": [\n        \"stringstringstringstringstringst\",\n        \"stringstringstringstringstringst\"\n      ]\n    },\n    \"urn:banqu:schemas:scim:User:brcq4CWL8C\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a63261a-ad7d-447b-92f4-788c5a40a31a",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e877c6cb-6f14-4d32-9560-e5b18c729ee4",
+          "name": "List packaged profile share categories",
+          "request": {
+            "name": "List packaged profile share categories",
+            "description": {
+              "content": "List packaged profile share categories",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages",
+                ":id",
+                "asset-categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) sharing id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13ae2945-499e-4bad-b0b5-002784f8b36c",
+              "name": "A list of asset categories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "asset-categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"description\": \"st\",\n    \"uom\": \"KG\"\n  },\n  {\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"uom\": \"KG\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98dbcbed-242a-4998-9cbe-5a91d2ec29f1",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "asset-categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3111a69-defb-49a3-b69f-1d7f7bc6e247",
+          "name": "Get GeoJSON data from shared Profile Sections",
+          "request": {
+            "name": "Get GeoJSON data from shared Profile Sections",
+            "description": {
+              "content": "Get GeoJSON data from shared Profile Sections",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-shared-packages",
+                ":id",
+                "geo-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) sharing id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de46114c-7fe8-4970-a8c6-9d6fc110d39f",
+              "name": "Successful response containing the GeoJSON object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-shared-packages",
+                    ":id",
+                    "geo-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) sharing id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"MultiLineString\",\n        \"coordinates\": [\n          385.4391297593762,\n          8174.226884685014\n        ]\n      },\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          3185.49141551959,\n          4241.050305033493\n        ]\n      },\n      \"properties\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cf4f466-2b95-4cb3-a0ea-5c8b1fabcf30",
+          "name": "List profile shares",
+          "request": {
+            "name": "List profile shares",
+            "description": {
+              "content": "List profile shares",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "shares"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf3ae5f6-5449-4d77-a0e4-390d0ec10971",
+              "name": "List of profile shares",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"approved\": false,\n    \"expiresAt\": 6013.782162218465,\n    \"id\": \"string\",\n    \"isReceiverOrg\": false,\n    \"isSenderOrg\": false,\n    \"name\": \"string\",\n    \"photo\": \"string\",\n    \"sections\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"approved\": false,\n    \"expiresAt\": 6424.374205586933,\n    \"id\": \"string\",\n    \"isReceiverOrg\": true,\n    \"isSenderOrg\": true,\n    \"name\": \"string\",\n    \"photo\": \"string\",\n    \"sections\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e91c2980-d6fa-49a8-85ed-128c6f0e41f1",
+          "name": "Create profile share",
+          "request": {
+            "name": "Create profile share",
+            "description": {
+              "content": "Create profile share",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "shares"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receiverId\": \"<string>\",\n  \"sections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresAt\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "785a2ea6-c1cf-4cdb-bf43-f903a964a392",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"<string>\",\n  \"sections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresAt\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f75eb1e5-21ce-4c0a-80bf-1dedc50695e4",
+              "name": "HTTP 403 - Forbidden \nNot authorized to access selected resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"<string>\",\n  \"sections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresAt\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "85a367f3-3a5d-4184-b8d5-ac8be171694d",
+              "name": "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"<string>\",\n  \"sections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiresAt\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db4e08aa-3ec2-412b-a3e1-4db245d3b321",
+          "name": "Get profile share request details",
+          "request": {
+            "name": "Get profile share request details",
+            "description": {
+              "content": "Get profile share request details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "shares",
+                ":otherPartyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "otherPartyId",
+                  "description": "(Required) User or Org id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a7a4497-0126-41fe-8ac8-70f0da5519a5",
+              "name": "A certain share request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":otherPartyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "otherPartyId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"approved\": true,\n  \"isSenderOrg\": false,\n  \"isReceiverOrg\": false,\n  \"sections\": [\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfdd5ebd-3e48-456d-ba01-b84a7013f8ff",
+              "name": "HTTP 403 - Forbidden \nNot authorized to access selected resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":otherPartyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "otherPartyId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1af6c28-85f5-41b3-ae90-6a3a889c9977",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":otherPartyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "otherPartyId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "197132bd-0372-49c4-bc68-523c24513988",
+          "name": "Delete/reject profile share request",
+          "request": {
+            "name": "Delete/reject profile share request",
+            "description": {
+              "content": "Delete/reject profile share request",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "shares",
+                ":otherPartyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "otherPartyId",
+                  "description": "(Required) User or Org id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a6c463a-0180-412e-9a75-252b2a013681",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":otherPartyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "otherPartyId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e977a444-20e1-4944-8be4-33ee7934faf1",
+              "name": "HTTP 403 - Forbidden \nNot authorized to access selected resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":otherPartyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "otherPartyId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "87fc4c40-6665-4a19-a9d0-15f4c1bcc7f2",
+              "name": "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":otherPartyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "otherPartyId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f1f75d7-81e5-470c-b18f-ae512da81dce",
+          "name": "Accept profile share request",
+          "request": {
+            "name": "Accept profile share request",
+            "description": {
+              "content": "Accept profile share request",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "shares",
+                ":senderId",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "senderId",
+                  "description": "(Required) User or Org id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiresAt\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5dc5b070-39d8-4aa3-a391-d8d5ea48306b",
+              "name": "Request was approved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":senderId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "senderId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresAt\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3112f2e2-e916-4289-a7ca-dcde6fd53575",
+              "name": "HTTP 403 - Forbidden \nNot authorized to access selected resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":senderId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "senderId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresAt\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc4bacf9-f64f-4278-aed3-24222e6ff31c",
+              "name": "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "shares",
+                    ":senderId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "senderId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresAt\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "753b1dd8-7f9a-4255-b927-d09447941dd6",
+    "name": "BanQu User Profile Sharing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

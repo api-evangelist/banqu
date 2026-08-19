@@ -1,0 +1,1523 @@
+{
+  "item": [
+    {
+      "id": "a6266b2e-d198-4cbe-8171-12b8a3ce008d",
+      "name": "Assets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a0dbadc-070c-4c27-ad9a-09c0088393ef",
+          "name": "List connected identity assets",
+          "request": {
+            "name": "List connected identity assets",
+            "description": {
+              "content": "List connected identity assets",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connections",
+                ":connectionId",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ec807cc-a294-43c6-b392-d836b5f0ca58",
+              "name": "A list of connection assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":connectionId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"displayName\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"string\",\n      \"created\": 8207.915359250144,\n      \"lastModified\": 1022.431431077393\n    },\n    \"uom\": \"KG\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"ownerId\": \"00000000000000000000000000000000\",\n    \"creatorId\": \"00000000000000000000000000000000\",\n    \"description\": \"string\",\n    \"attachments\": [\n      {\n        \"downloadUrl\": \"string\",\n        \"fileName\": \"string\",\n        \"fileSize\": 7346.922603566643,\n        \"mimeType\": \"image/jpeg\",\n        \"md5\": \"52e05c48bf018e7eb86fb0d651425116\"\n      },\n      {\n        \"downloadUrl\": \"string\",\n        \"fileName\": \"string\",\n        \"fileSize\": 8162.587462066357,\n        \"mimeType\": \"image/jpeg\",\n        \"md5\": \"4848a341d9df86fad769c621df9fac09\"\n      }\n    ],\n    \"isCredit\": false,\n    \"minQty\": 5221.7448434935595,\n    \"balance\": 950.0862163616341,\n    \"confirmedBalance\": 6113.497758091252,\n    \"rejectedAmount\": 730.0402683850882,\n    \"archived\": true,\n    \"transferPropertiesForm\": {\n      \"title\": {\n        \"en\": \"string\"\n      },\n      \"sections\": [\n        {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"$entityId\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"multiple\": false,\n          \"required\": true,\n          \"requiredIf\": \"string\",\n          \"visibleIf\": \"string\",\n          \"weight\": 2932.152696382373,\n          \"threshold\": 6433.118354254516,\n          \"layout\": \"table\",\n          \"groupId\": \"string\",\n          \"frozen\": false\n        },\n        {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"$entityId\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"multiple\": true,\n          \"required\": false,\n          \"requiredIf\": \"string\",\n          \"visibleIf\": \"string\",\n          \"weight\": 2330.7137960530845,\n          \"threshold\": 4915.739594962104,\n          \"layout\": \"vertical\",\n          \"groupId\": \"string\",\n          \"frozen\": true\n        }\n      ],\n      \"id\": \"00000000000000000000000000000000\",\n      \"version\": 8315.706828548151,\n      \"sharing\": {\n        \"level\": \"batch\",\n        \"txTypes\": [\n          \"transformation\"\n        ]\n      },\n      \"appearance\": {\n        \"collapsingType\": \"accordion\",\n        \"showScore\": false\n      },\n      \"usagePreferences\": {\n        \"assign\": true,\n        \"navbarCreate\": false,\n        \"identityCreate\": false\n      },\n      \"deletedFrozenFields\": {},\n      \"owner\": \"00000000000000000000000000000000\",\n      \"groups\": [\n        {\n          \"id\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parentId\": \"string\",\n          \"weight\": 2748.2698754233015,\n          \"threshold\": 7892.211870663318\n        },\n        {\n          \"id\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parentId\": \"string\",\n          \"weight\": 983.8876085769888,\n          \"threshold\": 5308.225290198036\n        }\n      ],\n      \"archived\": true,\n      \"thirdPartyValidation\": false\n    },\n    \"prices\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 6273.791526924228,\n        \"currency\": \"str\",\n        \"title\": \"string\",\n        \"fixed\": false,\n        \"min\": 4.506076250709867,\n        \"max\": 4929.286594680689\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 1909.7687554933461,\n        \"currency\": \"str\",\n        \"title\": \"string\",\n        \"fixed\": true,\n        \"min\": 199.87741387690215,\n        \"max\": 4713.037666570521\n      }\n    ],\n    \"allowOtherCurrencies\": false,\n    \"requireExplicitSources\": false,\n    \"autoFilterProperties\": false,\n    \"allowDoubleSourcing\": false,\n    \"usagePreferences\": {\n      \"buy\": true,\n      \"sell\": false,\n      \"send\": false,\n      \"receive\": true,\n      \"batch\": true\n    },\n    \"confirmationPropagationMode\": \"scot-free\"\n  },\n  {\n    \"code\": \"string\",\n    \"displayName\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"string\",\n      \"created\": 347.2437044393073,\n      \"lastModified\": 1553.83153557624\n    },\n    \"uom\": \"KG\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"ownerId\": \"00000000000000000000000000000000\",\n    \"creatorId\": \"00000000000000000000000000000000\",\n    \"description\": \"string\",\n    \"attachments\": [\n      {\n        \"downloadUrl\": \"string\",\n        \"fileName\": \"string\",\n        \"fileSize\": 9156.494202298305,\n        \"mimeType\": \"image/jpeg\",\n        \"md5\": \"1b4ab3af5385230ebe1e8e00310ab0e4\"\n      },\n      {\n        \"downloadUrl\": \"string\",\n        \"fileName\": \"string\",\n        \"fileSize\": 9275.619955958631,\n        \"mimeType\": \"image/jpeg\",\n        \"md5\": \"7816505bff574416beba294244a651fa\"\n      }\n    ],\n    \"isCredit\": false,\n    \"minQty\": 6225.536730110605,\n    \"balance\": 6546.991064283781,\n    \"confirmedBalance\": 1808.364791670396,\n    \"rejectedAmount\": 294.67328707466044,\n    \"archived\": true,\n    \"transferPropertiesForm\": {\n      \"title\": {\n        \"en\": \"string\"\n      },\n      \"sections\": [\n        {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"$entityId\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"multiple\": true,\n          \"required\": false,\n          \"requiredIf\": \"string\",\n          \"visibleIf\": \"string\",\n          \"weight\": 887.6325579294297,\n          \"threshold\": 3417.7306048486266,\n          \"layout\": \"table\",\n          \"groupId\": \"string\",\n          \"frozen\": true\n        },\n        {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"$entityId\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"multiple\": true,\n          \"required\": true,\n          \"requiredIf\": \"string\",\n          \"visibleIf\": \"string\",\n          \"weight\": 1216.1966879141962,\n          \"threshold\": 7264.995821912531,\n          \"layout\": \"vertical\",\n          \"groupId\": \"string\",\n          \"frozen\": true\n        }\n      ],\n      \"id\": \"00000000000000000000000000000000\",\n      \"version\": 7967.743551918294,\n      \"sharing\": {\n        \"level\": \"batch\",\n        \"txTypes\": [\n          \"batch\"\n        ]\n      },\n      \"appearance\": {\n        \"collapsingType\": \"collapsed\",\n        \"showScore\": true\n      },\n      \"usagePreferences\": {\n        \"assign\": false,\n        \"navbarCreate\": true,\n        \"identityCreate\": true\n      },\n      \"deletedFrozenFields\": {},\n      \"owner\": \"00000000000000000000000000000000\",\n      \"groups\": [\n        {\n          \"id\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parentId\": \"string\",\n          \"weight\": 2033.4296784668181,\n          \"threshold\": 4970.055444178103\n        },\n        {\n          \"id\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parentId\": \"string\",\n          \"weight\": 256.2896187887498,\n          \"threshold\": 9926.079415991439\n        }\n      ],\n      \"archived\": false,\n      \"thirdPartyValidation\": false\n    },\n    \"prices\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 5254.553648059842,\n        \"currency\": \"str\",\n        \"title\": \"string\",\n        \"fixed\": false,\n        \"min\": 4411.67556445519,\n        \"max\": 1180.8584099328157\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 245.77111757403847,\n        \"currency\": \"str\",\n        \"title\": \"string\",\n        \"fixed\": false,\n        \"min\": 5477.425580022359,\n        \"max\": 5844.911937320701\n      }\n    ],\n    \"allowOtherCurrencies\": false,\n    \"requireExplicitSources\": false,\n    \"autoFilterProperties\": false,\n    \"allowDoubleSourcing\": false,\n    \"usagePreferences\": {\n      \"buy\": true,\n      \"sell\": true,\n      \"send\": true,\n      \"receive\": true,\n      \"batch\": true\n    },\n    \"confirmationPropagationMode\": \"none\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15c60f6f-35ec-4aa8-9023-c16e448b5474",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":connectionId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d299fc6-c168-4849-88ff-2fe91ddabd5b",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connections",
+                    ":connectionId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7ceb905-ebaf-49a6-b171-535fa7e0152b",
+          "name": "List assets",
+          "request": {
+            "name": "List assets",
+            "description": {
+              "content": "List assets",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A space-separated list of keywords to search items by"
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "a comma-separated list of category ids to filter resulting set"
+                },
+                {
+                  "disabled": false,
+                  "key": "noCategories",
+                  "value": "<string>",
+                  "description": "a true/false flag to indicate an empty list of categories"
+                },
+                {
+                  "disabled": false,
+                  "key": "showArchived",
+                  "value": "<string>",
+                  "description": "a true/false flag to indicate archived assets should be added to the response. Default is 'false'"
+                },
+                {
+                  "disabled": false,
+                  "key": "showHidden",
+                  "value": "<string>",
+                  "description": "a true/false flag to indicate hidden assets should be added to the response. Default is 'false'"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89e9182c-06bd-49c7-b3ad-16260baae637",
+              "name": "A list of assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "noCategories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showArchived",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showHidden",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"displayName\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"string\",\n      \"created\": 5126.883588319027,\n      \"lastModified\": 583.4220705877524\n    },\n    \"uom\": \"KG\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"ownerId\": \"00000000000000000000000000000000\",\n    \"creatorId\": \"00000000000000000000000000000000\",\n    \"description\": \"string\",\n    \"attachments\": [\n      {\n        \"downloadUrl\": \"string\",\n        \"fileName\": \"string\",\n        \"fileSize\": 85.07526649242037,\n        \"mimeType\": \"image/jpeg\",\n        \"md5\": \"0b73165eb59615bb7a1bd7433faf1531\"\n      },\n      {\n        \"downloadUrl\": \"string\",\n        \"fileName\": \"string\",\n        \"fileSize\": 3252.4989929844273,\n        \"mimeType\": \"image/jpeg\",\n        \"md5\": \"ba5a191fe3ba4e63f971be8444907444\"\n      }\n    ],\n    \"isCredit\": false,\n    \"minQty\": 1000.1905104451824,\n    \"balance\": 7556.000497048323,\n    \"confirmedBalance\": 193.81433999311471,\n    \"rejectedAmount\": 1591.2424055892393,\n    \"archived\": false,\n    \"transferPropertiesForm\": {\n      \"title\": {\n        \"en\": \"string\"\n      },\n      \"sections\": [\n        {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"$entityId\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"multiple\": false,\n          \"required\": true,\n          \"requiredIf\": \"string\",\n          \"visibleIf\": \"string\",\n          \"weight\": 7380.900022734604,\n          \"threshold\": 5517.669189746136,\n          \"layout\": \"table\",\n          \"groupId\": \"string\",\n          \"frozen\": true\n        },\n        {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"$entityId\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"multiple\": false,\n          \"required\": true,\n          \"requiredIf\": \"string\",\n          \"visibleIf\": \"string\",\n          \"weight\": 5354.394191823264,\n          \"threshold\": 748.6338557564865,\n          \"layout\": \"vertical\",\n          \"groupId\": \"string\",\n          \"frozen\": false\n        }\n      ],\n      \"id\": \"00000000000000000000000000000000\",\n      \"version\": 4012.5130972885513,\n      \"sharing\": {\n        \"level\": \"batch\",\n        \"txTypes\": [\n          \"batch\"\n        ]\n      },\n      \"appearance\": {\n        \"collapsingType\": \"collapsed\",\n        \"showScore\": false\n      },\n      \"usagePreferences\": {\n        \"assign\": true,\n        \"navbarCreate\": true,\n        \"identityCreate\": true\n      },\n      \"deletedFrozenFields\": {},\n      \"owner\": \"00000000000000000000000000000000\",\n      \"groups\": [\n        {\n          \"id\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parentId\": \"string\",\n          \"weight\": 716.7117057706652,\n          \"threshold\": 3375.4405350559446\n        },\n        {\n          \"id\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parentId\": \"string\",\n          \"weight\": 951.40102979417,\n          \"threshold\": 340.2832167551728\n        }\n      ],\n      \"archived\": false,\n      \"thirdPartyValidation\": false\n    },\n    \"prices\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 5782.649699619376,\n        \"currency\": \"str\",\n        \"title\": \"string\",\n        \"fixed\": false,\n        \"min\": 4448.822695596001,\n        \"max\": 4817.781483786425\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 952.1589092347859,\n        \"currency\": \"str\",\n        \"title\": \"string\",\n        \"fixed\": false,\n        \"min\": 3642.1853365099532,\n        \"max\": 3093.7729677371394\n      }\n    ],\n    \"allowOtherCurrencies\": false,\n    \"requireExplicitSources\": false,\n    \"autoFilterProperties\": false,\n    \"allowDoubleSourcing\": false,\n    \"usagePreferences\": {\n      \"buy\": false,\n      \"sell\": true,\n      \"send\": false,\n      \"receive\": true,\n      \"batch\": false\n    },\n    \"confirmationPropagationMode\": \"scot-free\"\n  },\n  {\n    \"code\": \"st\",\n    \"displayName\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"string\",\n      \"created\": 1025.4309589906186,\n      \"lastModified\": 7061.618484025831\n    },\n    \"uom\": \"KG\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"ownerId\": \"00000000000000000000000000000000\",\n    \"creatorId\": \"00000000000000000000000000000000\",\n    \"description\": \"string\",\n    \"attachments\": [\n      {\n        \"downloadUrl\": \"string\",\n        \"fileName\": \"string\",\n        \"fileSize\": 3662.2597115043322,\n        \"mimeType\": \"image/jpeg\",\n        \"md5\": \"2d845b95fbf0cac70c16fb71fb36a82c\"\n      },\n      {\n        \"downloadUrl\": \"string\",\n        \"fileName\": \"string\",\n        \"fileSize\": 1998.5467327231488,\n        \"mimeType\": \"image/jpeg\",\n        \"md5\": \"5a8e086a7c82d6e6bfe9e4514a2518cf\"\n      }\n    ],\n    \"isCredit\": false,\n    \"minQty\": 8632.938685969255,\n    \"balance\": 2316.036454301653,\n    \"confirmedBalance\": 6613.860387256347,\n    \"rejectedAmount\": 5691.48901003926,\n    \"archived\": false,\n    \"transferPropertiesForm\": {\n      \"title\": {\n        \"en\": \"string\"\n      },\n      \"sections\": [\n        {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"$entityId\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"multiple\": false,\n          \"required\": false,\n          \"requiredIf\": \"string\",\n          \"visibleIf\": \"string\",\n          \"weight\": 2865.84873385758,\n          \"threshold\": 8693.077742184203,\n          \"layout\": \"vertical\",\n          \"groupId\": \"string\",\n          \"frozen\": true\n        },\n        {\n          \"fields\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"$entityId\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"multiple\": true,\n          \"required\": false,\n          \"requiredIf\": \"string\",\n          \"visibleIf\": \"string\",\n          \"weight\": 8966.751222523872,\n          \"threshold\": 5008.86249618405,\n          \"layout\": \"horizontal\",\n          \"groupId\": \"string\",\n          \"frozen\": false\n        }\n      ],\n      \"id\": \"00000000000000000000000000000000\",\n      \"version\": 8110.993916603451,\n      \"sharing\": {\n        \"level\": \"batch\",\n        \"txTypes\": [\n          \"transformation\"\n        ]\n      },\n      \"appearance\": {\n        \"collapsingType\": \"expanded\",\n        \"showScore\": true\n      },\n      \"usagePreferences\": {\n        \"assign\": true,\n        \"navbarCreate\": false,\n        \"identityCreate\": false\n      },\n      \"deletedFrozenFields\": {},\n      \"owner\": \"00000000000000000000000000000000\",\n      \"groups\": [\n        {\n          \"id\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parentId\": \"string\",\n          \"weight\": 2275.0421700317893,\n          \"threshold\": 7386.579962272705\n        },\n        {\n          \"id\": \"string\",\n          \"title\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"parentId\": \"string\",\n          \"weight\": 3268.66606271606,\n          \"threshold\": 4890.52011645548\n        }\n      ],\n      \"archived\": true,\n      \"thirdPartyValidation\": false\n    },\n    \"prices\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 1051.8096203976302,\n        \"currency\": \"str\",\n        \"title\": \"string\",\n        \"fixed\": false,\n        \"min\": 6720.015297598034,\n        \"max\": 7303.985068093445\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 6136.862595069306,\n        \"currency\": \"str\",\n        \"title\": \"string\",\n        \"fixed\": true,\n        \"min\": 1190.3455789806094,\n        \"max\": 3171.6618375139406\n      }\n    ],\n    \"allowOtherCurrencies\": false,\n    \"requireExplicitSources\": false,\n    \"autoFilterProperties\": false,\n    \"allowDoubleSourcing\": false,\n    \"usagePreferences\": {\n      \"buy\": true,\n      \"sell\": false,\n      \"send\": true,\n      \"receive\": false,\n      \"batch\": true\n    },\n    \"confirmationPropagationMode\": \"none\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b519ee1e-079d-4aa0-b2b5-b1430e2d56d3",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "noCategories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showArchived",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "showHidden",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56180cef-0076-479e-ba63-0ca1d50c3bcc",
+          "name": "Register asset",
+          "request": {
+            "name": "Register asset",
+            "description": {
+              "content": "Register asset",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"uom\": \"<string>\",\n  \"id\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"creatorId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"<string>\",\n      \"md5\": \"<string>\"\n    },\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"<string>\",\n      \"md5\": \"<string>\"\n    }\n  ],\n  \"isCredit\": false,\n  \"qty\": 0,\n  \"minQty\": \"<number>\",\n  \"transferPropertiesForm\": {\n    \"title\": {\n      \"en\": \"<string>\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      }\n    ],\n    \"id\": \"<string>\",\n    \"sharing\": {\n      \"level\": \"<string>\",\n      \"txTypes\": [\n        \"<string>\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"<string>\",\n      \"showScore\": \"<boolean>\"\n    },\n    \"usagePreferences\": {\n      \"assign\": \"<boolean>\",\n      \"navbarCreate\": \"<boolean>\",\n      \"identityCreate\": \"<boolean>\"\n    },\n    \"owner\": \"<string>\",\n    \"groups\": [\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      }\n    ],\n    \"thirdPartyValidation\": \"<boolean>\"\n  },\n  \"prices\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    }\n  ],\n  \"allowOtherCurrencies\": false,\n  \"requireExplicitSources\": false,\n  \"autoFilterProperties\": false,\n  \"allowDoubleSourcing\": false,\n  \"usagePreferences\": {\n    \"buy\": \"<boolean>\",\n    \"sell\": \"<boolean>\",\n    \"send\": \"<boolean>\",\n    \"receive\": \"<boolean>\",\n    \"batch\": \"<boolean>\"\n  },\n  \"confirmationPropagationMode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f737d6b0-5649-4dfe-a6c4-5363f0726f3f",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"uom\": \"KG\",\n  \"id\": \"00000000000000000000000000000000\",\n  \"ownerId\": \"00000000000000000000000000000000\",\n  \"creatorId\": \"00000000000000000000000000000000\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    },\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    }\n  ],\n  \"isCredit\": false,\n  \"qty\": 0,\n  \"minQty\": \"<number>\",\n  \"transferPropertiesForm\": {\n    \"title\": {\n      \"en\": \"<string>\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"sharing\": {\n      \"level\": \"<string>\",\n      \"txTypes\": [\n        \"<string>\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"<string>\",\n      \"showScore\": \"<boolean>\"\n    },\n    \"usagePreferences\": {\n      \"assign\": \"<boolean>\",\n      \"navbarCreate\": \"<boolean>\",\n      \"identityCreate\": \"<boolean>\"\n    },\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      }\n    ],\n    \"thirdPartyValidation\": \"<boolean>\"\n  },\n  \"prices\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    }\n  ],\n  \"allowOtherCurrencies\": false,\n  \"requireExplicitSources\": false,\n  \"autoFilterProperties\": false,\n  \"allowDoubleSourcing\": false,\n  \"usagePreferences\": {\n    \"buy\": \"<boolean>\",\n    \"sell\": \"<boolean>\",\n    \"send\": \"<boolean>\",\n    \"receive\": \"<boolean>\",\n    \"batch\": \"<boolean>\"\n  },\n  \"confirmationPropagationMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e1bb529-89c1-4fbc-b3ec-5c04205988c9",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"uom\": \"KG\",\n  \"id\": \"00000000000000000000000000000000\",\n  \"ownerId\": \"00000000000000000000000000000000\",\n  \"creatorId\": \"00000000000000000000000000000000\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    },\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    }\n  ],\n  \"isCredit\": false,\n  \"qty\": 0,\n  \"minQty\": \"<number>\",\n  \"transferPropertiesForm\": {\n    \"title\": {\n      \"en\": \"<string>\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"sharing\": {\n      \"level\": \"<string>\",\n      \"txTypes\": [\n        \"<string>\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"<string>\",\n      \"showScore\": \"<boolean>\"\n    },\n    \"usagePreferences\": {\n      \"assign\": \"<boolean>\",\n      \"navbarCreate\": \"<boolean>\",\n      \"identityCreate\": \"<boolean>\"\n    },\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      }\n    ],\n    \"thirdPartyValidation\": \"<boolean>\"\n  },\n  \"prices\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    }\n  ],\n  \"allowOtherCurrencies\": false,\n  \"requireExplicitSources\": false,\n  \"autoFilterProperties\": false,\n  \"allowDoubleSourcing\": false,\n  \"usagePreferences\": {\n    \"buy\": \"<boolean>\",\n    \"sell\": \"<boolean>\",\n    \"send\": \"<boolean>\",\n    \"receive\": \"<boolean>\",\n    \"batch\": \"<boolean>\"\n  },\n  \"confirmationPropagationMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00114085-9311-482d-9a15-041e41ea10e1",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"uom\": \"KG\",\n  \"id\": \"00000000000000000000000000000000\",\n  \"ownerId\": \"00000000000000000000000000000000\",\n  \"creatorId\": \"00000000000000000000000000000000\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    },\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    }\n  ],\n  \"isCredit\": false,\n  \"qty\": 0,\n  \"minQty\": \"<number>\",\n  \"transferPropertiesForm\": {\n    \"title\": {\n      \"en\": \"<string>\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"sharing\": {\n      \"level\": \"<string>\",\n      \"txTypes\": [\n        \"<string>\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"<string>\",\n      \"showScore\": \"<boolean>\"\n    },\n    \"usagePreferences\": {\n      \"assign\": \"<boolean>\",\n      \"navbarCreate\": \"<boolean>\",\n      \"identityCreate\": \"<boolean>\"\n    },\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      }\n    ],\n    \"thirdPartyValidation\": \"<boolean>\"\n  },\n  \"prices\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    }\n  ],\n  \"allowOtherCurrencies\": false,\n  \"requireExplicitSources\": false,\n  \"autoFilterProperties\": false,\n  \"allowDoubleSourcing\": false,\n  \"usagePreferences\": {\n    \"buy\": \"<boolean>\",\n    \"sell\": \"<boolean>\",\n    \"send\": \"<boolean>\",\n    \"receive\": \"<boolean>\",\n    \"batch\": \"<boolean>\"\n  },\n  \"confirmationPropagationMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e04c3a2-9ee6-488c-acca-c5046fdb4cd2",
+          "name": "Get asset details",
+          "request": {
+            "name": "Get asset details",
+            "description": {
+              "content": "Get asset details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14162c8a-7016-455a-9660-cfc8b004f0c5",
+              "name": "Asset details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"<string>\",\n  \"displayName\": \"string\",\n  \"meta\": {\n    \"resourceType\": \"string\",\n    \"created\": 47.06555007519153,\n    \"lastModified\": 3607.9594756148736\n  },\n  \"uom\": \"KG\",\n  \"id\": \"00000000000000000000000000000000\",\n  \"ownerId\": \"00000000000000000000000000000000\",\n  \"creatorId\": \"00000000000000000000000000000000\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    },\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    }\n  ],\n  \"isCredit\": false,\n  \"minQty\": \"<number>\",\n  \"balance\": 8167.550027955329,\n  \"confirmedBalance\": 19.78851678942184,\n  \"rejectedAmount\": 5565.721800457649,\n  \"archived\": true,\n  \"transferPropertiesForm\": {\n    \"title\": {\n      \"en\": \"<string>\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\",\n        \"frozen\": false\n      },\n      {\n        \"fields\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\",\n        \"frozen\": false\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"version\": 1490.3487677714645,\n    \"sharing\": {\n      \"level\": \"<string>\",\n      \"txTypes\": [\n        \"<string>\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"<string>\",\n      \"showScore\": \"<boolean>\"\n    },\n    \"usagePreferences\": {\n      \"assign\": \"<boolean>\",\n      \"navbarCreate\": \"<boolean>\",\n      \"identityCreate\": \"<boolean>\"\n    },\n    \"deletedFrozenFields\": {},\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      }\n    ],\n    \"archived\": false,\n    \"thirdPartyValidation\": \"<boolean>\"\n  },\n  \"prices\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    }\n  ],\n  \"allowOtherCurrencies\": false,\n  \"requireExplicitSources\": false,\n  \"autoFilterProperties\": false,\n  \"allowDoubleSourcing\": false,\n  \"usagePreferences\": {\n    \"buy\": \"<boolean>\",\n    \"sell\": \"<boolean>\",\n    \"send\": \"<boolean>\",\n    \"receive\": \"<boolean>\",\n    \"batch\": \"<boolean>\"\n  },\n  \"confirmationPropagationMode\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3a4e856-665d-4112-8f6a-763a55416073",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15c4a594-dcba-4cf2-84ed-31a09ec650cd",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6ad4759-bd0c-4483-86ba-52c6f2ca61b2",
+          "name": "Update asset details",
+          "request": {
+            "name": "Update asset details",
+            "description": {
+              "content": "Update asset details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"uom\": \"<string>\",\n  \"id\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"creatorId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"<string>\",\n      \"md5\": \"<string>\"\n    },\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"<string>\",\n      \"md5\": \"<string>\"\n    }\n  ],\n  \"isCredit\": false,\n  \"qty\": 0,\n  \"minQty\": \"<number>\",\n  \"transferPropertiesForm\": {\n    \"title\": {\n      \"en\": \"<string>\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      }\n    ],\n    \"id\": \"<string>\",\n    \"sharing\": {\n      \"level\": \"<string>\",\n      \"txTypes\": [\n        \"<string>\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"<string>\",\n      \"showScore\": \"<boolean>\"\n    },\n    \"usagePreferences\": {\n      \"assign\": \"<boolean>\",\n      \"navbarCreate\": \"<boolean>\",\n      \"identityCreate\": \"<boolean>\"\n    },\n    \"owner\": \"<string>\",\n    \"groups\": [\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      }\n    ],\n    \"thirdPartyValidation\": \"<boolean>\"\n  },\n  \"prices\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    }\n  ],\n  \"allowOtherCurrencies\": false,\n  \"requireExplicitSources\": false,\n  \"autoFilterProperties\": false,\n  \"allowDoubleSourcing\": false,\n  \"usagePreferences\": {\n    \"buy\": \"<boolean>\",\n    \"sell\": \"<boolean>\",\n    \"send\": \"<boolean>\",\n    \"receive\": \"<boolean>\",\n    \"batch\": \"<boolean>\"\n  },\n  \"confirmationPropagationMode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29f8bcce-0004-4363-a91d-81b0dcd2674a",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"uom\": \"KG\",\n  \"id\": \"00000000000000000000000000000000\",\n  \"ownerId\": \"00000000000000000000000000000000\",\n  \"creatorId\": \"00000000000000000000000000000000\",\n  \"description\": \"<string>\",\n  \"attachments\": [\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    },\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    }\n  ],\n  \"isCredit\": false,\n  \"qty\": 0,\n  \"minQty\": \"<number>\",\n  \"transferPropertiesForm\": {\n    \"title\": {\n      \"en\": \"<string>\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"description\": {\n          \"key_0\": \"<string>\"\n        },\n        \"name\": \"<string>\",\n        \"multiple\": \"<boolean>\",\n        \"required\": \"<boolean>\",\n        \"requiredIf\": \"<string>\",\n        \"visibleIf\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\",\n        \"layout\": \"<string>\",\n        \"groupId\": \"<string>\"\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"sharing\": {\n      \"level\": \"<string>\",\n      \"txTypes\": [\n        \"<string>\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"<string>\",\n      \"showScore\": \"<boolean>\"\n    },\n    \"usagePreferences\": {\n      \"assign\": \"<boolean>\",\n      \"navbarCreate\": \"<boolean>\",\n      \"identityCreate\": \"<boolean>\"\n    },\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"title\": {\n          \"key_0\": \"<string>\"\n        },\n        \"parentId\": \"<string>\",\n        \"weight\": \"<number>\",\n        \"threshold\": \"<number>\"\n      }\n    ],\n    \"thirdPartyValidation\": \"<boolean>\"\n  },\n  \"prices\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"currency\": \"<string>\",\n      \"title\": \"<string>\",\n      \"fixed\": \"<boolean>\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    }\n  ],\n  \"allowOtherCurrencies\": false,\n  \"requireExplicitSources\": false,\n  \"autoFilterProperties\": false,\n  \"allowDoubleSourcing\": false,\n  \"usagePreferences\": {\n    \"buy\": \"<boolean>\",\n    \"sell\": \"<boolean>\",\n    \"send\": \"<boolean>\",\n    \"receive\": \"<boolean>\",\n    \"batch\": \"<boolean>\"\n  },\n  \"confirmationPropagationMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46f2e3c1-68e4-482e-8a80-308da132a74c",
+          "name": "Archive asset",
+          "request": {
+            "name": "Archive asset",
+            "description": {
+              "content": "Archive asset",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c0c3084-f024-4a6d-98af-04c9730905b6",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b947786-ba84-4d4c-9e71-4b522a22c2d9",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e872ba0-f978-44ed-bfc5-4c8ad5ec8cbe",
+              "name": "Forbidden. Only owner account can archive or restore assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57b479c2-084a-41c4-8d82-cdebb21ae544",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2e7cab0-679f-48c6-b975-b3c311bd5dd6",
+              "name": "Unprocessable request. Asset is already archived",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4be3577-33f9-4eda-a90e-aee9d0664150",
+          "name": "Restore archived asset",
+          "request": {
+            "name": "Restore archived asset",
+            "description": {
+              "content": "Restore archived asset",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                ":assetId",
+                "restore"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9982f6d0-4918-4ee9-8bb1-0a20ac92d6f9",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10af4805-3f18-4c0d-b9a3-c720da2441d3",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84794a95-8040-4cf3-9bc1-53a81a4091ff",
+              "name": "Forbidden. Only owner account can archive or restore assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "997987b7-17a4-4cdd-aedf-584b13c53fd7",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab247943-d504-4b4e-8c0e-b8a8da9273d6",
+              "name": "Unprocessable request. Asset is not archived",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    ":assetId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "668d2e9f-9c66-4ac9-a00c-f1b265aff093",
+    "name": "BanQu Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

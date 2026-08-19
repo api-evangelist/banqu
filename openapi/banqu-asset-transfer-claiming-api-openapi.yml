@@ -1,0 +1,189 @@
+openapi: 3.2.0
+info:
+  title: BanQu Asset Transfer Claiming API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Asset Transfer Claiming
+paths:
+  /agent/transfers/incomplete/claim:
+    post:
+      description: Re-issue transfer claim token
+      tags:
+      - Asset Transfer Claiming
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                identificationNumber:
+                  type: string
+                email:
+                  type: string
+                phoneNumber:
+                  type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/ClaimedTransfer'
+                - type: object
+                  properties:
+                    claimToken:
+                      type: string
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /agent/transfers/{claimToken}/claim:
+    post:
+      description: 'Issue transfer finalization token. Requires at least two input parameters: claim token and at least one of ids of receiver'
+      tags:
+      - Asset Transfer Claiming
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                identificationNumber:
+                  type: string
+                email:
+                  type: string
+                phoneNumber:
+                  type: string
+      parameters:
+      - in: path
+        name: claimToken
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimedTransfer'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /agent/transfers/{claimToken}/finalize:
+    post:
+      description: Finalize transfer
+      tags:
+      - Asset Transfer Claiming
+      parameters:
+      - in: path
+        name: claimToken
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+components:
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+  schemas:
+    AssetDescription:
+      type: string
+      minLength: 0
+      maxLength: 200
+    AssetUom:
+      title: Asset Unit of Measurement
+      type: string
+      enum:
+      - BR
+      - BO
+      - BX
+      - BU
+      - CN
+      - CA
+      - CH
+      - DO
+      - EA
+      - FO
+      - FT
+      - GA
+      - GR
+      - HR
+      - JA
+      - KG
+      - KK
+      - LT
+      - Q3
+      - MR
+      - MG
+      - M4
+      - OZ
+      - PK
+      - PR
+      - PC
+      - LB
+      - SJ
+      - VS
+      - YD
+      example: KG
+    ClaimedTransfer:
+      type: object
+      properties:
+        transferId:
+          type: string
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        qty:
+          type: string
+        price:
+          type: number
+        priceCurrency:
+          type: string
+        receiver:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            photoUrl:
+              type: string
+            photoEtag:
+              type: string
+    AssetCode:
+      type: string
+      minLength: 2
+      maxLength: 32
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

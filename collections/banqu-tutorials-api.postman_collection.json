@@ -1,0 +1,131 @@
+{
+  "item": [
+    {
+      "id": "9f69d20b-ea7b-4532-805f-3e1d0e042638",
+      "name": "Tutorials",
+      "description": {
+        "content": "Interactive system guides",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e79ddfc7-c0a6-4d61-913a-ee9ab9aababa",
+          "name": "List tutorials",
+          "request": {
+            "name": "List tutorials",
+            "description": {
+              "content": "List tutorials",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tutorials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "invalidate",
+                  "value": "<string>",
+                  "description": "Passing any value will invalidate internal cache. Fresh data will be requested from tutorials definitions source."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "749cd40e-7a0d-469d-b5dd-3bd423d9f0bb",
+              "name": "List of available tutorials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tutorials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "invalidate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": {\n      \"en\": \"string\"\n    },\n    \"permissions\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"view\": [\n      \"string\"\n    ],\n    \"autoStart\": false,\n    \"environments\": [\n      \"string\"\n    ],\n    \"organizations\": [\n      \"string\"\n    ],\n    \"steps\": [\n      {\n        \"page\": \"string\",\n        \"optional\": false,\n        \"popover\": {\n          \"title\": {\n            \"en\": \"string\"\n          },\n          \"description\": {\n            \"en\": \"string\"\n          },\n          \"position\": \"string\"\n        },\n        \"element\": \"string\",\n        \"onHover\": \"string\"\n      },\n      {\n        \"page\": \"string\",\n        \"optional\": true,\n        \"popover\": {\n          \"title\": {\n            \"en\": \"string\"\n          },\n          \"description\": {\n            \"en\": \"string\"\n          },\n          \"position\": \"string\"\n        },\n        \"element\": \"string\",\n        \"onHover\": \"string\"\n      }\n    ],\n    \"priority\": 9564.157207802164\n  },\n  {\n    \"id\": \"string\",\n    \"name\": {\n      \"en\": \"string\"\n    },\n    \"permissions\": [\n      [\n        \"string\",\n        \"string\"\n      ],\n      [\n        \"string\",\n        \"string\"\n      ]\n    ],\n    \"view\": [\n      \"string\"\n    ],\n    \"autoStart\": false,\n    \"environments\": [\n      \"string\"\n    ],\n    \"organizations\": [\n      \"string\"\n    ],\n    \"steps\": [\n      {\n        \"page\": \"string\",\n        \"optional\": false,\n        \"popover\": {\n          \"title\": {\n            \"en\": \"string\"\n          },\n          \"description\": {\n            \"en\": \"string\"\n          },\n          \"position\": \"string\"\n        },\n        \"element\": \"string\",\n        \"onHover\": \"string\"\n      },\n      {\n        \"page\": \"string\",\n        \"optional\": true,\n        \"popover\": {\n          \"title\": {\n            \"en\": \"string\"\n          },\n          \"description\": {\n            \"en\": \"string\"\n          },\n          \"position\": \"string\"\n        },\n        \"element\": \"string\",\n        \"onHover\": \"string\"\n      }\n    ],\n    \"priority\": 2746.6344512010787\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "807c0a91-1207-4f2a-a215-a07fb47fd903",
+    "name": "BanQu Tutorials API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

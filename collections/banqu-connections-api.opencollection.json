@@ -1,0 +1,487 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Connections API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/connections",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A space-separated list of keywords to search items by"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by connection status"
+              }
+            ]
+          },
+          "docs": "List connections/invites"
+        },
+        {
+          "info": {
+            "name": "POST /connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create identity or send connection invite"
+        },
+        {
+          "info": {
+            "name": "POST /connections/filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/connections/filter",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A space-separated list of keywords to search items by"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by connection status"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search connections and filter them by specific form fields"
+        },
+        {
+          "info": {
+            "name": "GET /connections/csv",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/connections/csv",
+            "params": [
+              {
+                "name": "method",
+                "value": "",
+                "type": "query",
+                "description": "Sets output format. \"simple\" is default. \"pretty\" provides field titles in header, formatted dates, list items, hides system information. \"simple\" gives JSON names in header and all available unformatted data"
+              },
+              {
+                "name": "excludeColumns",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of JSON names of fields to be omitted"
+              }
+            ]
+          },
+          "docs": "Export connections to CSV"
+        },
+        {
+          "info": {
+            "name": "GET /connections/{connectionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ]
+          },
+          "docs": "Get connection details"
+        },
+        {
+          "info": {
+            "name": "PUT /connections/{connectionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId",
+            "params": [
+              {
+                "name": "newConnectionId",
+                "value": "",
+                "type": "path",
+                "description": "New Connection ID (UUID without dashes)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create connection"
+        },
+        {
+          "info": {
+            "name": "PATCH /connections/{connectionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change connection details"
+        },
+        {
+          "info": {
+            "name": "DELETE /connections/{connectionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ]
+          },
+          "docs": "Delete connection/invite"
+        },
+        {
+          "info": {
+            "name": "POST /connections/{connectionId}/resend",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/resend",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ]
+          },
+          "docs": "Resend connection invite"
+        },
+        {
+          "info": {
+            "name": "POST /connections/{connectionId}/accept",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/accept",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ]
+          },
+          "docs": "Accept connection invite"
+        },
+        {
+          "info": {
+            "name": "POST /connections/{connectionId}/roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/roles",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant roles to connected identity"
+        },
+        {
+          "info": {
+            "name": "DELETE /connections/{connectionId}/roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/roles",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke roles from connected identity"
+        },
+        {
+          "info": {
+            "name": "POST /connections/{connectionId}/features",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/features",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign features to connected identity"
+        },
+        {
+          "info": {
+            "name": "DELETE /connections/{connectionId}/features",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/features",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete features from connected identity"
+        },
+        {
+          "info": {
+            "name": "PATCH /connections/{connectionId}/profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/profile",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify connected identity profile"
+        },
+        {
+          "info": {
+            "name": "GET /connections/{connectionId}/assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/assets",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ]
+          },
+          "docs": "List connected identity assets"
+        },
+        {
+          "info": {
+            "name": "POST /connections/{connectionId}/dependents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/dependents",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add connected identity household member. This effectively creates a connection between two users and sets \"parent\" role to the head"
+        },
+        {
+          "info": {
+            "name": "DELETE /connections/{connectionId}/dependents",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/dependents",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove connected identity household member. Revokes \"parent\" role on member's connection to the head"
+        },
+        {
+          "info": {
+            "name": "GET /connections/{connectionId}/destinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/destinations",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              },
+              {
+                "name": "claimableAsset",
+                "value": "",
+                "type": "query",
+                "description": "a true/false flag to indicate if claimable asset providers is returned"
+              },
+              {
+                "name": "monetaryAsset",
+                "value": "",
+                "type": "query",
+                "description": "a true/false flag to indicate if monetary providers is returned"
+              }
+            ]
+          },
+          "docs": "List available payment destinations for the connection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

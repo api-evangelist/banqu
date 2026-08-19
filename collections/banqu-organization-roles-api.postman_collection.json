@@ -1,0 +1,821 @@
+{
+  "item": [
+    {
+      "id": "952e937a-7a49-4bde-a455-f950f0724731",
+      "name": "Organization Roles",
+      "description": {
+        "content": "Organization Roles and Permissions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "570613aa-dc09-4210-9bfd-b0143c368645",
+          "name": "List roles available in current org account",
+          "request": {
+            "name": "List roles available in current org account",
+            "description": {
+              "content": "List roles available in current org account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                "current",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "affdece6-cd92-4355-a638-0acff5d4487b",
+              "name": "List of roles in organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"displayName\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"string\",\n      \"created\": 6929.0229835374,\n      \"lastModified\": 2372.076038059274\n    },\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"delete\",\n        \"create\"\n      ],\n      \"key_1\": [\n        \"delete\",\n        \"update\"\n      ],\n      \"key_2\": [\n        \"delete\",\n        \"update\"\n      ],\n      \"key_3\": [\n        \"update\",\n        \"create\"\n      ]\n    },\n    \"type\": \"associate\",\n    \"id\": \"string\",\n    \"predefined\": false,\n    \"shared\": true,\n    \"ownerDisplayName\": \"string\",\n    \"ownerId\": \"string\"\n  },\n  {\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"displayName\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"string\",\n      \"created\": 3034.2585445796244,\n      \"lastModified\": 6112.412929270133\n    },\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"read\",\n        \"create\"\n      ]\n    },\n    \"type\": \"associate\",\n    \"id\": \"string\",\n    \"predefined\": false,\n    \"shared\": false,\n    \"ownerDisplayName\": \"string\",\n    \"ownerId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5afae6c1-ebb2-4fc1-ab5b-a51e6ccf2f95",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f722380-18e2-4380-b389-9c61adfa5fff",
+          "name": "Create org account role",
+          "request": {
+            "name": "Create org account role",
+            "description": {
+              "content": "Create org account role",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                "current",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"type\": \"<string>\",\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ownerId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a8dbf6d-5016-4b16-8654-0a239865a89d",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"type\": \"<string>\",\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\"\n      ]\n    },\n    \"ownerId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21efbb9e-c62c-4ae2-8e1f-f9f65407c2e1",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"type\": \"<string>\",\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\"\n      ]\n    },\n    \"ownerId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcb5b73c-37ce-49bd-95b3-183f395ed2b7",
+          "name": "Modify org account role",
+          "request": {
+            "name": "Modify org account role",
+            "description": {
+              "content": "Modify org account role",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                "current",
+                "roles",
+                ":roleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) ID of the role to modify"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"type\": \"<string>\",\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ownerId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "24411b6f-6614-46c0-9808-f4be60b624b1",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) ID of the role to modify"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"type\": \"<string>\",\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\"\n      ]\n    },\n    \"ownerId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca0af3fb-b49b-4ca1-9421-53ca0516ab47",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) ID of the role to modify"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"type\": \"<string>\",\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\"\n      ]\n    },\n    \"ownerId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e807116f-84e2-4e33-8018-b80b18448c8d",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) ID of the role to modify"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": {\n    \"id\": \"<string>\",\n    \"name\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"type\": \"<string>\",\n    \"description\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"permissions\": {\n      \"key_0\": [\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\"\n      ]\n    },\n    \"ownerId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59c36dcc-9fe4-4a06-8476-1093170eef8b",
+          "name": "Remove org account role",
+          "request": {
+            "name": "Remove org account role",
+            "description": {
+              "content": "Remove org account role",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                "current",
+                "roles",
+                ":roleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) ID of the role to modify"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f56401b0-3fdd-4487-af90-a8827fc2dfa0",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) ID of the role to modify"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f08a624b-298b-4407-bf37-0990533729e5",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) ID of the role to modify"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "084f84c8-5acb-4ff5-9dde-0f80baac2cb2",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "roles",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) ID of the role to modify"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07cace17-39fc-478b-babe-796729eedfc5",
+          "name": "List all organization capabilities",
+          "request": {
+            "name": "List all organization capabilities",
+            "description": {
+              "content": "List all organization capabilities",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                "current",
+                "capabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aab0aa00-40d0-4f7b-89e7-1c4bc147652f",
+              "name": "List of roles in organization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    "current",
+                    "capabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    \"delete\",\n    \"read\"\n  ],\n  \"key_1\": [\n    \"create\",\n    \"read\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f9dcad1b-8f88-4f76-937f-52f342ef112b",
+    "name": "BanQu Organization Roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

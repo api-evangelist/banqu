@@ -1,0 +1,2753 @@
+{
+  "item": [
+    {
+      "id": "fd96db98-1e07-4197-ae00-821240b89da8",
+      "name": "Asset Transactions",
+      "description": {
+        "content": "Asset exchange/buy/sell transactions that consist of multiple asset transfers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "252aeec9-0eaa-45db-91e4-6cecfbd9a7ae",
+          "name": "List own transactions",
+          "request": {
+            "name": "List own transactions",
+            "description": {
+              "content": "List own transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "codes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of codes to filter transactions. If omitted, not filtered by code"
+                },
+                {
+                  "disabled": false,
+                  "key": "transactionKind",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "owner",
+                  "value": "<string>",
+                  "description": "Filter transactions by owner. One of [me, sub] for own and sub account transactions. If omitted, not filtered by owner"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountIds",
+                  "value": "<string>",
+                  "description": "Filter transactions by other party accountId. Comma-separated list"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9bf12d4-8187-4873-ad7b-d7df5b63b676",
+              "name": "List of transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionKind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of records available for paging purposes",
+                  "key": "X-Total-Count",
+                  "value": "4579.123672048953"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"reason\": \"string\",\n      \"effectiveDate\": \"1996-11-02T11:06:02.616Z\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    },\n    {\n      \"reason\": \"string\",\n      \"effectiveDate\": \"1985-02-22T13:55:46.413Z\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"codes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"totalCount\": 4051.797034114939\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c59e289e-2fff-4af7-ba2b-f3421bd524bb",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionKind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3eea82d-90a4-4fc9-94e5-30934568adee",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionKind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "651a1820-7fe9-4ae8-b849-ebfeb06412e7",
+          "name": "Initiate transaction",
+          "request": {
+            "name": "Initiate transaction",
+            "description": {
+              "content": "Initiate transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"senderId\": \"<string>\",\n    \"receiverId\": \"<string>\",\n    \"assetId\": \"<string>\",\n    \"quantity\": \"<number>\",\n    \"isDraft\": \"<boolean>\",\n    \"id\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"exchangingAssetId\": \"<string>\",\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"uom\": \"<string>\",\n    \"sent\": \"<number>\",\n    \"claimed\": \"<number>\",\n    \"received\": \"<number>\",\n    \"message\": \"<string>\",\n    \"price\": \"<number>\",\n    \"priceCurrency\": \"<string>\",\n    \"destination\": {\n      \"id\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"properties\": {\n      \"key_0\": 6814.256311888726\n    },\n    \"assetAttachments\": [\n      {\n        \"downloadUrl\": \"<url>\",\n        \"fileName\": \"<string>\",\n        \"fileSize\": \"<number>\",\n        \"mimeType\": \"<string>\",\n        \"md5\": \"<string>\"\n      },\n      {\n        \"downloadUrl\": \"<url>\",\n        \"fileName\": \"<string>\",\n        \"fileSize\": \"<number>\",\n        \"mimeType\": \"<string>\",\n        \"md5\": \"<string>\"\n      }\n    ],\n    \"sourceOperations\": [\n      {\n        \"id\": \"<string>\",\n        \"sourcedQty\": \"<number>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"sourcedQty\": \"<number>\"\n      }\n    ],\n    \"sourcesCount\": \"<number>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": \"<double>\",\n      \"lon\": \"<double>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2da56aa-684e-41ac-915f-fbb24f017c7b",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assetId\": \"0d903320a0c5494d85c325fc4936dcad\",\n    \"exchangingAssetId\": \"2992356a55b242f2a97b140d46930ffa\",\n    \"quantity\": 2000,\n    \"senderId\": \"247521e4ce06472ebaf5bdf08d3c4a3e\",\n    \"receiverId\": \"8f4f517528464f428afddce6880128b6\",\n    \"properties\": {\n      \"distance\": 150\n    },\n    \"price\": 1.4,\n    \"priceCurrency\": \"USD\"\n  },\n  {\n    \"isDraft\": false,\n    \"assetId\": \"2992356a55b242f2a97b140d46930ffa\",\n    \"quantity\": 2800,\n    \"senderId\": \"8f4f517528464f428afddce6880128b6\",\n    \"receiverId\": \"247521e4ce06472ebaf5bdf08d3c4a3e\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "03463c92-9e07-4807-9880-3d78db60a8ca",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assetId\": \"0d903320a0c5494d85c325fc4936dcad\",\n    \"exchangingAssetId\": \"2992356a55b242f2a97b140d46930ffa\",\n    \"quantity\": 2000,\n    \"senderId\": \"247521e4ce06472ebaf5bdf08d3c4a3e\",\n    \"receiverId\": \"8f4f517528464f428afddce6880128b6\",\n    \"properties\": {\n      \"distance\": 150\n    },\n    \"price\": 1.4,\n    \"priceCurrency\": \"USD\"\n  },\n  {\n    \"isDraft\": false,\n    \"assetId\": \"2992356a55b242f2a97b140d46930ffa\",\n    \"quantity\": 2800,\n    \"senderId\": \"8f4f517528464f428afddce6880128b6\",\n    \"receiverId\": \"247521e4ce06472ebaf5bdf08d3c4a3e\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67529c4e-2ede-4b9b-948a-24201954ef7a",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assetId\": \"0d903320a0c5494d85c325fc4936dcad\",\n    \"exchangingAssetId\": \"2992356a55b242f2a97b140d46930ffa\",\n    \"quantity\": 2000,\n    \"senderId\": \"247521e4ce06472ebaf5bdf08d3c4a3e\",\n    \"receiverId\": \"8f4f517528464f428afddce6880128b6\",\n    \"properties\": {\n      \"distance\": 150\n    },\n    \"price\": 1.4,\n    \"priceCurrency\": \"USD\"\n  },\n  {\n    \"isDraft\": false,\n    \"assetId\": \"2992356a55b242f2a97b140d46930ffa\",\n    \"quantity\": 2800,\n    \"senderId\": \"8f4f517528464f428afddce6880128b6\",\n    \"receiverId\": \"247521e4ce06472ebaf5bdf08d3c4a3e\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be5c66c2-a98e-4071-bfa2-0e3abb549255",
+              "name": "HTTP 403 - Forbidden \nNot authorized to access selected resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assetId\": \"0d903320a0c5494d85c325fc4936dcad\",\n    \"exchangingAssetId\": \"2992356a55b242f2a97b140d46930ffa\",\n    \"quantity\": 2000,\n    \"senderId\": \"247521e4ce06472ebaf5bdf08d3c4a3e\",\n    \"receiverId\": \"8f4f517528464f428afddce6880128b6\",\n    \"properties\": {\n      \"distance\": 150\n    },\n    \"price\": 1.4,\n    \"priceCurrency\": \"USD\"\n  },\n  {\n    \"isDraft\": false,\n    \"assetId\": \"2992356a55b242f2a97b140d46930ffa\",\n    \"quantity\": 2800,\n    \"senderId\": \"8f4f517528464f428afddce6880128b6\",\n    \"receiverId\": \"247521e4ce06472ebaf5bdf08d3c4a3e\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bcf6ebf-2197-4d3c-a2f8-083474f0bd99",
+          "name": "Process draft payments",
+          "request": {
+            "name": "Process draft payments",
+            "description": {
+              "content": "Process draft payments",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "finalize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"paymentAdjustmentId\": \"<string>\",\n    \"quantity\": \"<number>\",\n    \"appliedToAssetId\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1707d212-7d23-438a-81a8-f1157ab9ee7a",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"paymentAdjustmentId\": \"<string>\",\n    \"quantity\": \"<number>\",\n    \"appliedToAssetId\": \"00000000000000000000000000000000\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5adb3060-346c-4a5e-ae0e-9eaad54b2bd9",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"paymentAdjustmentId\": \"<string>\",\n    \"quantity\": \"<number>\",\n    \"appliedToAssetId\": \"00000000000000000000000000000000\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9d0fb31-82da-488e-a435-995c26fec101",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"paymentAdjustmentId\": \"<string>\",\n    \"quantity\": \"<number>\",\n    \"appliedToAssetId\": \"00000000000000000000000000000000\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0513e0ee-fbed-4ae5-9bd8-6c53ffdd6158",
+              "name": "HTTP 403 - Forbidden \nNot authorized to access selected resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"paymentAdjustmentId\": \"<string>\",\n    \"quantity\": \"<number>\",\n    \"appliedToAssetId\": \"00000000000000000000000000000000\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a31d7ae-0afc-48ca-bea7-643e9cf3708e",
+          "name": "Get transaction details",
+          "request": {
+            "name": "Get transaction details",
+            "description": {
+              "content": "Get transaction details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aff481c8-afa9-4468-8600-3d29c6021d1e",
+              "name": "Transaction details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"qty\": 5088.502800076255,\n  \"id\": \"00000000000000000000000000000000\",\n  \"allCodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"assetIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"type\": \"transfer\",\n  \"unconfirmedAssetIds\": [\n    \"00000000000000000000000000000000\",\n    \"00000000000000000000000000000000\"\n  ],\n  \"destinationProvider\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"destinationType\": \"<string>\",\n  \"initiatedBy\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"photoUrl\": \"string\",\n    \"photoEtag\": \"string\",\n    \"isOrg\": true\n  },\n  \"initiatedByUser\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"photoUrl\": \"string\",\n    \"photoEtag\": \"string\",\n    \"isOrg\": true\n  },\n  \"sender\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"photoUrl\": \"string\",\n    \"photoEtag\": \"string\",\n    \"isOrg\": true\n  },\n  \"receiver\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"photoUrl\": \"string\",\n    \"photoEtag\": \"string\",\n    \"isOrg\": false\n  },\n  \"agency\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"photoUrl\": \"string\",\n    \"photoEtag\": \"string\",\n    \"isOrg\": true\n  },\n  \"agent\": {\n    \"id\": \"00000000000000000000000000000000\",\n    \"name\": \"string\",\n    \"photoUrl\": \"string\",\n    \"photoEtag\": \"string\",\n    \"isOrg\": false\n  },\n  \"price\": 4606.063199495819,\n  \"priceCurrency\": \"USD\",\n  \"sent\": 5963.484137846416,\n  \"claimed\": 3498.725626767326,\n  \"received\": 2132.6830890558103,\n  \"properties\": {},\n  \"message\": \"string\",\n  \"transactionId\": \"string\",\n  \"direction\": \"string\",\n  \"code\": \"string\",\n  \"uom\": \"KG\",\n  \"description\": \"string\",\n  \"initiatedByUserId\": \"string\",\n  \"assetAttachments\": [\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    },\n    {\n      \"downloadUrl\": \"<url>\",\n      \"fileName\": \"<string>\",\n      \"fileSize\": \"<number>\",\n      \"mimeType\": \"image/jpeg\",\n      \"md5\": \"<string>\"\n    }\n  ],\n  \"participants\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcdfa0f1-89e3-44a9-a9a1-e897e0064b79",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9f551bdc-fadd-4c5e-a25a-fd9a2acbc478",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8520a2f4-bfd0-4e7c-94c2-e89cfdc9224c",
+          "name": "Revert transaction",
+          "request": {
+            "name": "Revert transaction",
+            "description": {
+              "content": "Revert transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": \"<double>\",\n    \"lon\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7914ac8b-3037-43c1-b965-de1a1aaa8b8b",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7382887d-3bce-4c6e-b767-d5abeb6944ec",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6fd3dbd6-1663-4263-a69f-091af86805e3",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94b8788a-8365-422a-821f-3e7dfcc395ec",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\",\n  \"effectiveDate\": \"<dateTime>\",\n  \"effectiveLocation\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57931854-d603-4a2b-bd31-3da7dc534e44",
+          "name": "List transaction operations.",
+          "request": {
+            "name": "List transaction operations.",
+            "description": {
+              "content": "List transaction operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "operations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04ef5578-cdbb-4e35-b049-cf0df7d8d42f",
+              "name": "List of asset operations: transfers, deposits, transformations and transformation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"senderId\": \"00000000000000000000000000000000\",\n    \"receiverId\": \"00000000000000000000000000000000\",\n    \"assetId\": \"00000000000000000000000000000000\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"transactionId\": \"00000000000000000000000000000000\",\n    \"direction\": \"out\",\n    \"exchangingAssetId\": \"00000000000000000000000000000000\",\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"uom\": \"KG\",\n    \"qty\": 1,\n    \"isCredit\": false,\n    \"sent\": 1568894551000,\n    \"claimToken\": \"string\",\n    \"hasClaimToken\": true,\n    \"claimed\": 1568894551000,\n    \"received\": 1568894551000,\n    \"message\": \"<string>\",\n    \"price\": \"<number>\",\n    \"priceCurrency\": \"USD\",\n    \"sender\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": true,\n      \"externalId\": \"string\"\n    },\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": false,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"externalId\": \"string\"\n    },\n    \"destination\": {\n      \"id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"provider\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"initiatedBy\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"initiatedByUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"agency\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    },\n    \"agent\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"properties\": {\n      \"poNumber\": \"000001\",\n      \"stockCode\": \"7b35e21b717844\"\n    },\n    \"assetAttachments\": [\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"draft\": false,\n    \"sourceOperations\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      }\n    ],\n    \"explicitAvailableQty\": 4540.493352412012,\n    \"availableQty\": 8163.302209359006,\n    \"receivedQty\": 5406.89803214667,\n    \"receiverComment\": \"string\",\n    \"partiallyConfirmedQty\": 7578.669534376906,\n    \"partiallyConfirmedShare\": 3875.4113474844744,\n    \"sourcesCount\": \"<number>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  },\n  {\n    \"senderId\": \"00000000000000000000000000000000\",\n    \"receiverId\": \"00000000000000000000000000000000\",\n    \"assetId\": \"00000000000000000000000000000000\",\n    \"id\": \"00000000000000000000000000000000\",\n    \"transactionId\": \"00000000000000000000000000000000\",\n    \"direction\": \"in\",\n    \"exchangingAssetId\": \"00000000000000000000000000000000\",\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"uom\": \"KG\",\n    \"qty\": 1,\n    \"isCredit\": true,\n    \"sent\": 1568894551000,\n    \"claimToken\": \"string\",\n    \"hasClaimToken\": true,\n    \"claimed\": 1568894551000,\n    \"received\": 1568894551000,\n    \"message\": \"<string>\",\n    \"price\": \"<number>\",\n    \"priceCurrency\": \"USD\",\n    \"sender\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": false,\n      \"externalId\": \"string\"\n    },\n    \"receiver\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"isOrg\": false,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"externalId\": \"string\"\n    },\n    \"destination\": {\n      \"id\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"provider\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"initiatedBy\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"initiatedByUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"agency\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    },\n    \"agent\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\"\n    },\n    \"properties\": {\n      \"poNumber\": \"000001\",\n      \"stockCode\": \"7b35e21b717844\"\n    },\n    \"assetAttachments\": [\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"downloadUrl\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"fileSize\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mimeType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"md5\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"draft\": false,\n    \"sourceOperations\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\",\n          \"description\": \"Source operation Id\"\n        },\n        \"sourcedQty\": \"<number>\"\n      }\n    ],\n    \"explicitAvailableQty\": 7071.961558877153,\n    \"availableQty\": 8804.806992951995,\n    \"receivedQty\": 1971.3893402009808,\n    \"receiverComment\": \"string\",\n    \"partiallyConfirmedQty\": 9474.2862954356,\n    \"partiallyConfirmedShare\": 1072.7834236454903,\n    \"sourcesCount\": \"<number>\",\n    \"effectiveDate\": \"<dateTime>\",\n    \"effectiveLocation\": {\n      \"lat\": 37.7749,\n      \"lon\": -122.4194\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e0f2044-9309-44ec-bc22-dd6bf38dce8b",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "909cdeec-3ed9-4ca9-b38d-06a5eb39377c",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08ace107-499e-498c-ba19-d343dff162d8",
+          "name": "Get visible chain of custody for the requested transaction",
+          "request": {
+            "name": "Get visible chain of custody for the requested transaction",
+            "description": {
+              "content": "Get visible chain of custody for the requested transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "operations",
+                ":operationId",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "theme",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "operationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d28a89b-ac60-4ebb-9d52-abf24d6ddc62",
+              "name": "List of asset operations: transfers, deposits, transformations and transformation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations",
+                    ":operationId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "theme",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"qty\": 577.8761229376106,\n    \"asset\": {\n      \"uom\": \"string\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"id\": \"string\"\n    },\n    \"sent\": 5936.737985453248,\n    \"type\": \"deposit\",\n    \"properties\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": 4014\n    },\n    \"from\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"displayName\": \"string\",\n      \"isOrg\": false,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\"\n    },\n    \"to\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\"\n    },\n    \"usageInUnits\": 5629.596901673884,\n    \"transferredQty\": 9397.12784367742,\n    \"immediateUsage\": 1517.4173774511003,\n    \"usage\": 191.7422013947423,\n    \"path\": [\n      \"string\",\n      \"string\"\n    ],\n    \"depth\": \"string\",\n    \"id\": \"string\"\n  },\n  {\n    \"qty\": 5114.577914101604,\n    \"asset\": {\n      \"uom\": \"string\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"id\": \"string\"\n    },\n    \"sent\": 5853.392281020857,\n    \"type\": \"transfer\",\n    \"properties\": {\n      \"key_0\": \"string\",\n      \"key_1\": true,\n      \"key_2\": \"string\",\n      \"key_3\": false\n    },\n    \"from\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\"\n    },\n    \"to\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"displayName\": \"string\",\n      \"isOrg\": false,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\"\n    },\n    \"usageInUnits\": 5931.328190611359,\n    \"transferredQty\": 914.3595859251596,\n    \"immediateUsage\": 8095.794276729169,\n    \"usage\": 1986.0877070368022,\n    \"path\": [\n      \"string\",\n      \"string\"\n    ],\n    \"depth\": \"string\",\n    \"id\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14520809-2a46-4db9-bc85-78a424f183cf",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations",
+                    ":operationId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "theme",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e13e0e6-c063-480c-b10b-2e8ecf014f8d",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations",
+                    ":operationId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "theme",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d18e8e6-bde1-4849-ab0f-3ecce7b9c58e",
+          "name": "Get JSON schema for operations from chain of custody for the requested transaction",
+          "request": {
+            "name": "Get JSON schema for operations from chain of custody for the requested transaction",
+            "description": {
+              "content": "Get JSON schema for operations from chain of custody for the requested transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "operations",
+                ":operationId",
+                "history",
+                "schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "operationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c92f3e07-715c-4699-9463-fd85799fe8a0",
+              "name": "JSON schema",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations",
+                    ":operationId",
+                    "history",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"field1\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"field1\"\n  ],\n  \"additionalProperties\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3d5fae2-6410-44fb-8de6-2c05d13463ac",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations",
+                    ":operationId",
+                    "history",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c48d717-38fe-48fd-9a0c-81c72ca84f1e",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "operations",
+                    ":operationId",
+                    "history",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68a07bbe-ecd2-48fd-83e6-46c211d0a258",
+          "name": "Get visible chain of custody for the requested transaction",
+          "request": {
+            "name": "Get visible chain of custody for the requested transaction",
+            "description": {
+              "content": "Get visible chain of custody for the requested transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "582c2b04-a63f-429e-a7d3-e0b35b92ab21",
+              "name": "List of asset operations: transfers, deposits, transformations and transformation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"qty\": 6285.620869085741,\n    \"asset\": {\n      \"uom\": \"string\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"id\": \"string\"\n    },\n    \"sent\": 4135.9080330844645,\n    \"type\": \"transformation\",\n    \"properties\": {\n      \"key_0\": 6514.9492065904515,\n      \"key_1\": 3418.948815617433,\n      \"key_2\": false\n    },\n    \"from\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\"\n    },\n    \"to\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"displayName\": \"string\",\n      \"isOrg\": false,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\"\n    },\n    \"usageInUnits\": 8263.400410315058,\n    \"transferredQty\": 355.27058246588973,\n    \"immediateUsage\": 1885.7273274554286,\n    \"usage\": 8977.082430949615,\n    \"path\": [\n      \"string\",\n      \"string\"\n    ],\n    \"depth\": \"string\",\n    \"id\": \"string\"\n  },\n  {\n    \"qty\": 4152.882045268147,\n    \"asset\": {\n      \"uom\": \"string\",\n      \"name\": \"string\",\n      \"code\": \"string\",\n      \"id\": \"string\"\n    },\n    \"sent\": 2816.4605238016416,\n    \"type\": \"transformation-result\",\n    \"properties\": {\n      \"key_0\": 5025.940828963037,\n      \"key_1\": \"string\"\n    },\n    \"from\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\"\n    },\n    \"to\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"displayName\": \"string\",\n      \"isOrg\": false,\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\"\n    },\n    \"usageInUnits\": 451.4184811779254,\n    \"transferredQty\": 1769.4289428548682,\n    \"immediateUsage\": 8746.501150120157,\n    \"usage\": 4095.878428261286,\n    \"path\": [\n      \"string\",\n      \"string\"\n    ],\n    \"depth\": \"string\",\n    \"id\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c273b94-c2d1-4f78-a8c3-bc1c4e8a0064",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a54e07f1-19da-4b7e-b577-9ebfa6312715",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2967a7f-c255-45c8-ad22-2e89cfbd94ce",
+          "name": "Get JSON schema for operations of chain of custody for the requested transaction",
+          "request": {
+            "name": "Get JSON schema for operations of chain of custody for the requested transaction",
+            "description": {
+              "content": "Get JSON schema for operations of chain of custody for the requested transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "history",
+                "schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9385f05e-5638-4af7-bd5d-98e8abafda7d",
+              "name": "JSON schema",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "history",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"object\",\n  \"required\": [\n    \"string\"\n  ],\n  \"additionalProperties\": false,\n  \"properties\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "653e3a7e-daba-4ad7-b1f6-0c4af34ed17e",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "history",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6647cb24-0570-4f7e-bfcb-1f02346f4c71",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "history",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f02564bc-dcd8-4112-b7ff-568e70f2b37f",
+          "name": "Initiate batch transaction",
+          "request": {
+            "name": "Initiate batch transaction",
+            "description": {
+              "content": "Initiate batch transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receiverId\": \"<string>\",\n  \"senderId\": \"<string>\",\n  \"transfers\": [\n    {\n      \"assetId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"<string>\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    }\n  ],\n  \"properties\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7975.933039727198\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a7164aa-8fb6-4fc5-8d4c-616f05738755",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"senderId\": \"00000000000000000000000000000000\",\n  \"transfers\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"properties\": {\n    \"key_0\": false,\n    \"key_1\": 6085.290795903602,\n    \"key_2\": 5083\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a04acc98-4b08-4a88-a24f-c61776896319",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"senderId\": \"00000000000000000000000000000000\",\n  \"transfers\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"properties\": {\n    \"key_0\": false,\n    \"key_1\": 6085.290795903602,\n    \"key_2\": 5083\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cbf70565-4eee-4919-8585-834152f1ca12",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"senderId\": \"00000000000000000000000000000000\",\n  \"transfers\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"properties\": {\n    \"key_0\": false,\n    \"key_1\": 6085.290795903602,\n    \"key_2\": 5083\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22943cd4-7001-43a5-8b56-fde65d57d0bf",
+              "name": "HTTP 403 - Forbidden \nNot authorized to access selected resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiverId\": \"00000000000000000000000000000000\",\n  \"senderId\": \"00000000000000000000000000000000\",\n  \"transfers\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"properties\": {\n    \"key_0\": false,\n    \"key_1\": 6085.290795903602,\n    \"key_2\": 5083\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a37f145-ee4c-49a7-a197-4df222a65eb9",
+    "name": "BanQu Asset Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

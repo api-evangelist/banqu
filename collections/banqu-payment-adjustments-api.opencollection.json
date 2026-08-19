@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Payment Adjustments API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment Adjustments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /payment-adjustments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/payment-adjustments",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "archived",
+                "value": "",
+                "type": "query",
+                "description": "a 1/0 flag to indicate archived payment adjustments. Default is '0'."
+              }
+            ]
+          },
+          "docs": "Get payment adjustments"
+        },
+        {
+          "info": {
+            "name": "POST /payment-adjustments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/payment-adjustments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register payment adjustment"
+        },
+        {
+          "info": {
+            "name": "GET /payment-adjustments/{paymentAdjustmentId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/payment-adjustments/:paymentAdjustmentId",
+            "params": [
+              {
+                "name": "paymentAdjustmentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique id of a payment adjustment"
+              }
+            ]
+          },
+          "docs": "Get a payment adjustment by id"
+        },
+        {
+          "info": {
+            "name": "POST /payment-adjustments/{paymentAdjustmentId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/payment-adjustments/:paymentAdjustmentId",
+            "params": [
+              {
+                "name": "paymentAdjustmentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique id of a payment adjustment"
+              }
+            ]
+          },
+          "docs": "Restore a payment adjustment"
+        },
+        {
+          "info": {
+            "name": "PUT /payment-adjustments/{paymentAdjustmentId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://banqu.app:443/api/v1/payment-adjustments/:paymentAdjustmentId",
+            "params": [
+              {
+                "name": "paymentAdjustmentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique id of a payment adjustment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a payment adjustment"
+        },
+        {
+          "info": {
+            "name": "DELETE /payment-adjustments/{paymentAdjustmentId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/payment-adjustments/:paymentAdjustmentId",
+            "params": [
+              {
+                "name": "paymentAdjustmentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique id of a payment adjustment"
+              }
+            ]
+          },
+          "docs": "Archive a payment adjustment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

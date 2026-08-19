@@ -1,0 +1,107 @@
+openapi: 3.2.0
+info:
+  title: BanQu Organization Features API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Organization Features
+paths:
+  /orgs/{orgId}/features:
+    get:
+      description: List all available organization features
+      tags:
+      - Organization Features
+      parameters:
+      - in: path
+        name: orgId
+        description: ID of the org to modify or "current"
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: List of features in organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgFeatures'
+    post:
+      description: Set organization features
+      tags:
+      - Organization Features
+      parameters:
+      - in: path
+        name: orgId
+        description: ID of the org to modify or "current"
+        schema:
+          type: string
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                features:
+                  type: array
+                  uniqueItems: true
+                  items:
+                    pattern: ^\S+$
+                    type: string
+              required:
+              - features
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+components:
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+  schemas:
+    OrgFeatures:
+      type: object
+      description: Features of organization account
+      additionalProperties:
+        type: object
+        properties:
+          description:
+            type: string
+          resources:
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+                enum:
+                - create
+                - read
+                - update
+                - delete
+              uniqueItems: true
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

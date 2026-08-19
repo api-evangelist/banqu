@@ -1,0 +1,235 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Organizations API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /orgs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs"
+          },
+          "docs": "Get list of Org accounts user participates in"
+        },
+        {
+          "info": {
+            "name": "POST /orgs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/orgs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create org account"
+        },
+        {
+          "info": {
+            "name": "GET /orgs/{orgId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get org account details"
+        },
+        {
+          "info": {
+            "name": "PATCH /orgs/{orgId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify org account details"
+        },
+        {
+          "info": {
+            "name": "DELETE /orgs/{orgId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deactivate org account"
+        },
+        {
+          "info": {
+            "name": "POST /orgs/{orgId}/restore",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId/restore",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reactivate org account"
+        },
+        {
+          "info": {
+            "name": "GET /orgs/{orgId}/private-labeling",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId/private-labeling",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "get enterprise settings"
+        },
+        {
+          "info": {
+            "name": "POST /orgs/{orgId}/private-labeling",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId/private-labeling",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Apply changes to Enterprise."
+        },
+        {
+          "info": {
+            "name": "GET /orgs/{orgId}/license",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId/license",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get org account license. Specifies count limits of associates with admin privileges"
+        },
+        {
+          "info": {
+            "name": "GET /orgs/{orgId}/sharing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId/sharing",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get org account public profile settings"
+        },
+        {
+          "info": {
+            "name": "PATCH /orgs/{orgId}/sharing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId/sharing",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify org account public profile settings"
+        },
+        {
+          "info": {
+            "name": "GET /orgs/current/profile-forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/current/profile-forms"
+          },
+          "docs": "Get a list of forms describing Org profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

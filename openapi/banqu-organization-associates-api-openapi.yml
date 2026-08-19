@@ -1,0 +1,172 @@
+openapi: 3.2.0
+info:
+  title: BanQu Organization Associates API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Organization Associates
+paths:
+  /orgs/current/associates:
+    get:
+      description: List org account associates
+      tags:
+      - Organization Associates
+      responses:
+        '200':
+          description: List of current org associates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                  - $ref: '#/components/schemas/OrgAssociate'
+                  - $ref: '#/components/schemas/OrgAssociateInvite'
+    post:
+      description: Add org account associate
+      tags:
+      - Organization Associates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrgAssociateInvite'
+      responses:
+        '201':
+          $ref: '#/components/responses/201'
+        '202':
+          $ref: '#/components/responses/202'
+  /orgs/current/associates/{userId}:
+    patch:
+      description: Modify org associate/invite roles
+      tags:
+      - Organization Associates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrgAssociatePatch'
+      parameters:
+      - name: userId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+    delete:
+      description: Remove org associate/invite
+      tags:
+      - Organization Associates
+      parameters:
+      - name: userId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+components:
+  schemas:
+    ImmutableTimestamp:
+      type: number
+      readOnly: true
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
+    OrgAssociateRoles:
+      title: Role IDs
+      description: ID's of the roles assigned to the associate in the current org account
+      type: array
+      uniqueItems: true
+      items:
+        title: Role ID
+        type: string
+        minLength: 1
+    OrgAssociatePatch:
+      type: object
+      additionalProperties: false
+      properties:
+        roles:
+          $ref: '#/components/schemas/OrgAssociateRoles'
+      required:
+      - roles
+    ImmutableId:
+      type: string
+      readOnly: true
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    OrgAssociateInvite:
+      allOf:
+      - type: object
+        additionalProperties: false
+        properties:
+          inviteId:
+            $ref: '#/components/schemas/ImmutableId'
+          expires:
+            $ref: '#/components/schemas/ImmutableTimestamp'
+          name:
+            type: string
+          email:
+            type: string
+            format: email
+          phoneNumber:
+            type: string
+          roles:
+            $ref: '#/components/schemas/OrgAssociateRoles'
+        required:
+        - name
+      - anyOf:
+        - title: email not empty
+          required:
+          - email
+        - title: phoneNumber not empty
+          required:
+          - phoneNumber
+    OrgAssociate:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        photo:
+          type: string
+          format: url
+          readOnly: true
+        roles:
+          $ref: '#/components/schemas/OrgAssociateRoles'
+      required:
+      - name
+  responses:
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '202':
+      description: "HTTP 202 - Accepted \nThe request has been accepted for processing, but the processing has not been completed."
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

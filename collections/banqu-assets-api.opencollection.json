@@ -1,0 +1,195 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Assets API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /connections/{connectionId}/assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/connections/:connectionId/assets",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)"
+              }
+            ]
+          },
+          "docs": "List connected identity assets"
+        },
+        {
+          "info": {
+            "name": "GET /assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A space-separated list of keywords to search items by"
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "a comma-separated list of category ids to filter resulting set"
+              },
+              {
+                "name": "noCategories",
+                "value": "",
+                "type": "query",
+                "description": "a true/false flag to indicate an empty list of categories"
+              },
+              {
+                "name": "showArchived",
+                "value": "",
+                "type": "query",
+                "description": "a true/false flag to indicate archived assets should be added to the response. Default is 'false'"
+              },
+              {
+                "name": "showHidden",
+                "value": "",
+                "type": "query",
+                "description": "a true/false flag to indicate hidden assets should be added to the response. Default is 'false'"
+              }
+            ]
+          },
+          "docs": "List assets"
+        },
+        {
+          "info": {
+            "name": "POST /assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register asset"
+        },
+        {
+          "info": {
+            "name": "GET /assets/{assetId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get asset details"
+        },
+        {
+          "info": {
+            "name": "PATCH /assets/{assetId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update asset details"
+        },
+        {
+          "info": {
+            "name": "DELETE /assets/{assetId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archive asset"
+        },
+        {
+          "info": {
+            "name": "POST /assets/{assetId}/restore",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId/restore",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Restore archived asset"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

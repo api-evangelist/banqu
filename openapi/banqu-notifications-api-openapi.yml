@@ -1,0 +1,63 @@
+openapi: 3.2.0
+info:
+  title: BanQu Notifications API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Notifications
+paths:
+  /notifications:
+    get:
+      security: []
+      description: Get User Notifications
+      tags:
+      - Notifications
+      responses:
+        '200':
+          description: Notifications
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pendingShareRequests:
+                    type: object
+                    properties:
+                      approved:
+                        type: boolean
+                      photo:
+                        type: string
+                      expiresAt:
+                        type: integer
+                      id:
+                        type: string
+                      isReceiverOrg:
+                        type: boolean
+                      isSenderOrg:
+                        type: boolean
+                      name:
+                        type: string
+                      sections:
+                        type: array
+                        items:
+                          type: string
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+components:
+  responses:
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

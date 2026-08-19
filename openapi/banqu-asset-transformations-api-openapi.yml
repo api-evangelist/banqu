@@ -1,0 +1,157 @@
+openapi: 3.2.0
+info:
+  title: BanQu Asset Transformations API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Asset Transformations
+paths:
+  /assets/transformations:
+    post:
+      description: Transform asset(s) into another asset(s)
+      tags:
+      - Asset Transformations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransformAssetRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+components:
+  schemas:
+    DateTime:
+      type: string
+      format: date-time
+    GeoCoordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        lon:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+      additionalProperties: false
+      required:
+      - lat
+      - lon
+      example:
+        lat: 37.7749
+        lon: -122.4194
+    TransformAssetRequest:
+      type: object
+      properties:
+        sources:
+          type: array
+          description: Asset(s) that are being transformed
+          minItems: 1
+          items:
+            type: object
+            properties:
+              assetId:
+                $ref: '#/components/schemas/Id'
+              quantity:
+                type: number
+                exclusiveMinimum: 0
+              sourceOperations:
+                $ref: '#/components/schemas/SourceOperations'
+              effectiveDate:
+                $ref: '#/components/schemas/EffectiveDate'
+              effectiveLocation:
+                $ref: '#/components/schemas/EffectiveLocation'
+            additionalProperties: false
+            required:
+            - assetId
+            - quantity
+        destinations:
+          type: array
+          description: Asset(s) that are being created in result of the transformation
+          minItems: 1
+          items:
+            type: object
+            properties:
+              assetId:
+                $ref: '#/components/schemas/Id'
+              quantity:
+                type: number
+                exclusiveMinimum: 0
+              effectiveDate:
+                $ref: '#/components/schemas/EffectiveDate'
+              effectiveLocation:
+                $ref: '#/components/schemas/EffectiveLocation'
+            additionalProperties: false
+            required:
+            - assetId
+            - quantity
+        properties:
+          type: object
+          properties:
+            $formId:
+              type: string
+          additionalProperties: true
+          required:
+          - $formId
+      additionalProperties: false
+      required:
+      - sources
+      - destinations
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    SourceOperations:
+      type: array
+      description: List of incoming asset transfers that are used as sources for this transaction
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          id:
+            allOf:
+            - $ref: '#/components/schemas/Id'
+            - description: Source operation Id
+          sourcedQty:
+            type: number
+            exclusiveMinimum: 0
+        required:
+        - id
+        - sourcedQty
+    EffectiveLocation:
+      allOf:
+      - $ref: '#/components/schemas/GeoCoordinates'
+      - title: Effective Transfer Geo Location
+        description: The effective location coordinates of a transfer instead of an automatically determined
+    EffectiveDate:
+      allOf:
+      - $ref: '#/components/schemas/DateTime'
+      - title: Effective Transfer Date
+        description: The effective date and time of the transfer in ISO format with timezone defined.
+  responses:
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

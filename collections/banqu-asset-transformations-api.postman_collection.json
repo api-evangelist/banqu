@@ -1,0 +1,230 @@
+{
+  "item": [
+    {
+      "id": "06a23e50-25c2-4476-aab7-88d3be6c6716",
+      "name": "Asset Transformations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44f25da9-2c40-4dbb-b2d9-838f2c37b347",
+          "name": "Transform asset(s) into another asset(s)",
+          "request": {
+            "name": "Transform asset(s) into another asset(s)",
+            "description": {
+              "content": "Transform asset(s) into another asset(s)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets",
+                "transformations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sources\": [\n    {\n      \"assetId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"<string>\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"assetId\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": \"<double>\",\n        \"lon\": \"<double>\"\n      }\n    }\n  ],\n  \"properties\": {\n    \"$formId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d217fe5-64c5-470e-aca0-5bd3ee1dbde8",
+              "name": "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "transformations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sources\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"properties\": {\n    \"$formId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6f1986b-5fa9-43a5-ae08-0ee1ec19d00c",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "transformations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sources\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"properties\": {\n    \"$formId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "684ea087-40c3-48d6-8606-476f62086361",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets",
+                    "transformations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sources\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"sourceOperations\": [\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        },\n        {\n          \"id\": \"00000000000000000000000000000000\",\n          \"sourcedQty\": \"<number>\"\n        }\n      ],\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"destinations\": [\n    {\n      \"assetId\": \"00000000000000000000000000000000\",\n      \"quantity\": \"<number>\",\n      \"effectiveDate\": \"<dateTime>\",\n      \"effectiveLocation\": {\n        \"lat\": 37.7749,\n        \"lon\": -122.4194\n      }\n    }\n  ],\n  \"properties\": {\n    \"$formId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "de6dc083-4204-4f08-8524-9f73256028fc",
+    "name": "BanQu Asset Transformations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

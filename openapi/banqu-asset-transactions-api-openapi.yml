@@ -1,0 +1,1665 @@
+openapi: 3.2.0
+info:
+  title: BanQu Asset Transactions API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Asset Transactions
+  description: Asset exchange/buy/sell transactions that consist of multiple asset transfers
+paths:
+  /transactions:
+    get:
+      description: List own transactions
+      tags:
+      - Asset Transactions
+      parameters:
+      - $ref: '#/components/parameters/AssetCodes'
+      - $ref: '#/components/parameters/TransactionKind'
+      - name: owner
+        in: query
+        schema:
+          type: string
+          enum:
+          - own
+          - sub
+          - any
+        description: Filter transactions by owner. One of [me, sub] for own and sub account transactions. If omitted, not filtered by owner
+      - name: accountIds
+        in: query
+        schema:
+          type: string
+        description: Filter transactions by other party accountId. Comma-separated list
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/SortBy'
+      responses:
+        '200':
+          description: List of transactions
+          content:
+            application/json:
+              schema:
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Transaction'
+                  codes:
+                    type: array
+                    items:
+                      type: string
+                  totalCount:
+                    type: number
+          headers:
+            X-Total-Count:
+              schema:
+                type: number
+              description: Total number of records available for paging purposes
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+    post:
+      description: Initiate transaction
+      tags:
+      - Asset Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/201'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+  /transactions/{transactionId}/finalize:
+    post:
+      description: Process draft payments
+      tags:
+      - Asset Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinalizeDraftTransactionRequest'
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+  /transactions/{transactionId}:
+    get:
+      description: Get transaction details
+      tags:
+      - Asset Transactions
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Transaction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExchangeTransaction'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      description: Revert transaction
+      tags:
+      - Asset Transactions
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevertTransaction'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /transactions/{transactionId}/operations:
+    get:
+      description: List transaction operations.
+      tags:
+      - Asset Transactions
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: 'List of asset operations: transfers, deposits, transformations and transformation results'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnyAssetOperation'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /transactions/{transactionId}/operations/{operationId}/history:
+    get:
+      description: Get visible chain of custody for the requested transaction
+      tags:
+      - Asset Transactions
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: operationId
+        schema:
+          type: string
+        required: true
+      - in: query
+        name: timeout
+        schema:
+          type: number
+          minimum: 1
+          maximum: 3600000
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - xlsx
+      - in: query
+        name: theme
+        schema:
+          $ref: '#/components/schemas/ExcelTableTheme'
+      responses:
+        '200':
+          description: 'List of asset operations: transfers, deposits, transformations and transformation results'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChainedOperation'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /transactions/{transactionId}/operations/{operationId}/history/schema:
+    get:
+      description: Get JSON schema for operations from chain of custody for the requested transaction
+      tags:
+      - Asset Transactions
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: operationId
+        schema:
+          type: string
+        required: true
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - xlsx
+      responses:
+        '200':
+          description: JSON schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonSchema'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /transactions/{transactionId}/history:
+    get:
+      description: Get visible chain of custody for the requested transaction
+      tags:
+      - Asset Transactions
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      - in: query
+        name: timeout
+        schema:
+          type: number
+          minimum: 1
+          maximum: 3600000
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - xlsx
+      responses:
+        '200':
+          description: 'List of asset operations: transfers, deposits, transformations and transformation results'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChainedOperation'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /transactions/{transactionId}/history/schema:
+    get:
+      description: Get JSON schema for operations of chain of custody for the requested transaction
+      tags:
+      - Asset Transactions
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - xlsx
+      responses:
+        '200':
+          description: JSON schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonSchema'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /transactions/batch:
+    post:
+      description: Initiate batch transaction
+      tags:
+      - Asset Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBatchTransactionRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+components:
+  schemas:
+    DraftPaymentOperation:
+      title: Payment Draft
+      type: object
+      additionalProperties: false
+      properties:
+        isDraft:
+          type: boolean
+          enum:
+          - true
+          writeOnly: true
+        assetId:
+          $ref: '#/components/schemas/Id'
+        quantity:
+          title: Payment Amount
+          type: number
+          minimum: 0
+        senderId:
+          $ref: '#/components/schemas/Id'
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        destinationProvider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        effectiveDate:
+          $ref: '#/components/schemas/EffectiveDate'
+        destinationId:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        destinationType:
+          $ref: '#/components/schemas/PaymentDestinationType'
+      required:
+      - isDraft
+      - senderId
+      - receiverId
+      - assetId
+      - quantity
+    AssetMobileDestination:
+      type: object
+      title: Mobile Payment Destination
+      description: Mobile wallet where the monetary transfer was sent to
+      properties:
+        provider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        id:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        type:
+          $ref: '#/components/schemas/PaymentDestinationType'
+      required:
+      - id
+      - provider
+      readOnly: true
+    Attachment:
+      type: object
+      additionalProperties: false
+      properties:
+        downloadUrl:
+          type: string
+          format: url
+        fileName:
+          type: string
+          minLength: 1
+        fileSize:
+          type: number
+          minimum: 0
+        mimeType:
+          type: string
+          minLength: 1
+          example: image/jpeg
+        md5:
+          type: string
+          minLength: 32
+          maxLength: 32
+          pattern: ^[a-f0-9]{32}$
+      required:
+      - downloadUrl
+    GeoCoordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        lon:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+      additionalProperties: false
+      required:
+      - lat
+      - lon
+      example:
+        lat: 37.7749
+        lon: -122.4194
+    AssetDescription:
+      type: string
+      minLength: 0
+      maxLength: 200
+    PaymentDestinationId:
+      title: Destination Identifier
+      description: Destination phone number for mobile providers; BanQu agency ID for banqu-agency provider
+      type: string
+    AssetDeposit:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 32
+          maxLength: 32
+        assetId:
+          type: string
+          minLength: 32
+          maxLength: 32
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        qty:
+          type: string
+        sent:
+          type: number
+        creator:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        creatorUser:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        holder:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+      required:
+      - id
+      - assetId
+      - code
+      - uom
+      - qty
+      - sent
+      - creator
+      - holder
+    JsonSchema:
+      title: JSON Schema
+      description: https://json-schema.org/draft-07/schema#
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - array
+          - boolean
+          - integer
+          - 'null'
+          - number
+          - object
+          - string
+          example: object
+        required:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        additionalProperties:
+          oneOf:
+          - type: boolean
+          - type: object
+        properties:
+          type: object
+      example:
+        type: object
+        properties:
+          field1:
+            type: string
+        required:
+        - field1
+        additionalProperties: false
+    FinalizeDraftTransactionRequest:
+      type: array
+      minItems: 1
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/PaymentAdjustmentOperation'
+        - title: Persisted payment adjustment operation
+          description: Persisted payment adjustment operation with changed quantity
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'
+            quantity:
+              type: number
+          additionalProperties: false
+          required:
+          - id
+          - quantity
+        - title: Persisted asset operation
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'
+            quantity:
+              type: number
+              minimum: 0
+            price:
+              type: number
+              minimum: 0
+            priceCurrency:
+              type: string
+              minLength: 3
+              maxLength: 3
+              example: USD
+            properties:
+              type: object
+              additionalProperties: true
+          additionalProperties: false
+          required:
+          - id
+          - quantity
+        - $ref: '#/components/schemas/PaymentOperation'
+        - title: Persisted payment operation
+          description: Persisted payment operation with changed quantity or/and destination provider
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'
+            quantity:
+              type: number
+              minimum: 0
+            destinationProvider:
+              $ref: '#/components/schemas/PaymentDestinationProvider'
+            destinationId:
+              $ref: '#/components/schemas/PaymentDestinationId'
+            destinationType:
+              $ref: '#/components/schemas/PaymentDestinationType'
+          additionalProperties: false
+          required:
+          - quantity
+          - id
+        - $ref: '#/components/schemas/AssetTransferOperation'
+    CreateBatchTransactionRequest:
+      title: Batch Transaction
+      type: object
+      properties:
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        senderId:
+          $ref: '#/components/schemas/Id'
+        transfers:
+          type: array
+          items:
+            title: Batch Transaction Transfer
+            type: object
+            properties:
+              assetId:
+                $ref: '#/components/schemas/Id'
+              quantity:
+                title: Amount to be Exchanged
+                type: number
+                exclusiveMinimum: 0
+              sourceOperations:
+                $ref: '#/components/schemas/SourceOperations'
+              effectiveDate:
+                $ref: '#/components/schemas/EffectiveDate'
+              effectiveLocation:
+                $ref: '#/components/schemas/EffectiveLocation'
+            additionalProperties: false
+            required:
+            - assetId
+            - quantity
+          minItems: 1
+        properties:
+          type: object
+          additionalProperties: true
+      required:
+      - receiverId
+      - senderId
+      - transfers
+      additionalProperties: false
+    AnyAssetOperation:
+      oneOf:
+      - $ref: '#/components/schemas/AssetTransferOperation'
+      - $ref: '#/components/schemas/AssetTransformationOperation'
+      - $ref: '#/components/schemas/AssetDeposit'
+    ImmutableId:
+      type: string
+      readOnly: true
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    ChainedOperation:
+      type: object
+      properties:
+        qty:
+          title: Quantity
+          description: The transaction amount or the amount of an existing transaction selected as a source
+          type: number
+        asset:
+          type: object
+          properties:
+            uom:
+              title: Unit of Measure
+              type: string
+            name:
+              title: Asset Name
+              type: string
+            code:
+              title: Asset Code
+              type: string
+            id:
+              title: Asset ID
+              type: string
+        sent:
+          title: Date
+          type: number
+          format: date-time
+        type:
+          title: Type
+          description: 'transfer - an asset moving from one connection to another
+
+            transformation - the inputs of a transformation (one or more assets turned into another asset)
+
+            transformation-result - the output of a transformation'
+          type: string
+          enum:
+          - transfer
+          - deposit
+          - transformation
+          - transformation-result
+        properties:
+          type: object
+          properties: {}
+          additionalProperties: true
+        from:
+          type: object
+          properties:
+            id:
+              title: From ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            displayName:
+              title: From
+              type: string
+            isOrg:
+              type: boolean
+            photoUrl:
+              type: string
+              format: url
+            photoEtag:
+              type: string
+        to:
+          type: object
+          properties:
+            id:
+              title: To ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            displayName:
+              title: To
+              type: string
+            isOrg:
+              type: boolean
+            photoUrl:
+              type: string
+              format: url
+            photoEtag:
+              type: string
+        usageInUnits:
+          title: Mass sourced to the top
+          type: number
+          description: how much of this operation made it to the top of chain, in asset's units of measure
+        transferredQty:
+          title: Quantity in Original Operation
+          description: The full amount of the original transaction the source is selected from
+          type: number
+        immediateUsage:
+          title: Mass % sourced from this operation
+          type: number
+          format: percent
+          description: how much of this operation made to the one level higher in chain, in percents
+        usage:
+          title: Quantity % sourced to the top
+          type: number
+          format: percent
+          description: how much of this operation made it to the top of chain, in percents
+        path:
+          type: array
+          title: Historical Order
+          items:
+            type: string
+          description: operation's parents' and own name to rebuild tree from the list
+        depth:
+          type: string
+        id:
+          title: Operation ID
+          type: string
+    EffectiveLocation:
+      allOf:
+      - $ref: '#/components/schemas/GeoCoordinates'
+      - title: Effective Transfer Geo Location
+        description: The effective location coordinates of a transfer instead of an automatically determined
+    PaymentDestination:
+      oneOf:
+      - $ref: '#/components/schemas/AssetMobileDestination'
+      - $ref: '#/components/schemas/AssetAgencyDestination'
+    Transaction:
+      oneOf:
+      - $ref: '#/components/schemas/RevertTransaction'
+      - $ref: '#/components/schemas/AssetDepositTransaction'
+      - $ref: '#/components/schemas/ExchangeTransaction'
+      - $ref: '#/components/schemas/AssetTransformationTransaction'
+    AssetTransformationTransaction:
+      type: object
+      description: Asset Transformation
+      additionalProperties: false
+      properties:
+        sources:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        destinations:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        creator:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        id:
+          type: string
+        transactionId:
+          type: string
+        sent:
+          type: number
+        allCodes:
+          type: array
+          items:
+            type: string
+        assetIds:
+          type: array
+          items:
+            type: string
+      required:
+      - destinations
+      - sources
+      - creator
+      - id
+      - transactionId
+      - sent
+    RevertTransaction:
+      type: object
+      properties:
+        reason:
+          type: string
+          minLength: 1
+        effectiveDate:
+          $ref: '#/components/schemas/EffectiveDate'
+        effectiveLocation:
+          $ref: '#/components/schemas/EffectiveLocation'
+      required:
+      - reason
+      additionalProperties: false
+    ImmutableTimestamp:
+      type: number
+      readOnly: true
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
+    PaymentAdjustmentOperation:
+      title: Payment Adjustment
+      description: Change transaction amount using global or asset related adjustments
+      type: object
+      additionalProperties: false
+      properties:
+        paymentAdjustmentId:
+          type: string
+          minLength: 1
+        appliedToAssetId:
+          $ref: '#/components/schemas/Id'
+        quantity:
+          type: number
+          minimum: 0
+      required:
+      - paymentAdjustmentId
+      - quantity
+    TransformingAsset:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+      required:
+      - id
+      - code
+      - uom
+    PaymentDestinationType:
+      title: Destination Type
+      description: mobile for payments by phone number; payCode for 6DOT50 partner transfer
+      enum:
+      - mobile
+      - new-mobile
+      - payCode
+    SourcesCount:
+      type: number
+      description: Indicates number of operations that serve as explicit or implicit sources for this asset operation. Appears in the object when request contains sourcesGroupingMethod in query
+    Attachments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Attachment'
+    AssetUom:
+      title: Asset Unit of Measurement
+      type: string
+      enum:
+      - BR
+      - BO
+      - BX
+      - BU
+      - CN
+      - CA
+      - CH
+      - DO
+      - EA
+      - FO
+      - FT
+      - GA
+      - GR
+      - HR
+      - JA
+      - KG
+      - KK
+      - LT
+      - Q3
+      - MR
+      - MG
+      - M4
+      - OZ
+      - PK
+      - PR
+      - PC
+      - LB
+      - SJ
+      - VS
+      - YD
+      example: KG
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    ExchangeTransaction:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        allCodes:
+          type: array
+          items:
+            type: string
+        assetIds:
+          type: array
+          items:
+            type: string
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        type:
+          type: string
+          enum:
+          - batch
+          - trade
+          - exchange
+          - transfer
+        unconfirmedAssetIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Id'
+        destinationProvider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        destinationId:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        destinationType:
+          $ref: '#/components/schemas/PaymentDestinationType'
+        initiatedBy:
+          $ref: '#/components/schemas/TransactionParty'
+        initiatedByUser:
+          allOf:
+          - $ref: '#/components/schemas/TransactionParty'
+          - readOnly: true
+        sender:
+          $ref: '#/components/schemas/TransactionParty'
+        receiver:
+          $ref: '#/components/schemas/TransactionParty'
+        agency:
+          $ref: '#/components/schemas/TransactionParty'
+        agent:
+          $ref: '#/components/schemas/TransactionParty'
+        qty:
+          type: number
+          exclusiveMinimum: 0
+        price:
+          type: number
+          minimum: 0
+        priceCurrency:
+          type: string
+          minLength: 3
+          maxLength: 3
+          example: USD
+        sent:
+          type: number
+          readOnly: true
+        claimed:
+          type: number
+          readOnly: true
+        received:
+          type: number
+          readOnly: true
+        properties:
+          type: object
+        message:
+          type: string
+        transactionId:
+          type: string
+        direction:
+          type: string
+        code:
+          type: string
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        description:
+          type: string
+        initiatedByUserId:
+          type: string
+        assetAttachments:
+          $ref: '#/components/schemas/Attachments'
+        participants:
+          type: array
+          items:
+            type: string
+      required:
+      - receiverId
+      - qty
+    ExcelTableTheme:
+      type: string
+      enum:
+      - TableStyleLight1
+      - TableStyleLight2
+      - TableStyleLight3
+      - TableStyleLight4
+      - TableStyleLight5
+      - TableStyleLight6
+      - TableStyleLight7
+      - TableStyleLight8
+      - TableStyleLight9
+      - TableStyleLight10
+      - TableStyleLight11
+      - TableStyleLight12
+      - TableStyleLight13
+      - TableStyleLight14
+      - TableStyleLight15
+      - TableStyleLight16
+      - TableStyleLight17
+      - TableStyleLight18
+      - TableStyleLight19
+      - TableStyleLight20
+      - TableStyleLight21
+      - TableStyleMedium1
+      - TableStyleMedium2
+      - TableStyleMedium3
+      - TableStyleMedium4
+      - TableStyleMedium5
+      - TableStyleMedium6
+      - TableStyleMedium7
+      - TableStyleMedium8
+      - TableStyleMedium9
+      - TableStyleMedium10
+      - TableStyleMedium11
+      - TableStyleMedium12
+      - TableStyleMedium13
+      - TableStyleMedium14
+      - TableStyleMedium15
+      - TableStyleMedium16
+      - TableStyleMedium17
+      - TableStyleMedium18
+      - TableStyleMedium19
+      - TableStyleMedium20
+      - TableStyleMedium21
+      - TableStyleMedium22
+      - TableStyleMedium23
+      - TableStyleMedium24
+      - TableStyleMedium25
+      - TableStyleMedium26
+      - TableStyleMedium27
+      - TableStyleMedium28
+      - TableStyleDark1
+      - TableStyleDark2
+      - TableStyleDark3
+      - TableStyleDark4
+      - TableStyleDark5
+      - TableStyleDark6
+      - TableStyleDark7
+      - TableStyleDark8
+      - TableStyleDark9
+      - TableStyleDark10
+      - TableStyleDark11
+    TransactionParty:
+      type: object
+      readOnly: true
+      properties:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        name:
+          type: string
+          readOnly: true
+        photoUrl:
+          type: string
+          format: url
+          readOnly: true
+        photoEtag:
+          type: string
+          readOnly: true
+        isOrg:
+          type: boolean
+    PaymentOperation:
+      title: Payment
+      type: object
+      additionalProperties: false
+      properties:
+        isDraft:
+          type: boolean
+          enum:
+          - false
+          writeOnly: true
+        assetId:
+          $ref: '#/components/schemas/Id'
+        quantity:
+          title: Payment Amount
+          type: number
+          minimum: 0
+        senderId:
+          $ref: '#/components/schemas/Id'
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        destinationProvider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        destinationId:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        destinationType:
+          $ref: '#/components/schemas/PaymentDestinationType'
+      required:
+      - senderId
+      - receiverId
+      - assetId
+      - quantity
+      - destinationProvider
+    EffectiveDate:
+      allOf:
+      - $ref: '#/components/schemas/DateTime'
+      - title: Effective Transfer Date
+        description: The effective date and time of the transfer in ISO format with timezone defined.
+    DateTime:
+      type: string
+      format: date-time
+    AssetTransformationOperation:
+      type: object
+      description: Operation that indicates asset(s) transformation into an arbitrary amount of some different asset(s)
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        transactionId:
+          $ref: '#/components/schemas/Id'
+        assetId:
+          $ref: '#/components/schemas/Id'
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        sources:
+          type: array
+          description: Transformed assets. For each transformed asset there is a separate operation within the transaction. This list always includes asset transformed by this operation
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        destinations:
+          type: array
+          description: Resulting assets. This list always includes resulting asset from this operation
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        direction:
+          type: string
+        qty:
+          type: number
+          minimum: 0
+        sent:
+          type: number
+        sourceOperations:
+          $ref: '#/components/schemas/SourceOperations'
+        sourcesCount:
+          $ref: '#/components/schemas/SourcesCount'
+        creator:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        creatorUser:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        holder:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+      required:
+      - id
+      - transactionId
+      - assetId
+      - code
+      - uom
+      - destinations
+      - direction
+      - qty
+      - sent
+    AssetDepositTransaction:
+      type: object
+      properties:
+        description:
+          type: string
+        holderId:
+          type: string
+        holder:
+          $ref: '#/components/schemas/TransactionParty'
+        type:
+          type: string
+          enum:
+          - deposit
+        id:
+          $ref: '#/components/schemas/Id'
+        transactionId:
+          $ref: '#/components/schemas/Id'
+        sent:
+          type: number
+        qty:
+          type: number
+        creatorId:
+          $ref: '#/components/schemas/Id'
+        creator:
+          $ref: '#/components/schemas/TransactionParty'
+        code:
+          type: string
+        assetIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Id'
+        allCodes:
+          type: array
+          items:
+            type: string
+        transfers:
+          type: array
+          items:
+            type: string
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Id'
+        location:
+          $ref: '#/components/schemas/GeoCoordinates'
+      readOnly: true
+      required:
+      - holderId
+      - holder
+      - type
+      - id
+      - transactionId
+      - sent
+      - qty
+      - creatorId
+      - creator
+      - code
+      - assetIds
+      - allCodes
+      - transfers
+      - participants
+    AssetTransferOperation:
+      type: object
+      title: Asset Transfer
+      description: Movement of some asset amount between two accounts, denoted `sender` and `receiver`
+      properties:
+        isDraft:
+          type: boolean
+          enum:
+          - false
+          writeOnly: true
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        transactionId:
+          $ref: '#/components/schemas/ImmutableId'
+        direction:
+          title: Transfer Direction
+          type: string
+          enum:
+          - in
+          - out
+          readOnly: true
+        assetId:
+          $ref: '#/components/schemas/Id'
+        exchangingAssetId:
+          allOf:
+          - $ref: '#/components/schemas/Id'
+          - description: ID of the asset being used as a payment for the current transfer
+        code:
+          allOf:
+          - $ref: '#/components/schemas/AssetCode'
+          - readOnly: true
+        description:
+          allOf:
+          - $ref: '#/components/schemas/AssetDescription'
+          - readOnly: true
+        uom:
+          allOf:
+          - $ref: '#/components/schemas/AssetUom'
+          - readOnly: true
+        qty:
+          title: Quantity
+          type: number
+          example: 1
+          readOnly: true
+        quantity:
+          title: Amount to be transferred
+          type: number
+          minimum: 0
+          writeOnly: true
+        isCredit:
+          title: Is Credit Asset
+          type: boolean
+          description: Indicates if "Credit" type of asset was transferred
+          readOnly: true
+        sent:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+        claimToken:
+          type: string
+          readOnly: true
+        hasClaimToken:
+          type: boolean
+          readOnly: true
+        claimed:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+        received:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+        message:
+          title: Message to Receiver
+          type: string
+          description: Optional message for transfer receiver
+          maxLength: 1024
+        price:
+          title: Asset Price
+          type: number
+          minimum: 0
+        priceCurrency:
+          title: Asset Price Currency
+          type: string
+          minLength: 3
+          maxLength: 3
+          example: USD
+        sender:
+          title: Sender
+          type: object
+          properties:
+            id:
+              title: Sender ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            name:
+              title: Sender Name
+              type: string
+            isOrg:
+              title: Sender is Org
+              type: boolean
+            externalId:
+              title: External Id
+              type: string
+          readOnly: true
+        senderId:
+          allOf:
+          - $ref: '#/components/schemas/Id'
+          - writeOnly: true
+        receiver:
+          type: object
+          title: Receiver
+          properties:
+            id:
+              title: Receiver ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            name:
+              title: Receiver Name
+              type: string
+            isOrg:
+              title: Receiver is Org
+              type: boolean
+            photoUrl:
+              title: Receiver Photo
+              type: string
+              format: url
+            photoEtag:
+              title: Receiver Photo ETag
+              type: string
+            externalId:
+              title: External Id
+              type: string
+          readOnly: true
+        receiverId:
+          allOf:
+          - $ref: '#/components/schemas/Id'
+          - writeOnly: true
+        destination:
+          $ref: '#/components/schemas/PaymentDestination'
+        initiatedBy:
+          type: object
+          title: Initiated By
+          description: Account that initiated the transfer
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              title: Initiated By
+              type: string
+          readOnly: true
+        initiatedByUser:
+          type: object
+          title: Initiated By User
+          description: User that initiated the transfer
+          properties:
+            id:
+              title: Initiated By User ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            name:
+              title: Initiated By User
+              type: string
+          readOnly: true
+        agency:
+          type: object
+          title: Agency
+          description: For transfers sent to a BanQu Agency, the field contains Agency account that made the cash out
+          properties:
+            id:
+              title: Agency ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            name:
+              type: string
+            address:
+              type: string
+          readOnly: true
+        agent:
+          type: object
+          title: Agent
+          description: For transfers sent to a BanQu Agency, the field contains Agent that made the cash out
+          properties:
+            id:
+              title: Agent ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            name:
+              title: Agent Name
+              type: string
+          readOnly: true
+        properties:
+          type: object
+          title: Transfer Properties
+          description: Key-value pairs with custom transfer properties
+          additionalProperties: true
+          example:
+            poNumber: '000001'
+            stockCode: 7b35e21b717844
+        assetAttachments:
+          allOf:
+          - $ref: '#/components/schemas/Attachments'
+          - readOnly: true
+        draft:
+          type: boolean
+          description: Flag that indicates the transfer is not completed. Usually until it is confirmed by a receiver
+          readOnly: true
+        sourceOperations:
+          $ref: '#/components/schemas/SourceOperations'
+        explicitAvailableQty:
+          type: number
+          description: Amount that wasn't yet used as an explicit source for another operation over same asset in receiver's account. Confirmation with a changed quantity affects this number too
+          readOnly: true
+        availableQty:
+          type: number
+          description: Amount that wasn't yet used as an explicit and/or implicit source for another operation over same asset in receiver's account
+          readOnly: true
+        receivedQty:
+          type: number
+          description: Amount that was confirmed by receiver. Undefined until confirmation
+          readOnly: true
+        receiverComment:
+          type: string
+          description: Optional text message from the user who confirmed transfer
+          readOnly: true
+        partiallyConfirmedQty:
+          type: number
+          description: Defines absolute confirmed quantity of a partially confirmed transfer. Example, initial transfer has amount 10kg. It was split into 3kg and 7 kg transfers upstream. The last transfer was confirmed at 90%. partiallyConfirmedQty will equal 6.3kg (90% of 7kg). partiallyConfirmedShare will equal 0.9
+          readOnly: true
+        partiallyConfirmedShare:
+          type: number
+          description: A transfer amount can be explicitly sourced into different batches (upstream). When cascade confirmation is ON this can result in partial confirmation of initial transfer quantity. This property defines what fraction of this transfer was confirmed
+          readOnly: true
+        sourcesCount:
+          allOf:
+          - $ref: '#/components/schemas/SourcesCount'
+          - readOnly: true
+        effectiveDate:
+          $ref: '#/components/schemas/EffectiveDate'
+        effectiveLocation:
+          $ref: '#/components/schemas/EffectiveLocation'
+      additionalProperties: false
+      required:
+      - senderId
+      - receiverId
+      - assetId
+      - quantity
+    AssetAgencyDestination:
+      type: object
+      title: Agency Payment Destination
+      description: Where the transfer was sent to (i.e. BanQu agency)
+      properties:
+        id:
+          title: Destination ID
+          type: string
+          description: Receiver phone number (for transfers to mobile wallets)
+        name:
+          title: Destination Name
+          type: string
+          description: Name of BanQu agency (for transfers to specific BanQu agency)
+        address:
+          title: Destination Address
+          type: string
+          description: Address of BanQu agency (for transfers to specific BanQu agency)
+      required:
+      - id
+      - name
+      readOnly: true
+    SourceOperations:
+      type: array
+      description: List of incoming asset transfers that are used as sources for this transaction
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          id:
+            allOf:
+            - $ref: '#/components/schemas/Id'
+            - description: Source operation Id
+          sourcedQty:
+            type: number
+            exclusiveMinimum: 0
+        required:
+        - id
+        - sourcedQty
+    PaymentDestinationProvider:
+      title: Payment Destination Provider
+      description: Payment provider where the payment should be delivered to
+      type: string
+      enum:
+      - banqu-agency
+      - mtn-zambia
+      - 6dot50pay-zaf
+      - mtn-uganda
+      - tigo-tanzania
+      - celbux-zaf
+      - airtel
+      - zamtel
+      - vodacom
+    AssetCode:
+      type: string
+      minLength: 2
+      maxLength: 32
+    CreateTransactionRequest:
+      type: array
+      minItems: 1
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/AssetTransferOperation'
+        - $ref: '#/components/schemas/PaymentOperation'
+        - $ref: '#/components/schemas/DraftPaymentOperation'
+        - $ref: '#/components/schemas/PaymentAdjustmentOperation'
+      example:
+      - assetId: 0d903320a0c5494d85c325fc4936dcad
+        exchangingAssetId: 2992356a55b242f2a97b140d46930ffa
+        quantity: 2000
+        senderId: 247521e4ce06472ebaf5bdf08d3c4a3e
+        receiverId: 8f4f517528464f428afddce6880128b6
+        properties:
+          distance: 150
+        price: 1.4
+        priceCurrency: USD
+      - isDraft: false
+        assetId: 2992356a55b242f2a97b140d46930ffa
+        quantity: 2800
+        senderId: 8f4f517528464f428afddce6880128b6
+        receiverId: 247521e4ce06472ebaf5bdf08d3c4a3e
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: number
+        default: 20
+        minimum: 1
+      description: Number or items per page
+      required: false
+    AssetCodes:
+      name: codes
+      in: query
+      schema:
+        type: string
+      description: Comma-separated list of codes to filter transactions. If omitted, not filtered by code
+      required: false
+    Offset:
+      name: offset
+      in: query
+      schema:
+        type: number
+        minimum: 0
+        default: 0
+      description: 0-based index of the first element
+      required: false
+    TransactionKind:
+      name: transactionKind
+      in: query
+      schema:
+        type: string
+        enum:
+        - buy
+        - sell
+        - transfer
+        - deposit
+        - transformation
+        - draft-locked
+        - draft-unlocked
+      required: false
+    SortBy:
+      name: sortBy
+      in: query
+      schema:
+        type: string
+      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
+      required: false
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

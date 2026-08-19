@@ -1,0 +1,1058 @@
+openapi: 3.2.0
+info:
+  title: BanQu Organizations API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Organizations
+  description: Organization accounts
+paths:
+  /orgs:
+    get:
+      description: Get list of Org accounts user participates in
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserOrg'
+    post:
+      description: Create org account
+      tags:
+      - Organizations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Name of the Organization
+                  type: string
+                  minLength: 3
+                  maxLength: 100
+                isChild:
+                  description: Should new account be a child account of the org user signed into
+                  type: boolean
+              additionalProperties: false
+              required:
+              - name
+      responses:
+        '201':
+          $ref: '#/components/responses/201'
+  /orgs/{orgId}:
+    parameters:
+    - name: orgId
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      description: Get org account details
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Org'
+        '404':
+          $ref: '#/components/responses/404'
+    patch:
+      description: Modify org account details
+      tags:
+      - Organizations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Org'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Org'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      description: Deactivate org account
+      tags:
+      - Organizations
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '404':
+          $ref: '#/components/responses/404'
+  /orgs/{orgId}/restore:
+    post:
+      description: Reactivate org account
+      tags:
+      - Organizations
+      parameters:
+      - name: orgId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '404':
+          $ref: '#/components/responses/404'
+  /orgs/{orgId}/private-labeling:
+    parameters:
+    - name: orgId
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      description: get enterprise settings
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: Changes successfully applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateLabeling'
+        '403':
+          $ref: '#/components/responses/403'
+    post:
+      description: Apply changes to Enterprise.
+      tags:
+      - Organizations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrivateLabeling'
+      responses:
+        '200':
+          description: Changes successfully applied
+        '403':
+          $ref: '#/components/responses/403'
+  /orgs/{orgId}/license:
+    parameters:
+    - name: orgId
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      description: Get org account license. Specifies count limits of associates with admin privileges
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/License'
+  /orgs/{orgId}/sharing:
+    parameters:
+    - name: orgId
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      description: Get org account public profile settings
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileVisibility'
+    patch:
+      description: Modify org account public profile settings
+      tags:
+      - Organizations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileVisibility'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+  /orgs/current/profile-forms:
+    get:
+      description: Get a list of forms describing Org profile
+      tags:
+      - Organizations
+      responses:
+        '200':
+          description: List of forms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Form'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+components:
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+  schemas:
+    FormSection:
+      title: Form Section
+      type: object
+      properties:
+        $entityId:
+          type: string
+          description: Internal unique identifier for the section
+        title:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        name:
+          $ref: '#/components/schemas/JsonIdentifier'
+        multiple:
+          type: boolean
+          description: If multiple instances of the section are allowed
+        required:
+          type: boolean
+          description: If at least one of the section instances is required
+        requiredIf:
+          type: string
+        visibleIf:
+          type: string
+        weight:
+          type: number
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        threshold:
+          type: number
+          minimum: 0
+          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
+        layout:
+          type: string
+          description: Section markup layout
+          enum:
+          - horizontal
+          - vertical
+          - table
+        fields:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/FormField'
+            - $ref: '#/components/schemas/CheckboxField'
+            - $ref: '#/components/schemas/FormFieldWithItems'
+            - $ref: '#/components/schemas/FormMarkupElement'
+            - $ref: '#/components/schemas/FragmentField'
+        groupId:
+          type: string
+          description: Identifier of the group this section belongs to
+        frozen:
+          type: boolean
+          readOnly: true
+      required:
+      - fields
+    ReadWriteVisibility:
+      type: string
+      enum:
+      - readonly
+      - edit
+    ImmutableId:
+      type: string
+      readOnly: true
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    Form:
+      type: object
+      title: Form
+      properties:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        version:
+          type: number
+          readOnly: true
+          description: Form template age. It is increased on server side with every modification
+        sharing:
+          title: Form Type
+          oneOf:
+          - title: Transaction Properties Form
+            type: object
+            properties:
+              level:
+                type: string
+                enum:
+                - batch
+              txTypes:
+                description: The transaction types the form can be used for
+                type: array
+                items:
+                  type: string
+                  enum:
+                  - batch
+                  - transformation
+                minItems: 1
+                uniqueItems: true
+            additionalProperties: false
+          - title: Private Data Entry Form
+            type: object
+            properties:
+              level:
+                type: string
+                enum:
+                - private
+            additionalProperties: false
+          - title: Fragment Form
+            type: object
+            properties:
+              level:
+                type: string
+                enum:
+                - fragment
+            additionalProperties: false
+          - title: Shared Data Entry Form
+            type: object
+            properties:
+              level:
+                type: string
+                enum:
+                - shared
+            additionalProperties: false
+          - title: User Profile Form
+            type: object
+            properties:
+              level:
+                type: string
+                enum:
+                - replace
+              profileSectionName:
+                type: string
+                pattern: ^(urn:banqu:schemas:[a-f\d]{32}:User:)?[a-zA-Z][\da-zA-Z]*$
+                minLength: 1
+              reportingSectionName:
+                type: string
+                pattern: ^(urn:banqu:schemas:[a-f\d]{32}:User:[a-zA-Z][\da-zA-Z]*)?$
+              priority:
+                type: number
+                minimum: 0
+              replaceProfileSections:
+                type: array
+                items:
+                  type: string
+              profileSectionNamePrefix:
+                description: Used as a backdoor in API to be able to change a client form into a standard form
+                type: string
+                enum:
+                - 'urn:banqu:schemas:scim:User:'
+            additionalProperties: false
+            required:
+            - level
+            - profileSectionName
+          - title: Org Profile Form
+            type: object
+            properties:
+              level:
+                type: string
+                enum:
+                - org-profile
+              profileSectionName:
+                type: string
+                pattern: ^(urn:banqu:schemas:[a-f\d]{32}:Org:)?[a-zA-Z][\da-zA-Z]*$
+                minLength: 1
+              profileSectionNamePrefix:
+                description: Used as a backdoor in API to be able to change a client form into a standard form
+                type: string
+                enum:
+                - 'urn:banqu:schemas:scim:Org:'
+              priority:
+                type: number
+                minimum: 0
+            additionalProperties: false
+            required:
+            - level
+            - profileSectionName
+          required:
+          - level
+        appearance:
+          title: Form Appearance Settings
+          type: object
+          properties:
+            collapsingType:
+              type: string
+              enum:
+              - accordion
+              - collapsed
+              - expanded
+            showScore:
+              type: boolean
+          additionalProperties: false
+        usagePreferences:
+          title: Data Entry Form Usage Preferences
+          type: object
+          properties:
+            assign:
+              type: boolean
+              description: If true, the form can be assigned to connected identities
+            navbarCreate:
+              type: boolean
+              description: If true, the form data entry can be created from the navbar
+            identityCreate:
+              type: boolean
+              description: If true, the form data entry can be created from the connected identity page
+          additionalProperties: false
+        deletedFrozenFields:
+          type: object
+          readOnly: true
+          description: A map containing all deleted frozen fields (available for restoration). Managed on serverside
+        owner:
+          $ref: '#/components/schemas/ImmutableId'
+        sections:
+          title: Form Sections
+          type: array
+          items:
+            $ref: '#/components/schemas/FormSection'
+        groups:
+          title: Form Groups
+          type: array
+          items:
+            $ref: '#/components/schemas/FormGroup'
+        archived:
+          type: boolean
+          description: Indicates if form is archived
+          readOnly: true
+        thirdPartyValidation:
+          type: boolean
+          description: On profile forms indicates if the form data can be reviewed by a third-party contract specified in data entry
+      required:
+      - title
+      - sections
+      additionalProperties: false
+      example:
+        title:
+          en: My Form
+        version: 1
+        sections:
+        - title:
+            en: Some List
+          name: section1
+          multiple: true
+          required: true
+          fields:
+          - name: field1
+            type: text
+            title:
+              en: Field Title
+            required: true
+            visibility:
+              approver: readonly
+              reviewer: hidden
+              responder: edit
+        sharing:
+          level: shared
+    FormField:
+      title: Form Field
+      type: object
+      properties:
+        $entityId:
+          type: string
+          description: Internal unique identifier for the field
+        name:
+          $ref: '#/components/schemas/JsonNestedIdentifier'
+        type:
+          type: string
+          enum:
+          - text
+          - textarea
+          - connectionSelect
+          - assetSelect
+          - countrySelect
+          - currencySelect
+          - dataEntrySelect
+          - datetime
+          - file
+          - geoPosition
+          - polygon
+          - barcode
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        placeholder:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        descriptionVariant:
+          $ref: '#/components/schemas/DescriptionVariant'
+        required:
+          type: boolean
+        validation:
+          type: string
+        parentFieldName:
+          $ref: '#/components/schemas/ParentFieldName'
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        format:
+          type: string
+          description: Format of 'datetime' field type
+          enum:
+          - date
+          - time
+          - date-time
+        primary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        globalPrimary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        uniqueAcrossInstances:
+          type: boolean
+          description: Unique across section instances when form section is repeatable
+        size:
+          type: integer
+          description: The number of slots preserved for the field in a table column
+          minimum: 1
+          maximum: 12
+        displayTotals:
+          type: boolean
+          description: When enabled, the sum of all field values is displayed in the totals row on the UI
+        weight:
+          type: number
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        isParent:
+          type: boolean
+          description: Mark the selected connection as a parent of the data entry
+        connectionType:
+          type: string
+          description: Connection type to filter connections in the connection select field
+          enum:
+          - org
+          - user
+        importanceArea:
+          $ref: '#/components/schemas/FormFieldImportance'
+        frozen:
+          type: boolean
+          readOnly: true
+        formula:
+          type: string
+          description: Formula for calculated mode of the field
+      required:
+      - name
+      - type
+      - title
+    FormElementVisibility:
+      oneOf:
+      - type: object
+        description: Data-entry or profile form field visibility
+        required:
+        - approver
+        - reviewer
+        - responder
+        properties:
+          approver:
+            $ref: '#/components/schemas/ReadWriteVisibility'
+          reviewer:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+          responder:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+        additionalProperties: false
+      - type: object
+        description: Transaction form field visibility
+        required:
+        - initiator
+        - update-by-initiator
+        - participant
+        properties:
+          update-by-initiator:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+          participant:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+          initiator:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+        additionalProperties: false
+    FormGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        parentId:
+          type: string
+          description: Identifier of the group this sub-group belongs to
+        weight:
+          type: number
+          minimum: 0
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        threshold:
+          type: number
+          minimum: 0
+          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
+      additionalProperties: false
+      required:
+      - id
+    Org:
+      type: object
+      description: Organization Account
+      properties:
+        id:
+          type: string
+          readOnly: true
+        displayName:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          minLength: 3
+          maxLength: 100
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileProperty'
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileProperty'
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - user-agreement
+                - associate-agreement
+              title:
+                type: string
+              url:
+                type: string
+                format: url
+            required:
+            - type
+            - title
+            - url
+        active:
+          type: boolean
+          readOnly: true
+        users:
+          type: array
+          readOnly: true
+          description: List of users participating in the Org account
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                readOnly: true
+              roles:
+                type: array
+                readOnly: true
+                items:
+                  type: string
+        urn:banqu:schemas:scim:Org:notifications:
+          type: object
+          properties:
+            whatsappOptedIn:
+              type: boolean
+      additionalProperties: true
+    ParentFieldName:
+      type: string
+      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\[\]\.([a-zA-Z_][\da-zA-Z_]*))?(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
+      description: Name of a parent field whose selected value filters options in this field. E.g., selecting a connection filters related data entries
+    DescriptionVariant:
+      type: string
+      enum:
+      - text
+      - tooltip
+      - long-text
+    JsonNestedIdentifier:
+      type: string
+      description: JSON field name, optionally nested, e.g., 'field1.subfield2'
+      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
+    UserOrg:
+      description: Org account user participates in
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          minLength: 2
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileProperty'
+        roles:
+          type: array
+          description: Roles of the current user in the org account
+          readOnly: true
+          items:
+            type: string
+        active:
+          type: boolean
+          readOnly: true
+    ProfileProperty:
+      title: Profile Property
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          minLength: 1
+        primary:
+          type: boolean
+      required:
+      - value
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
+    PrivateLabeling:
+      type: object
+      properties:
+        logoUrl:
+          type: string
+    OptionalLocalizedString:
+      type: object
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+    FormFieldImportance:
+      type: object
+      properties:
+        ui:
+          type: boolean
+          description: Field is important for UI
+        reporting:
+          type: boolean
+          description: Field is important for reporting
+        coc:
+          type: boolean
+          description: Field is important for CoC
+      additionalProperties: false
+    FormMarkupElement:
+      title: Form Markup Element
+      type: object
+      required:
+      - title
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - legend
+          - static
+        url:
+          type: string
+          format: url
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        $entityId:
+          type: string
+        requiredIf:
+          type: string
+        visibleIf:
+          type: string
+      additionalProperties: false
+    ProfileVisibility:
+      type: object
+      properties:
+        publicEnabled:
+          type: boolean
+          description: Should the profile be visible from Internet
+        publicSections:
+          type: array
+          description: Profile sections visible to Internet
+          items:
+            type: string
+            uniqueItems: true
+        connectionsEnabled:
+          type: boolean
+          description: Should the profile be visible for Connections
+        connectionsSections:
+          type: array
+          description: Profile sections visible to Connections
+          items:
+            type: string
+            uniqueItems: true
+      required:
+      - publicEnabled
+      - publicSections
+      - connectionsEnabled
+      - connectionsSections
+    ReadWriteHideVisibility:
+      type: string
+      enum:
+      - hidden
+      - readonly
+      - edit
+    FormFieldWithItems:
+      title: Form Field with Items
+      type: object
+      properties:
+        $entityId:
+          type: string
+          description: Internal unique identifier for the field
+        name:
+          $ref: '#/components/schemas/JsonNestedIdentifier'
+        type:
+          type: string
+          enum:
+          - select
+          - multiSelect
+          - radio
+        displayAs:
+          type: string
+          enum:
+          - dropdown
+          - list
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        descriptionVariant:
+          $ref: '#/components/schemas/DescriptionVariant'
+        required:
+          type: boolean
+        validation:
+          type: string
+        parentFieldName:
+          $ref: '#/components/schemas/ParentFieldName'
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Internal unique identifier for the item
+              title:
+                $ref: '#/components/schemas/OptionalLocalizedString'
+              value:
+                type: string
+              weight:
+                type: number
+                minimum: -1
+                description: A numerical value representing the importance of this item in the overall score calculation. Higher values indicate greater importance.
+              frozen:
+                type: boolean
+                description: Indicates if the item is frozen and cannot be modified
+              parentValue:
+                type: string
+                description: Value of a parent field that this item belongs to. Used to filter items in a select field based on the parent field value
+            required:
+            - value
+            additionalProperties: false
+        allowOther:
+          type: boolean
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        primary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        globalPrimary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        uniqueAcrossInstances:
+          type: boolean
+          description: Unique across section instances when form section is repeatable
+        size:
+          type: integer
+          description: The number of slots preserved for the field in a table column
+          minimum: 1
+          maximum: 12
+        displayTotals:
+          type: boolean
+          description: When enabled, the sum of all field values is displayed in the totals row on the UI
+        weight:
+          type: number
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        isParent:
+          type: boolean
+          description: Mark the selected connection as a parent of the data entry
+        importanceArea:
+          $ref: '#/components/schemas/FormFieldImportance'
+        frozen:
+          type: boolean
+          readOnly: true
+      required:
+      - name
+      - type
+      - title
+      - required
+    JsonIdentifier:
+      type: string
+      description: JSON field name
+      pattern: ^[$a-zA-Z_][\da-zA-Z_]*$
+    FragmentField:
+      title: Fragment Field
+      type: object
+      required:
+      - fragmentId
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - fragment
+        fragmentId:
+          type: string
+          minLength: 16
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        placeholder:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        descriptionVariant:
+          $ref: '#/components/schemas/DescriptionVariant'
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        $entityId:
+          type: string
+        requiredIf:
+          type: string
+        visibleIf:
+          type: string
+        required:
+          type: boolean
+        importanceArea:
+          $ref: '#/components/schemas/FormFieldImportance'
+        frozen:
+          type: boolean
+          readOnly: true
+        primary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        globalPrimary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        uniqueAcrossInstances:
+          type: boolean
+          description: Unique across section instances when form section is repeatable
+        formula:
+          type: string
+          description: Formula for calculated mode of the field
+      additionalProperties: false
+    CheckboxField:
+      title: Checkbox Field
+      type: object
+      properties:
+        $entityId:
+          type: string
+          description: Internal unique identifier for the field
+        name:
+          $ref: '#/components/schemas/JsonNestedIdentifier'
+        type:
+          type: string
+          enum:
+          - checkbox
+        title:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        placeholder:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        descriptionVariant:
+          $ref: '#/components/schemas/DescriptionVariant'
+        required:
+          type: boolean
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        size:
+          type: integer
+          description: The number of slots preserved for the field in a table column
+          minimum: 1
+          maximum: 12
+        weight:
+          type: number
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        importanceArea:
+          $ref: '#/components/schemas/FormFieldImportance'
+        frozen:
+          type: boolean
+          readOnly: true
+        uniqueAcrossInstances:
+          enum:
+          - false
+        defaultValue:
+          type: boolean
+          description: Default value for this checkbox field
+      required:
+      - name
+      - type
+    License:
+      type: object
+      properties:
+        orgId:
+          type: string
+          description: License is assigned at enterprise level. If requested orgId is a child org this parameter will contain orgId of the enterprise
+        adminsLimit:
+          type: number
+          minimum: 0
+          description: all new roles assigned will be checked whether they have admin privilege level permissions if it turns a user from 'regular' to 'admin' the user may be counted as a one more admin within licenseProvider read further to understand conditions when a new admin is counted
+        unique:
+          type: boolean
+          description: when false, counts every org associate with admin privileges in every suborg. When true, only counts unique users, for ex., owner of enterprise will not be counted as admin in suborgs
+        limitPer:
+          type: string
+          enum:
+          - suborg
+          - enterprise
+          description: makes the adminsLimit work for the sum off all admins across the enterprise or in each org separately
+        adminsAvailableInAccount:
+          type: number
+          description: contains how many admin slots left in current org for suborg license or if requested orgId is enterprise root
+      required:
+      - orgId
+      - adminsLimit
+      - unique
+      - limitPer
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

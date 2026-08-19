@@ -1,0 +1,1775 @@
+{
+  "item": [
+    {
+      "id": "05de4d95-64e8-456e-88c2-e6fb30a6b00f",
+      "name": "User Profile",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2944a23c-f396-4cac-948a-a8a45bf9795c",
+          "name": "Get logged in user profile",
+          "request": {
+            "name": "Get logged in user profile",
+            "description": {
+              "content": "Get logged in user profile",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2db72546-1987-4ae6-873f-ec824d94a8c2",
+              "name": "User profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"00000000000000000000000000000000\",\n  \"displayName\": \"string\",\n  \"name\": {\n    \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n    \"honorificPrefix\": \"Ms.\",\n    \"givenName\": \"Barbara\",\n    \"middleName\": \"Jane\",\n    \"familyName\": \"Jensen\",\n    \"honorificSuffix\": \"III\"\n  },\n  \"userName\": \"miknR\",\n  \"emails\": [\n    {\n      \"value\": \"user@example.com\",\n      \"type\": \"string\",\n      \"primary\": false\n    },\n    {\n      \"value\": \"user@example.com\",\n      \"type\": \"string\",\n      \"primary\": true\n    }\n  ],\n  \"phoneNumbers\": [\n    {\n      \"value\": \"+1 555 999 8877\",\n      \"type\": \"string\",\n      \"primary\": false\n    },\n    {\n      \"value\": \"+1 555 999 8877\",\n      \"type\": \"string\",\n      \"primary\": true\n    }\n  ],\n  \"ims\": [\n    {\n      \"value\": \"string\",\n      \"type\": \"string\",\n      \"primary\": true\n    },\n    {\n      \"value\": \"string\",\n      \"type\": \"string\",\n      \"primary\": false\n    }\n  ],\n  \"photos\": [\n    {\n      \"value\": \"https://example.com/avatar.jpg\",\n      \"type\": \"string\",\n      \"primary\": false,\n      \"etag\": \"00000000000000000000000000000000\"\n    },\n    {\n      \"value\": \"https://example.com/avatar.jpg\",\n      \"type\": \"string\",\n      \"primary\": true,\n      \"etag\": \"00000000000000000000000000000000\"\n    }\n  ],\n  \"addresses\": [\n    {\n      \"type\": \"home\",\n      \"formatted\": \"string\",\n      \"streetAddress\": \"string\",\n      \"locality\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"US\"\n    }\n  ],\n  \"preferredLanguage\": \"en\",\n  \"locale\": \"en-us\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72a7cce5-a5a9-4a9d-8f68-2e9435ad8ad8",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "524d3a63-2ca5-49ec-a153-f1e1262b4dbb",
+          "name": "Modify logged in user profile",
+          "request": {
+            "name": "Modify logged in user profile",
+            "description": {
+              "content": "Modify logged in user profile",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": {\n    \"formatted\": \"<string>\",\n    \"honorificPrefix\": \"<string>\",\n    \"givenName\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"familyName\": \"<string>\",\n    \"honorificSuffix\": \"<string>\"\n  },\n  \"userName\": \"<string>\",\n  \"emails\": [\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    },\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"phoneNumbers\": [\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    },\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"ims\": [\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    },\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"photos\": [\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\",\n      \"etag\": \"<string>\"\n    },\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\",\n      \"etag\": \"<string>\"\n    }\n  ],\n  \"addresses\": [\n    {\n      \"type\": \"<string>\",\n      \"formatted\": \"<string>\",\n      \"streetAddress\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"formatted\": \"<string>\",\n      \"streetAddress\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ],\n  \"preferredLanguage\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"urn:banqu:schemas:scim:User:social\": {},\n  \"urn:banqu:schemas:scim:User:identification\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3d6ce5a-a2f6-430a-b5dc-0c6a4bacebb4",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"00000000000000000000000000000000\",\n  \"name\": {\n    \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n    \"honorificPrefix\": \"Ms.\",\n    \"givenName\": \"Barbara\",\n    \"middleName\": \"Jane\",\n    \"familyName\": \"Jensen\",\n    \"honorificSuffix\": \"III\"\n  },\n  \"userName\": \"<string>\",\n  \"emails\": [\n    {\n      \"value\": \"user@example.com\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"phoneNumbers\": [\n    {\n      \"value\": \"+1 555 999 8877\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"ims\": [\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"photos\": [\n    {\n      \"value\": \"https://example.com/avatar.jpg\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\",\n      \"etag\": \"00000000000000000000000000000000\"\n    }\n  ],\n  \"addresses\": [\n    {\n      \"type\": \"home\",\n      \"formatted\": \"<string>\",\n      \"streetAddress\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"US\"\n    }\n  ],\n  \"preferredLanguage\": \"en\",\n  \"locale\": \"<string>\",\n  \"urn:banqu:schemas:scim:User:identification\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"00000000000000000000000000000000\",\n  \"displayName\": \"string\",\n  \"name\": {\n    \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n    \"honorificPrefix\": \"Ms.\",\n    \"givenName\": \"Barbara\",\n    \"middleName\": \"Jane\",\n    \"familyName\": \"Jensen\",\n    \"honorificSuffix\": \"III\"\n  },\n  \"userName\": \"<string>\",\n  \"emails\": [\n    {\n      \"value\": \"user@example.com\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"phoneNumbers\": [\n    {\n      \"value\": \"+1 555 999 8877\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"ims\": [\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"photos\": [\n    {\n      \"value\": \"https://example.com/avatar.jpg\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\",\n      \"etag\": \"00000000000000000000000000000000\"\n    }\n  ],\n  \"addresses\": [\n    {\n      \"type\": \"home\",\n      \"formatted\": \"<string>\",\n      \"streetAddress\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"US\"\n    }\n  ],\n  \"preferredLanguage\": \"en\",\n  \"locale\": \"<string>\",\n  \"urn:banqu:schemas:scim:User:identification\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbf27d3d-b299-46dc-8597-0b17c0513f7a",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"00000000000000000000000000000000\",\n  \"name\": {\n    \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n    \"honorificPrefix\": \"Ms.\",\n    \"givenName\": \"Barbara\",\n    \"middleName\": \"Jane\",\n    \"familyName\": \"Jensen\",\n    \"honorificSuffix\": \"III\"\n  },\n  \"userName\": \"<string>\",\n  \"emails\": [\n    {\n      \"value\": \"user@example.com\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"phoneNumbers\": [\n    {\n      \"value\": \"+1 555 999 8877\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"ims\": [\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"photos\": [\n    {\n      \"value\": \"https://example.com/avatar.jpg\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\",\n      \"etag\": \"00000000000000000000000000000000\"\n    }\n  ],\n  \"addresses\": [\n    {\n      \"type\": \"home\",\n      \"formatted\": \"<string>\",\n      \"streetAddress\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"US\"\n    }\n  ],\n  \"preferredLanguage\": \"en\",\n  \"locale\": \"<string>\",\n  \"urn:banqu:schemas:scim:User:identification\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "033a502c-a9d1-4350-be14-1a6425965980",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"00000000000000000000000000000000\",\n  \"name\": {\n    \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n    \"honorificPrefix\": \"Ms.\",\n    \"givenName\": \"Barbara\",\n    \"middleName\": \"Jane\",\n    \"familyName\": \"Jensen\",\n    \"honorificSuffix\": \"III\"\n  },\n  \"userName\": \"<string>\",\n  \"emails\": [\n    {\n      \"value\": \"user@example.com\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"phoneNumbers\": [\n    {\n      \"value\": \"+1 555 999 8877\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"ims\": [\n    {\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\"\n    }\n  ],\n  \"photos\": [\n    {\n      \"value\": \"https://example.com/avatar.jpg\",\n      \"type\": \"<string>\",\n      \"primary\": \"<boolean>\",\n      \"etag\": \"00000000000000000000000000000000\"\n    }\n  ],\n  \"addresses\": [\n    {\n      \"type\": \"home\",\n      \"formatted\": \"<string>\",\n      \"streetAddress\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"US\"\n    }\n  ],\n  \"preferredLanguage\": \"en\",\n  \"locale\": \"<string>\",\n  \"urn:banqu:schemas:scim:User:identification\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d8142df-c78e-4223-936c-172e9f42fb6f",
+          "name": "Update logged in user password",
+          "request": {
+            "name": "Update logged in user password",
+            "description": {
+              "content": "Update logged in user password",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f59856d-ffbe-479c-8edd-37ee8ab7229e",
+              "name": "Password changed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bbf3e845-7170-49b9-be4a-8cd7f3be4340",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e744648a-ae27-459a-83d0-04edf326e528",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f54d57b9-d288-48fb-8dfc-e25b8aa17c3f",
+          "name": "Get logged in user photo",
+          "request": {
+            "name": "Get logged in user photo",
+            "description": {
+              "content": "Get logged in user photo",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "photo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb257617-7cde-4a8c-ac16-51a45f081825",
+              "name": "Redirect to the Photo url",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "photo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Photo URL",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02b79a62-4aee-41b2-b3dd-d7424bd4f9a0",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "photo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b9581fc-2cfa-4bf6-84a9-b28900b91a80",
+          "name": "Update logged in user photo",
+          "request": {
+            "name": "Update logged in user photo",
+            "description": {
+              "content": "Update logged in user photo",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "photo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "0",
+                  "value": "<",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "1",
+                  "value": "b",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "2",
+                  "value": "i",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "3",
+                  "value": "n",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "4",
+                  "value": "a",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "5",
+                  "value": "r",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "6",
+                  "value": "y",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "7",
+                  "value": ">",
+                  "type": "text",
+                  "description": "undefined"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa658612-0c55-428e-b04f-ba0cf4ac3e01",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "photo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "<",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "b",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "2",
+                      "value": "i",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "3",
+                      "value": "n",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "4",
+                      "value": "a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "5",
+                      "value": "r",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "6",
+                      "value": "y",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "7",
+                      "value": ">",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d37ebd0-0bb9-4bca-b493-ca782c50d54b",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "photo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "<",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "b",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "2",
+                      "value": "i",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "3",
+                      "value": "n",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "4",
+                      "value": "a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "5",
+                      "value": "r",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "6",
+                      "value": "y",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "7",
+                      "value": ">",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6a35777e-efd4-4198-82e4-bdf8418e973b",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "photo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "<",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "b",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "2",
+                      "value": "i",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "3",
+                      "value": "n",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "4",
+                      "value": "a",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "5",
+                      "value": "r",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "6",
+                      "value": "y",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "7",
+                      "value": ">",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d9a7032-04ef-44a1-88f1-e80a155f7997",
+          "name": "List logged in user profile sections",
+          "request": {
+            "name": "List logged in user profile sections",
+            "description": {
+              "content": "List logged in user profile sections",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "351c8f49-abef-40ca-9473-a3374e838fca",
+              "name": "List of profile sections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "sections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"formId\": \"00000000000000000000000000000000\",\n    \"title\": \"string\",\n    \"name\": \"string\",\n    \"priority\": 9559.130457966148\n  },\n  {\n    \"formId\": \"00000000000000000000000000000000\",\n    \"title\": \"string\",\n    \"name\": \"string\",\n    \"priority\": 250.77957757201895\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc27b9af-68a6-47ad-9001-4ea3a79664b1",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "sections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cd659cc-c776-4170-9784-eb0ecfa71ca4",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "sections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78307079-03ab-4859-ac39-dc3d380e56ed",
+          "name": "List standard profile sections",
+          "request": {
+            "name": "List standard profile sections",
+            "description": {
+              "content": "List standard profile sections",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "standard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f04a6a5-0f33-4911-ace8-8912bda642eb",
+              "name": "List of profile sections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "standard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"formId\": \"00000000000000000000000000000000\",\n    \"title\": \"string\",\n    \"name\": \"string\",\n    \"priority\": 9143.559293450877\n  },\n  {\n    \"formId\": \"00000000000000000000000000000000\",\n    \"title\": \"string\",\n    \"name\": \"string\",\n    \"priority\": 8099.117179543547\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bb6dfde-d08f-4eac-8b0c-a4f9afad47aa",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "standard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6967e5b3-acf9-4826-8cfb-809c9eb1a7e9",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "standard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbfdf102-3744-4d08-9432-75cfddcfcf9b",
+          "name": "List profile section forms",
+          "request": {
+            "name": "List profile section forms",
+            "description": {
+              "content": "List profile section forms",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c739798b-99ee-40f0-acd5-28ca00c8d6a6",
+              "name": "List of profile forms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"title\": {\n      \"en\": \"string\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\"\n        },\n        \"description\": {\n          \"key_0\": \"string\"\n        },\n        \"name\": \"BC8\",\n        \"multiple\": false,\n        \"required\": true,\n        \"requiredIf\": \"string\",\n        \"visibleIf\": \"string\",\n        \"weight\": 9601.61968118203,\n        \"threshold\": 1126.1583438340629,\n        \"layout\": \"table\",\n        \"groupId\": \"string\",\n        \"frozen\": true\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\"\n        },\n        \"description\": {\n          \"key_0\": \"string\"\n        },\n        \"name\": \"r9Bhcfqis\",\n        \"multiple\": false,\n        \"required\": false,\n        \"requiredIf\": \"string\",\n        \"visibleIf\": \"string\",\n        \"weight\": 8653.769069603304,\n        \"threshold\": 2907.0950184287713,\n        \"layout\": \"table\",\n        \"groupId\": \"string\",\n        \"frozen\": true\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"version\": 2577.5405946888295,\n    \"sharing\": {\n      \"level\": \"batch\",\n      \"txTypes\": [\n        \"batch\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"collapsed\",\n      \"showScore\": true\n    },\n    \"usagePreferences\": {\n      \"assign\": true,\n      \"navbarCreate\": true,\n      \"identityCreate\": true\n    },\n    \"deletedFrozenFields\": {},\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\"\n        },\n        \"parentId\": \"string\",\n        \"weight\": 2401.007389980686,\n        \"threshold\": 6762.171488885634\n      },\n      {\n        \"id\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"parentId\": \"string\",\n        \"weight\": 7401.625513782225,\n        \"threshold\": 223.57558158984548\n      }\n    ],\n    \"archived\": false,\n    \"thirdPartyValidation\": false\n  },\n  {\n    \"title\": {\n      \"en\": \"string\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"description\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"name\": \"d8y\",\n        \"multiple\": true,\n        \"required\": false,\n        \"requiredIf\": \"string\",\n        \"visibleIf\": \"string\",\n        \"weight\": 7582.322409566517,\n        \"threshold\": 9164.081390565536,\n        \"layout\": \"vertical\",\n        \"groupId\": \"string\",\n        \"frozen\": true\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"description\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"name\": \"Xo0Vzpt3y\",\n        \"multiple\": true,\n        \"required\": true,\n        \"requiredIf\": \"string\",\n        \"visibleIf\": \"string\",\n        \"weight\": 8939.512464713303,\n        \"threshold\": 1818.2379211772293,\n        \"layout\": \"horizontal\",\n        \"groupId\": \"string\",\n        \"frozen\": false\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"version\": 5368.560252500842,\n    \"sharing\": {\n      \"level\": \"batch\",\n      \"txTypes\": [\n        \"batch\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"collapsed\",\n      \"showScore\": false\n    },\n    \"usagePreferences\": {\n      \"assign\": true,\n      \"navbarCreate\": true,\n      \"identityCreate\": true\n    },\n    \"deletedFrozenFields\": {},\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\",\n          \"key_4\": \"string\"\n        },\n        \"parentId\": \"string\",\n        \"weight\": 3091.9265658602067,\n        \"threshold\": 5911.474748870271\n      },\n      {\n        \"id\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"parentId\": \"string\",\n        \"weight\": 8342.817619763278,\n        \"threshold\": 7863.461131725538\n      }\n    ],\n    \"archived\": true,\n    \"thirdPartyValidation\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9674cf4f-9573-41ee-9573-a755dec9226a",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0798249f-3573-4d92-963a-538cab892374",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11cd7846-2542-4dda-953a-2eff9bcabc79",
+          "name": "Get profile section form details",
+          "request": {
+            "name": "Get profile section form details",
+            "description": {
+              "content": "Get profile section form details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "forms",
+                ":formId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formId",
+                  "description": "(Required) FormId from profile section"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3e98191-0133-4ddc-a121-41fafdc369be",
+              "name": "Profile form template",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) FormId from profile section"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": {\n    \"en\": \"string\"\n  },\n  \"sections\": [\n    {\n      \"fields\": [\n        {\n          \"name\": \"Ogcfygsok.8249677924.hd0GG.60787833183.17254.d2RJ.9340.TEqfGcO5.24\",\n          \"type\": \"barcode\",\n          \"title\": {\n            \"en\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"$entityId\": \"string\",\n          \"placeholder\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"descriptionVariant\": \"text\",\n          \"required\": true,\n          \"validation\": \"string\",\n          \"parentFieldName\": \"Bm[].S2q.G.oh7S0NEU1X.wDF4m6vvmN.812034.453979.457872483\",\n          \"visibility\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"format\": \"date\",\n          \"primary\": false,\n          \"globalPrimary\": false,\n          \"uniqueAcrossInstances\": false,\n          \"size\": 1,\n          \"displayTotals\": true,\n          \"weight\": 5729.636907157743,\n          \"isParent\": false,\n          \"connectionType\": \"user\",\n          \"importanceArea\": {\n            \"ui\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"frozen\": false,\n          \"formula\": \"string\"\n        },\n        {\n          \"name\": \"csc593KjvWp.j.62937845215\",\n          \"type\": \"geoPosition\",\n          \"title\": {\n            \"en\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"$entityId\": \"string\",\n          \"placeholder\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"descriptionVariant\": \"text\",\n          \"required\": false,\n          \"validation\": \"string\",\n          \"parentFieldName\": \"XrXxV2.4921919.4517\",\n          \"visibility\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"format\": \"time\",\n          \"primary\": true,\n          \"globalPrimary\": false,\n          \"uniqueAcrossInstances\": false,\n          \"size\": 1,\n          \"displayTotals\": true,\n          \"weight\": 5831.498290250572,\n          \"isParent\": false,\n          \"connectionType\": \"org\",\n          \"importanceArea\": {\n            \"ui\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"frozen\": false,\n          \"formula\": \"string\"\n        }\n      ],\n      \"$entityId\": \"string\",\n      \"title\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"description\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"name\": \"cJhIhJ6IoX\",\n      \"multiple\": true,\n      \"required\": true,\n      \"requiredIf\": \"string\",\n      \"visibleIf\": \"string\",\n      \"weight\": 1148.792038691645,\n      \"threshold\": 6010.640619372334,\n      \"layout\": \"vertical\",\n      \"groupId\": \"string\",\n      \"frozen\": false\n    },\n    {\n      \"fields\": [\n        {\n          \"name\": \"NTiDNFyU8.5.5714197.91793360614.277347.f6z.U46kUms6cE.9633180\",\n          \"type\": \"textarea\",\n          \"title\": {\n            \"en\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"$entityId\": \"string\",\n          \"placeholder\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"descriptionVariant\": \"tooltip\",\n          \"required\": false,\n          \"validation\": \"string\",\n          \"parentFieldName\": \"nvLf4.X.2.p20xKJ7.23062547.tWp0_lgr86.k.9811946240.vv198mw6_.J5LfZr\",\n          \"visibility\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"format\": \"date-time\",\n          \"primary\": true,\n          \"globalPrimary\": false,\n          \"uniqueAcrossInstances\": true,\n          \"size\": 5,\n          \"displayTotals\": true,\n          \"weight\": 8200.072535137253,\n          \"isParent\": false,\n          \"connectionType\": \"org\",\n          \"importanceArea\": {\n            \"ui\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"frozen\": true,\n          \"formula\": \"string\"\n        },\n        {\n          \"name\": \"wp_6ikf8K.Ys4.1720591.03430312088.78\",\n          \"type\": \"file\",\n          \"title\": {\n            \"en\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"$entityId\": \"string\",\n          \"placeholder\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"descriptionVariant\": \"long-text\",\n          \"required\": true,\n          \"validation\": \"string\",\n          \"parentFieldName\": \"miM4.ZG7Zj7jT1.770537848.F0r4t9qvd.iAOL8NQZB.UmmOG7cLivv.57.PrD.36.2541340862\",\n          \"visibility\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"format\": \"date\",\n          \"primary\": false,\n          \"globalPrimary\": true,\n          \"uniqueAcrossInstances\": true,\n          \"size\": 7,\n          \"displayTotals\": false,\n          \"weight\": 3926.1186147767403,\n          \"isParent\": false,\n          \"connectionType\": \"org\",\n          \"importanceArea\": {\n            \"ui\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"coc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"frozen\": true,\n          \"formula\": \"string\"\n        }\n      ],\n      \"$entityId\": \"string\",\n      \"title\": {\n        \"key_0\": \"string\"\n      },\n      \"description\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"name\": \"EhfXliLB\",\n      \"multiple\": false,\n      \"required\": false,\n      \"requiredIf\": \"string\",\n      \"visibleIf\": \"string\",\n      \"weight\": 9678.76400977055,\n      \"threshold\": 3310.036155229845,\n      \"layout\": \"table\",\n      \"groupId\": \"string\",\n      \"frozen\": true\n    }\n  ],\n  \"id\": \"00000000000000000000000000000000\",\n  \"version\": 9099.754219352593,\n  \"sharing\": {\n    \"level\": \"batch\",\n    \"txTypes\": [\n      \"batch\"\n    ]\n  },\n  \"appearance\": {\n    \"collapsingType\": \"expanded\",\n    \"showScore\": false\n  },\n  \"usagePreferences\": {\n    \"assign\": false,\n    \"navbarCreate\": true,\n    \"identityCreate\": true\n  },\n  \"deletedFrozenFields\": {},\n  \"owner\": \"00000000000000000000000000000000\",\n  \"groups\": [\n    {\n      \"id\": \"string\",\n      \"title\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"parentId\": \"string\",\n      \"weight\": 8940.80024450633,\n      \"threshold\": 1886.4490718117077\n    },\n    {\n      \"id\": \"string\",\n      \"title\": {\n        \"key_0\": \"string\"\n      },\n      \"parentId\": \"string\",\n      \"weight\": 3551.4357568003397,\n      \"threshold\": 7134.667798761601\n    }\n  ],\n  \"archived\": true,\n  \"thirdPartyValidation\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98f784e7-ffe0-4397-a410-cdf92ac63541",
+              "name": "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) FormId from profile section"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d11ecbbc-7362-4bef-9922-c5c518487a4c",
+              "name": "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "forms",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) FormId from profile section"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b221ea8e-f196-4448-b658-d7422f71759b",
+    "name": "BanQu User Profile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

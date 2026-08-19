@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Data Processors API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Processors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /data-processors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/data-processors"
+          },
+          "docs": "List data processors"
+        },
+        {
+          "info": {
+            "name": "POST /data-processors",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/data-processors",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create data processor"
+        },
+        {
+          "info": {
+            "name": "GET /data-processors/{processorId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/data-processors/:processorId",
+            "params": [
+              {
+                "name": "processorId",
+                "value": "",
+                "type": "path",
+                "description": "Data processor identifier"
+              }
+            ]
+          },
+          "docs": "Get data processor details"
+        },
+        {
+          "info": {
+            "name": "PUT /data-processors/{processorId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://banqu.app:443/api/v1/data-processors/:processorId",
+            "params": [
+              {
+                "name": "processorId",
+                "value": "",
+                "type": "path",
+                "description": "Data processor identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update data processor"
+        },
+        {
+          "info": {
+            "name": "DELETE /data-processors/{processorId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/data-processors/:processorId",
+            "params": [
+              {
+                "name": "processorId",
+                "value": "",
+                "type": "path",
+                "description": "Data processor identifier"
+              }
+            ]
+          },
+          "docs": "Archive data processor"
+        },
+        {
+          "info": {
+            "name": "POST /data-processors/{processorId}/restore",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/data-processors/:processorId/restore",
+            "params": [
+              {
+                "name": "processorId",
+                "value": "",
+                "type": "path",
+                "description": "Data processor identifier"
+              }
+            ]
+          },
+          "docs": "Restore data processor"
+        },
+        {
+          "info": {
+            "name": "POST /data-processors/{processorId}/validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/data-processors/:processorId/validate",
+            "params": [
+              {
+                "name": "processorId",
+                "value": "",
+                "type": "path",
+                "description": "Data processor identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate file"
+        },
+        {
+          "info": {
+            "name": "POST /data-processors/{processorId}/process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/data-processors/:processorId/process",
+            "params": [
+              {
+                "name": "processorId",
+                "value": "",
+                "type": "path",
+                "description": "Data processor identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import and process file"
+        },
+        {
+          "info": {
+            "name": "POST /data-processors/{processorId}/stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/data-processors/:processorId/stop",
+            "params": [
+              {
+                "name": "processorId",
+                "value": "",
+                "type": "path",
+                "description": "Data processor identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stop processing file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,368 @@
+openapi: 3.2.0
+info:
+  title: BanQu Authentication API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Authentication
+paths:
+  /auth/api-tokens:
+    post:
+      description: 'Create persistent token for API requests authentication.
+
+        Token will be written to the response body only once and will not be stored within the BanQu system'
+      tags:
+      - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiTokenCreationParameters'
+        required: true
+      responses:
+        '200':
+          description: JWT encoded API access token
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '422':
+          $ref: '#/components/responses/422'
+    get:
+      description: Get available API tokens
+      tags:
+      - Authentication
+      responses:
+        '200':
+          description: API tokens
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiTokenInfo'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+  /auth/api-tokens/{id}:
+    parameters:
+    - name: id
+      description: API token identifier
+      in: path
+      schema:
+        type: string
+      required: true
+    delete:
+      description: Remove API token
+      tags:
+      - Authentication
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+  /auth/accounts:
+    get:
+      description: List available accounts
+      tags:
+      - Authentication
+      responses:
+        '200':
+          description: List of accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountInfo'
+        '401':
+          $ref: '#/components/responses/401'
+  /auth/accounts/{accountId}/token:
+    post:
+      description: Create account-specific short-lived authentication token
+      tags:
+      - Authentication
+      parameters:
+      - in: path
+        name: accountId
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/schemas/AuthTokens'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+  /auth/signup:
+    post:
+      description: Sign up user
+      tags:
+      - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUp'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/schemas/AuthTokens'
+        '400':
+          $ref: '#/components/responses/400'
+  /auth/signup/{token}:
+    parameters:
+    - in: path
+      name: token
+      schema:
+        type: string
+      required: true
+    get:
+      description: Get user invite info
+      tags:
+      - Authentication
+      responses:
+        '200':
+          $ref: '#/components/schemas/InviteInfo'
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404'
+    post:
+      description: Sign up user by invite
+      tags:
+      - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpWithToken'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/schemas/AuthTokens'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404'
+components:
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+  schemas:
+    InviteInfo:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+        email:
+          type: string
+        givenName:
+          type: string
+        familyName:
+          type: string
+        isEmailInvite:
+          type: boolean
+        isPhoneInvite:
+          type: boolean
+    ApiTokenCreationParameters:
+      allOf:
+      - $ref: '#/components/schemas/ApiTokenInfo'
+      - type: object
+        properties:
+          password:
+            type: string
+            description: Current user's password
+        required:
+        - password
+    SignUp:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+          maxLength: 32
+        phoneNumber:
+          type: string
+        name:
+          $ref: '#/components/schemas/PersonName'
+        orgToken:
+          type: string
+      anyOf:
+      - title: SignUp with phone number
+        type: object
+        required:
+        - phoneNumber
+        - password
+        - name
+        example:
+          phoneNumber: 0123456789
+          name:
+            givenName: John
+            familyName: Doe
+          password: pa$$w0rd
+      - title: SignUp with email
+        type: object
+        required:
+        - email
+        - password
+        - name
+        example:
+          email: example@email.com
+          name:
+            givenName: John
+            familyName: Doe
+          password: pa$$w0rd
+      additionalProperties: false
+    PersonName:
+      type: object
+      properties:
+        givenName:
+          $ref: '#/components/schemas/PersonNameField'
+        familyName:
+          $ref: '#/components/schemas/PersonNameField'
+      required:
+      - givenName
+      - familyName
+      additionalProperties: false
+    ApiTokenInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          minLength: 1
+        created:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+        expires:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+      required:
+      - title
+    AccountInfo:
+      type: object
+      properties:
+        id:
+          description: Unique account ID
+          type: string
+          minLength: 32
+          maxLength: 32
+          readOnly: true
+        displayName:
+          description: Human-readable account name
+          type: string
+          readOnly: true
+        logo:
+          description: URL of a primary account photo or logo
+          type: string
+          format: url
+          readOnly: true
+        isOrg:
+          description: Indicates if account is an Org account
+          type: boolean
+          readOnly: true
+    PersonNameField:
+      type: string
+      minLength: 1
+      maxLength: 100
+      pattern: ^\p{L}+(?:[ '-]\p{L}+)*$
+    AuthTokens:
+      description: Auth and refresh tokens for API request authentication
+      properties:
+        token:
+          type: string
+          description: Token that needs to be provided in the X-BQ-Token header of auth-protected API requests
+        tokenExpires:
+          type: integer
+          readOnly: true
+        refreshToken:
+          type: string
+        refreshTokenExpires:
+          type: integer
+          readOnly: true
+      required:
+      - token
+      - refreshToken
+    ImmutableTimestamp:
+      type: number
+      readOnly: true
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
+    SignUpWithToken:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+          maxLength: 32
+        name:
+          $ref: '#/components/schemas/PersonName'
+        phoneNumber:
+          type: string
+      anyOf:
+      - title: SignUp with phone number
+        type: object
+        required:
+        - phoneNumber
+        - password
+        - name
+        example:
+          phoneNumber: 0123456789
+          name:
+            givenName: John
+            familyName: Doe
+          password: pa$$w0rd
+      - title: SignUp with email
+        type: object
+        required:
+        - email
+        - password
+        - name
+        example:
+          email: example@email.com
+          name:
+            givenName: John
+            familyName: Doe
+          password: pa$$w0rd
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

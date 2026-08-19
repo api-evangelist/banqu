@@ -1,0 +1,395 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Asset Transfers API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asset Transfers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /assets/{assetId}/transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId/transfers",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate asset transfer"
+        },
+        {
+          "info": {
+            "name": "GET /assets/{assetId}/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId/history",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get asset history"
+        },
+        {
+          "info": {
+            "name": "GET /assets/{assetId}/holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId/holders",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List asset holders"
+        },
+        {
+          "info": {
+            "name": "POST /assets/{assetId}/holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId/holders",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deposit asset to account"
+        },
+        {
+          "info": {
+            "name": "GET /assets/{assetId}/sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId/sources",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\"; if not specified, will be sorted by transfer date)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A space-separated list of keywords to search items by"
+              },
+              {
+                "name": "includeNonPositive",
+                "value": "",
+                "type": "query",
+                "description": "Include operations with zero or negative available quantity when double-sourcing is allowed"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Serialized (custom format) transfer properties filter"
+              }
+            ]
+          },
+          "docs": "List operations that can be used as sources for transfers of this asset"
+        },
+        {
+          "info": {
+            "name": "POST /assets/{assetId}/transfers/batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/assets/:assetId/transfers/batch",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate multiple asset transfers"
+        },
+        {
+          "info": {
+            "name": "GET /transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transfers",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query",
+                "description": "Filter transfers by owner. One of [me, sub] for own and sub account transfers. If omitted, not filtered by owner"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "query",
+                "description": "Filter transfers by one `assetId`. Cannot be specified together with `assetIds` param"
+              },
+              {
+                "name": "assetIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter transfers by one or multiple `assetId`'s. Multiple assetId values should be separated by commas. Cannot be specified together with `assetId` param"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Get transfer after specific time. The value should contain a valid JavaScript Timestamp"
+              },
+              {
+                "name": "till",
+                "value": "",
+                "type": "query",
+                "description": "Get transfer before specific time. The value should contain a valid JavaScript Timestamp"
+              },
+              {
+                "name": "accountIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter transfers by one or multiple `accountId`'s. Multiple accountId values should be separated by commas"
+              },
+              {
+                "name": "includeReverted",
+                "value": "",
+                "type": "query",
+                "description": "Include reverted transfers in output. Defaults to `false`"
+              },
+              {
+                "name": "sourcesGroupingMethod",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "codes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of codes to filter transactions. If omitted, not filtered by code"
+              },
+              {
+                "name": "transactionKind",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List asset transfers"
+        },
+        {
+          "info": {
+            "name": "GET /transfers/{transferId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transfers/:transferId",
+            "params": [
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get asset operation by id in own account"
+        },
+        {
+          "info": {
+            "name": "GET /transfers/{transferId}/sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transfers/:transferId/sources",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "participantsType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sourcesGroupingMethod",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List asset transfer sources"
+        },
+        {
+          "info": {
+            "name": "POST /transfers/{transferId}/confirmReceipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/transfers/:transferId/confirmReceipt",
+            "params": [
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Confirm transfer receiving"
+        },
+        {
+          "info": {
+            "name": "POST /transfers/{transferId}/rejectReceipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/transfers/:transferId/rejectReceipt",
+            "params": [
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reject transfer receiving"
+        },
+        {
+          "info": {
+            "name": "POST /transfers/{transferId}/resendClaimToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/transfers/:transferId/resendClaimToken",
+            "params": [
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resend claim token for pending transfer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

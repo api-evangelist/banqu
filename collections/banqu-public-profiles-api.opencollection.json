@@ -1,0 +1,308 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Public Profiles API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Public Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              }
+            ]
+          },
+          "docs": "Get public profile"
+        },
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}/forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/forms",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              }
+            ]
+          },
+          "docs": "Get forms describing shared profile sections"
+        },
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}/related-data-entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/related-data-entries",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Data entry status filter"
+              }
+            ]
+          },
+          "docs": "Get data entries related to the profile"
+        },
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}/geo-data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/geo-data",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Data entry status filter"
+              }
+            ]
+          },
+          "docs": "Get GeoJSON data from related Data Entries and Profile Forms"
+        },
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}/connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/connections",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              }
+            ]
+          },
+          "docs": "List public profile connections"
+        },
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}/assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/assets",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              }
+            ]
+          },
+          "docs": "List public profile assets"
+        },
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}/transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/transactions",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              }
+            ]
+          },
+          "docs": "List public profile transactions"
+        },
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}/transactions/{transactionId}/operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/transactions/:transactionId/operations",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "shared transactions ID"
+              }
+            ]
+          },
+          "docs": "List public profile transaction operations"
+        },
+        {
+          "info": {
+            "name": "POST /shared-profile/{ownerId}/requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/requests",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send profile share request"
+        },
+        {
+          "info": {
+            "name": "GET /shared-profile/{ownerId}/households",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/shared-profile/:ownerId/households",
+            "params": [
+              {
+                "name": "ownerId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org account ID"
+              }
+            ]
+          },
+          "docs": "List public profile households. If ownerId is a head of household result contains list of members including himself. If ownerId is dependent result contains all heads of households ownerId is member of"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

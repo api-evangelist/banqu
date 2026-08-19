@@ -1,0 +1,839 @@
+openapi: 3.2.0
+info:
+  title: BanQu Form Data Entries API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Form Data Entries
+  description: Form assignments and submitted form data entries
+paths:
+  /forms/{formId}/data-entries:
+    get:
+      description: List form data entries
+      tags:
+      - Form Data Entries
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/SortBy'
+      - $ref: '#/components/parameters/Search'
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - all
+          - pending
+          - submitted
+          - reviewed
+          - rejected
+          - approved
+          - denied
+          - archived
+        description: Data entry status filter. One or more statuses separated by comma.
+        required: false
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FormDataEntry'
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      description: Create form data entry
+      tags:
+      - Form Data Entries
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/preventNotify'
+      - name: submitAfterCreation
+        in: query
+        schema:
+          type: boolean
+        required: false
+        description: If `true` the data entry will be submitted after it's created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormData'
+      responses:
+        '201':
+          $ref: '#/components/responses/201'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+  /forms/{formId}/data-entries/{entryId}:
+    get:
+      description: Get form data entry data
+      tags:
+      - Form Data Entries
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormData'
+        '400':
+          $ref: '#/components/responses/400'
+    patch:
+      description: Modify form data entry
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormData'
+      parameters:
+      - name: lastModified
+        in: query
+        schema:
+          type: number
+        required: false
+      - name: allowDuplicates
+        in: query
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+        required: false
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '200':
+          description: HTTP 200 - OK. Request is valid but result of patch is no-op. Content of response contains a message about this effect
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+    delete:
+      description: Archive form data entry
+      tags:
+      - Form Data Entries
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /forms/{formId}/data-entries/{entryId}/duplicate:
+    post:
+      description: Duplicate existing data entry
+      tags:
+      - Form Data Entries
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '201':
+          $ref: '#/components/responses/201'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /forms/{formId}/data-entries/{entryId}/submit:
+    post:
+      description: Submit data entry to form owner
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormData'
+      parameters:
+      - name: lastModified
+        in: query
+        schema:
+          type: number
+        required: false
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /forms/{formId}/data-entries/{entryId}/review:
+    post:
+      description: Mark submitted data entry as reviewed
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewDataEntry'
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+  /forms/{formId}/data-entries/{entryId}/withdraw:
+    post:
+      description: Withdraw the submitted data entry
+      tags:
+      - Form Data Entries
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+  /forms/{formId}/data-entries/{entryId}/responders:
+    post:
+      description: Add data entry responders
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddFormDataResponders'
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+    put:
+      description: Replace data entry responders
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceFormDataResponders'
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
+  /forms/{formId}/data-entries/{entryId}/responders/{responderId}:
+    delete:
+      description: Remove a responder from the data entry by Id
+      tags:
+      - Form Data Entries
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - name: responderId
+        in: path
+        schema:
+          $ref: '#/components/schemas/Id'
+        required: true
+        description: Responder Id
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /forms/{formId}/data-entries/{entryId}/reject:
+    post:
+      description: Reject submitted form data entry back to editor
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RejectFormData'
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /forms/{formId}/data-entries/{entryId}/approval:
+    post:
+      description: Mark submitted data entry as approved
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproveDataEntry'
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      description: Revoke approval of a form data entry
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevokeDataEntryApproval'
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /forms/{formId}/data-entries/{entryId}/denial:
+    post:
+      description: Deny form data entry, which means no more re-submissions will be allowed (aka permanent reject)
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DenyDataEntry'
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      description: Revoke denial of a form data entry
+      tags:
+      - Form Data Entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevokeDataEntryDenial'
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /forms/{formId}/data-entries/{entryId}/restore:
+    post:
+      description: Restore data entry that was previously archived
+      tags:
+      - Form Data Entries
+      parameters:
+      - $ref: '#/components/parameters/formIdOrAll'
+      - $ref: '#/components/parameters/entryIdOrPrimaryKey'
+      - $ref: '#/components/parameters/preventNotify'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+components:
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+  schemas:
+    ApproveDataEntry:
+      $ref: '#/components/schemas/OptionalComment'
+    DenyDataEntry:
+      $ref: '#/components/schemas/RequiredComment'
+    ReviewDataEntry:
+      $ref: '#/components/schemas/OptionalComment'
+    RequiredComment:
+      title: Required Comment
+      properties:
+        comment:
+          type: string
+      required:
+      - comment
+    FormData:
+      description: Form data that matches parent form schema
+      type: object
+      properties: {}
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
+    AddFormDataResponders:
+      title: Add Form Data Responders Payload
+      type: array
+      items:
+        $ref: '#/components/schemas/Id'
+      minItems: 1
+      uniqueItems: true
+    RejectFormData:
+      $ref: '#/components/schemas/RequiredComment'
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    RevokeDataEntryApproval:
+      $ref: '#/components/schemas/OptionalComment'
+    FormDataEntry:
+      description: Form data entry, assigned by a connected identity or created manually
+      properties:
+        id:
+          type: string
+          readOnly: true
+          title: Data Entry ID
+        form:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              title: Form ID
+            title:
+              $ref: '#/components/schemas/LocalizedString'
+        previewFields:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              title:
+                $ref: '#/components/schemas/LocalizedString'
+              primary:
+                type: boolean
+              value:
+                oneOf:
+                - type: string
+                - type: number
+                - $ref: '#/components/schemas/LocalizedString'
+            additionalProperties: false
+        data:
+          $ref: '#/components/schemas/FormData'
+        owner:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              title: Owner ID
+            displayName:
+              type: string
+              title: Owner
+            isOrg:
+              type: boolean
+              title: Owner is Org
+            emails:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    title: Owner Email Type
+                  value:
+                    type: string
+                    title: Owner Email
+                  primary:
+                    type: boolean
+                    title: Is Primary Email
+            photos:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Owner Photo URL
+                  etag:
+                    type: string
+                    title: Owner Photo Signature
+                  primary:
+                    type: boolean
+                    title: Is Primary Photo
+        responders:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            properties:
+              id:
+                type: string
+                title: Responder ID
+              displayName:
+                type: string
+                title: Responder
+              isOrg:
+                type: boolean
+                title: Responder is Org
+              emails:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      title: Responder Email Type
+                    value:
+                      type: string
+                      title: Responder Email
+                    primary:
+                      type: boolean
+                      title: Is Primary Email
+              photos:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Responder Photo URL
+                    etag:
+                      type: string
+                      title: Responder Photo Signature
+                    primary:
+                      type: boolean
+                      title: Is Primary Photo
+        submitter:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              title: Submitter ID
+            displayName:
+              type: string
+              title: Submitter
+            isOrg:
+              type: boolean
+              title: Submitter is Org
+            emails:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    title: Submitter Email Type
+                  value:
+                    type: string
+                    title: Submitter Email
+                  primary:
+                    type: boolean
+                    title: Is Primary Email
+            photos:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Submitter Photo URL
+                  etag:
+                    type: string
+                    title: Submitter Photo Signature
+                  primary:
+                    type: boolean
+                    title: Is Primary Photo
+        submitterAccount:
+          type: object
+          readOnly: true
+          properties:
+            id:
+              type: string
+              title: Submitter Account ID
+            displayName:
+              type: string
+              title: Submitter Account
+            isOrg:
+              type: boolean
+              title: Submitter Account is Org
+            photos:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Submitter Account Photo URL
+                  etag:
+                    type: string
+                    title: Submitter Account Photo Signature
+                  primary:
+                    type: boolean
+                    title: Is Primary Photo
+        reviews:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            properties:
+              by:
+                type: string
+              at:
+                type: number
+              reviewed:
+                type: boolean
+              approved:
+                type: boolean
+              rejected:
+                type: boolean
+              comment:
+                type: string
+        createdAt:
+          type: number
+          readOnly: true
+          title: Created At
+          example: 1568894551000
+        submittedAt:
+          type: number
+          readOnly: true
+          title: Submitted At
+          example: 1568894551000
+        submitted:
+          type: boolean
+          readOnly: true
+          title: Is Submitted
+        reviewed:
+          type: boolean
+          readOnly: true
+          title: Is Reviewed
+        approved:
+          type: boolean
+          readOnly: true
+          title: Is Approved
+        rejected:
+          type: boolean
+          readOnly: true
+          title: Is Rejected
+        denied:
+          type: boolean
+          readOnly: true
+          title: Is Denied
+        archived:
+          type: boolean
+          readOnly: true
+          title: Is Archived
+    OptionalComment:
+      title: Optional Comment
+      properties:
+        comment:
+          type: string
+    RevokeDataEntryDenial:
+      $ref: '#/components/schemas/OptionalComment'
+    ReplaceFormDataResponders:
+      title: Replace Form Data Responders Payload
+      type: array
+      items:
+        $ref: '#/components/schemas/Id'
+      minItems: 1
+      uniqueItems: true
+  parameters:
+    Search:
+      name: search
+      in: query
+      schema:
+        type: string
+      description: A space-separated list of keywords to search items by
+      required: false
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: number
+        default: 20
+        minimum: 1
+      description: Number or items per page
+      required: false
+    preventNotify:
+      name: preventNotify
+      in: query
+      schema:
+        type: boolean
+      required: false
+      description: If truthy, the notifications triggered by the endpoint will be suppressed
+    entryIdOrPrimaryKey:
+      name: entryId
+      in: path
+      schema:
+        type: string
+      description: BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be "all" for such request.
+      example: value1||value 2||value-3
+      required: true
+    Offset:
+      name: offset
+      in: query
+      schema:
+        type: number
+        minimum: 0
+        default: 0
+      description: 0-based index of the first element
+      required: false
+    formIdOrAll:
+      name: formId
+      in: path
+      schema:
+        type: string
+      required: true
+      description: Parent form ID, can be set to "all"
+    SortBy:
+      name: sortBy
+      in: query
+      schema:
+        type: string
+      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
+      required: false
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

@@ -1,0 +1,111 @@
+openapi: 3.2.0
+info:
+  title: BanQu Tutorials API
+  version: 3.3.4
+  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+servers:
+- url: https://banqu.app:443/api/v1
+security:
+- Bearer: []
+tags:
+- name: Tutorials
+  description: Interactive system guides
+paths:
+  /tutorials:
+    get:
+      description: List tutorials
+      tags:
+      - Tutorials
+      parameters:
+      - name: invalidate
+        in: query
+        schema:
+          type: string
+        description: Passing any value will invalidate internal cache. Fresh data will be requested from tutorials definitions source.
+      responses:
+        '200':
+          description: List of available tutorials
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      $ref: '#/components/schemas/LocalizedString'
+                    permissions:
+                      type: array
+                      items:
+                        type: array
+                        items:
+                          type: string
+                        minItems: 2
+                        maxItems: 2
+                    view:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    autoStart:
+                      type: boolean
+                    environments:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    organizations:
+                      type: array
+                      items:
+                        type: string
+                      uniqueItems: true
+                    steps:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/TutorialStep'
+                    priority:
+                      type: number
+components:
+  schemas:
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
+    TutorialStep:
+      type: object
+      required:
+      - page
+      - optional
+      - popover
+      properties:
+        page:
+          type: string
+        element:
+          type: string
+        optional:
+          type: boolean
+        onHover:
+          type: string
+        popover:
+          type: object
+          properties:
+            title:
+              $ref: '#/components/schemas/LocalizedString'
+            description:
+              $ref: '#/components/schemas/LocalizedString'
+            position:
+              type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your authentication token

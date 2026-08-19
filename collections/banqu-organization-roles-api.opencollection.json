@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Organization Roles API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /orgs/current/roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/current/roles"
+          },
+          "docs": "List roles available in current org account"
+        },
+        {
+          "info": {
+            "name": "POST /orgs/current/roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/orgs/current/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create org account role"
+        },
+        {
+          "info": {
+            "name": "PATCH /orgs/current/roles/{roleId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/orgs/current/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the role to modify"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify org account role"
+        },
+        {
+          "info": {
+            "name": "DELETE /orgs/current/roles/{roleId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/orgs/current/roles/:roleId",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the role to modify"
+              }
+            ]
+          },
+          "docs": "Remove org account role"
+        },
+        {
+          "info": {
+            "name": "GET /orgs/current/capabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/current/capabilities"
+          },
+          "docs": "List all organization capabilities"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

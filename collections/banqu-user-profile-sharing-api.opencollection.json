@@ -1,0 +1,314 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu User Profile Sharing API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Profile Sharing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /profile/sharing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile/sharing"
+          },
+          "docs": "Get profile sharing settings"
+        },
+        {
+          "info": {
+            "name": "PATCH /profile/sharing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/profile/sharing",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change profile sharing settings"
+        },
+        {
+          "info": {
+            "name": "GET /profile-shared-packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages"
+          },
+          "docs": "List packaged profile shares"
+        },
+        {
+          "info": {
+            "name": "POST /profile-shared-packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create packaged profile share"
+        },
+        {
+          "info": {
+            "name": "GET /profile-shared-packages/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "sharing id"
+              }
+            ]
+          },
+          "docs": "Get packaged profile share details"
+        },
+        {
+          "info": {
+            "name": "DELETE /profile-shared-packages/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "sharing id"
+              }
+            ]
+          },
+          "docs": "Delete packaged profile share"
+        },
+        {
+          "info": {
+            "name": "GET /profile-shared-packages/{id}/assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages/:id/assets",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "sharing id"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              }
+            ]
+          },
+          "docs": "List packaged profile share assets"
+        },
+        {
+          "info": {
+            "name": "GET /profile-shared-packages/{id}/transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages/:id/transactions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "sharing id"
+              }
+            ]
+          },
+          "docs": "List packaged profile share transactions"
+        },
+        {
+          "info": {
+            "name": "GET /profile-shared-packages/{id}/connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages/:id/connections",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "sharing id"
+              }
+            ]
+          },
+          "docs": "List packaged profile share connections"
+        },
+        {
+          "info": {
+            "name": "GET /profile-shared-packages/{id}/asset-categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages/:id/asset-categories",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "sharing id"
+              }
+            ]
+          },
+          "docs": "List packaged profile share categories"
+        },
+        {
+          "info": {
+            "name": "GET /profile-shared-packages/{id}/geo-data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile-shared-packages/:id/geo-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "sharing id"
+              }
+            ]
+          },
+          "docs": "Get GeoJSON data from shared Profile Sections"
+        },
+        {
+          "info": {
+            "name": "GET /profile/shares",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile/shares"
+          },
+          "docs": "List profile shares"
+        },
+        {
+          "info": {
+            "name": "POST /profile/shares",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/profile/shares",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create profile share"
+        },
+        {
+          "info": {
+            "name": "GET /profile/shares/{otherPartyId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile/shares/:otherPartyId",
+            "params": [
+              {
+                "name": "otherPartyId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org id"
+              }
+            ]
+          },
+          "docs": "Get profile share request details"
+        },
+        {
+          "info": {
+            "name": "DELETE /profile/shares/{otherPartyId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/profile/shares/:otherPartyId",
+            "params": [
+              {
+                "name": "otherPartyId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org id"
+              }
+            ]
+          },
+          "docs": "Delete/reject profile share request"
+        },
+        {
+          "info": {
+            "name": "POST /profile/shares/{senderId}/approve",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/profile/shares/:senderId/approve",
+            "params": [
+              {
+                "name": "senderId",
+                "value": "",
+                "type": "path",
+                "description": "User or Org id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accept profile share request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu User Profile API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile"
+          },
+          "docs": "Get logged in user profile"
+        },
+        {
+          "info": {
+            "name": "PATCH /profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/profile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify logged in user profile"
+        },
+        {
+          "info": {
+            "name": "POST /profile/password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/profile/password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update logged in user password"
+        },
+        {
+          "info": {
+            "name": "GET /profile/photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile/photo"
+          },
+          "docs": "Get logged in user photo"
+        },
+        {
+          "info": {
+            "name": "POST /profile/photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/profile/photo",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Update logged in user photo"
+        },
+        {
+          "info": {
+            "name": "GET /profile/sections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile/sections"
+          },
+          "docs": "List logged in user profile sections"
+        },
+        {
+          "info": {
+            "name": "GET /profile/standard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile/standard"
+          },
+          "docs": "List standard profile sections"
+        },
+        {
+          "info": {
+            "name": "GET /profile/forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile/forms"
+          },
+          "docs": "List profile section forms"
+        },
+        {
+          "info": {
+            "name": "GET /profile/forms/{formId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/profile/forms/:formId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "FormId from profile section"
+              }
+            ]
+          },
+          "docs": "Get profile section form details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,217 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Smart Contracts API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Smart Contracts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /smart-contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/smart-contracts"
+          },
+          "docs": "List smart contracts"
+        },
+        {
+          "info": {
+            "name": "POST /smart-contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/smart-contracts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create smart contract"
+        },
+        {
+          "info": {
+            "name": "GET /smart-contracts/{contractId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/:contractId",
+            "params": [
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "Smart contract identifier"
+              }
+            ]
+          },
+          "docs": "Get smart contract details"
+        },
+        {
+          "info": {
+            "name": "PUT /smart-contracts/{contractId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/:contractId",
+            "params": [
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "Smart contract identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update smart contract"
+        },
+        {
+          "info": {
+            "name": "DELETE /smart-contracts/{contractId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/:contractId",
+            "params": [
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "Smart contract identifier"
+              }
+            ]
+          },
+          "docs": "Deactivate smart contract"
+        },
+        {
+          "info": {
+            "name": "GET /smart-contracts/{contractId}/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/:contractId/history",
+            "params": [
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "Smart contract identifier"
+              }
+            ]
+          },
+          "docs": "Get smart contract execution history"
+        },
+        {
+          "info": {
+            "name": "POST /smart-contracts/{contractId}/restore",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/:contractId/restore",
+            "params": [
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path",
+                "description": "Smart contract identifier"
+              }
+            ]
+          },
+          "docs": "Reactivate smart contract"
+        },
+        {
+          "info": {
+            "name": "GET /smart-contracts/triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/triggers"
+          },
+          "docs": "Get available triggers"
+        },
+        {
+          "info": {
+            "name": "GET /smart-contracts/triggers/{triggerId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/triggers/:triggerId",
+            "params": [
+              {
+                "name": "triggerId",
+                "value": "",
+                "type": "path",
+                "description": "Trigger identifier"
+              }
+            ]
+          },
+          "docs": "Get trigger details"
+        },
+        {
+          "info": {
+            "name": "GET /smart-contracts/actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/actions",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Optional Action type filter"
+              }
+            ]
+          },
+          "docs": "List available actions"
+        },
+        {
+          "info": {
+            "name": "GET /smart-contracts/actions/{actionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/smart-contracts/actions/:actionId",
+            "params": [
+              {
+                "name": "actionId",
+                "value": "",
+                "type": "path",
+                "description": "Smart contract action identifier"
+              }
+            ]
+          },
+          "docs": "Get smart contract action details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

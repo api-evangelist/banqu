@@ -1,0 +1,659 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Form Data Entries API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form Data Entries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /forms/{formId}/data-entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A space-separated list of keywords to search items by"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Data entry status filter. One or more statuses separated by comma."
+              }
+            ]
+          },
+          "docs": "List form data entries"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              },
+              {
+                "name": "submitAfterCreation",
+                "value": "",
+                "type": "query",
+                "description": "If `true` the data entry will be submitted after it's created"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create form data entry"
+        },
+        {
+          "info": {
+            "name": "GET /forms/{formId}/data-entries/{entryId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              }
+            ]
+          },
+          "docs": "Get form data entry data"
+        },
+        {
+          "info": {
+            "name": "PATCH /forms/{formId}/data-entries/{entryId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId",
+            "params": [
+              {
+                "name": "lastModified",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "allowDuplicates",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify form data entry"
+        },
+        {
+          "info": {
+            "name": "DELETE /forms/{formId}/data-entries/{entryId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ]
+          },
+          "docs": "Archive form data entry"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/duplicate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/duplicate",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ]
+          },
+          "docs": "Duplicate existing data entry"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/submit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/submit",
+            "params": [
+              {
+                "name": "lastModified",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit data entry to form owner"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/review",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/review",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark submitted data entry as reviewed"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/withdraw",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/withdraw",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ]
+          },
+          "docs": "Withdraw the submitted data entry"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/responders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/responders",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add data entry responders"
+        },
+        {
+          "info": {
+            "name": "PUT /forms/{formId}/data-entries/{entryId}/responders",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/responders",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace data entry responders"
+        },
+        {
+          "info": {
+            "name": "DELETE /forms/{formId}/data-entries/{entryId}/responders/{responderId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/responders/:responderId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "responderId",
+                "value": "",
+                "type": "path",
+                "description": "Responder Id"
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ]
+          },
+          "docs": "Remove a responder from the data entry by Id"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/reject",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/reject",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reject submitted form data entry back to editor"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/approval",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark submitted data entry as approved"
+        },
+        {
+          "info": {
+            "name": "DELETE /forms/{formId}/data-entries/{entryId}/approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/approval",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke approval of a form data entry"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/denial",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/denial",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deny form data entry, which means no more re-submissions will be allowed (aka permanent reject)"
+        },
+        {
+          "info": {
+            "name": "DELETE /forms/{formId}/data-entries/{entryId}/denial",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/denial",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke denial of a form data entry"
+        },
+        {
+          "info": {
+            "name": "POST /forms/{formId}/data-entries/{entryId}/restore",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/forms/:formId/data-entries/:entryId/restore",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "Parent form ID, can be set to \"all\""
+              },
+              {
+                "name": "entryId",
+                "value": "value1||value 2||value-3",
+                "type": "path",
+                "description": "BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be \"all\" for such request."
+              },
+              {
+                "name": "preventNotify",
+                "value": "",
+                "type": "query",
+                "description": "If truthy, the notifications triggered by the endpoint will be suppressed"
+              }
+            ]
+          },
+          "docs": "Restore data entry that was previously archived"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

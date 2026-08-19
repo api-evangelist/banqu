@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Asset Transformations API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asset Transformations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /assets/transformations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/assets/transformations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transform asset(s) into another asset(s)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Organization Features API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Features",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /orgs/{orgId}/features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId/features",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the org to modify or \"current\""
+              }
+            ]
+          },
+          "docs": "List all available organization features"
+        },
+        {
+          "info": {
+            "name": "POST /orgs/{orgId}/features",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/orgs/:orgId/features",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the org to modify or \"current\""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set organization features"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

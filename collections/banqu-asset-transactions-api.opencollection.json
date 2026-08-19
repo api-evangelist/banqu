@@ -1,0 +1,305 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Asset Transactions API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asset Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transactions",
+            "params": [
+              {
+                "name": "codes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of codes to filter transactions. If omitted, not filtered by code"
+              },
+              {
+                "name": "transactionKind",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by owner. One of [me, sub] for own and sub account transactions. If omitted, not filtered by owner"
+              },
+              {
+                "name": "accountIds",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by other party accountId. Comma-separated list"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              }
+            ]
+          },
+          "docs": "List own transactions"
+        },
+        {
+          "info": {
+            "name": "POST /transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate transaction"
+        },
+        {
+          "info": {
+            "name": "POST /transactions/{transactionId}/finalize",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/transactions/:transactionId/finalize",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Process draft payments"
+        },
+        {
+          "info": {
+            "name": "GET /transactions/{transactionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get transaction details"
+        },
+        {
+          "info": {
+            "name": "DELETE /transactions/{transactionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revert transaction"
+        },
+        {
+          "info": {
+            "name": "GET /transactions/{transactionId}/operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transactions/:transactionId/operations",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List transaction operations."
+        },
+        {
+          "info": {
+            "name": "GET /transactions/{transactionId}/operations/{operationId}/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transactions/:transactionId/operations/:operationId/history",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "theme",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get visible chain of custody for the requested transaction"
+        },
+        {
+          "info": {
+            "name": "GET /transactions/{transactionId}/operations/{operationId}/history/schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transactions/:transactionId/operations/:operationId/history/schema",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get JSON schema for operations from chain of custody for the requested transaction"
+        },
+        {
+          "info": {
+            "name": "GET /transactions/{transactionId}/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transactions/:transactionId/history",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get visible chain of custody for the requested transaction"
+        },
+        {
+          "info": {
+            "name": "GET /transactions/{transactionId}/history/schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/transactions/:transactionId/history/schema",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get JSON schema for operations of chain of custody for the requested transaction"
+        },
+        {
+          "info": {
+            "name": "POST /transactions/batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/transactions/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate batch transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

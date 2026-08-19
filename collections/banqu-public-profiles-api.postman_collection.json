@@ -1,0 +1,1648 @@
+{
+  "item": [
+    {
+      "id": "157c66a0-d604-4f76-9637-824c8dfe0e4e",
+      "name": "Public Profiles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d8c4a04-ffec-4a6a-b9e9-13b83e510251",
+          "name": "Get public profile",
+          "request": {
+            "name": "Get public profile",
+            "description": {
+              "content": "Get public profile",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9fff986-a97f-4aab-a907-7cdc8b731f31",
+              "name": "An user or organization profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"00000000000000000000000000000000\",\n  \"displayName\": \"string\",\n  \"name\": {\n    \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n    \"honorificPrefix\": \"Ms.\",\n    \"givenName\": \"Barbara\",\n    \"middleName\": \"Jane\",\n    \"familyName\": \"Jensen\",\n    \"honorificSuffix\": \"III\"\n  },\n  \"userName\": \"zB3zB3\",\n  \"emails\": [\n    {\n      \"value\": \"user@example.com\",\n      \"type\": \"string\",\n      \"primary\": true\n    },\n    {\n      \"value\": \"user@example.com\",\n      \"type\": \"string\",\n      \"primary\": false\n    }\n  ],\n  \"phoneNumbers\": [\n    {\n      \"value\": \"+1 555 999 8877\",\n      \"type\": \"string\",\n      \"primary\": true\n    },\n    {\n      \"value\": \"+1 555 999 8877\",\n      \"type\": \"string\",\n      \"primary\": false\n    }\n  ],\n  \"ims\": [\n    {\n      \"value\": \"string\",\n      \"type\": \"string\",\n      \"primary\": true\n    },\n    {\n      \"value\": \"string\",\n      \"type\": \"string\",\n      \"primary\": false\n    }\n  ],\n  \"photos\": [\n    {\n      \"value\": \"https://example.com/avatar.jpg\",\n      \"type\": \"string\",\n      \"primary\": true,\n      \"etag\": \"00000000000000000000000000000000\"\n    },\n    {\n      \"value\": \"https://example.com/avatar.jpg\",\n      \"type\": \"string\",\n      \"primary\": false,\n      \"etag\": \"00000000000000000000000000000000\"\n    }\n  ],\n  \"addresses\": [\n    {\n      \"type\": \"home\",\n      \"formatted\": \"string\",\n      \"streetAddress\": \"string\",\n      \"locality\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"US\"\n    }\n  ],\n  \"preferredLanguage\": \"en\",\n  \"locale\": \"uk-ua\",\n  \"urn:banqu:schemas:scim:User:social\": {},\n  \"urn:banqu:schemas:scim:User:identification\": {},\n  \"urn:banqu:schemas:7a8bf521de1a39bac468fed198e5bc54:User:FTxkZmL9\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c231247-baf0-481d-b50b-314398facd51",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10a2d5a0-996c-4d23-85b6-05ab310d7311",
+          "name": "Get forms describing shared profile sections",
+          "request": {
+            "name": "Get forms describing shared profile sections",
+            "description": {
+              "content": "Get forms describing shared profile sections",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "forms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36c2c512-10eb-4dcd-9afe-4ba483373922",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"title\": {\n      \"en\": \"string\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"description\": {\n          \"key_0\": \"string\"\n        },\n        \"name\": \"BE_Kpw\",\n        \"multiple\": true,\n        \"required\": true,\n        \"requiredIf\": \"string\",\n        \"visibleIf\": \"string\",\n        \"weight\": 8000.383447837065,\n        \"threshold\": 1100.0177483999441,\n        \"layout\": \"horizontal\",\n        \"groupId\": \"string\",\n        \"frozen\": true\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\"\n        },\n        \"description\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"name\": \"ydS8On8VWvx\",\n        \"multiple\": true,\n        \"required\": false,\n        \"requiredIf\": \"string\",\n        \"visibleIf\": \"string\",\n        \"weight\": 1121.8370380142096,\n        \"threshold\": 2686.441602487035,\n        \"layout\": \"horizontal\",\n        \"groupId\": \"string\",\n        \"frozen\": true\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"version\": 6379.836944991439,\n    \"sharing\": {\n      \"level\": \"batch\",\n      \"txTypes\": [\n        \"batch\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"expanded\",\n      \"showScore\": true\n    },\n    \"usagePreferences\": {\n      \"assign\": true,\n      \"navbarCreate\": true,\n      \"identityCreate\": true\n    },\n    \"deletedFrozenFields\": {},\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\"\n        },\n        \"parentId\": \"string\",\n        \"weight\": 8478.82729081335,\n        \"threshold\": 6640.927519278802\n      },\n      {\n        \"id\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"parentId\": \"string\",\n        \"weight\": 3827.0271998234284,\n        \"threshold\": 5919.852669659556\n      }\n    ],\n    \"archived\": false,\n    \"thirdPartyValidation\": true\n  },\n  {\n    \"title\": {\n      \"en\": \"string\"\n    },\n    \"sections\": [\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"description\": {\n          \"key_0\": \"string\"\n        },\n        \"name\": \"Ppo5\",\n        \"multiple\": true,\n        \"required\": false,\n        \"requiredIf\": \"string\",\n        \"visibleIf\": \"string\",\n        \"weight\": 8735.597173702125,\n        \"threshold\": 808.5294483883055,\n        \"layout\": \"horizontal\",\n        \"groupId\": \"string\",\n        \"frozen\": false\n      },\n      {\n        \"fields\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"$entityId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"descriptionVariant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parentFieldName\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visibility\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"primary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"globalPrimary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uniqueAcrossInstances\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayTotals\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"weight\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isParent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"connectionType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"importanceArea\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"frozen\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"formula\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"$entityId\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\"\n        },\n        \"description\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"name\": \"_xzmS7\",\n        \"multiple\": false,\n        \"required\": true,\n        \"requiredIf\": \"string\",\n        \"visibleIf\": \"string\",\n        \"weight\": 8479.291042081759,\n        \"threshold\": 2367.8160564792493,\n        \"layout\": \"table\",\n        \"groupId\": \"string\",\n        \"frozen\": true\n      }\n    ],\n    \"id\": \"00000000000000000000000000000000\",\n    \"version\": 9010.806876544986,\n    \"sharing\": {\n      \"level\": \"batch\",\n      \"txTypes\": [\n        \"batch\"\n      ]\n    },\n    \"appearance\": {\n      \"collapsingType\": \"expanded\",\n      \"showScore\": false\n    },\n    \"usagePreferences\": {\n      \"assign\": true,\n      \"navbarCreate\": true,\n      \"identityCreate\": true\n    },\n    \"deletedFrozenFields\": {},\n    \"owner\": \"00000000000000000000000000000000\",\n    \"groups\": [\n      {\n        \"id\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"parentId\": \"string\",\n        \"weight\": 2667.7507090190143,\n        \"threshold\": 4537.900279532392\n      },\n      {\n        \"id\": \"string\",\n        \"title\": {\n          \"key_0\": \"string\"\n        },\n        \"parentId\": \"string\",\n        \"weight\": 5705.173672427482,\n        \"threshold\": 4444.371262383487\n      }\n    ],\n    \"archived\": true,\n    \"thirdPartyValidation\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b1b9c0f-0b3d-4415-9851-b58c04e130a2",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "forms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e350a7ce-90b8-4c70-8c39-1aaee6d4c723",
+          "name": "Get data entries related to the profile",
+          "request": {
+            "name": "Get data entries related to the profile",
+            "description": {
+              "content": "Get data entries related to the profile",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "related-data-entries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Data entry status filter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20186015-7e38-480e-874d-5e5e322bb38f",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "related-data-entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"form\": {\n      \"id\": \"string\",\n      \"title\": {\n        \"en\": \"string\"\n      }\n    },\n    \"previewFields\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"title\": {\n          \"en\": \"string\"\n        },\n        \"primary\": false,\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"title\": {\n          \"en\": \"string\"\n        },\n        \"primary\": false,\n        \"value\": \"string\"\n      }\n    ],\n    \"data\": {},\n    \"owner\": {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"emails\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"primary\": false\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"primary\": true\n        }\n      ],\n      \"photos\": [\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": false\n        },\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": true\n        }\n      ]\n    },\n    \"responders\": [\n      {\n        \"id\": \"string\",\n        \"displayName\": \"string\",\n        \"isOrg\": true,\n        \"emails\": [\n          {\n            \"type\": \"string\",\n            \"value\": \"string\",\n            \"primary\": true\n          },\n          {\n            \"type\": \"string\",\n            \"value\": \"string\",\n            \"primary\": true\n          }\n        ],\n        \"photos\": [\n          {\n            \"value\": \"string\",\n            \"etag\": \"string\",\n            \"primary\": true\n          },\n          {\n            \"value\": \"string\",\n            \"etag\": \"string\",\n            \"primary\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"displayName\": \"string\",\n        \"isOrg\": true,\n        \"emails\": [\n          {\n            \"type\": \"string\",\n            \"value\": \"string\",\n            \"primary\": false\n          },\n          {\n            \"type\": \"string\",\n            \"value\": \"string\",\n            \"primary\": true\n          }\n        ],\n        \"photos\": [\n          {\n            \"value\": \"string\",\n            \"etag\": \"string\",\n            \"primary\": false\n          },\n          {\n            \"value\": \"string\",\n            \"etag\": \"string\",\n            \"primary\": true\n          }\n        ]\n      }\n    ],\n    \"submitter\": {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"isOrg\": false,\n      \"emails\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"primary\": false\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"primary\": true\n        }\n      ],\n      \"photos\": [\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": false\n        },\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": false\n        }\n      ]\n    },\n    \"submitterAccount\": {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"photos\": [\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": true\n        },\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": true\n        }\n      ]\n    },\n    \"reviews\": [\n      {\n        \"by\": \"string\",\n        \"at\": 8318.073683770583,\n        \"reviewed\": true,\n        \"approved\": false,\n        \"rejected\": true,\n        \"comment\": \"string\"\n      },\n      {\n        \"by\": \"string\",\n        \"at\": 5028.865899601042,\n        \"reviewed\": false,\n        \"approved\": true,\n        \"rejected\": true,\n        \"comment\": \"string\"\n      }\n    ],\n    \"createdAt\": 1568894551000,\n    \"submittedAt\": 1568894551000,\n    \"submitted\": true,\n    \"reviewed\": false,\n    \"approved\": true,\n    \"rejected\": false,\n    \"denied\": true,\n    \"archived\": true\n  },\n  {\n    \"id\": \"string\",\n    \"form\": {\n      \"id\": \"string\",\n      \"title\": {\n        \"en\": \"string\"\n      }\n    },\n    \"previewFields\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"title\": {\n          \"en\": \"string\"\n        },\n        \"primary\": false,\n        \"value\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"title\": {\n          \"en\": \"string\"\n        },\n        \"primary\": false,\n        \"value\": \"string\"\n      }\n    ],\n    \"data\": {},\n    \"owner\": {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"emails\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"primary\": false\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"primary\": true\n        }\n      ],\n      \"photos\": [\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": true\n        },\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": true\n        }\n      ]\n    },\n    \"responders\": [\n      {\n        \"id\": \"string\",\n        \"displayName\": \"string\",\n        \"isOrg\": false,\n        \"emails\": [\n          {\n            \"type\": \"string\",\n            \"value\": \"string\",\n            \"primary\": true\n          },\n          {\n            \"type\": \"string\",\n            \"value\": \"string\",\n            \"primary\": false\n          }\n        ],\n        \"photos\": [\n          {\n            \"value\": \"string\",\n            \"etag\": \"string\",\n            \"primary\": false\n          },\n          {\n            \"value\": \"string\",\n            \"etag\": \"string\",\n            \"primary\": true\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"displayName\": \"string\",\n        \"isOrg\": false,\n        \"emails\": [\n          {\n            \"type\": \"string\",\n            \"value\": \"string\",\n            \"primary\": false\n          },\n          {\n            \"type\": \"string\",\n            \"value\": \"string\",\n            \"primary\": false\n          }\n        ],\n        \"photos\": [\n          {\n            \"value\": \"string\",\n            \"etag\": \"string\",\n            \"primary\": true\n          },\n          {\n            \"value\": \"string\",\n            \"etag\": \"string\",\n            \"primary\": false\n          }\n        ]\n      }\n    ],\n    \"submitter\": {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"emails\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"primary\": true\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"primary\": true\n        }\n      ],\n      \"photos\": [\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": true\n        },\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": false\n        }\n      ]\n    },\n    \"submitterAccount\": {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"isOrg\": true,\n      \"photos\": [\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": true\n        },\n        {\n          \"value\": \"string\",\n          \"etag\": \"string\",\n          \"primary\": false\n        }\n      ]\n    },\n    \"reviews\": [\n      {\n        \"by\": \"string\",\n        \"at\": 9835.157778237784,\n        \"reviewed\": true,\n        \"approved\": true,\n        \"rejected\": false,\n        \"comment\": \"string\"\n      },\n      {\n        \"by\": \"string\",\n        \"at\": 591.6589371363634,\n        \"reviewed\": false,\n        \"approved\": true,\n        \"rejected\": false,\n        \"comment\": \"string\"\n      }\n    ],\n    \"createdAt\": 1568894551000,\n    \"submittedAt\": 1568894551000,\n    \"submitted\": false,\n    \"reviewed\": true,\n    \"approved\": true,\n    \"rejected\": true,\n    \"denied\": false,\n    \"archived\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e2a18b7-c2a8-47f6-8cdb-318c51ea73a1",
+          "name": "Get GeoJSON data from related Data Entries and Profile Forms",
+          "request": {
+            "name": "Get GeoJSON data from related Data Entries and Profile Forms",
+            "description": {
+              "content": "Get GeoJSON data from related Data Entries and Profile Forms",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "geo-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Data entry status filter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "222daf5e-ea09-4df8-b58d-bbc7921e7d58",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "geo-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"LineString\",\n        \"coordinates\": [\n          6553.365539977728,\n          9418.90717476475\n        ]\n      },\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"MultiPoint\",\n        \"coordinates\": [\n          5848.8093037871695,\n          1623.6073349922253\n        ]\n      },\n      \"properties\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1cc30d8-408c-4383-8ec7-370ad01a41f2",
+          "name": "List public profile connections",
+          "request": {
+            "name": "List public profile connections",
+            "description": {
+              "content": "List public profile connections",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0206039-cd27-40ca-bcfa-b39f11a20ecb",
+              "name": "Public profile connections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"schemas\": [\n      \"string\",\n      \"string\"\n    ],\n    \"externalId\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"User\",\n      \"created\": 9422.37082844449,\n      \"lastModified\": 1112.3296372278935,\n      \"location\": \"https://bZpdojyFzKqqQJSHKYrfBEddDjuFZQ.ywrwAU92+vocRAbm3siMiLAlKIQ0QNLBU\"\n    },\n    \"displayName\": \"string\",\n    \"name\": {\n      \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n      \"honorificPrefix\": \"Ms.\",\n      \"givenName\": \"Barbara\",\n      \"middleName\": \"Jane\",\n      \"familyName\": \"Jensen\",\n      \"honorificSuffix\": \"III\"\n    },\n    \"userName\": \"zpidLxBu\",\n    \"emails\": [\n      {\n        \"value\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"ims\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"photos\": [\n      {\n        \"value\": \"https://example.com/avatar.jpg\",\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"primary\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"etag\": \"00000000000000000000000000000000\"\n      }\n    ],\n    \"addresses\": [\n      {\n        \"type\": \"home\",\n        \"formatted\": \"string\",\n        \"streetAddress\": \"string\",\n        \"locality\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"US\"\n      }\n    ],\n    \"preferredLanguage\": \"en\",\n    \"locale\": \"uk-ua\",\n    \"urn:banqu:schemas:extensions:connection\": {\n      \"pending\": false,\n      \"direction\": \"out\",\n      \"assignedAssociates\": [\n        \"stringstringstringstringstringst\",\n        \"stringstringstringstringstringst\"\n      ]\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"schemas\": [\n      \"string\",\n      \"string\"\n    ],\n    \"externalId\": \"string\",\n    \"meta\": {\n      \"resourceType\": \"Invite\",\n      \"created\": 1255.0967516100097,\n      \"lastModified\": 546.6771606984611,\n      \"location\": \"https://voNIRQmPBaTXuQEMlOvP.ebvmHITVdJDiFLBZ7HPZ8Pp1e.afqFhiZg+Jn74vL4FUAsmW2h40I.NND0SFDrfKahq\"\n    },\n    \"displayName\": \"string\",\n    \"name\": {\n      \"formatted\": \"Ms. Barbara Jane Jensen, III\",\n      \"honorificPrefix\": \"Ms.\",\n      \"givenName\": \"Barbara\",\n      \"middleName\": \"Jane\",\n      \"familyName\": \"Jensen\",\n      \"honorificSuffix\": \"III\"\n    },\n    \"userName\": \"XmUjuvAAy1TcE\",\n    \"emails\": [\n      {\n        \"value\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"ims\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      }\n    ],\n    \"photos\": [\n      {\n        \"value\": \"https://example.com/avatar.jpg\",\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"primary\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"etag\": \"00000000000000000000000000000000\"\n      }\n    ],\n    \"addresses\": [\n      {\n        \"type\": \"home\",\n        \"formatted\": \"string\",\n        \"streetAddress\": \"string\",\n        \"locality\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"US\"\n      }\n    ],\n    \"preferredLanguage\": \"en\",\n    \"locale\": \"en-za\",\n    \"urn:banqu:schemas:scim:User:identification\": {},\n    \"urn:banqu:schemas:extensions:connection\": {\n      \"pending\": true,\n      \"direction\": \"in\",\n      \"assignedAssociates\": [\n        \"stringstringstringstringstringst\",\n        \"stringstringstringstringstringst\"\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ec2786a-6907-4057-801e-2478401db845",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99c31e45-86a2-4457-aff6-d75da8bbf6a9",
+          "name": "List public profile assets",
+          "request": {
+            "name": "List public profile assets",
+            "description": {
+              "content": "List public profile assets",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d6071c1-228b-4f1b-b4b5-c327d61d15d9",
+              "name": "Get shared assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    {\n      \"uom\": \"KG\",\n      \"isCredit\": true,\n      \"id\": \"00000000000000000000000000000000\",\n      \"code\": \"string\",\n      \"balance\": 1341.8541452182487,\n      \"description\": \"string\"\n    },\n    {\n      \"uom\": \"KG\",\n      \"isCredit\": false,\n      \"id\": \"00000000000000000000000000000000\",\n      \"code\": \"string\",\n      \"balance\": 5401.983743435844,\n      \"description\": \"string\"\n    }\n  ],\n  [\n    {\n      \"uom\": \"KG\",\n      \"isCredit\": true,\n      \"id\": \"00000000000000000000000000000000\",\n      \"code\": \"strin\",\n      \"balance\": 9236.913853930064,\n      \"description\": \"string\"\n    },\n    {\n      \"uom\": \"KG\",\n      \"isCredit\": true,\n      \"id\": \"00000000000000000000000000000000\",\n      \"code\": \"string\",\n      \"balance\": 7957.502289564265,\n      \"description\": \"string\"\n    }\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07793af5-6fc1-4a4e-8e5c-f9caac6644da",
+          "name": "List public profile transactions",
+          "request": {
+            "name": "List public profile transactions",
+            "description": {
+              "content": "List public profile transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "0-based index of the first element"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number or items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b147d192-5d85-4404-8581-2a720d4e6203",
+              "name": "Get shared transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"type\": \"deposit\",\n    \"sent\": 1632.5289721860247,\n    \"assetId\": \"string\",\n    \"code\": \"string\",\n    \"uom\": \"KG\",\n    \"creator\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"isOrg\": false\n    },\n    \"creatorId\": \"string\",\n    \"creatorUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"isOrg\": false\n    },\n    \"creatorUserId\": \"string\",\n    \"holder\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"isOrg\": true\n    },\n    \"holderId\": \"string\",\n    \"qty\": 1825.252990373999,\n    \"description\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"type\": \"deposit\",\n    \"sent\": 4808.055355657593,\n    \"assetId\": \"string\",\n    \"code\": \"string\",\n    \"uom\": \"KG\",\n    \"creator\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"isOrg\": false\n    },\n    \"creatorId\": \"string\",\n    \"creatorUser\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"isOrg\": true\n    },\n    \"creatorUserId\": \"string\",\n    \"holder\": {\n      \"id\": \"00000000000000000000000000000000\",\n      \"name\": \"string\",\n      \"photoUrl\": \"string\",\n      \"photoEtag\": \"string\",\n      \"isOrg\": false\n    },\n    \"holderId\": \"string\",\n    \"qty\": 5832.918506569088,\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f602f4b5-0476-43cc-9f1f-8797d43aaaec",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ef65aad-d806-4e5b-9dda-c68a9d0a71a7",
+          "name": "List public profile transaction operations",
+          "request": {
+            "name": "List public profile transaction operations",
+            "description": {
+              "content": "List public profile transaction operations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "transactions",
+                ":transactionId",
+                "operations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) shared transactions ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ee9259c-5d51-4785-94aa-26b0940919f2",
+              "name": "Get shared transaction operations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "transactions",
+                    ":transactionId",
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) shared transactions ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  [\n    {\n      \"code\": \"string\",\n      \"creator\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": true\n      },\n      \"destinations\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"direction\": \"in\",\n      \"id\": \"string\",\n      \"isCredit\": false,\n      \"qty\": 331.70831336688747,\n      \"received\": 4616.276398462263,\n      \"receiver\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": false\n      },\n      \"sender\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": true\n      },\n      \"sent\": 9753.168454868219,\n      \"sources\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"transactionId\": \"string\",\n      \"type\": \"transformation-result\",\n      \"uom\": \"KG\",\n      \"description\": \"string\",\n      \"paymentStatus\": \"rejected\"\n    },\n    {\n      \"code\": \"string\",\n      \"creator\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": true\n      },\n      \"destinations\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"direction\": \"out\",\n      \"id\": \"string\",\n      \"isCredit\": true,\n      \"qty\": 2698.567973278544,\n      \"received\": 4662.203178983765,\n      \"receiver\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": false\n      },\n      \"sender\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": false\n      },\n      \"sent\": 4915.506463761576,\n      \"sources\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"transactionId\": \"string\",\n      \"type\": \"transformation\",\n      \"uom\": \"KG\",\n      \"description\": \"string\",\n      \"paymentStatus\": \"pending\"\n    }\n  ],\n  [\n    {\n      \"code\": \"string\",\n      \"creator\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": true\n      },\n      \"destinations\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"direction\": \"out\",\n      \"id\": \"string\",\n      \"isCredit\": false,\n      \"qty\": 8792.565517973295,\n      \"received\": 9714.482092034023,\n      \"receiver\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": true\n      },\n      \"sender\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": true\n      },\n      \"sent\": 4974.895680878469,\n      \"sources\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"transactionId\": \"string\",\n      \"type\": \"transformation-result\",\n      \"uom\": \"KG\",\n      \"description\": \"string\",\n      \"paymentStatus\": \"complete\"\n    },\n    {\n      \"code\": \"string\",\n      \"creator\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": false\n      },\n      \"destinations\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"direction\": \"out\",\n      \"id\": \"string\",\n      \"isCredit\": false,\n      \"qty\": 105.156809699547,\n      \"received\": 5731.327019856059,\n      \"receiver\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": false\n      },\n      \"sender\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"photoUrl\": \"string\",\n        \"photoEtag\": \"string\",\n        \"isOrg\": false\n      },\n      \"sent\": 4357.779449151494,\n      \"sources\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"uom\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"transactionId\": \"string\",\n      \"type\": \"transfer\",\n      \"uom\": \"KG\",\n      \"description\": \"string\",\n      \"paymentStatus\": \"rejected\"\n    }\n  ]\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc3591c3-43bd-4b09-9228-cc323efbdcbf",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "transactions",
+                    ":transactionId",
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) shared transactions ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9797494a-2d7e-421a-9df9-7384e79c0e67",
+          "name": "Send profile share request",
+          "request": {
+            "name": "Send profile share request",
+            "description": {
+              "content": "Send profile share request",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiresAt\": \"<number>\",\n  \"sections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3bca39a2-b256-4096-98cb-aadc009f47da",
+              "name": "HTTP 201 - Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresAt\": 1568894551000,\n  \"sections\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Url of the created entity",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a17de0f0-44dc-4b92-a68f-57ecb859e98c",
+              "name": "HTTP 403 - Forbidden \nNot authorized to access selected resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresAt\": 1568894551000,\n  \"sections\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a131457-5ae4-4ce9-990b-f1e6e8063ba2",
+              "name": "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresAt\": 1568894551000,\n  \"sections\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1571ffd-7203-4543-9472-a820e7c6416b",
+          "name": "List public profile households. If ownerId is a head of household result contains list of members including himself. If ownerId is dependent result contains all heads of households ownerId is member of",
+          "request": {
+            "name": "List public profile households. If ownerId is a head of household result contains list of members including himself. If ownerId is dependent result contains all heads of households ownerId is member of",
+            "description": {
+              "content": "List public profile households. If ownerId is a head of household result contains list of members including himself. If ownerId is dependent result contains all heads of households ownerId is member of",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shared-profile",
+                ":ownerId",
+                "households"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ownerId",
+                  "description": "(Required) User or Org account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5426acbd-e1a7-417b-98a7-f8bba872fc7a",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "households"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"00000000000000000000000000000000\",\n    \"displayName\": \"string\",\n    \"name\": {},\n    \"emails\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      }\n    ],\n    \"photos\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      }\n    ]\n  },\n  {\n    \"id\": \"00000000000000000000000000000000\",\n    \"displayName\": \"string\",\n    \"name\": {},\n    \"emails\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": true\n      }\n    ],\n    \"phoneNumbers\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"photos\": [\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      },\n      {\n        \"value\": \"string\",\n        \"type\": \"string\",\n        \"primary\": false\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfbe9356-6c1f-4d58-91d8-3dab2f9e22fc",
+              "name": "HTTP 404 - Not Found \nRequested resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shared-profile",
+                    ":ownerId",
+                    "households"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ownerId",
+                      "description": "(Required) User or Org account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://banqu.app:443/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e68345f4-1188-4b06-8851-0a3a7d1ac7e7",
+    "name": "BanQu Public Profiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.",
+      "type": "text/plain"
+    }
+  }
+}

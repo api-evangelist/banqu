@@ -1,0 +1,231 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Asset Sharing API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asset Sharing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /assets/shares",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/shares"
+          },
+          "docs": "List asset shares"
+        },
+        {
+          "info": {
+            "name": "POST /assets/shares",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/assets/shares",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create asset share"
+        },
+        {
+          "info": {
+            "name": "GET /assets/shares/{shareId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/shares/:shareId",
+            "params": [
+              {
+                "name": "shareId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get asset share details"
+        },
+        {
+          "info": {
+            "name": "DELETE /assets/shares/{shareId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/assets/shares/:shareId",
+            "params": [
+              {
+                "name": "shareId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete asset share"
+        },
+        {
+          "info": {
+            "name": "GET /assets/shares/{shareId}/transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/shares/:shareId/transfers",
+            "params": [
+              {
+                "name": "shareId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Get transfer after specific time. The value should contain a valid JavaScript Timestamp"
+              },
+              {
+                "name": "till",
+                "value": "",
+                "type": "query",
+                "description": "Get transfer before specific time. The value should contain a valid JavaScript Timestamp"
+              },
+              {
+                "name": "sourcesGroupingMethod",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get shared asset history"
+        },
+        {
+          "info": {
+            "name": "GET /assets/shares/{shareId}/transfers/{transferId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/shares/:shareId/transfers/:transferId",
+            "params": [
+              {
+                "name": "shareId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get shared asset transfer details"
+        },
+        {
+          "info": {
+            "name": "GET /assets/shares/{shareId}/transfers/{transferId}/sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/shares/:shareId/transfers/:transferId/sources",
+            "params": [
+              {
+                "name": "shareId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "0-based index of the first element"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number or items per page"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort the collection by (i.e. \"status:asc,created:desc\")"
+              },
+              {
+                "name": "sourcesGroupingMethod",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List shared asset transfer sources"
+        },
+        {
+          "info": {
+            "name": "GET /assets/shares/{shareId}/transfers/{transferId}/form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/shares/:shareId/transfers/:transferId/form",
+            "params": [
+              {
+                "name": "shareId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transferId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get shared asset transfer properties form"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Asset Transfer Claiming API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asset Transfer Claiming",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /agent/transfers/incomplete/claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/agent/transfers/incomplete/claim",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-issue transfer claim token"
+        },
+        {
+          "info": {
+            "name": "POST /agent/transfers/{claimToken}/claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/agent/transfers/:claimToken/claim",
+            "params": [
+              {
+                "name": "claimToken",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issue transfer finalization token. Requires at least two input parameters: claim token and at least one of ids of receiver"
+        },
+        {
+          "info": {
+            "name": "POST /agent/transfers/{claimToken}/finalize",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/agent/transfers/:claimToken/finalize",
+            "params": [
+              {
+                "name": "claimToken",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Finalize transfer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

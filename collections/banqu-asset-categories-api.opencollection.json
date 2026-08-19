@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Asset Categories API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asset Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /assets/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/assets/categories"
+          },
+          "docs": "List asset categories"
+        },
+        {
+          "info": {
+            "name": "POST /assets/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://banqu.app:443/api/v1/assets/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create asset category"
+        },
+        {
+          "info": {
+            "name": "DELETE /assets/categories/{categoryId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://banqu.app:443/api/v1/assets/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete asset category"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

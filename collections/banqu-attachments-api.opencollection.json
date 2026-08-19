@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BanQu Attachments API",
+    "version": "3.3.4"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /aws/upload-url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://banqu.app:443/api/v1/aws/upload-url",
+            "params": [
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "type of content for file that is going to be uploaded"
+              },
+              {
+                "name": "fileName",
+                "value": "",
+                "type": "query",
+                "description": "fileName"
+              }
+            ]
+          },
+          "docs": "Pre-signed URL"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
