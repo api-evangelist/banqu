@@ -21,6 +21,21 @@ specificationVersion: '0.23'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
+- Supply Chain
+- Traceability
+- Sustainability
+- ESG
+- Agriculture
+- Procurement
+- Compliance
+- Blockchain
+- EUDR
+- Carbon Accounting
+- Recycling
+- smallholder-farmers
+- Distributed Ledger
+- Supplier Management
+tags_raw:
 - supply-chain
 - traceability
 - sustainability
@@ -354,6 +369,8 @@ apis:
   humanURL: https://api.banqu.app/openapi
   baseURL: https://banqu.app/api/v1
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -450,6 +467,8 @@ apis:
   humanURL: https://api.banqu.app/openapi
   baseURL: https://banqu.app/api/v1
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
