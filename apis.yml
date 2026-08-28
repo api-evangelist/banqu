@@ -13,6 +13,18 @@ description: >-
   connections, assets and asset categories, transfers, transactions, transformations, payment adjustments,
   forms and form data entries, attachments, notifications, and three automation surfaces — Smart Contracts,
   Data Processors, and Validation Workflows.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://cdn.prod.website-files.com/639a714d409fd7284b16da02/639e8cdd882c7f42845de0fa_BanQu_Opengraph.jpg
 url: https://raw.githubusercontent.com/api-evangelist/banqu/refs/heads/main/apis.yml
 x-type: company
