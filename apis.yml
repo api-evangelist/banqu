@@ -668,6 +668,9 @@ apis:
   - type: Webhooks
     url: asyncapi/banqu-webhooks.yml
 common:
+- type: CapabilityMap
+  url: capabilities/banqu-capability-edges.yml
+  name: BanQu Business Capability Map
 - type: MCPServer
   url: mcp/banqu-mcp.yml
 - type: Website
