@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu Authentication API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -38,6 +38,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create auth api tokens
+      x-summary-source: derived
+      operationId: postAuthApiTokens
+      x-operation-id-source: derived
     get:
       description: Get available API tokens
       tags:
@@ -55,6 +59,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Get auth api tokens
+      x-summary-source: derived
+      operationId: getAuthApiTokens
+      x-operation-id-source: derived
   /auth/api-tokens/{id}:
     parameters:
     - name: id
@@ -76,6 +84,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Delete auth api tokens by id
+      x-summary-source: derived
+      operationId: deleteAuthApiTokensById
+      x-operation-id-source: derived
   /auth/accounts:
     get:
       description: List available accounts
@@ -92,6 +104,10 @@ paths:
                   $ref: '#/components/schemas/AccountInfo'
         '401':
           $ref: '#/components/responses/401'
+      summary: Get auth accounts
+      x-summary-source: derived
+      operationId: getAuthAccounts
+      x-operation-id-source: derived
   /auth/accounts/{accountId}/token:
     post:
       description: Create account-specific short-lived authentication token
@@ -110,6 +126,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create auth accounts by account id token
+      x-summary-source: derived
+      operationId: postAuthAccountsByAccountIdToken
+      x-operation-id-source: derived
   /auth/signup:
     post:
       description: Sign up user
@@ -126,6 +146,10 @@ paths:
           $ref: '#/components/schemas/AuthTokens'
         '400':
           $ref: '#/components/responses/400'
+      summary: Create auth signup
+      x-summary-source: derived
+      operationId: postAuthSignup
+      x-operation-id-source: derived
   /auth/signup/{token}:
     parameters:
     - in: path
@@ -146,6 +170,10 @@ paths:
           $ref: '#/components/responses/400'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get auth signup by token
+      x-summary-source: derived
+      operationId: getAuthSignupByToken
+      x-operation-id-source: derived
     post:
       description: Sign up user by invite
       tags:
@@ -163,21 +191,17 @@ paths:
           $ref: '#/components/responses/400'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create auth signup by token
+      x-summary-source: derived
+      operationId: postAuthSignupByToken
+      x-operation-id-source: derived
 components:
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   schemas:
+    ImmutableTimestamp:
+      type: number
+      readOnly: true
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
     InviteInfo:
       type: object
       properties:
@@ -193,16 +217,6 @@ components:
           type: boolean
         isPhoneInvite:
           type: boolean
-    ApiTokenCreationParameters:
-      allOf:
-      - $ref: '#/components/schemas/ApiTokenInfo'
-      - type: object
-        properties:
-          password:
-            type: string
-            description: Current user's password
-        required:
-        - password
     SignUp:
       type: object
       properties:
@@ -245,32 +259,6 @@ components:
             familyName: Doe
           password: pa$$w0rd
       additionalProperties: false
-    PersonName:
-      type: object
-      properties:
-        givenName:
-          $ref: '#/components/schemas/PersonNameField'
-        familyName:
-          $ref: '#/components/schemas/PersonNameField'
-      required:
-      - givenName
-      - familyName
-      additionalProperties: false
-    ApiTokenInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        title:
-          type: string
-          minLength: 1
-        created:
-          $ref: '#/components/schemas/ImmutableTimestamp'
-        expires:
-          $ref: '#/components/schemas/ImmutableTimestamp'
-      required:
-      - title
     AccountInfo:
       type: object
       properties:
@@ -293,33 +281,6 @@ components:
           description: Indicates if account is an Org account
           type: boolean
           readOnly: true
-    PersonNameField:
-      type: string
-      minLength: 1
-      maxLength: 100
-      pattern: ^\p{L}+(?:[ '-]\p{L}+)*$
-    AuthTokens:
-      description: Auth and refresh tokens for API request authentication
-      properties:
-        token:
-          type: string
-          description: Token that needs to be provided in the X-BQ-Token header of auth-protected API requests
-        tokenExpires:
-          type: integer
-          readOnly: true
-        refreshToken:
-          type: string
-        refreshTokenExpires:
-          type: integer
-          readOnly: true
-      required:
-      - token
-      - refreshToken
-    ImmutableTimestamp:
-      type: number
-      readOnly: true
-      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
-      example: 1568894551000
     SignUpWithToken:
       type: object
       properties:
@@ -360,6 +321,77 @@ components:
             familyName: Doe
           password: pa$$w0rd
       additionalProperties: false
+    PersonName:
+      type: object
+      properties:
+        givenName:
+          $ref: '#/components/schemas/PersonNameField'
+        familyName:
+          $ref: '#/components/schemas/PersonNameField'
+      required:
+      - givenName
+      - familyName
+      additionalProperties: false
+    AuthTokens:
+      description: Auth and refresh tokens for API request authentication
+      properties:
+        token:
+          type: string
+          description: Token that needs to be provided in the X-BQ-Token header of auth-protected API requests
+        tokenExpires:
+          type: integer
+          readOnly: true
+        refreshToken:
+          type: string
+        refreshTokenExpires:
+          type: integer
+          readOnly: true
+      required:
+      - token
+      - refreshToken
+    ApiTokenInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          minLength: 1
+        created:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+        expires:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+      required:
+      - title
+    ApiTokenCreationParameters:
+      allOf:
+      - $ref: '#/components/schemas/ApiTokenInfo'
+      - type: object
+        properties:
+          password:
+            type: string
+            description: Current user's password
+        required:
+        - password
+    PersonNameField:
+      type: string
+      minLength: 1
+      maxLength: 100
+      pattern: ^\p{L}+(?:[ '-]\p{L}+)*$
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   securitySchemes:
     Bearer:
       type: http

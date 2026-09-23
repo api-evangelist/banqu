@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu Asset Transfers API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -36,6 +36,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create assets by asset id transfers
+      x-summary-source: derived
+      operationId: postAssetsByAssetIdTransfers
+      x-operation-id-source: derived
   /assets/{assetId}/history:
     get:
       description: Get asset history
@@ -60,6 +64,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get assets by asset id history
+      x-summary-source: derived
+      operationId: getAssetsByAssetIdHistory
+      x-operation-id-source: derived
   /assets/{assetId}/holders:
     parameters:
     - in: path
@@ -84,6 +92,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get assets by asset id holders
+      x-summary-source: derived
+      operationId: getAssetsByAssetIdHolders
+      x-operation-id-source: derived
     post:
       description: Deposit asset to account
       tags:
@@ -102,6 +114,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create assets by asset id holders
+      x-summary-source: derived
+      operationId: postAssetsByAssetIdHolders
+      x-operation-id-source: derived
   /assets/{assetId}/sources:
     parameters:
     - in: path
@@ -158,6 +174,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get assets by asset id sources
+      x-summary-source: derived
+      operationId: getAssetsByAssetIdSources
+      x-operation-id-source: derived
   /assets/{assetId}/transfers/batch:
     post:
       description: Initiate multiple asset transfers
@@ -190,6 +210,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create assets by asset id transfers batch
+      x-summary-source: derived
+      operationId: postAssetsByAssetIdTransfersBatch
+      x-operation-id-source: derived
   /transfers:
     get:
       description: List asset transfers
@@ -276,6 +300,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get transfers
+      x-summary-source: derived
+      operationId: getTransfers
+      x-operation-id-source: derived
   /transfers/{transferId}:
     get:
       description: Get asset operation by id in own account
@@ -300,6 +328,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get transfers by transfer id
+      x-summary-source: derived
+      operationId: getTransfersByTransferId
+      x-operation-id-source: derived
   /transfers/{transferId}/sources:
     get:
       description: List asset transfer sources
@@ -351,6 +383,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get transfers by transfer id sources
+      x-summary-source: derived
+      operationId: getTransfersByTransferIdSources
+      x-operation-id-source: derived
   /transfers/{transferId}/confirmReceipt:
     post:
       description: Confirm transfer receiving
@@ -377,6 +413,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create transfers by transfer id confirm receipt
+      x-summary-source: derived
+      operationId: postTransfersByTransferIdConfirmReceipt
+      x-operation-id-source: derived
   /transfers/{transferId}/rejectReceipt:
     post:
       description: Reject transfer receiving
@@ -403,6 +443,10 @@ paths:
           $ref: '#/components/responses/401'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create transfers by transfer id reject receipt
+      x-summary-source: derived
+      operationId: postTransfersByTransferIdRejectReceipt
+      x-operation-id-source: derived
   /transfers/{transferId}/resendClaimToken:
     post:
       description: Resend claim token for pending transfer
@@ -425,93 +469,44 @@ paths:
           $ref: '#/components/responses/404'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create transfers by transfer id resend claim token
+      x-summary-source: derived
+      operationId: postTransfersByTransferIdResendClaimToken
+      x-operation-id-source: derived
 components:
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   schemas:
-    AssetMobileDestination:
-      type: object
-      title: Mobile Payment Destination
-      description: Mobile wallet where the monetary transfer was sent to
-      properties:
-        provider:
-          $ref: '#/components/schemas/PaymentDestinationProvider'
-        id:
-          $ref: '#/components/schemas/PaymentDestinationId'
-        type:
-          $ref: '#/components/schemas/PaymentDestinationType'
-      required:
-      - id
-      - provider
-      readOnly: true
-    Attachment:
-      type: object
-      additionalProperties: false
-      properties:
-        downloadUrl:
-          type: string
-          format: url
-        fileName:
-          type: string
-          minLength: 1
-        fileSize:
-          type: number
-          minimum: 0
-        mimeType:
-          type: string
-          minLength: 1
-          example: image/jpeg
-        md5:
-          type: string
-          minLength: 32
-          maxLength: 32
-          pattern: ^[a-f0-9]{32}$
-      required:
-      - downloadUrl
-    GeoCoordinates:
+    Timestamp:
+      type: number
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
+    ConfirmTransferReceipt:
       type: object
       properties:
-        lat:
+        quantity:
+          title: Quantity
           type: number
-          format: double
-          minimum: -90
-          maximum: 90
-        lon:
-          type: number
-          format: double
-          minimum: -180
-          maximum: 180
-      additionalProperties: false
+          example: 1
+        comment:
+          title: Rejection comment
+          type: string
+          maxLength: 40
+          example: Part of it was lost
       required:
-      - lat
-      - lon
-      example:
-        lat: 37.7749
-        lon: -122.4194
-    AssetDescription:
-      type: string
-      minLength: 0
-      maxLength: 200
+      - quantity
     PaymentDestinationId:
       title: Destination Identifier
       description: Destination phone number for mobile providers; BanQu agency ID for banqu-agency provider
       type: string
+    EffectiveLocation:
+      allOf:
+      - $ref: '#/components/schemas/GeoCoordinates'
+      - title: Effective Transfer Geo Location
+        description: The effective location coordinates of a transfer instead of an automatically determined
+    AnyAssetOperation:
+      oneOf:
+      - $ref: '#/components/schemas/AssetTransferOperation'
+      - $ref: '#/components/schemas/AssetTransformationOperation'
+      - $ref: '#/components/schemas/AssetDeposit'
     AssetDeposit:
       type: object
       properties:
@@ -563,252 +558,58 @@ components:
       - sent
       - creator
       - holder
-    AnyAssetOperation:
-      oneOf:
-      - $ref: '#/components/schemas/AssetTransferOperation'
-      - $ref: '#/components/schemas/AssetTransformationOperation'
-      - $ref: '#/components/schemas/AssetDeposit'
-    AssetTransferRequest:
+    AssetMobileDestination:
       type: object
+      title: Mobile Payment Destination
+      description: Mobile wallet where the monetary transfer was sent to
       properties:
-        receiverId:
-          $ref: '#/components/schemas/Id'
-        destinationProvider:
+        provider:
           $ref: '#/components/schemas/PaymentDestinationProvider'
-        destinationId:
-          $ref: '#/components/schemas/PaymentDestinationId'
-        destinationType:
-          $ref: '#/components/schemas/PaymentDestinationType'
-        qty:
-          type: number
-          exclusiveMinimum: 0
-        sourceOperations:
-          $ref: '#/components/schemas/SourceOperations'
-        properties:
-          type: object
-        message:
-          type: string
-        effectiveDate:
-          $ref: '#/components/schemas/EffectiveDate'
-        effectiveLocation:
-          $ref: '#/components/schemas/EffectiveLocation'
-      required:
-      - receiverId
-      - qty
-      additionalProperties: false
-    ImmutableId:
-      type: string
-      readOnly: true
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
-    AvailableOperationSource:
-      type: object
-      description: Operation that can be reused as a source for another asset transfer
-      properties:
         id:
-          $ref: '#/components/schemas/ImmutableId'
+          $ref: '#/components/schemas/PaymentDestinationId'
         type:
-          type: string
-          enum:
-          - transfer
-          - deposit
-          - transformation-result
-        qty:
-          type: number
-          description: Total quantity of the source operation
-        availableQty:
-          type: number
-          description: Quantity that remains available to be used as a source
-        uom:
-          $ref: '#/components/schemas/AssetUom'
-        code:
-          $ref: '#/components/schemas/AssetCode'
-        sent:
-          type: number
-          description: Timestamp when the source operation was initiated
-        location:
-          $ref: '#/components/schemas/GeoCoordinates'
-        message:
-          type: string
-        transactionId:
-          $ref: '#/components/schemas/Id'
-        sender:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/ImmutableId'
-            name:
-              type: string
-            isOrg:
-              type: boolean
-        senderUser:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/ImmutableId'
-            name:
-              type: string
-        properties:
-          type: object
-          description: Additional transfer properties captured on the source operation
-        propertiesPreviewFields:
-          type: array
-          description: Resolved preview fields for transfer properties
-          items:
-            type: object
+          $ref: '#/components/schemas/PaymentDestinationType'
       required:
       - id
-      - type
-      - qty
-      - availableQty
-      - sent
-    EffectiveLocation:
-      allOf:
-      - $ref: '#/components/schemas/GeoCoordinates'
-      - title: Effective Transfer Geo Location
-        description: The effective location coordinates of a transfer instead of an automatically determined
-    PaymentDestination:
-      oneOf:
-      - $ref: '#/components/schemas/AssetMobileDestination'
-      - $ref: '#/components/schemas/AssetAgencyDestination'
-    ProfileProperty:
-      title: Profile Property
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
-          minLength: 1
-        primary:
-          type: boolean
-      required:
-      - value
-    ConfirmTransferReceipt:
-      type: object
-      properties:
-        quantity:
-          title: Quantity
-          type: number
-          example: 1
-        comment:
-          title: Rejection comment
-          type: string
-          maxLength: 40
-          example: Part of it was lost
-      required:
-      - quantity
-    SourceOperations:
+      - provider
+      readOnly: true
+    NewMultipleTransfer:
       type: array
-      description: List of incoming asset transfers that are used as sources for this transaction
       items:
         type: object
-        additionalProperties: false
         properties:
-          id:
-            allOf:
-            - $ref: '#/components/schemas/Id'
-            - description: Source operation Id
-          sourcedQty:
+          qty:
             type: number
             exclusiveMinimum: 0
+          receiver:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/Id'
+              email:
+                type: string
+              phoneNumber:
+                type: string
+            additionalProperties: false
+          destinationProvider:
+            $ref: '#/components/schemas/PaymentDestinationProvider'
+          destinationId:
+            title: Agency ID for BanQu agency or nothing for any BanQu agency or MTN phone number
+            type: string
+          properties:
+            type: object
+          message:
+            type: string
+          preventNotify:
+            type: boolean
+          effectiveDate:
+            $ref: '#/components/schemas/EffectiveDate'
+          effectiveLocation:
+            $ref: '#/components/schemas/EffectiveLocation'
         required:
-        - id
-        - sourcedQty
-    AssetHolder:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/ImmutableId'
-        balance:
-          type: number
-        displayName:
-          type: string
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProfileProperty'
-        phoneNumbers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProfileProperty'
-        photos:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProfileProperty'
-        isOrg:
-          type: boolean
-    DepositAssetRequest:
-      type: object
-      properties:
-        holderId:
-          $ref: '#/components/schemas/Id'
-        qty:
-          type: number
-          exclusiveMinimum: 0
-        message:
-          type: string
-        effectiveDate:
-          $ref: '#/components/schemas/EffectiveDate'
-        effectiveLocation:
-          $ref: '#/components/schemas/EffectiveLocation'
-      additionalProperties: false
-      required:
-      - holderId
-      - qty
-    ImmutableTimestamp:
-      type: number
-      readOnly: true
-      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
-      example: 1568894551000
-    TransformingAsset:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        code:
-          $ref: '#/components/schemas/AssetCode'
-        description:
-          $ref: '#/components/schemas/AssetDescription'
-        uom:
-          $ref: '#/components/schemas/AssetUom'
-      required:
-      - id
-      - code
-      - uom
-    AssetHistory:
-      type: array
-      items:
-        type: object
-        properties:
-          initialBalance:
-            type: number
-          totalQty:
-            type: number
-          transfers:
-            type: array
-            items:
-              type: string
-          startTime:
-            $ref: '#/components/schemas/Timestamp'
-          endTime:
-            $ref: '#/components/schemas/Timestamp'
-    PaymentDestinationType:
-      title: Destination Type
-      description: mobile for payments by phone number; payCode for 6DOT50 partner transfer
-      enum:
-      - mobile
-      - new-mobile
-      - payCode
-    SourcesCount:
-      type: number
-      description: Indicates number of operations that serve as explicit or implicit sources for this asset operation. Appears in the object when request contains sourcesGroupingMethod in query
-    Attachments:
-      type: array
-      items:
-        $ref: '#/components/schemas/Attachment'
+        - receiver
+        - qty
+        additionalProperties: false
     AssetUom:
       title: Asset Unit of Measurement
       type: string
@@ -844,20 +645,170 @@ components:
       - VS
       - YD
       example: KG
-    Id:
-      title: Id
-      type: string
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
+    SourceOperations:
+      type: array
+      description: List of incoming asset transfers that are used as sources for this transaction
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          id:
+            allOf:
+            - $ref: '#/components/schemas/Id'
+            - description: Source operation Id
+          sourcedQty:
+            type: number
+            exclusiveMinimum: 0
+        required:
+        - id
+        - sourcedQty
     EffectiveDate:
       allOf:
       - $ref: '#/components/schemas/DateTime'
       - title: Effective Transfer Date
         description: The effective date and time of the transfer in ISO format with timezone defined.
-    DateTime:
+    AssetTransferRequest:
+      type: object
+      properties:
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        destinationProvider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        destinationId:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        destinationType:
+          $ref: '#/components/schemas/PaymentDestinationType'
+        qty:
+          type: number
+          exclusiveMinimum: 0
+        sourceOperations:
+          $ref: '#/components/schemas/SourceOperations'
+        properties:
+          type: object
+        message:
+          type: string
+        effectiveDate:
+          $ref: '#/components/schemas/EffectiveDate'
+        effectiveLocation:
+          $ref: '#/components/schemas/EffectiveLocation'
+      required:
+      - receiverId
+      - qty
+      additionalProperties: false
+    AssetHistory:
+      type: array
+      items:
+        type: object
+        properties:
+          initialBalance:
+            type: number
+          totalQty:
+            type: number
+          transfers:
+            type: array
+            items:
+              type: string
+          startTime:
+            $ref: '#/components/schemas/Timestamp'
+          endTime:
+            $ref: '#/components/schemas/Timestamp'
+    AssetDescription:
       type: string
-      format: date-time
+      minLength: 0
+      maxLength: 200
+    Attachment:
+      type: object
+      additionalProperties: false
+      properties:
+        downloadUrl:
+          type: string
+          format: url
+        fileName:
+          type: string
+          minLength: 1
+        fileSize:
+          type: number
+          minimum: 0
+        mimeType:
+          type: string
+          minLength: 1
+          example: image/jpeg
+        md5:
+          type: string
+          minLength: 32
+          maxLength: 32
+          pattern: ^[a-f0-9]{32}$
+      required:
+      - downloadUrl
+    ImmutableId:
+      type: string
+      readOnly: true
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    DepositAssetRequest:
+      type: object
+      properties:
+        holderId:
+          $ref: '#/components/schemas/Id'
+        qty:
+          type: number
+          exclusiveMinimum: 0
+        message:
+          type: string
+        effectiveDate:
+          $ref: '#/components/schemas/EffectiveDate'
+        effectiveLocation:
+          $ref: '#/components/schemas/EffectiveLocation'
+      additionalProperties: false
+      required:
+      - holderId
+      - qty
+    SourcesCount:
+      type: number
+      description: Indicates number of operations that serve as explicit or implicit sources for this asset operation. Appears in the object when request contains sourcesGroupingMethod in query
+    ProfileProperty:
+      title: Profile Property
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          minLength: 1
+        primary:
+          type: boolean
+      required:
+      - value
+    PaymentDestination:
+      oneOf:
+      - $ref: '#/components/schemas/AssetMobileDestination'
+      - $ref: '#/components/schemas/AssetAgencyDestination'
+    Attachments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Attachment'
+    AssetAgencyDestination:
+      type: object
+      title: Agency Payment Destination
+      description: Where the transfer was sent to (i.e. BanQu agency)
+      properties:
+        id:
+          title: Destination ID
+          type: string
+          description: Receiver phone number (for transfers to mobile wallets)
+        name:
+          title: Destination Name
+          type: string
+          description: Name of BanQu agency (for transfers to specific BanQu agency)
+        address:
+          title: Destination Address
+          type: string
+          description: Address of BanQu agency (for transfers to specific BanQu agency)
+      required:
+      - id
+      - name
+      readOnly: true
     AssetTransformationOperation:
       type: object
       description: Operation that indicates asset(s) transformation into an arbitrary amount of some different asset(s)
@@ -926,6 +877,38 @@ components:
       - direction
       - qty
       - sent
+    PaymentDestinationType:
+      title: Destination Type
+      description: mobile for payments by phone number; payCode for 6DOT50 partner transfer
+      enum:
+      - mobile
+      - new-mobile
+      - payCode
+    AssetCode:
+      type: string
+      minLength: 2
+      maxLength: 32
+    ImmutableTimestamp:
+      type: number
+      readOnly: true
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
+    TransformingAsset:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+      required:
+      - id
+      - code
+      - uom
     RejectTransferReceipt:
       type: object
       properties:
@@ -1185,31 +1168,119 @@ components:
       - receiverId
       - assetId
       - quantity
-    AssetAgencyDestination:
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    AssetHolder:
       type: object
-      title: Agency Payment Destination
-      description: Where the transfer was sent to (i.e. BanQu agency)
       properties:
         id:
-          title: Destination ID
+          $ref: '#/components/schemas/ImmutableId'
+        balance:
+          type: number
+        displayName:
           type: string
-          description: Receiver phone number (for transfers to mobile wallets)
-        name:
-          title: Destination Name
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileProperty'
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileProperty'
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileProperty'
+        isOrg:
+          type: boolean
+    GeoCoordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        lon:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+      additionalProperties: false
+      required:
+      - lat
+      - lon
+      example:
+        lat: 37.7749
+        lon: -122.4194
+    AvailableOperationSource:
+      type: object
+      description: Operation that can be reused as a source for another asset transfer
+      properties:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        type:
           type: string
-          description: Name of BanQu agency (for transfers to specific BanQu agency)
-        address:
-          title: Destination Address
+          enum:
+          - transfer
+          - deposit
+          - transformation-result
+        qty:
+          type: number
+          description: Total quantity of the source operation
+        availableQty:
+          type: number
+          description: Quantity that remains available to be used as a source
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        sent:
+          type: number
+          description: Timestamp when the source operation was initiated
+        location:
+          $ref: '#/components/schemas/GeoCoordinates'
+        message:
           type: string
-          description: Address of BanQu agency (for transfers to specific BanQu agency)
+        transactionId:
+          $ref: '#/components/schemas/Id'
+        sender:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+            isOrg:
+              type: boolean
+        senderUser:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        properties:
+          type: object
+          description: Additional transfer properties captured on the source operation
+        propertiesPreviewFields:
+          type: array
+          description: Resolved preview fields for transfer properties
+          items:
+            type: object
       required:
       - id
-      - name
-      readOnly: true
-    Timestamp:
-      type: number
-      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
-      example: 1568894551000
+      - type
+      - qty
+      - availableQty
+      - sent
+    DateTime:
+      type: string
+      format: date-time
     PaymentDestinationProvider:
       title: Payment Destination Provider
       description: Payment provider where the payment should be delivered to
@@ -1224,55 +1295,25 @@ components:
       - airtel
       - zamtel
       - vodacom
-    NewMultipleTransfer:
-      type: array
-      items:
-        type: object
-        properties:
-          qty:
-            type: number
-            exclusiveMinimum: 0
-          receiver:
-            type: object
-            properties:
-              id:
-                $ref: '#/components/schemas/Id'
-              email:
-                type: string
-              phoneNumber:
-                type: string
-            additionalProperties: false
-          destinationProvider:
-            $ref: '#/components/schemas/PaymentDestinationProvider'
-          destinationId:
-            title: Agency ID for BanQu agency or nothing for any BanQu agency or MTN phone number
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
             type: string
-          properties:
-            type: object
-          message:
-            type: string
-          preventNotify:
-            type: boolean
-          effectiveDate:
-            $ref: '#/components/schemas/EffectiveDate'
-          effectiveLocation:
-            $ref: '#/components/schemas/EffectiveLocation'
-        required:
-        - receiver
-        - qty
-        additionalProperties: false
-    AssetCode:
-      type: string
-      minLength: 2
-      maxLength: 32
+          description: Url of the created entity
   parameters:
-    Search:
-      name: search
-      in: query
-      schema:
-        type: string
-      description: A space-separated list of keywords to search items by
-      required: false
     Limit:
       name: limit
       in: query
@@ -1311,6 +1352,13 @@ components:
         - transformation
         - draft-locked
         - draft-unlocked
+      required: false
+    Search:
+      name: search
+      in: query
+      schema:
+        type: string
+      description: A space-separated list of keywords to search items by
       required: false
     SortBy:
       name: sortBy

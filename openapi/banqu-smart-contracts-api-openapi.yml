@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu Smart Contracts API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -35,6 +35,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Get smart contracts
+      x-summary-source: derived
+      operationId: getSmartContracts
+      x-operation-id-source: derived
     post:
       description: Create smart contract
       tags:
@@ -54,6 +58,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Create smart contracts
+      x-summary-source: derived
+      operationId: postSmartContracts
+      x-operation-id-source: derived
   /smart-contracts/{contractId}:
     parameters:
     - name: contractId
@@ -83,6 +91,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get smart contracts by contract id
+      x-summary-source: derived
+      operationId: getSmartContractsByContractId
+      x-operation-id-source: derived
     put:
       description: Update smart contract
       tags:
@@ -104,6 +116,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Replace smart contracts by contract id
+      x-summary-source: derived
+      operationId: putSmartContractsByContractId
+      x-operation-id-source: derived
     delete:
       description: Deactivate smart contract
       tags:
@@ -117,6 +133,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Delete smart contracts by contract id
+      x-summary-source: derived
+      operationId: deleteSmartContractsByContractId
+      x-operation-id-source: derived
   /smart-contracts/{contractId}/history:
     parameters:
     - name: contractId
@@ -179,6 +199,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get smart contracts by contract id history
+      x-summary-source: derived
+      operationId: getSmartContractsByContractIdHistory
+      x-operation-id-source: derived
   /smart-contracts/{contractId}/restore:
     parameters:
     - name: contractId
@@ -200,6 +224,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create smart contracts by contract id restore
+      x-summary-source: derived
+      operationId: postSmartContractsByContractIdRestore
+      x-operation-id-source: derived
   /smart-contracts/triggers:
     get:
       description: Get available triggers
@@ -218,6 +246,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Get smart contracts triggers
+      x-summary-source: derived
+      operationId: getSmartContractsTriggers
+      x-operation-id-source: derived
   /smart-contracts/triggers/{triggerId}:
     parameters:
     - name: triggerId
@@ -255,6 +287,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Get smart contracts triggers by trigger id
+      x-summary-source: derived
+      operationId: getSmartContractsTriggersByTriggerId
+      x-operation-id-source: derived
   /smart-contracts/actions:
     get:
       description: List available actions
@@ -280,6 +316,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Get smart contracts actions
+      x-summary-source: derived
+      operationId: getSmartContractsActions
+      x-operation-id-source: derived
   /smart-contracts/actions/{actionId}:
     parameters:
     - name: actionId
@@ -314,34 +354,264 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Get smart contracts actions by action id
+      x-summary-source: derived
+      operationId: getSmartContractsActionsByActionId
+      x-operation-id-source: derived
 components:
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   schemas:
+    Timestamp:
+      type: number
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
+    WorkflowAction:
+      title: Workflow Action
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - action
+        action:
+          type: string
+          description: ID of the Open API endpoint to execute. Base64 encoded JSON object containing endpint properties `{ method, path }`
+      required:
+      - type
+      - action
+    WorkflowSteps:
+      title: Workflow Steps
+      type: array
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/WorkflowMapping'
+        - $ref: '#/components/schemas/WorkflowFilter'
+        - $ref: '#/components/schemas/WorkflowUniquenessFilter'
+        - $ref: '#/components/schemas/WorkflowAction'
+        - $ref: '#/components/schemas/WorkflowRequest'
+      example:
+      - type: filter
+        condition: selectedAssetId !== '' && receiverId !== ''
+      - type: map
+        mapping:
+          map:
+            assetId: selectedAssetId
+            body:
+              map:
+                receiverId: receiverId
+                qty: '1'
+                destinationId: 'null'
+                price: '0'
+                priceCurrency: '''USD'''
+      - type: action
+        action: eyJwYXRoIjoiL2Fzc2V0cy97YXNzZXRJZH0vdHJhbnNmZXJzIiwibWV0aG9kIjoicG9zdCJ9
+    SmartContractAction:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        title:
+          type: string
+        groups:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        description:
+          type: string
+      required:
+      - title
+      - groups
+    SmartContractTrigger:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique trigger identifier
+          readOnly: true
+        title:
+          type: string
+          description: Custom title
+    WorkflowMapping:
+      title: Workflow Mapping
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - map
+        mapping:
+          $ref: '#/components/schemas/Mapping'
+      required:
+      - type
+      - mapping
+    WorkflowUniquenessFilter:
+      title: Workflow Uniqueness Filter
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - unique
+        criteria:
+          type: string
+          description: JS expression in a 'unique' step that returns a key used to identify object uniquenss
+      required:
+      - type
+      - criteria
+    Mapping:
+      type: object
+      properties:
+        from:
+          type: string
+          description: Context source to map data from
+        forEach:
+          type: string
+          description: Array context source to map data from
+        map:
+          type: object
+          description: Object fields mapping
+      additionalProperties: true
+      example:
+        map:
+          outputField: inputField
+    ScimResourceMetadata:
+      type: object
+      readOnly: true
+      properties:
+        displayName:
+          type: string
+          readOnly: true
+        meta:
+          type: object
+          properties:
+            resourceType:
+              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
+      required:
+      - displayName
+      - meta
+    WorkflowFilter:
+      title: Workflow Filter
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - filter
+        condition:
+          type: string
+          description: JS expression in a 'filter' step that returns `true` or `false` to indicate if execution should proceed
+      required:
+      - type
+      - condition
     WorkflowStepName:
       type:
       - string
       - 'null'
       description: Optional unique alpha-numeric name of the step. Data produced during the step execution can be referred by this name
       pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+    WorkflowStepInput:
+      type:
+      - string
+      - 'null'
+      description: Name of one of the previous steps that should be used as a primary input. By default the latest step name is used
+      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+    SmartContract:
+      type: object
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+          description: Smart contract title
+        authToken:
+          type: string
+          description: Optional auth token to use for smart contract authentication. Write-only property
+        authTokenSig:
+          type: string
+          description: Signature of the stored auth token for its presence and uniqueness validation
+          readOnly: true
+        workflow:
+          type: object
+          additionalProperties: false
+          properties:
+            triggerId:
+              type: string
+            steps:
+              $ref: '#/components/schemas/WorkflowSteps'
+          required:
+          - triggerId
+          - steps
+        ownerId:
+          type: string
+          readOnly: true
+      required:
+      - title
+      - workflow
+    WorkflowRequest:
+      title: Workflow Request
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - request
+        method:
+          type: string
+          enum:
+          - get
+          - list
+          - post
+          - put
+          - patch
+          - delete
+          - head
+          - options
+        url:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - type
+      - method
+      - url
     JsonSchema:
       title: JSON Schema
       description: https://json-schema.org/draft-07/schema#
@@ -381,252 +651,26 @@ components:
         required:
         - field1
         additionalProperties: false
-    SmartContractAction:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        title:
-          type: string
-        groups:
-          type: array
-          items:
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
             type: string
-          uniqueItems: true
-        description:
-          type: string
-      required:
-      - title
-      - groups
-    ScimResourceMetadata:
-      type: object
-      readOnly: true
-      properties:
-        displayName:
-          type: string
-          readOnly: true
-        meta:
-          type: object
-          properties:
-            resourceType:
-              type: string
-              readOnly: true
-            created:
-              type: number
-              readOnly: true
-            lastModified:
-              type: number
-              readOnly: true
-          required:
-          - resourceType
-          - created
-          - lastModified
-      required:
-      - displayName
-      - meta
-    WorkflowSteps:
-      title: Workflow Steps
-      type: array
-      items:
-        oneOf:
-        - $ref: '#/components/schemas/WorkflowMapping'
-        - $ref: '#/components/schemas/WorkflowFilter'
-        - $ref: '#/components/schemas/WorkflowUniquenessFilter'
-        - $ref: '#/components/schemas/WorkflowAction'
-        - $ref: '#/components/schemas/WorkflowRequest'
-      example:
-      - type: filter
-        condition: selectedAssetId !== '' && receiverId !== ''
-      - type: map
-        mapping:
-          map:
-            assetId: selectedAssetId
-            body:
-              map:
-                receiverId: receiverId
-                qty: '1'
-                destinationId: 'null'
-                price: '0'
-                priceCurrency: '''USD'''
-      - type: action
-        action: eyJwYXRoIjoiL2Fzc2V0cy97YXNzZXRJZH0vdHJhbnNmZXJzIiwibWV0aG9kIjoicG9zdCJ9
-    WorkflowFilter:
-      title: Workflow Filter
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - filter
-        condition:
-          type: string
-          description: JS expression in a 'filter' step that returns `true` or `false` to indicate if execution should proceed
-      required:
-      - type
-      - condition
-    WorkflowRequest:
-      title: Workflow Request
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - request
-        method:
-          type: string
-          enum:
-          - get
-          - list
-          - post
-          - put
-          - patch
-          - delete
-          - head
-          - options
-        url:
-          type: string
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - type
-      - method
-      - url
-    Mapping:
-      type: object
-      properties:
-        from:
-          type: string
-          description: Context source to map data from
-        forEach:
-          type: string
-          description: Array context source to map data from
-        map:
-          type: object
-          description: Object fields mapping
-      additionalProperties: true
-      example:
-        map:
-          outputField: inputField
-    SmartContract:
-      type: object
-      additionalProperties: false
-      properties:
-        title:
-          type: string
-          description: Smart contract title
-        authToken:
-          type: string
-          description: Optional auth token to use for smart contract authentication. Write-only property
-        authTokenSig:
-          type: string
-          description: Signature of the stored auth token for its presence and uniqueness validation
-          readOnly: true
-        workflow:
-          type: object
-          additionalProperties: false
-          properties:
-            triggerId:
-              type: string
-            steps:
-              $ref: '#/components/schemas/WorkflowSteps'
-          required:
-          - triggerId
-          - steps
-        ownerId:
-          type: string
-          readOnly: true
-      required:
-      - title
-      - workflow
-    SmartContractTrigger:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique trigger identifier
-          readOnly: true
-        title:
-          type: string
-          description: Custom title
-    WorkflowAction:
-      title: Workflow Action
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - action
-        action:
-          type: string
-          description: ID of the Open API endpoint to execute. Base64 encoded JSON object containing endpint properties `{ method, path }`
-      required:
-      - type
-      - action
-    WorkflowStepInput:
-      type:
-      - string
-      - 'null'
-      description: Name of one of the previous steps that should be used as a primary input. By default the latest step name is used
-      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
-    WorkflowUniquenessFilter:
-      title: Workflow Uniqueness Filter
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - unique
-        criteria:
-          type: string
-          description: JS expression in a 'unique' step that returns a key used to identify object uniquenss
-      required:
-      - type
-      - criteria
-    Timestamp:
-      type: number
-      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
-      example: 1568894551000
-    WorkflowMapping:
-      title: Workflow Mapping
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - map
-        mapping:
-          $ref: '#/components/schemas/Mapping'
-      required:
-      - type
-      - mapping
+          description: Url of the created entity
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   securitySchemes:
     Bearer:
       type: http

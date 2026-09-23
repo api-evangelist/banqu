@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu User Profile Sharing API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -24,6 +24,10 @@ paths:
                 $ref: '#/components/schemas/ProfileVisibility'
         '401':
           $ref: '#/components/responses/401'
+      summary: Get profile sharing
+      x-summary-source: derived
+      operationId: getProfileSharing
+      x-operation-id-source: derived
     patch:
       description: Change profile sharing settings
       tags:
@@ -44,6 +48,10 @@ paths:
           $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
+      summary: Update profile sharing
+      x-summary-source: derived
+      operationId: patchProfileSharing
+      x-operation-id-source: derived
   /profile-shared-packages:
     get:
       tags:
@@ -60,6 +68,10 @@ paths:
                   $ref: '#/components/schemas/PackagedShareProfileListItem'
         '401':
           $ref: '#/components/responses/401'
+      summary: Get profile shared packages
+      x-summary-source: derived
+      operationId: getProfileSharedPackages
+      x-operation-id-source: derived
     post:
       tags:
       - User Profile Sharing
@@ -74,6 +86,10 @@ paths:
           $ref: '#/components/responses/201'
         '401':
           $ref: '#/components/responses/401'
+      summary: Create profile shared packages
+      x-summary-source: derived
+      operationId: postProfileSharedPackages
+      x-operation-id-source: derived
   /profile-shared-packages/{id}:
     get:
       tags:
@@ -93,6 +109,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PackagedShareProfile'
+      summary: Get profile shared packages by id
+      x-summary-source: derived
+      operationId: getProfileSharedPackagesById
+      x-operation-id-source: derived
     delete:
       tags:
       - User Profile Sharing
@@ -107,6 +127,10 @@ paths:
       responses:
         '204':
           $ref: '#/components/responses/204'
+      summary: Delete profile shared packages by id
+      x-summary-source: derived
+      operationId: deleteProfileSharedPackagesById
+      x-operation-id-source: derived
   /profile-shared-packages/{id}/assets:
     parameters:
     - name: id
@@ -134,6 +158,10 @@ paths:
                   $ref: '#/components/schemas/SharedAssets'
         '401':
           $ref: '#/components/responses/401'
+      summary: Get profile shared packages by id assets
+      x-summary-source: derived
+      operationId: getProfileSharedPackagesByIdAssets
+      x-operation-id-source: derived
   /profile-shared-packages/{id}/transactions:
     get:
       tags:
@@ -157,6 +185,10 @@ paths:
                   $ref: '#/components/schemas/Transaction'
         '401':
           $ref: '#/components/responses/401'
+      summary: Get profile shared packages by id transactions
+      x-summary-source: derived
+      operationId: getProfileSharedPackagesByIdTransactions
+      x-operation-id-source: derived
   /profile-shared-packages/{id}/connections:
     get:
       tags:
@@ -180,6 +212,10 @@ paths:
                   $ref: '#/components/schemas/Connection'
         '401':
           $ref: '#/components/responses/401'
+      summary: Get profile shared packages by id connections
+      x-summary-source: derived
+      operationId: getProfileSharedPackagesByIdConnections
+      x-operation-id-source: derived
   /profile-shared-packages/{id}/asset-categories:
     get:
       tags:
@@ -203,6 +239,10 @@ paths:
                   $ref: '#/components/schemas/AssetCategory'
         '401':
           $ref: '#/components/responses/401'
+      summary: Get profile shared packages by id asset categories
+      x-summary-source: derived
+      operationId: getProfileSharedPackagesByIdAssetCategories
+      x-operation-id-source: derived
   /profile-shared-packages/{id}/geo-data:
     get:
       parameters:
@@ -222,6 +262,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GeoJsonFeatureCollection'
+      summary: Get profile shared packages by id geo data
+      x-summary-source: derived
+      operationId: getProfileSharedPackagesByIdGeoData
+      x-operation-id-source: derived
   /profile/shares:
     get:
       tags:
@@ -236,6 +280,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ProfileShareRequests'
+      summary: Get profile shares
+      x-summary-source: derived
+      operationId: getProfileShares
+      x-operation-id-source: derived
     post:
       tags:
       - User Profile Sharing
@@ -267,6 +315,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create profile shares
+      x-summary-source: derived
+      operationId: postProfileShares
+      x-operation-id-source: derived
   /profile/shares/{otherPartyId}:
     parameters:
     - name: otherPartyId
@@ -290,6 +342,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get profile shares by other party id
+      x-summary-source: derived
+      operationId: getProfileSharesByOtherPartyId
+      x-operation-id-source: derived
     delete:
       tags:
       - User Profile Sharing
@@ -301,6 +357,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/422'
+      summary: Delete profile shares by other party id
+      x-summary-source: derived
+      operationId: deleteProfileSharesByOtherPartyId
+      x-operation-id-source: derived
   /profile/shares/{senderId}/approve:
     post:
       tags:
@@ -329,338 +389,12 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/422'
+      summary: Create profile shares by sender id approve
+      x-summary-source: derived
+      operationId: postProfileSharesBySenderIdApprove
+      x-operation-id-source: derived
 components:
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   schemas:
-    GeoJsonFeatureCollection:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Feature
-              geometry:
-                $ref: '#/components/schemas/GeoJsonGeometryObject'
-              properties:
-                type: object
-            required:
-            - type
-            - geometry
-      required:
-      - type
-      - features
-    Attachment:
-      type: object
-      additionalProperties: false
-      properties:
-        downloadUrl:
-          type: string
-          format: url
-        fileName:
-          type: string
-          minLength: 1
-        fileSize:
-          type: number
-          minimum: 0
-        mimeType:
-          type: string
-          minLength: 1
-          example: image/jpeg
-        md5:
-          type: string
-          minLength: 32
-          maxLength: 32
-          pattern: ^[a-f0-9]{32}$
-      required:
-      - downloadUrl
-    AssetDescription:
-      type: string
-      minLength: 0
-      maxLength: 200
-    GeoCoordinates:
-      type: object
-      properties:
-        lat:
-          type: number
-          format: double
-          minimum: -90
-          maximum: 90
-        lon:
-          type: number
-          format: double
-          minimum: -180
-          maximum: 180
-      additionalProperties: false
-      required:
-      - lat
-      - lon
-      example:
-        lat: 37.7749
-        lon: -122.4194
-    PaymentDestinationId:
-      title: Destination Identifier
-      description: Destination phone number for mobile providers; BanQu agency ID for banqu-agency provider
-      type: string
-    ProfilePhoto:
-      allOf:
-      - $ref: '#/components/schemas/ProfileProperty'
-      - properties:
-          etag:
-            type: string
-            minLength: 32
-            maxLength: 32
-            example: '00000000000000000000000000000000'
-          value:
-            type: string
-            format: url
-            example: https://example.com/avatar.jpg
-    ProfileShareRequests:
-      type: object
-      description: User profile data
-      properties:
-        approved:
-          type: boolean
-        expiresAt:
-          type: number
-        id:
-          type: string
-        isReceiverOrg:
-          type: boolean
-        isSenderOrg:
-          type: boolean
-        name:
-          type: string
-        photo:
-          type: string
-        sections:
-          type: array
-          items:
-            type: string
-    ImmutableId:
-      type: string
-      readOnly: true
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
-    EffectiveLocation:
-      allOf:
-      - $ref: '#/components/schemas/GeoCoordinates'
-      - title: Effective Transfer Geo Location
-        description: The effective location coordinates of a transfer instead of an automatically determined
-    Connection:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/Resource'
-      - $ref: '#/components/schemas/Profile'
-      - $ref: '#/components/schemas/ConnectionExtension'
-      required:
-      - id
-    PackagedShareProfile:
-      type: object
-      properties:
-        addresses:
-          type: array
-          items:
-            type: object
-            properties:
-              country:
-                type: string
-              locality:
-                type: string
-              postalCode:
-                type: string
-              streetAddress:
-                type: string
-        displayName:
-          type: string
-        emails:
-          type: array
-          items:
-            type: object
-            properties:
-              primary:
-                type: boolean
-              type:
-                type: string
-              value:
-                type: string
-        meta:
-          type: object
-          properties:
-            created:
-              type: integer
-            lastModified:
-              type: integer
-            resourceType:
-              type: string
-        name:
-          type: object
-          properties:
-            familyName:
-              type: string
-            formatted:
-              type: string
-            givenName:
-              type: string
-        photos:
-          type: array
-          items:
-            type: object
-            properties:
-              etag:
-                type: string
-              primary:
-                type: boolean
-              value:
-                type: string
-      additionalProperties:
-        type: string
-    ProfileEmail:
-      oneOf:
-      - allOf:
-        - $ref: '#/components/schemas/ProfileProperty'
-        - properties:
-            value:
-              type: string
-              format: email
-              example: user@example.com
-      - type: string
-        format: email
-        minLength: 1
-        example: user@example.com
-    Transaction:
-      oneOf:
-      - $ref: '#/components/schemas/RevertTransaction'
-      - $ref: '#/components/schemas/AssetDepositTransaction'
-      - $ref: '#/components/schemas/ExchangeTransaction'
-      - $ref: '#/components/schemas/AssetTransformationTransaction'
-    AssetTransformationTransaction:
-      type: object
-      description: Asset Transformation
-      additionalProperties: false
-      properties:
-        sources:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/TransformingAsset'
-        destinations:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/TransformingAsset'
-        creator:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/ImmutableId'
-            name:
-              type: string
-        id:
-          type: string
-        transactionId:
-          type: string
-        sent:
-          type: number
-        allCodes:
-          type: array
-          items:
-            type: string
-        assetIds:
-          type: array
-          items:
-            type: string
-      required:
-      - destinations
-      - sources
-      - creator
-      - id
-      - transactionId
-      - sent
-    ShareRequest:
-      type: object
-      description: A share request
-      properties:
-        approved:
-          type: boolean
-        isSenderOrg:
-          type: boolean
-        isReceiverOrg:
-          type: boolean
-        sections:
-          type: array
-          items:
-            type: string
-          uniqueItems: true
-    NewPackagedShareProfile:
-      type: object
-      properties:
-        sections:
-          type: array
-          items:
-            type: string
-        expiresAt:
-          type: integer
-        sectionConfigurations:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    RevertTransaction:
-      type: object
-      properties:
-        reason:
-          type: string
-          minLength: 1
-        effectiveDate:
-          $ref: '#/components/schemas/EffectiveDate'
-        effectiveLocation:
-          $ref: '#/components/schemas/EffectiveLocation'
-      required:
-      - reason
-      additionalProperties: false
-    ProfileProperty:
-      title: Profile Property
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
-          minLength: 1
-        primary:
-          type: boolean
-      required:
-      - value
     SharedAsset:
       type: object
       properties:
@@ -682,424 +416,6 @@ components:
       - id
       - code
       - balance
-    SharedAssets:
-      type: array
-      description: List of shared assets
-      items:
-        $ref: '#/components/schemas/SharedAsset'
-    TransformingAsset:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        code:
-          $ref: '#/components/schemas/AssetCode'
-        description:
-          $ref: '#/components/schemas/AssetDescription'
-        uom:
-          $ref: '#/components/schemas/AssetUom'
-      required:
-      - id
-      - code
-      - uom
-    PaymentDestinationType:
-      title: Destination Type
-      description: mobile for payments by phone number; payCode for 6DOT50 partner transfer
-      enum:
-      - mobile
-      - new-mobile
-      - payCode
-    GeoJsonGeometryObject:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - Point
-          - MultiPoint
-          - LineString
-          - MultiLineString
-          - Polygon
-          - MultiPolygon
-          - GeometryCollection
-        coordinates:
-          oneOf:
-          - type: array
-            items:
-              type: number
-              minItems: 2
-          - type: array
-            items:
-              type: array
-              items:
-                type: number
-                minItems: 2
-          - type: array
-            items:
-              type: array
-              items:
-                type: array
-                items:
-                  type: number
-                  minItems: 2
-      required:
-      - type
-      - coordinates
-    ProfileVisibility:
-      type: object
-      properties:
-        publicEnabled:
-          type: boolean
-          description: Should the profile be visible from Internet
-        publicSections:
-          type: array
-          description: Profile sections visible to Internet
-          items:
-            type: string
-            uniqueItems: true
-        connectionsEnabled:
-          type: boolean
-          description: Should the profile be visible for Connections
-        connectionsSections:
-          type: array
-          description: Profile sections visible to Connections
-          items:
-            type: string
-            uniqueItems: true
-      required:
-      - publicEnabled
-      - publicSections
-      - connectionsEnabled
-      - connectionsSections
-    Attachments:
-      type: array
-      items:
-        $ref: '#/components/schemas/Attachment'
-    AssetUom:
-      title: Asset Unit of Measurement
-      type: string
-      enum:
-      - BR
-      - BO
-      - BX
-      - BU
-      - CN
-      - CA
-      - CH
-      - DO
-      - EA
-      - FO
-      - FT
-      - GA
-      - GR
-      - HR
-      - JA
-      - KG
-      - KK
-      - LT
-      - Q3
-      - MR
-      - MG
-      - M4
-      - OZ
-      - PK
-      - PR
-      - PC
-      - LB
-      - SJ
-      - VS
-      - YD
-      example: KG
-    ConnectionExtension:
-      type: object
-      properties:
-        urn:banqu:schemas:extensions:connection:
-          type: object
-          properties:
-            pending:
-              type: boolean
-              description: Indicates if connection is still waiting for an acceptance
-              readOnly: true
-            direction:
-              type: string
-              description: Indicates what side initiated a connection
-              enum:
-              - in
-              - out
-              readOnly: true
-            assignedAssociates:
-              type: array
-              description: A list of Org Associate ID's responsible for this connection
-              items:
-                type: string
-                minLength: 32
-                maxLength: 32
-                uniqueItems: true
-    Id:
-      title: Id
-      type: string
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
-    ExchangeTransaction:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/ImmutableId'
-        allCodes:
-          type: array
-          items:
-            type: string
-        assetIds:
-          type: array
-          items:
-            type: string
-        receiverId:
-          $ref: '#/components/schemas/Id'
-        type:
-          type: string
-          enum:
-          - batch
-          - trade
-          - exchange
-          - transfer
-        unconfirmedAssetIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Id'
-        destinationProvider:
-          $ref: '#/components/schemas/PaymentDestinationProvider'
-        destinationId:
-          $ref: '#/components/schemas/PaymentDestinationId'
-        destinationType:
-          $ref: '#/components/schemas/PaymentDestinationType'
-        initiatedBy:
-          $ref: '#/components/schemas/TransactionParty'
-        initiatedByUser:
-          allOf:
-          - $ref: '#/components/schemas/TransactionParty'
-          - readOnly: true
-        sender:
-          $ref: '#/components/schemas/TransactionParty'
-        receiver:
-          $ref: '#/components/schemas/TransactionParty'
-        agency:
-          $ref: '#/components/schemas/TransactionParty'
-        agent:
-          $ref: '#/components/schemas/TransactionParty'
-        qty:
-          type: number
-          exclusiveMinimum: 0
-        price:
-          type: number
-          minimum: 0
-        priceCurrency:
-          type: string
-          minLength: 3
-          maxLength: 3
-          example: USD
-        sent:
-          type: number
-          readOnly: true
-        claimed:
-          type: number
-          readOnly: true
-        received:
-          type: number
-          readOnly: true
-        properties:
-          type: object
-        message:
-          type: string
-        transactionId:
-          type: string
-        direction:
-          type: string
-        code:
-          type: string
-        uom:
-          $ref: '#/components/schemas/AssetUom'
-        description:
-          type: string
-        initiatedByUserId:
-          type: string
-        assetAttachments:
-          $ref: '#/components/schemas/Attachments'
-        participants:
-          type: array
-          items:
-            type: string
-      required:
-      - receiverId
-      - qty
-    TransactionParty:
-      type: object
-      readOnly: true
-      properties:
-        id:
-          $ref: '#/components/schemas/ImmutableId'
-        name:
-          type: string
-          readOnly: true
-        photoUrl:
-          type: string
-          format: url
-          readOnly: true
-        photoEtag:
-          type: string
-          readOnly: true
-        isOrg:
-          type: boolean
-    PackagedShareProfileListItem:
-      type: object
-      description: Packaged share profile data
-      properties:
-        assets:
-          type: array
-          items:
-            type: string
-        bucket:
-          type: string
-        connections:
-          type: string
-        createdAt:
-          type: integer
-        expiresAt:
-          type: integer
-        ownerId:
-          type: string
-        sections:
-          type: array
-          items:
-            type: string
-        state:
-          type: string
-    EffectiveDate:
-      allOf:
-      - $ref: '#/components/schemas/DateTime'
-      - title: Effective Transfer Date
-        description: The effective date and time of the transfer in ISO format with timezone defined.
-    AssetCode:
-      type: string
-      minLength: 2
-      maxLength: 32
-    ProfilePhoneNumber:
-      oneOf:
-      - allOf:
-        - $ref: '#/components/schemas/ProfileProperty'
-        - properties:
-            value:
-              $ref: '#/components/schemas/PhoneNumber'
-      - $ref: '#/components/schemas/PhoneNumber'
-    DateTime:
-      type: string
-      format: date-time
-    PhoneNumber:
-      description: Phone Number with Country Prefix
-      type: string
-      pattern: ^(?:(?:\+|00 ?|011 ?|010 ?|0011 ?)?(1|20|212|213|216|218|220|221|222|223|224|225|226|227|228|229|230|231|232|233|234|235|236|237|238|239|240|241|242|243|244|245|248|249|250|251|252|253|254|255|256|257|258|260|261|262|263|264|265|266|267|269|27|290|291|297|298|299|30|31|32|33|34|350|351|352|353|354|355|356|357|358|359|36|370|371|372|373|374|375|376|377|378|380|381|382|385|386|387|389|39|40|41|420|421|423|43|44|45|46|47|48|49|500|501|502|503|504|505|506|507|508|509|51|52|53|54|55|56|57|58|590|591|592|593|594|595|596|597|598|60|61|62|63|64|65|66|670|672|673|674|675|676|677|678|679|680|681|682|683|685|686|687|688|689|690|691|692|7|81|82|84|852|853|855|856|86|880|886|90|91|92|93|94|95|960|961|962|963|964|965|966|967|968|970|971|972|973|974|975|976|977|98|992|993|994|995|996|998))((?:\)?[ -.]?\(?\d){6,11})$
-      example: +1 555 999 8877
-    AssetDepositTransaction:
-      type: object
-      properties:
-        description:
-          type: string
-        holderId:
-          type: string
-        holder:
-          $ref: '#/components/schemas/TransactionParty'
-        type:
-          type: string
-          enum:
-          - deposit
-        id:
-          $ref: '#/components/schemas/Id'
-        transactionId:
-          $ref: '#/components/schemas/Id'
-        sent:
-          type: number
-        qty:
-          type: number
-        creatorId:
-          $ref: '#/components/schemas/Id'
-        creator:
-          $ref: '#/components/schemas/TransactionParty'
-        code:
-          type: string
-        assetIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Id'
-        allCodes:
-          type: array
-          items:
-            type: string
-        transfers:
-          type: array
-          items:
-            type: string
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Id'
-        location:
-          $ref: '#/components/schemas/GeoCoordinates'
-      readOnly: true
-      required:
-      - holderId
-      - holder
-      - type
-      - id
-      - transactionId
-      - sent
-      - qty
-      - creatorId
-      - creator
-      - code
-      - assetIds
-      - allCodes
-      - transfers
-      - participants
-    Resource:
-      type: object
-      properties:
-        schemas:
-          type: array
-          items:
-            type: string
-            uniqueItems: true
-          readOnly: true
-        id:
-          type: string
-          description: The resource type's server unique id
-          readOnly: true
-        externalId:
-          type: string
-          description: A String that is an identifier for the resource as defined by the provisioning client. The "externalId" may simplify identification of a resource between the provisioning client and the service provider by allowing the client to use a filter to locate the resource with an identifier from the provisioning domain, obviating the need to store a local mapping between the provisioning domain's identifier of the resource and the identifier used by the service provider.
-        meta:
-          type: object
-          description: A complex attribute containing resource metadata. All "meta" sub-attributes are assigned by the service provider (have a "mutability" of "readOnly"), and all of these sub-attributes have a "returned" characteristic of "default".
-          properties:
-            resourceType:
-              type: string
-              enum:
-              - User
-              - Org
-              - Invite
-              readOnly: true
-            created:
-              type: number
-              readOnly: true
-            lastModified:
-              type: number
-              readOnly: true
-            location:
-              type: string
-              format: uri
-              readOnly: true
-          readOnly: true
     Profile:
       title: User Profile
       type: object
@@ -1273,6 +589,404 @@ components:
           anyOf:
           - type: object
           - type: array
+    PaymentDestinationId:
+      title: Destination Identifier
+      description: Destination phone number for mobile providers; BanQu agency ID for banqu-agency provider
+      type: string
+    EffectiveLocation:
+      allOf:
+      - $ref: '#/components/schemas/GeoCoordinates'
+      - title: Effective Transfer Geo Location
+        description: The effective location coordinates of a transfer instead of an automatically determined
+    Resource:
+      type: object
+      properties:
+        schemas:
+          type: array
+          items:
+            type: string
+            uniqueItems: true
+          readOnly: true
+        id:
+          type: string
+          description: The resource type's server unique id
+          readOnly: true
+        externalId:
+          type: string
+          description: A String that is an identifier for the resource as defined by the provisioning client. The "externalId" may simplify identification of a resource between the provisioning client and the service provider by allowing the client to use a filter to locate the resource with an identifier from the provisioning domain, obviating the need to store a local mapping between the provisioning domain's identifier of the resource and the identifier used by the service provider.
+        meta:
+          type: object
+          description: A complex attribute containing resource metadata. All "meta" sub-attributes are assigned by the service provider (have a "mutability" of "readOnly"), and all of these sub-attributes have a "returned" characteristic of "default".
+          properties:
+            resourceType:
+              type: string
+              enum:
+              - User
+              - Org
+              - Invite
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+            location:
+              type: string
+              format: uri
+              readOnly: true
+          readOnly: true
+    ShareRequest:
+      type: object
+      description: A share request
+      properties:
+        approved:
+          type: boolean
+        isSenderOrg:
+          type: boolean
+        isReceiverOrg:
+          type: boolean
+        sections:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+    AssetCategory:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+      required:
+      - code
+    PackagedShareProfile:
+      type: object
+      properties:
+        addresses:
+          type: array
+          items:
+            type: object
+            properties:
+              country:
+                type: string
+              locality:
+                type: string
+              postalCode:
+                type: string
+              streetAddress:
+                type: string
+        displayName:
+          type: string
+        emails:
+          type: array
+          items:
+            type: object
+            properties:
+              primary:
+                type: boolean
+              type:
+                type: string
+              value:
+                type: string
+        meta:
+          type: object
+          properties:
+            created:
+              type: integer
+            lastModified:
+              type: integer
+            resourceType:
+              type: string
+        name:
+          type: object
+          properties:
+            familyName:
+              type: string
+            formatted:
+              type: string
+            givenName:
+              type: string
+        photos:
+          type: array
+          items:
+            type: object
+            properties:
+              etag:
+                type: string
+              primary:
+                type: boolean
+              value:
+                type: string
+      additionalProperties:
+        type: string
+    AssetUom:
+      title: Asset Unit of Measurement
+      type: string
+      enum:
+      - BR
+      - BO
+      - BX
+      - BU
+      - CN
+      - CA
+      - CH
+      - DO
+      - EA
+      - FO
+      - FT
+      - GA
+      - GR
+      - HR
+      - JA
+      - KG
+      - KK
+      - LT
+      - Q3
+      - MR
+      - MG
+      - M4
+      - OZ
+      - PK
+      - PR
+      - PC
+      - LB
+      - SJ
+      - VS
+      - YD
+      example: KG
+    ProfilePhoto:
+      allOf:
+      - $ref: '#/components/schemas/ProfileProperty'
+      - properties:
+          etag:
+            type: string
+            minLength: 32
+            maxLength: 32
+            example: '00000000000000000000000000000000'
+          value:
+            type: string
+            format: url
+            example: https://example.com/avatar.jpg
+    SharedAssets:
+      type: array
+      description: List of shared assets
+      items:
+        $ref: '#/components/schemas/SharedAsset'
+    ConnectionExtension:
+      type: object
+      properties:
+        urn:banqu:schemas:extensions:connection:
+          type: object
+          properties:
+            pending:
+              type: boolean
+              description: Indicates if connection is still waiting for an acceptance
+              readOnly: true
+            direction:
+              type: string
+              description: Indicates what side initiated a connection
+              enum:
+              - in
+              - out
+              readOnly: true
+            assignedAssociates:
+              type: array
+              description: A list of Org Associate ID's responsible for this connection
+              items:
+                type: string
+                minLength: 32
+                maxLength: 32
+                uniqueItems: true
+    EffectiveDate:
+      allOf:
+      - $ref: '#/components/schemas/DateTime'
+      - title: Effective Transfer Date
+        description: The effective date and time of the transfer in ISO format with timezone defined.
+    AssetDescription:
+      type: string
+      minLength: 0
+      maxLength: 200
+    Attachment:
+      type: object
+      additionalProperties: false
+      properties:
+        downloadUrl:
+          type: string
+          format: url
+        fileName:
+          type: string
+          minLength: 1
+        fileSize:
+          type: number
+          minimum: 0
+        mimeType:
+          type: string
+          minLength: 1
+          example: image/jpeg
+        md5:
+          type: string
+          minLength: 32
+          maxLength: 32
+          pattern: ^[a-f0-9]{32}$
+      required:
+      - downloadUrl
+    Transaction:
+      oneOf:
+      - $ref: '#/components/schemas/RevertTransaction'
+      - $ref: '#/components/schemas/AssetDepositTransaction'
+      - $ref: '#/components/schemas/ExchangeTransaction'
+      - $ref: '#/components/schemas/AssetTransformationTransaction'
+    ImmutableId:
+      type: string
+      readOnly: true
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    ProfileProperty:
+      title: Profile Property
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          minLength: 1
+        primary:
+          type: boolean
+      required:
+      - value
+    Attachments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Attachment'
+    PaymentDestinationType:
+      title: Destination Type
+      description: mobile for payments by phone number; payCode for 6DOT50 partner transfer
+      enum:
+      - mobile
+      - new-mobile
+      - payCode
+    ProfileVisibility:
+      type: object
+      properties:
+        publicEnabled:
+          type: boolean
+          description: Should the profile be visible from Internet
+        publicSections:
+          type: array
+          description: Profile sections visible to Internet
+          items:
+            type: string
+            uniqueItems: true
+        connectionsEnabled:
+          type: boolean
+          description: Should the profile be visible for Connections
+        connectionsSections:
+          type: array
+          description: Profile sections visible to Connections
+          items:
+            type: string
+            uniqueItems: true
+      required:
+      - publicEnabled
+      - publicSections
+      - connectionsEnabled
+      - connectionsSections
+    ExchangeTransaction:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        allCodes:
+          type: array
+          items:
+            type: string
+        assetIds:
+          type: array
+          items:
+            type: string
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        type:
+          type: string
+          enum:
+          - batch
+          - trade
+          - exchange
+          - transfer
+        unconfirmedAssetIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Id'
+        destinationProvider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        destinationId:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        destinationType:
+          $ref: '#/components/schemas/PaymentDestinationType'
+        initiatedBy:
+          $ref: '#/components/schemas/TransactionParty'
+        initiatedByUser:
+          allOf:
+          - $ref: '#/components/schemas/TransactionParty'
+          - readOnly: true
+        sender:
+          $ref: '#/components/schemas/TransactionParty'
+        receiver:
+          $ref: '#/components/schemas/TransactionParty'
+        agency:
+          $ref: '#/components/schemas/TransactionParty'
+        agent:
+          $ref: '#/components/schemas/TransactionParty'
+        qty:
+          type: number
+          exclusiveMinimum: 0
+        price:
+          type: number
+          minimum: 0
+        priceCurrency:
+          type: string
+          minLength: 3
+          maxLength: 3
+          example: USD
+        sent:
+          type: number
+          readOnly: true
+        claimed:
+          type: number
+          readOnly: true
+        received:
+          type: number
+          readOnly: true
+        properties:
+          type: object
+        message:
+          type: string
+        transactionId:
+          type: string
+        direction:
+          type: string
+        code:
+          type: string
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        description:
+          type: string
+        initiatedByUserId:
+          type: string
+        assetAttachments:
+          $ref: '#/components/schemas/Attachments'
+        participants:
+          type: array
+          items:
+            type: string
+      required:
+      - receiverId
+      - qty
     PaymentDestinationProvider:
       title: Payment Destination Provider
       description: Payment provider where the payment should be delivered to
@@ -1287,9 +1001,46 @@ components:
       - airtel
       - zamtel
       - vodacom
-    AssetCategory:
+    AssetCode:
+      type: string
+      minLength: 2
+      maxLength: 32
+    ProfileShareRequests:
       type: object
+      description: User profile data
       properties:
+        approved:
+          type: boolean
+        expiresAt:
+          type: number
+        id:
+          type: string
+        isReceiverOrg:
+          type: boolean
+        isSenderOrg:
+          type: boolean
+        name:
+          type: string
+        photo:
+          type: string
+        sections:
+          type: array
+          items:
+            type: string
+    Connection:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/Resource'
+      - $ref: '#/components/schemas/Profile'
+      - $ref: '#/components/schemas/ConnectionExtension'
+      required:
+      - id
+    TransformingAsset:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
         code:
           $ref: '#/components/schemas/AssetCode'
         description:
@@ -1297,7 +1048,320 @@ components:
         uom:
           $ref: '#/components/schemas/AssetUom'
       required:
+      - id
       - code
+      - uom
+    RevertTransaction:
+      type: object
+      properties:
+        reason:
+          type: string
+          minLength: 1
+        effectiveDate:
+          $ref: '#/components/schemas/EffectiveDate'
+        effectiveLocation:
+          $ref: '#/components/schemas/EffectiveLocation'
+      required:
+      - reason
+      additionalProperties: false
+    GeoJsonFeatureCollection:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              geometry:
+                $ref: '#/components/schemas/GeoJsonGeometryObject'
+              properties:
+                type: object
+            required:
+            - type
+            - geometry
+      required:
+      - type
+      - features
+    ProfilePhoneNumber:
+      oneOf:
+      - allOf:
+        - $ref: '#/components/schemas/ProfileProperty'
+        - properties:
+            value:
+              $ref: '#/components/schemas/PhoneNumber'
+      - $ref: '#/components/schemas/PhoneNumber'
+    PhoneNumber:
+      description: Phone Number with Country Prefix
+      type: string
+      pattern: ^(?:(?:\+|00 ?|011 ?|010 ?|0011 ?)?(1|20|212|213|216|218|220|221|222|223|224|225|226|227|228|229|230|231|232|233|234|235|236|237|238|239|240|241|242|243|244|245|248|249|250|251|252|253|254|255|256|257|258|260|261|262|263|264|265|266|267|269|27|290|291|297|298|299|30|31|32|33|34|350|351|352|353|354|355|356|357|358|359|36|370|371|372|373|374|375|376|377|378|380|381|382|385|386|387|389|39|40|41|420|421|423|43|44|45|46|47|48|49|500|501|502|503|504|505|506|507|508|509|51|52|53|54|55|56|57|58|590|591|592|593|594|595|596|597|598|60|61|62|63|64|65|66|670|672|673|674|675|676|677|678|679|680|681|682|683|685|686|687|688|689|690|691|692|7|81|82|84|852|853|855|856|86|880|886|90|91|92|93|94|95|960|961|962|963|964|965|966|967|968|970|971|972|973|974|975|976|977|98|992|993|994|995|996|998))((?:\)?[ -.]?\(?\d){6,11})$
+      example: +1 555 999 8877
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    ProfileEmail:
+      oneOf:
+      - allOf:
+        - $ref: '#/components/schemas/ProfileProperty'
+        - properties:
+            value:
+              type: string
+              format: email
+              example: user@example.com
+      - type: string
+        format: email
+        minLength: 1
+        example: user@example.com
+    NewPackagedShareProfile:
+      type: object
+      properties:
+        sections:
+          type: array
+          items:
+            type: string
+        expiresAt:
+          type: integer
+        sectionConfigurations:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    AssetDepositTransaction:
+      type: object
+      properties:
+        description:
+          type: string
+        holderId:
+          type: string
+        holder:
+          $ref: '#/components/schemas/TransactionParty'
+        type:
+          type: string
+          enum:
+          - deposit
+        id:
+          $ref: '#/components/schemas/Id'
+        transactionId:
+          $ref: '#/components/schemas/Id'
+        sent:
+          type: number
+        qty:
+          type: number
+        creatorId:
+          $ref: '#/components/schemas/Id'
+        creator:
+          $ref: '#/components/schemas/TransactionParty'
+        code:
+          type: string
+        assetIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Id'
+        allCodes:
+          type: array
+          items:
+            type: string
+        transfers:
+          type: array
+          items:
+            type: string
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Id'
+        location:
+          $ref: '#/components/schemas/GeoCoordinates'
+      readOnly: true
+      required:
+      - holderId
+      - holder
+      - type
+      - id
+      - transactionId
+      - sent
+      - qty
+      - creatorId
+      - creator
+      - code
+      - assetIds
+      - allCodes
+      - transfers
+      - participants
+    AssetTransformationTransaction:
+      type: object
+      description: Asset Transformation
+      additionalProperties: false
+      properties:
+        sources:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        destinations:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        creator:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        id:
+          type: string
+        transactionId:
+          type: string
+        sent:
+          type: number
+        allCodes:
+          type: array
+          items:
+            type: string
+        assetIds:
+          type: array
+          items:
+            type: string
+      required:
+      - destinations
+      - sources
+      - creator
+      - id
+      - transactionId
+      - sent
+    GeoCoordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        lon:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+      additionalProperties: false
+      required:
+      - lat
+      - lon
+      example:
+        lat: 37.7749
+        lon: -122.4194
+    DateTime:
+      type: string
+      format: date-time
+    GeoJsonGeometryObject:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - Point
+          - MultiPoint
+          - LineString
+          - MultiLineString
+          - Polygon
+          - MultiPolygon
+          - GeometryCollection
+        coordinates:
+          oneOf:
+          - type: array
+            items:
+              type: number
+              minItems: 2
+          - type: array
+            items:
+              type: array
+              items:
+                type: number
+                minItems: 2
+          - type: array
+            items:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+                  minItems: 2
+      required:
+      - type
+      - coordinates
+    TransactionParty:
+      type: object
+      readOnly: true
+      properties:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        name:
+          type: string
+          readOnly: true
+        photoUrl:
+          type: string
+          format: url
+          readOnly: true
+        photoEtag:
+          type: string
+          readOnly: true
+        isOrg:
+          type: boolean
+    PackagedShareProfileListItem:
+      type: object
+      description: Packaged share profile data
+      properties:
+        assets:
+          type: array
+          items:
+            type: string
+        bucket:
+          type: string
+        connections:
+          type: string
+        createdAt:
+          type: integer
+        expiresAt:
+          type: integer
+        ownerId:
+          type: string
+        sections:
+          type: array
+          items:
+            type: string
+        state:
+          type: string
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   parameters:
     Limit:
       name: limit

@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu Form Data Entries API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -48,6 +48,10 @@ paths:
                   $ref: '#/components/schemas/FormDataEntry'
         '401':
           $ref: '#/components/responses/401'
+      summary: Get forms by form id data entries
+      x-summary-source: derived
+      operationId: getFormsByFormIdDataEntries
+      x-operation-id-source: derived
     post:
       description: Create form data entry
       tags:
@@ -75,6 +79,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Create forms by form id data entries
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntries
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}:
     get:
       description: Get form data entry data
@@ -92,6 +100,10 @@ paths:
                 $ref: '#/components/schemas/FormData'
         '400':
           $ref: '#/components/responses/400'
+      summary: Get forms by form id data entries by entry id
+      x-summary-source: derived
+      operationId: getFormsByFormIdDataEntriesByEntryId
+      x-operation-id-source: derived
     patch:
       description: Modify form data entry
       tags:
@@ -133,6 +145,10 @@ paths:
           $ref: '#/components/responses/404'
         '422':
           $ref: '#/components/responses/422'
+      summary: Update forms by form id data entries by entry id
+      x-summary-source: derived
+      operationId: patchFormsByFormIdDataEntriesByEntryId
+      x-operation-id-source: derived
     delete:
       description: Archive form data entry
       tags:
@@ -152,6 +168,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Delete forms by form id data entries by entry id
+      x-summary-source: derived
+      operationId: deleteFormsByFormIdDataEntriesByEntryId
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/duplicate:
     post:
       description: Duplicate existing data entry
@@ -172,6 +192,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create forms by form id data entries by entry id duplicate
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdDuplicate
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/submit:
     post:
       description: Submit data entry to form owner
@@ -202,6 +226,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create forms by form id data entries by entry id submit
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdSubmit
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/review:
     post:
       description: Mark submitted data entry as reviewed
@@ -221,6 +249,10 @@ paths:
           $ref: '#/components/responses/204'
         '400':
           $ref: '#/components/responses/400'
+      summary: Create forms by form id data entries by entry id review
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdReview
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/withdraw:
     post:
       description: Withdraw the submitted data entry
@@ -235,6 +267,10 @@ paths:
           $ref: '#/components/responses/204'
         '400':
           $ref: '#/components/responses/400'
+      summary: Create forms by form id data entries by entry id withdraw
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdWithdraw
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/responders:
     post:
       description: Add data entry responders
@@ -260,6 +296,10 @@ paths:
           $ref: '#/components/responses/404'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create forms by form id data entries by entry id responders
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdResponders
+      x-operation-id-source: derived
     put:
       description: Replace data entry responders
       tags:
@@ -284,6 +324,10 @@ paths:
           $ref: '#/components/responses/404'
         '422':
           $ref: '#/components/responses/422'
+      summary: Replace forms by form id data entries by entry id responders
+      x-summary-source: derived
+      operationId: putFormsByFormIdDataEntriesByEntryIdResponders
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/responders/{responderId}:
     delete:
       description: Remove a responder from the data entry by Id
@@ -310,6 +354,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Delete forms by form id data entries by entry id responders by responder id
+      x-summary-source: derived
+      operationId: deleteFormsByFormIdDataEntriesByEntryIdRespondersByResponderId
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/reject:
     post:
       description: Reject submitted form data entry back to editor
@@ -335,6 +383,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create forms by form id data entries by entry id reject
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdReject
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/approval:
     post:
       description: Mark submitted data entry as approved
@@ -360,6 +412,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create forms by form id data entries by entry id approval
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdApproval
+      x-operation-id-source: derived
     delete:
       description: Revoke approval of a form data entry
       tags:
@@ -384,6 +440,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Delete forms by form id data entries by entry id approval
+      x-summary-source: derived
+      operationId: deleteFormsByFormIdDataEntriesByEntryIdApproval
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/denial:
     post:
       description: Deny form data entry, which means no more re-submissions will be allowed (aka permanent reject)
@@ -409,6 +469,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create forms by form id data entries by entry id denial
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdDenial
+      x-operation-id-source: derived
     delete:
       description: Revoke denial of a form data entry
       tags:
@@ -433,6 +497,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Delete forms by form id data entries by entry id denial
+      x-summary-source: derived
+      operationId: deleteFormsByFormIdDataEntriesByEntryIdDenial
+      x-operation-id-source: derived
   /forms/{formId}/data-entries/{entryId}/restore:
     post:
       description: Restore data entry that was previously archived
@@ -453,45 +521,28 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create forms by form id data entries by entry id restore
+      x-summary-source: derived
+      operationId: postFormsByFormIdDataEntriesByEntryIdRestore
+      x-operation-id-source: derived
 components:
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   schemas:
-    ApproveDataEntry:
-      $ref: '#/components/schemas/OptionalComment'
-    DenyDataEntry:
-      $ref: '#/components/schemas/RequiredComment'
-    ReviewDataEntry:
-      $ref: '#/components/schemas/OptionalComment'
-    RequiredComment:
-      title: Required Comment
+    ReplaceFormDataResponders:
+      title: Replace Form Data Responders Payload
+      type: array
+      items:
+        $ref: '#/components/schemas/Id'
+      minItems: 1
+      uniqueItems: true
+    OptionalComment:
+      title: Optional Comment
       properties:
         comment:
           type: string
-      required:
-      - comment
-    FormData:
-      description: Form data that matches parent form schema
-      type: object
-      properties: {}
+    ReviewDataEntry:
+      $ref: '#/components/schemas/OptionalComment'
+    RevokeDataEntryApproval:
+      $ref: '#/components/schemas/OptionalComment'
     LocalizedString:
       type: object
       required:
@@ -503,23 +554,15 @@ components:
         en:
           type: string
           description: Default English localization string
-    AddFormDataResponders:
-      title: Add Form Data Responders Payload
-      type: array
-      items:
-        $ref: '#/components/schemas/Id'
-      minItems: 1
-      uniqueItems: true
+    RequiredComment:
+      title: Required Comment
+      properties:
+        comment:
+          type: string
+      required:
+      - comment
     RejectFormData:
       $ref: '#/components/schemas/RequiredComment'
-    Id:
-      title: Id
-      type: string
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
-    RevokeDataEntryApproval:
-      $ref: '#/components/schemas/OptionalComment'
     FormDataEntry:
       description: Form data entry, assigned by a connected identity or created manually
       properties:
@@ -762,28 +805,37 @@ components:
           type: boolean
           readOnly: true
           title: Is Archived
-    OptionalComment:
-      title: Optional Comment
-      properties:
-        comment:
-          type: string
-    RevokeDataEntryDenial:
-      $ref: '#/components/schemas/OptionalComment'
-    ReplaceFormDataResponders:
-      title: Replace Form Data Responders Payload
+    DenyDataEntry:
+      $ref: '#/components/schemas/RequiredComment'
+    AddFormDataResponders:
+      title: Add Form Data Responders Payload
       type: array
       items:
         $ref: '#/components/schemas/Id'
       minItems: 1
       uniqueItems: true
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    FormData:
+      description: Form data that matches parent form schema
+      type: object
+      properties: {}
+    ApproveDataEntry:
+      $ref: '#/components/schemas/OptionalComment'
+    RevokeDataEntryDenial:
+      $ref: '#/components/schemas/OptionalComment'
   parameters:
-    Search:
-      name: search
-      in: query
+    formIdOrAll:
+      name: formId
+      in: path
       schema:
         type: string
-      description: A space-separated list of keywords to search items by
-      required: false
+      required: true
+      description: Parent form ID, can be set to "all"
     Limit:
       name: limit
       in: query
@@ -793,13 +845,6 @@ components:
         minimum: 1
       description: Number or items per page
       required: false
-    preventNotify:
-      name: preventNotify
-      in: query
-      schema:
-        type: boolean
-      required: false
-      description: If truthy, the notifications triggered by the endpoint will be suppressed
     entryIdOrPrimaryKey:
       name: entryId
       in: path
@@ -817,13 +862,20 @@ components:
         default: 0
       description: 0-based index of the first element
       required: false
-    formIdOrAll:
-      name: formId
-      in: path
+    Search:
+      name: search
+      in: query
       schema:
         type: string
-      required: true
-      description: Parent form ID, can be set to "all"
+      description: A space-separated list of keywords to search items by
+      required: false
+    preventNotify:
+      name: preventNotify
+      in: query
+      schema:
+        type: boolean
+      required: false
+      description: If truthy, the notifications triggered by the endpoint will be suppressed
     SortBy:
       name: sortBy
       in: query
@@ -831,6 +883,26 @@ components:
         type: string
       description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
       required: false
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   securitySchemes:
     Bearer:
       type: http

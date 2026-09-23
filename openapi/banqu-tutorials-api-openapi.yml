@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu Tutorials API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -66,19 +66,12 @@ paths:
                         $ref: '#/components/schemas/TutorialStep'
                     priority:
                       type: number
+      summary: Get tutorials
+      x-summary-source: derived
+      operationId: getTutorials
+      x-operation-id-source: derived
 components:
   schemas:
-    LocalizedString:
-      type: object
-      required:
-      - en
-      additionalProperties:
-        type: string
-        description: Strings in different languages
-      properties:
-        en:
-          type: string
-          description: Default English localization string
     TutorialStep:
       type: object
       required:
@@ -103,6 +96,17 @@ components:
               $ref: '#/components/schemas/LocalizedString'
             position:
               type: string
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
   securitySchemes:
     Bearer:
       type: http

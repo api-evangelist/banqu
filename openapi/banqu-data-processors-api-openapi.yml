@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu Data Processors API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -31,6 +31,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Get data processors
+      x-summary-source: derived
+      operationId: getDataProcessors
+      x-operation-id-source: derived
     post:
       description: Create data processor
       tags:
@@ -50,6 +54,10 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+      summary: Create data processors
+      x-summary-source: derived
+      operationId: postDataProcessors
+      x-operation-id-source: derived
   /data-processors/{processorId}:
     parameters:
     - name: processorId
@@ -79,6 +87,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get data processors by processor id
+      x-summary-source: derived
+      operationId: getDataProcessorsByProcessorId
+      x-operation-id-source: derived
     put:
       description: Update data processor
       tags:
@@ -100,6 +112,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Replace data processors by processor id
+      x-summary-source: derived
+      operationId: putDataProcessorsByProcessorId
+      x-operation-id-source: derived
     delete:
       description: Archive data processor
       tags:
@@ -113,6 +129,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Delete data processors by processor id
+      x-summary-source: derived
+      operationId: deleteDataProcessorsByProcessorId
+      x-operation-id-source: derived
   /data-processors/{processorId}/restore:
     parameters:
     - name: processorId
@@ -134,6 +154,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create data processors by processor id restore
+      x-summary-source: derived
+      operationId: postDataProcessorsByProcessorIdRestore
+      x-operation-id-source: derived
   /data-processors/{processorId}/validate:
     parameters:
     - name: processorId
@@ -172,6 +196,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create data processors by processor id validate
+      x-summary-source: derived
+      operationId: postDataProcessorsByProcessorIdValidate
+      x-operation-id-source: derived
   /data-processors/{processorId}/process:
     parameters:
     - name: processorId
@@ -213,6 +241,10 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create data processors by processor id process
+      x-summary-source: derived
+      operationId: postDataProcessorsByProcessorIdProcess
+      x-operation-id-source: derived
   /data-processors/{processorId}/stop:
     parameters:
     - name: processorId
@@ -253,10 +285,22 @@ paths:
           $ref: '#/components/responses/403'
         '422':
           $ref: '#/components/responses/422'
+      summary: Create data processors by processor id stop
+      x-summary-source: derived
+      operationId: postDataProcessorsByProcessorIdStop
+      x-operation-id-source: derived
 components:
   responses:
     '404':
       description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
     '201':
       description: HTTP 201 - Created
       headers:
@@ -264,140 +308,11 @@ components:
           schema:
             type: string
           description: Url of the created entity
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
     '403':
       description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   schemas:
-    Attachment:
-      type: object
-      additionalProperties: false
-      properties:
-        downloadUrl:
-          type: string
-          format: url
-        fileName:
-          type: string
-          minLength: 1
-        fileSize:
-          type: number
-          minimum: 0
-        mimeType:
-          type: string
-          minLength: 1
-          example: image/jpeg
-        md5:
-          type: string
-          minLength: 32
-          maxLength: 32
-          pattern: ^[a-f0-9]{32}$
-      required:
-      - downloadUrl
-    WorkflowStepName:
-      type:
-      - string
-      - 'null'
-      description: Optional unique alpha-numeric name of the step. Data produced during the step execution can be referred by this name
-      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
-    JsonSchema:
-      title: JSON Schema
-      description: https://json-schema.org/draft-07/schema#
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - array
-          - boolean
-          - integer
-          - 'null'
-          - number
-          - object
-          - string
-          example: object
-        required:
-          type: array
-          items:
-            type: string
-          uniqueItems: true
-        additionalProperties:
-          oneOf:
-          - type: boolean
-          - type: object
-        properties:
-          type: object
-      example:
-        type: object
-        properties:
-          field1:
-            type: string
-        required:
-        - field1
-        additionalProperties: false
-    ScimResourceMetadata:
-      type: object
-      readOnly: true
-      properties:
-        displayName:
-          type: string
-          readOnly: true
-        meta:
-          type: object
-          properties:
-            resourceType:
-              type: string
-              readOnly: true
-            created:
-              type: number
-              readOnly: true
-            lastModified:
-              type: number
-              readOnly: true
-          required:
-          - resourceType
-          - created
-          - lastModified
-      required:
-      - displayName
-      - meta
-    WorkflowSteps:
-      title: Workflow Steps
-      type: array
-      items:
-        oneOf:
-        - $ref: '#/components/schemas/WorkflowMapping'
-        - $ref: '#/components/schemas/WorkflowFilter'
-        - $ref: '#/components/schemas/WorkflowUniquenessFilter'
-        - $ref: '#/components/schemas/WorkflowAction'
-        - $ref: '#/components/schemas/WorkflowRequest'
-      example:
-      - type: filter
-        condition: selectedAssetId !== '' && receiverId !== ''
-      - type: map
-        mapping:
-          map:
-            assetId: selectedAssetId
-            body:
-              map:
-                receiverId: receiverId
-                qty: '1'
-                destinationId: 'null'
-                price: '0'
-                priceCurrency: '''USD'''
-      - type: action
-        action: eyJwYXRoIjoiL2Fzc2V0cy97YXNzZXRJZH0vdHJhbnNmZXJzIiwibWV0aG9kIjoicG9zdCJ9
-    WorkflowFilter:
-      title: Workflow Filter
+    WorkflowAction:
+      title: Workflow Action
       type: object
       additionalProperties: false
       properties:
@@ -408,63 +323,13 @@ components:
         type:
           type: string
           enum:
-          - filter
-        condition:
+          - action
+        action:
           type: string
-          description: JS expression in a 'filter' step that returns `true` or `false` to indicate if execution should proceed
+          description: ID of the Open API endpoint to execute. Base64 encoded JSON object containing endpint properties `{ method, path }`
       required:
       - type
-      - condition
-    WorkflowRequest:
-      title: Workflow Request
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - request
-        method:
-          type: string
-          enum:
-          - get
-          - list
-          - post
-          - put
-          - patch
-          - delete
-          - head
-          - options
-        url:
-          type: string
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - type
-      - method
-      - url
-    Mapping:
-      type: object
-      properties:
-        from:
-          type: string
-          description: Context source to map data from
-        forEach:
-          type: string
-          description: Array context source to map data from
-        map:
-          type: object
-          description: Object fields mapping
-      additionalProperties: true
-      example:
-        map:
-          outputField: inputField
+      - action
     DataProcessor:
       type: object
       additionalProperties: false
@@ -496,6 +361,32 @@ components:
         ownerId:
           type: string
           readOnly: true
+    WorkflowSteps:
+      title: Workflow Steps
+      type: array
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/WorkflowMapping'
+        - $ref: '#/components/schemas/WorkflowFilter'
+        - $ref: '#/components/schemas/WorkflowUniquenessFilter'
+        - $ref: '#/components/schemas/WorkflowAction'
+        - $ref: '#/components/schemas/WorkflowRequest'
+      example:
+      - type: filter
+        condition: selectedAssetId !== '' && receiverId !== ''
+      - type: map
+        mapping:
+          map:
+            assetId: selectedAssetId
+            body:
+              map:
+                receiverId: receiverId
+                qty: '1'
+                destinationId: 'null'
+                price: '0'
+                priceCurrency: '''USD'''
+      - type: action
+        action: eyJwYXRoIjoiL2Fzc2V0cy97YXNzZXRJZH0vdHJhbnNmZXJzIiwibWV0aG9kIjoicG9zdCJ9
     DataProcessorXlsxParser:
       type: object
       title: XLSX Parser Configuration
@@ -570,8 +461,8 @@ components:
       required:
       - type
       - config
-    WorkflowAction:
-      title: Workflow Action
+    WorkflowMapping:
+      title: Workflow Mapping
       type: object
       additionalProperties: false
       properties:
@@ -582,19 +473,149 @@ components:
         type:
           type: string
           enum:
-          - action
-        action:
-          type: string
-          description: ID of the Open API endpoint to execute. Base64 encoded JSON object containing endpint properties `{ method, path }`
+          - map
+        mapping:
+          $ref: '#/components/schemas/Mapping'
       required:
       - type
-      - action
-    WorkflowStepInput:
-      type:
-      - string
-      - 'null'
-      description: Name of one of the previous steps that should be used as a primary input. By default the latest step name is used
-      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+      - mapping
+    Attachment:
+      type: object
+      additionalProperties: false
+      properties:
+        downloadUrl:
+          type: string
+          format: url
+        fileName:
+          type: string
+          minLength: 1
+        fileSize:
+          type: number
+          minimum: 0
+        mimeType:
+          type: string
+          minLength: 1
+          example: image/jpeg
+        md5:
+          type: string
+          minLength: 32
+          maxLength: 32
+          pattern: ^[a-f0-9]{32}$
+      required:
+      - downloadUrl
+    WorkflowUniquenessFilter:
+      title: Workflow Uniqueness Filter
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - unique
+        criteria:
+          type: string
+          description: JS expression in a 'unique' step that returns a key used to identify object uniquenss
+      required:
+      - type
+      - criteria
+    Mapping:
+      type: object
+      properties:
+        from:
+          type: string
+          description: Context source to map data from
+        forEach:
+          type: string
+          description: Array context source to map data from
+        map:
+          type: object
+          description: Object fields mapping
+      additionalProperties: true
+      example:
+        map:
+          outputField: inputField
+    DataProcessorCsvParser:
+      type: object
+      title: CSV Parser Configuration
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+          - csv
+        config:
+          type: object
+          properties:
+            linesToSkip:
+              type: number
+              default: 0
+            timeForChunk:
+              type: number
+              default: 20
+            containsHeader:
+              type: boolean
+              default: true
+            parseDirection:
+              type: string
+              enum:
+              - top-to-bottom
+              - left-to-right
+            schema:
+              $ref: '#/components/schemas/JsonSchema'
+            separator:
+              type: string
+      required:
+      - type
+      - config
+    ScimResourceMetadata:
+      type: object
+      readOnly: true
+      properties:
+        displayName:
+          type: string
+          readOnly: true
+        meta:
+          type: object
+          properties:
+            resourceType:
+              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
+      required:
+      - displayName
+      - meta
+    WorkflowFilter:
+      title: Workflow Filter
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - filter
+        condition:
+          type: string
+          description: JS expression in a 'filter' step that returns `true` or `false` to indicate if execution should proceed
+      required:
+      - type
+      - condition
     DataProcessorResult:
       type: object
       properties:
@@ -642,76 +663,91 @@ components:
                                 type: object
                               total:
                                 type: number
-    DataProcessorCsvParser:
+    WorkflowStepName:
+      type:
+      - string
+      - 'null'
+      description: Optional unique alpha-numeric name of the step. Data produced during the step execution can be referred by this name
+      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+    WorkflowStepInput:
+      type:
+      - string
+      - 'null'
+      description: Name of one of the previous steps that should be used as a primary input. By default the latest step name is used
+      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+    WorkflowRequest:
+      title: Workflow Request
       type: object
-      title: CSV Parser Configuration
       additionalProperties: false
       properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
         type:
           type: string
           enum:
-          - csv
-        config:
+          - request
+        method:
+          type: string
+          enum:
+          - get
+          - list
+          - post
+          - put
+          - patch
+          - delete
+          - head
+          - options
+        url:
+          type: string
+        headers:
           type: object
-          properties:
-            linesToSkip:
-              type: number
-              default: 0
-            timeForChunk:
-              type: number
-              default: 20
-            containsHeader:
-              type: boolean
-              default: true
-            parseDirection:
-              type: string
-              enum:
-              - top-to-bottom
-              - left-to-right
-            schema:
-              $ref: '#/components/schemas/JsonSchema'
-            separator:
-              type: string
+          additionalProperties:
+            type: string
       required:
       - type
-      - config
-    WorkflowUniquenessFilter:
-      title: Workflow Uniqueness Filter
+      - method
+      - url
+    JsonSchema:
+      title: JSON Schema
+      description: https://json-schema.org/draft-07/schema#
       type: object
-      additionalProperties: false
       properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
+        title:
+          type: string
+        description:
+          type: string
         type:
           type: string
           enum:
-          - unique
-        criteria:
-          type: string
-          description: JS expression in a 'unique' step that returns a key used to identify object uniquenss
-      required:
-      - type
-      - criteria
-    WorkflowMapping:
-      title: Workflow Mapping
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - map
-        mapping:
-          $ref: '#/components/schemas/Mapping'
-      required:
-      - type
-      - mapping
+          - array
+          - boolean
+          - integer
+          - 'null'
+          - number
+          - object
+          - string
+          example: object
+        required:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        additionalProperties:
+          oneOf:
+          - type: boolean
+          - type: object
+        properties:
+          type: object
+      example:
+        type: object
+        properties:
+          field1:
+            type: string
+        required:
+        - field1
+        additionalProperties: false
   securitySchemes:
     Bearer:
       type: http

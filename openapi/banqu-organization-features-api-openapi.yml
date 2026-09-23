@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu Organization Features API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -29,6 +29,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrgFeatures'
+      summary: Get orgs by org id features
+      x-summary-source: derived
+      operationId: getOrgsByOrgIdFeatures
+      x-operation-id-source: derived
     post:
       description: Set organization features
       tags:
@@ -66,18 +70,11 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      summary: Create orgs by org id features
+      x-summary-source: derived
+      operationId: postOrgsByOrgIdFeatures
+      x-operation-id-source: derived
 components:
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
   schemas:
     OrgFeatures:
       type: object
@@ -99,6 +96,17 @@ components:
                 - update
                 - delete
               uniqueItems: true
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   securitySchemes:
     Bearer:
       type: http

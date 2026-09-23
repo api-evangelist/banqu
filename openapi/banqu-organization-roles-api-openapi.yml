@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: BanQu Organization Roles API
   version: 3.3.4
-  description: The BanQu API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and [JSON](http://www.json.org) for input and output.
+  description: The BanQu API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients, and JSON for input and output.
 servers:
 - url: https://banqu.app:443/api/v1
 security:
@@ -29,6 +29,10 @@ paths:
                   - $ref: '#/components/schemas/ScimResourceMetadata'
         '404':
           $ref: '#/components/responses/404'
+      summary: Get orgs current roles
+      x-summary-source: derived
+      operationId: getOrgsCurrentRoles
+      x-operation-id-source: derived
     post:
       description: Create org account role
       tags:
@@ -49,6 +53,10 @@ paths:
           $ref: '#/components/responses/201'
         '400':
           $ref: '#/components/responses/400'
+      summary: Create orgs current roles
+      x-summary-source: derived
+      operationId: postOrgsCurrentRoles
+      x-operation-id-source: derived
   /orgs/current/roles/{roleId}:
     patch:
       description: Modify org account role
@@ -79,6 +87,10 @@ paths:
           $ref: '#/components/responses/400'
         '404':
           $ref: '#/components/responses/404'
+      summary: Update orgs current roles by role id
+      x-summary-source: derived
+      operationId: patchOrgsCurrentRolesByRoleId
+      x-operation-id-source: derived
     delete:
       description: Remove org account role
       tags:
@@ -97,6 +109,10 @@ paths:
           $ref: '#/components/responses/400'
         '404':
           $ref: '#/components/responses/404'
+      summary: Delete orgs current roles by role id
+      x-summary-source: derived
+      operationId: deleteOrgsCurrentRolesByRoleId
+      x-operation-id-source: derived
   /orgs/current/capabilities:
     get:
       description: List all organization capabilities
@@ -109,22 +125,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrgCapabilities'
+      summary: Get orgs current capabilities
+      x-summary-source: derived
+      operationId: getOrgsCurrentCapabilities
+      x-operation-id-source: derived
 components:
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
   schemas:
+    OrgRole:
+      type: object
+      description: Organization role
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          $ref: '#/components/schemas/LocalizedName'
+        description:
+          $ref: '#/components/schemas/LocalizedDescription'
+        permissions:
+          $ref: '#/components/schemas/OrgCapabilities'
+        predefined:
+          type: boolean
+          description: Indicates that role is defined by system and is immutable
+        shared:
+          type: boolean
+          description: Indicates that role is not owned by current org but is shared from a connected one
+        type:
+          type: string
+          description: Defines on which entity the role can be applied
+          enum:
+          - associate
+          - connection
+        ownerDisplayName:
+          type: string
+        ownerId:
+          type: string
+      required:
+      - name
+      - description
+      - permissions
+      - type
+    LocalizedDescription:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            maxLength: 80
+        additionalProperties:
+          maxLength: 80
+    LocalizedName:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            minLength: 2
+            maxLength: 20
+        additionalProperties:
+          minLength: 2
+          maxLength: 20
     ScimResourceMetadata:
       type: object
       readOnly: true
@@ -151,6 +209,17 @@ components:
       required:
       - displayName
       - meta
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
     OrgCapabilities:
       type: object
       description: Capabilities of organization account
@@ -190,69 +259,20 @@ components:
           type: string
           maxLength: 32
       additionalProperties: false
-    LocalizedString:
-      type: object
-      required:
-      - en
-      additionalProperties:
-        type: string
-        description: Strings in different languages
-      properties:
-        en:
-          type: string
-          description: Default English localization string
-    LocalizedDescription:
-      allOf:
-      - $ref: '#/components/schemas/LocalizedString'
-      - properties:
-          en:
-            maxLength: 80
-        additionalProperties:
-          maxLength: 80
-    OrgRole:
-      type: object
-      description: Organization role
-      properties:
-        id:
-          type: string
-          readOnly: true
-        name:
-          $ref: '#/components/schemas/LocalizedName'
-        description:
-          $ref: '#/components/schemas/LocalizedDescription'
-        permissions:
-          $ref: '#/components/schemas/OrgCapabilities'
-        predefined:
-          type: boolean
-          description: Indicates that role is defined by system and is immutable
-        shared:
-          type: boolean
-          description: Indicates that role is not owned by current org but is shared from a connected one
-        type:
-          type: string
-          description: Defines on which entity the role can be applied
-          enum:
-          - associate
-          - connection
-        ownerDisplayName:
-          type: string
-        ownerId:
-          type: string
-      required:
-      - name
-      - description
-      - permissions
-      - type
-    LocalizedName:
-      allOf:
-      - $ref: '#/components/schemas/LocalizedString'
-      - properties:
-          en:
-            minLength: 2
-            maxLength: 20
-        additionalProperties:
-          minLength: 2
-          maxLength: 20
+  responses:
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   securitySchemes:
     Bearer:
       type: http
