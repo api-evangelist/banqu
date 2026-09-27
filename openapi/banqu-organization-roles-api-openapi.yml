@@ -131,6 +131,64 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
+    EditableOrgRole:
+      type: object
+      description: Organization role
+      properties:
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/LocalizedName'
+        type:
+          type: string
+          enum:
+          - associate
+          - connection
+        description:
+          $ref: '#/components/schemas/LocalizedDescription'
+        permissions:
+          type: object
+          additionalProperties:
+            type: array
+            uniqueItems: true
+            items:
+              type: string
+        ownerId:
+          type: string
+          maxLength: 32
+      additionalProperties: false
+    LocalizedDescription:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            maxLength: 80
+        additionalProperties:
+          maxLength: 80
+    OrgCapabilities:
+      type: object
+      description: Capabilities of organization account
+      additionalProperties:
+        type: array
+        items:
+          type: string
+          enum:
+          - create
+          - read
+          - update
+          - delete
+        uniqueItems: true
     OrgRole:
       type: object
       description: Organization role
@@ -165,14 +223,6 @@ components:
       - description
       - permissions
       - type
-    LocalizedDescription:
-      allOf:
-      - $ref: '#/components/schemas/LocalizedString'
-      - properties:
-          en:
-            maxLength: 80
-        additionalProperties:
-          maxLength: 80
     LocalizedName:
       allOf:
       - $ref: '#/components/schemas/LocalizedString'
@@ -209,59 +259,13 @@ components:
       required:
       - displayName
       - meta
-    LocalizedString:
-      type: object
-      required:
-      - en
-      additionalProperties:
-        type: string
-        description: Strings in different languages
-      properties:
-        en:
-          type: string
-          description: Default English localization string
-    OrgCapabilities:
-      type: object
-      description: Capabilities of organization account
-      additionalProperties:
-        type: array
-        items:
-          type: string
-          enum:
-          - create
-          - read
-          - update
-          - delete
-        uniqueItems: true
-    EditableOrgRole:
-      type: object
-      description: Organization role
-      properties:
-        id:
-          type: string
-        name:
-          $ref: '#/components/schemas/LocalizedName'
-        type:
-          type: string
-          enum:
-          - associate
-          - connection
-        description:
-          $ref: '#/components/schemas/LocalizedDescription'
-        permissions:
-          type: object
-          additionalProperties:
-            type: array
-            uniqueItems: true
-            items:
-              type: string
-        ownerId:
-          type: string
-          maxLength: 32
-      additionalProperties: false
   responses:
     '404':
       description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
     '201':
       description: HTTP 201 - Created
       headers:
@@ -269,10 +273,6 @@ components:
           schema:
             type: string
           description: Url of the created entity
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   securitySchemes:
     Bearer:
       type: http

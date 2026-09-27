@@ -196,27 +196,60 @@ paths:
       operationId: postAuthSignupByToken
       x-operation-id-source: derived
 components:
+  responses:
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
   schemas:
-    ImmutableTimestamp:
-      type: number
-      readOnly: true
-      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
-      example: 1568894551000
-    InviteInfo:
+    SignUpWithToken:
       type: object
       properties:
-        phoneNumber:
-          type: string
         email:
           type: string
-        givenName:
+          format: email
+        password:
           type: string
-        familyName:
+          minLength: 8
+          maxLength: 32
+        name:
+          $ref: '#/components/schemas/PersonName'
+        phoneNumber:
           type: string
-        isEmailInvite:
-          type: boolean
-        isPhoneInvite:
-          type: boolean
+      anyOf:
+      - title: SignUp with phone number
+        type: object
+        required:
+        - phoneNumber
+        - password
+        - name
+        example:
+          phoneNumber: 0123456789
+          name:
+            givenName: John
+            familyName: Doe
+          password: pa$$w0rd
+      - title: SignUp with email
+        type: object
+        required:
+        - email
+        - password
+        - name
+        example:
+          email: example@email.com
+          name:
+            givenName: John
+            familyName: Doe
+          password: pa$$w0rd
+      additionalProperties: false
     SignUp:
       type: object
       properties:
@@ -281,46 +314,36 @@ components:
           description: Indicates if account is an Org account
           type: boolean
           readOnly: true
-    SignUpWithToken:
+    ApiTokenCreationParameters:
+      allOf:
+      - $ref: '#/components/schemas/ApiTokenInfo'
+      - type: object
+        properties:
+          password:
+            type: string
+            description: Current user's password
+        required:
+        - password
+    InviteInfo:
       type: object
       properties:
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-          minLength: 8
-          maxLength: 32
-        name:
-          $ref: '#/components/schemas/PersonName'
         phoneNumber:
           type: string
-      anyOf:
-      - title: SignUp with phone number
-        type: object
-        required:
-        - phoneNumber
-        - password
-        - name
-        example:
-          phoneNumber: 0123456789
-          name:
-            givenName: John
-            familyName: Doe
-          password: pa$$w0rd
-      - title: SignUp with email
-        type: object
-        required:
-        - email
-        - password
-        - name
-        example:
-          email: example@email.com
-          name:
-            givenName: John
-            familyName: Doe
-          password: pa$$w0rd
-      additionalProperties: false
+        email:
+          type: string
+        givenName:
+          type: string
+        familyName:
+          type: string
+        isEmailInvite:
+          type: boolean
+        isPhoneInvite:
+          type: boolean
+    PersonNameField:
+      type: string
+      minLength: 1
+      maxLength: 100
+      pattern: ^\p{L}+(?:[ '-]\p{L}+)*$
     PersonName:
       type: object
       properties:
@@ -332,6 +355,21 @@ components:
       - givenName
       - familyName
       additionalProperties: false
+    ApiTokenInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          minLength: 1
+        created:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+        expires:
+          $ref: '#/components/schemas/ImmutableTimestamp'
+      required:
+      - title
     AuthTokens:
       description: Auth and refresh tokens for API request authentication
       properties:
@@ -349,49 +387,11 @@ components:
       required:
       - token
       - refreshToken
-    ApiTokenInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        title:
-          type: string
-          minLength: 1
-        created:
-          $ref: '#/components/schemas/ImmutableTimestamp'
-        expires:
-          $ref: '#/components/schemas/ImmutableTimestamp'
-      required:
-      - title
-    ApiTokenCreationParameters:
-      allOf:
-      - $ref: '#/components/schemas/ApiTokenInfo'
-      - type: object
-        properties:
-          password:
-            type: string
-            description: Current user's password
-        required:
-        - password
-    PersonNameField:
-      type: string
-      minLength: 1
-      maxLength: 100
-      pattern: ^\p{L}+(?:[ '-]\p{L}+)*$
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    ImmutableTimestamp:
+      type: number
+      readOnly: true
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
   securitySchemes:
     Bearer:
       type: http

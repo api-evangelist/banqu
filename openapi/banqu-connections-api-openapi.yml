@@ -641,215 +641,60 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ConnectionCreatePayload:
-      allOf:
-      - type: object
-        properties:
-          id:
-            allOf:
-            - $ref: '#/components/schemas/Id'
-            - description: Id of the user in the BanQu system
-          assignedAssociates:
-            type: array
-            uniqueItems: true
-            items:
-              $ref: '#/components/schemas/Id'
-          forceCreation:
-            type: boolean
-            description: Create user or connection automatically (requires additional account permissions to be used)
-            default: false
-          preventNotify:
-            type: boolean
-            description: Suppress SMS notifications
-            default: false
-      - $ref: '#/components/schemas/Profile'
-      - anyOf:
-        - title: Profile with Id
-          required:
-          - id
-        - $ref: '#/components/schemas/ProfileRequirements'
-      example:
-        name:
-          formatted: John Doe
-        emails:
-        - value: john@example.com
-        preferredLanguage: en
-        locale: en-us
-        externalId: id-in-external-system
-        assignedAssociates: []
-    Profile:
-      title: User Profile
+    FormSection:
+      title: Form Section
       type: object
       properties:
-        displayName:
+        $entityId:
           type: string
-          description: The name of the user, suitable for displaying to other parties
-          readOnly: true
+          description: Internal unique identifier for the section
+        title:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
         name:
-          title: Structured User Name
-          allOf:
-          - type: object
-            additionalProperties: false
-            properties:
-              formatted:
-                type: string
-                description: The full name, including all middle names, titles, and suffixes as appropriate, formatted for display
-                example: Ms. Barbara Jane Jensen, III
-              honorificPrefix:
-                type: string
-                description: The honorific prefix(es) of the User, or title in most Western languages.
-                example: Ms.
-              givenName:
-                type: string
-                description: The given name of the User, or first name in most Western languages.
-                example: Barbara
-              middleName:
-                type: string
-                description: The middle name(s) of the User.
-                example: Jane
-              familyName:
-                type: string
-                description: The family name of the User, or last name in most Western languages.
-                example: Jensen
-              honorificSuffix:
-                type: string
-                description: The honorific suffix(es) of the User, or suffix in most Western languages.
-                example: III
-          - anyOf:
-            - title: formatted name not empty
-              required:
-              - formatted
-            - title: givenName and familyName not empty
-              required:
-              - givenName
-              - familyName
-        userName:
+          $ref: '#/components/schemas/JsonIdentifier'
+        multiple:
+          type: boolean
+          description: If multiple instances of the section are allowed
+        required:
+          type: boolean
+          description: If at least one of the section instances is required
+        requiredIf:
           type: string
-          minLength: 5
-          maxLength: 50
-          pattern: ^[a-zA-Z]{2}\w+$
-          description: A unique, manually-set identifier for the user in BanQu system (requires additional account permissions to be used)
-        emails:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/ProfileEmail'
-        phoneNumbers:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/ProfilePhoneNumber'
-        ims:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/ProfileProperty'
-        photos:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/ProfilePhoto'
-        addresses:
-          type: array
-          uniqueItems: true
-          items:
-            type: object
-            description: A physical mailing address for this user
-            additionalProperties: false
-            properties:
-              type:
-                type: string
-                description: Canonical type values of "work", "home", and "other"
-                example: home
-              formatted:
-                type: string
-                description: The full mailing address, formatted for display or use with a mailing label
-              streetAddress:
-                type: string
-                description: The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information.
-              locality:
-                type: string
-                description: The city or locality component
-              region:
-                type: string
-                description: The state or region component
-              postalCode:
-                type: string
-                description: The zipcode or postal code component
-              country:
-                type: string
-                description: The country name component. When specified the value MUST be in ISO 3166-1 alpha 2 "short" code format [ISO3166]
-                example: US
-        preferredLanguage:
+        visibleIf:
           type: string
-          description: Indicates the user's preferred written or spoken languages and is generally used for selecting a localized User interface. The value indicates the set of natural languages that are preferred.
-          example: en
-        locale:
+        weight:
+          type: number
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        threshold:
+          type: number
+          minimum: 0
+          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
+        layout:
           type: string
+          description: Section markup layout
           enum:
-          - en-us
-          - en-gb
-          - en-za
-          - uk-ua
-          description: Used to indicate the User's default location for purposes of localizing such items as currency, date time format, or numerical representations. A valid value is a language tag as defined in [RFC5646](https://tools.ietf.org/html/rfc5646). Computer languages are explicitly excluded.
-        urn:banqu:schemas:scim:User:social:
-          title: User social profile
-          type: object
-          properties:
-            gender:
-              type: string
-              enum:
-              - ''
-              - O
-              - M
-              - F
-              example: M
-              description: 'Letter of a gender: "M" for male, "F" for female, "O" for other, or empty value not to specify it'
-            birthday:
-              type: string
-              format: date
-              example: '1985-04-17'
-        urn:banqu:schemas:scim:User:identification:
-          title: User identification documents
+          - horizontal
+          - vertical
+          - table
+        fields:
           type: array
-          uniqueItems: true
           items:
-            type: object
-            additionalProperties: false
-            properties:
-              type:
-                type: string
-                minLength: 1
-              $entityId:
-                type: string
-                minLength: 1
-              country:
-                type: string
-                description: The country name component. When specified the value MUST be in ISO 3166-1 alpha 2 "short" code format [ISO3166]
-                example: US
-                minLength: 2
-                maxLength: 2
-              expiresOn:
-                type: string
-                format: date
-              issuedBy:
-                type: string
-              issuedOn:
-                type: string
-                format: date
-              id:
-                type: string
-                minLength: 1
-              attachments:
-                $ref: '#/components/schemas/Attachment'
-            required:
-            - type
-            - id
-      patternProperties:
-        ^urn:banqu:schemas:([a-f\d]{32}|scim):User:[a-zA-Z_][\da-zA-Z_]*$:
-          anyOf:
-          - type: object
-          - type: array
+            oneOf:
+            - $ref: '#/components/schemas/FormField'
+            - $ref: '#/components/schemas/CheckboxField'
+            - $ref: '#/components/schemas/FormFieldWithItems'
+            - $ref: '#/components/schemas/FormMarkupElement'
+            - $ref: '#/components/schemas/FragmentField'
+        groupId:
+          type: string
+          description: Identifier of the group this section belongs to
+        frozen:
+          type: boolean
+          readOnly: true
+      required:
+      - fields
     Resource:
       type: object
       properties:
@@ -888,141 +733,92 @@ components:
               format: uri
               readOnly: true
           readOnly: true
-    Asset:
+    ConnectionProfileUpdatePayload:
+      allOf:
+      - $ref: '#/components/schemas/ExistentProfile'
+      - type: object
+        properties:
+          preventNotify:
+            type: boolean
+            description: Suppress SMS notifications
+            default: false
+          lastModified:
+            type: number
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    ConnectionFilter:
       type: object
-      additionalProperties: false
       properties:
-        id:
-          $ref: '#/components/schemas/ImmutableId'
-        ownerId:
-          $ref: '#/components/schemas/Id'
-        creatorId:
-          $ref: '#/components/schemas/ImmutableId'
-        code:
-          $ref: '#/components/schemas/AssetCode'
-        description:
-          $ref: '#/components/schemas/AssetDescription'
-        uom:
-          $ref: '#/components/schemas/AssetUom'
-        attachments:
-          $ref: '#/components/schemas/Attachments'
-        isCredit:
-          type: boolean
-          default: false
-          description: Indicates whether the asset will be used as a normal resource or as a credit balance
-        qty:
-          type: number
-          default: 0
-          writeOnly: true
-        minQty:
-          type: number
-        balance:
-          type: number
-          readOnly: true
-        confirmedBalance:
-          type: number
-          readOnly: true
-        rejectedAmount:
-          type: number
-          readOnly: true
-        archived:
-          type: boolean
-          readOnly: true
-        transferPropertiesForm:
-          $ref: '#/components/schemas/Form'
-        prices:
-          $ref: '#/components/schemas/AssetPrices'
-        allowOtherCurrencies:
-          type: boolean
-          description: Indicates if currencies other than listed in `prices` can be used in transactions
-          default: false
-        requireExplicitSources:
-          description: Indicates if explicit transfer sources must be specified for every transfer
-          type: boolean
-          default: false
-        autoFilterProperties:
-          description: Indicates if automatic filtering by matching properties should occur when selecting sources or sellers
-          type: boolean
-          default: false
-        allowDoubleSourcing:
-          description: Indicates that operations of this asset can be used as sources multiple times without tracing availability
-          type: boolean
-          default: false
-        usagePreferences:
-          $ref: '#/components/schemas/AssetUsagePreferences'
-        confirmationPropagationMode:
+        criteria:
+          type: array
+          items:
+            type: object
+            properties:
+              action:
+                type: string
+                enum:
+                - '='
+                - '>'
+                - <
+                - '!='
+                - in
+                - notIn
+                - contains
+              formId:
+                description: Id of user or org profile form
+                type: string
+              name:
+                description: Field JSON name. For multiple sections format is sectionName[].fieldName
+                type: string
+              value:
+                description: 'type: string, number, boolean, array<string> value that should be compared against in specified field of found profiles'
+                anyOf:
+                - type: object
+                - type: string
+                - type: number
+                - type: boolean
+            required:
+            - action
+            - formId
+            - name
+            - value
+        match:
           type: string
           enum:
-          - none
-          - proportional
-          - scot-free
+          - any
+          - all
       required:
-      - code
-      - uom
-      - qty
-    FormMarkupElement:
-      title: Form Markup Element
+      - filter
+      - match
+    AssetCode:
+      type: string
+      minLength: 2
+      maxLength: 32
+    ParentFieldName:
+      type: string
+      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\[\]\.([a-zA-Z_][\da-zA-Z_]*))?(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
+      description: Name of a parent field whose selected value filters options in this field. E.g., selecting a connection filters related data entries
+    AssetDescription:
+      type: string
+      minLength: 0
+      maxLength: 200
+    ProfileProperty:
+      title: Profile Property
       type: object
-      required:
-      - title
-      - type
       properties:
         type:
           type: string
-          enum:
-          - legend
-          - static
-        url:
+        value:
           type: string
-          format: url
-        title:
-          $ref: '#/components/schemas/LocalizedString'
-        description:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        visibility:
-          $ref: '#/components/schemas/FormElementVisibility'
-        $entityId:
-          type: string
-        requiredIf:
-          type: string
-        visibleIf:
-          type: string
-      additionalProperties: false
-    AssetUom:
-      title: Asset Unit of Measurement
-      type: string
-      enum:
-      - BR
-      - BO
-      - BX
-      - BU
-      - CN
-      - CA
-      - CH
-      - DO
-      - EA
-      - FO
-      - FT
-      - GA
-      - GR
-      - HR
-      - JA
-      - KG
-      - KK
-      - LT
-      - Q3
-      - MR
-      - MG
-      - M4
-      - OZ
-      - PK
-      - PR
-      - PC
-      - LB
-      - SJ
-      - VS
-      - YD
-      example: KG
+          minLength: 1
+        primary:
+          type: boolean
+      required:
+      - value
     ProfilePhoto:
       allOf:
       - $ref: '#/components/schemas/ProfileProperty'
@@ -1036,70 +832,122 @@ components:
             type: string
             format: url
             example: https://example.com/avatar.jpg
-    ConnectionExtension:
+    Connection:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/Resource'
+      - $ref: '#/components/schemas/Profile'
+      - $ref: '#/components/schemas/ConnectionExtension'
+      required:
+      - id
+    JsonNestedIdentifier:
+      type: string
+      description: JSON field name, optionally nested, e.g., 'field1.subfield2'
+      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
+    AssetUsagePreferences:
+      type: object
+      additionalProperties: false
+      properties:
+        buy:
+          type: boolean
+        sell:
+          type: boolean
+        send:
+          type: boolean
+        receive:
+          type: boolean
+        batch:
+          type: boolean
+    ProfileRequirements:
+      title: Profile with email, phoneNumber, identification document, or name and birthday
+      anyOf:
+      - title: emails not empty
+        properties:
+          emails:
+            minItems: 1
+        required:
+        - emails
+      - title: phoneNumbers not empty
+        properties:
+          phoneNumbers:
+            minItems: 1
+        required:
+        - phoneNumbers
+      - title: identification documents not empty
+        properties:
+          urn:banqu:schemas:scim:User:identification:
+            minItems: 1
+        required:
+        - urn:banqu:schemas:scim:User:identification
+      - title: name and birthday not empty
+        properties:
+          urn:banqu:schemas:scim:User:social:
+            required:
+            - birthday
+        required:
+        - name
+        - urn:banqu:schemas:scim:User:social
+      - title: name and userName not empty
+        required:
+        - name
+        - userName
+    PhoneNumber:
+      description: Phone Number with Country Prefix
+      type: string
+      pattern: ^(?:(?:\+|00 ?|011 ?|010 ?|0011 ?)?(1|20|212|213|216|218|220|221|222|223|224|225|226|227|228|229|230|231|232|233|234|235|236|237|238|239|240|241|242|243|244|245|248|249|250|251|252|253|254|255|256|257|258|260|261|262|263|264|265|266|267|269|27|290|291|297|298|299|30|31|32|33|34|350|351|352|353|354|355|356|357|358|359|36|370|371|372|373|374|375|376|377|378|380|381|382|385|386|387|389|39|40|41|420|421|423|43|44|45|46|47|48|49|500|501|502|503|504|505|506|507|508|509|51|52|53|54|55|56|57|58|590|591|592|593|594|595|596|597|598|60|61|62|63|64|65|66|670|672|673|674|675|676|677|678|679|680|681|682|683|685|686|687|688|689|690|691|692|7|81|82|84|852|853|855|856|86|880|886|90|91|92|93|94|95|960|961|962|963|964|965|966|967|968|970|971|972|973|974|975|976|977|98|992|993|994|995|996|998))((?:\)?[ -.]?\(?\d){6,11})$
+      example: +1 555 999 8877
+    FormGroup:
       type: object
       properties:
-        urn:banqu:schemas:extensions:connection:
-          type: object
-          properties:
-            pending:
-              type: boolean
-              description: Indicates if connection is still waiting for an acceptance
-              readOnly: true
-            direction:
-              type: string
-              description: Indicates what side initiated a connection
-              enum:
-              - in
-              - out
-              readOnly: true
-            assignedAssociates:
-              type: array
-              description: A list of Org Associate ID's responsible for this connection
-              items:
-                type: string
-                minLength: 32
-                maxLength: 32
-                uniqueItems: true
-    ReadWriteVisibility:
-      type: string
-      enum:
-      - readonly
-      - edit
-    AssetDescription:
-      type: string
-      minLength: 0
-      maxLength: 200
-    FormElementVisibility:
-      oneOf:
-      - type: object
-        description: Data-entry or profile form field visibility
-        required:
-        - approver
-        - reviewer
-        - responder
-        properties:
-          approver:
-            $ref: '#/components/schemas/ReadWriteVisibility'
-          reviewer:
-            $ref: '#/components/schemas/ReadWriteHideVisibility'
-          responder:
-            $ref: '#/components/schemas/ReadWriteHideVisibility'
+        id:
+          type: string
+        title:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        parentId:
+          type: string
+          description: Identifier of the group this sub-group belongs to
+        weight:
+          type: number
+          minimum: 0
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        threshold:
+          type: number
+          minimum: 0
+          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
+      additionalProperties: false
+      required:
+      - id
+    AssetPrices:
+      type: array
+      items:
+        type: object
         additionalProperties: false
-      - type: object
-        description: Transaction form field visibility
-        required:
-        - initiator
-        - update-by-initiator
-        - participant
         properties:
-          update-by-initiator:
-            $ref: '#/components/schemas/ReadWriteHideVisibility'
-          participant:
-            $ref: '#/components/schemas/ReadWriteHideVisibility'
-          initiator:
-            $ref: '#/components/schemas/ReadWriteHideVisibility'
-        additionalProperties: false
+          id:
+            type: string
+            description: Unique asset price identifier (used for price sharing)
+          title:
+            type: string
+          fixed:
+            type: boolean
+            description: Can the price be edited during buy/sell transaction
+          amount:
+            type: number
+            minimum: 0
+          currency:
+            type: string
+            minLength: 3
+            maxLength: 3
+          min:
+            type: number
+            minimum: 0
+          max:
+            type: number
+            minimum: 0
+        required:
+        - id
+        - amount
+        - currency
     Attachment:
       type: object
       additionalProperties: false
@@ -1124,76 +972,11 @@ components:
           pattern: ^[a-f0-9]{32}$
       required:
       - downloadUrl
-    AssetUsagePreferences:
+    OptionalLocalizedString:
       type: object
-      additionalProperties: false
-      properties:
-        buy:
-          type: boolean
-        sell:
-          type: boolean
-        send:
-          type: boolean
-        receive:
-          type: boolean
-        batch:
-          type: boolean
-    ImmutableId:
-      type: string
-      readOnly: true
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
-    FragmentField:
-      title: Fragment Field
-      type: object
-      required:
-      - fragmentId
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - fragment
-        fragmentId:
-          type: string
-          minLength: 16
-        title:
-          $ref: '#/components/schemas/LocalizedString'
-        placeholder:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        description:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        descriptionVariant:
-          $ref: '#/components/schemas/DescriptionVariant'
-        visibility:
-          $ref: '#/components/schemas/FormElementVisibility'
-        $entityId:
-          type: string
-        requiredIf:
-          type: string
-        visibleIf:
-          type: string
-        required:
-          type: boolean
-        importanceArea:
-          $ref: '#/components/schemas/FormFieldImportance'
-        frozen:
-          type: boolean
-          readOnly: true
-        primary:
-          type: boolean
-          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
-        globalPrimary:
-          type: boolean
-          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
-        uniqueAcrossInstances:
-          type: boolean
-          description: Unique across section instances when form section is repeatable
-        formula:
-          type: string
-          description: Formula for calculated mode of the field
-      additionalProperties: false
+      additionalProperties:
+        type: string
+        description: Strings in different languages
     FormField:
       title: Form Field
       type: object
@@ -1282,203 +1065,71 @@ components:
       - name
       - type
       - title
-    ProfileProperty:
-      title: Profile Property
+    ConnectionExtension:
       type: object
       properties:
-        type:
-          type: string
-        value:
-          type: string
-          minLength: 1
-        primary:
-          type: boolean
-      required:
-      - value
-    LocalizedString:
-      type: object
-      required:
-      - en
-      additionalProperties:
-        type: string
-        description: Strings in different languages
-      properties:
-        en:
-          type: string
-          description: Default English localization string
-    ParentFieldName:
-      type: string
-      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\[\]\.([a-zA-Z_][\da-zA-Z_]*))?(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
-      description: Name of a parent field whose selected value filters options in this field. E.g., selecting a connection filters related data entries
-    Attachments:
-      type: array
-      items:
-        $ref: '#/components/schemas/Attachment'
-    AssetCode:
-      type: string
-      minLength: 2
-      maxLength: 32
-    ConnectionProfileUpdatePayload:
+        urn:banqu:schemas:extensions:connection:
+          type: object
+          properties:
+            pending:
+              type: boolean
+              description: Indicates if connection is still waiting for an acceptance
+              readOnly: true
+            direction:
+              type: string
+              description: Indicates what side initiated a connection
+              enum:
+              - in
+              - out
+              readOnly: true
+            assignedAssociates:
+              type: array
+              description: A list of Org Associate ID's responsible for this connection
+              items:
+                type: string
+                minLength: 32
+                maxLength: 32
+                uniqueItems: true
+    ConnectionCreatePayload:
       allOf:
-      - $ref: '#/components/schemas/ExistentProfile'
       - type: object
         properties:
+          id:
+            allOf:
+            - $ref: '#/components/schemas/Id'
+            - description: Id of the user in the BanQu system
+          assignedAssociates:
+            type: array
+            uniqueItems: true
+            items:
+              $ref: '#/components/schemas/Id'
+          forceCreation:
+            type: boolean
+            description: Create user or connection automatically (requires additional account permissions to be used)
+            default: false
           preventNotify:
             type: boolean
             description: Suppress SMS notifications
             default: false
-          lastModified:
-            type: number
-    Connection:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/Resource'
       - $ref: '#/components/schemas/Profile'
-      - $ref: '#/components/schemas/ConnectionExtension'
-      required:
-      - id
-    ScimResourceMetadata:
-      type: object
-      readOnly: true
-      properties:
-        displayName:
-          type: string
-          readOnly: true
-        meta:
-          type: object
-          properties:
-            resourceType:
-              type: string
-              readOnly: true
-            created:
-              type: number
-              readOnly: true
-            lastModified:
-              type: number
-              readOnly: true
+      - anyOf:
+        - title: Profile with Id
           required:
-          - resourceType
-          - created
-          - lastModified
-      required:
-      - displayName
-      - meta
-    ExistentProfile:
-      allOf:
-      - type: object
-        properties:
-          id:
-            $ref: '#/components/schemas/ImmutableId'
-      - $ref: '#/components/schemas/Profile'
-      unevaluatedProperties: false
-    ProfilePhoneNumber:
-      oneOf:
-      - allOf:
-        - $ref: '#/components/schemas/ProfileProperty'
-        - properties:
-            value:
-              $ref: '#/components/schemas/PhoneNumber'
-      - $ref: '#/components/schemas/PhoneNumber'
-    FormSection:
-      title: Form Section
-      type: object
-      properties:
-        $entityId:
-          type: string
-          description: Internal unique identifier for the section
-        title:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        description:
-          $ref: '#/components/schemas/OptionalLocalizedString'
+          - id
+        - $ref: '#/components/schemas/ProfileRequirements'
+      example:
         name:
-          $ref: '#/components/schemas/JsonIdentifier'
-        multiple:
-          type: boolean
-          description: If multiple instances of the section are allowed
-        required:
-          type: boolean
-          description: If at least one of the section instances is required
-        requiredIf:
-          type: string
-        visibleIf:
-          type: string
-        weight:
-          type: number
-          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
-        threshold:
-          type: number
-          minimum: 0
-          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
-        layout:
-          type: string
-          description: Section markup layout
-          enum:
-          - horizontal
-          - vertical
-          - table
-        fields:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/FormField'
-            - $ref: '#/components/schemas/CheckboxField'
-            - $ref: '#/components/schemas/FormFieldWithItems'
-            - $ref: '#/components/schemas/FormMarkupElement'
-            - $ref: '#/components/schemas/FragmentField'
-        groupId:
-          type: string
-          description: Identifier of the group this section belongs to
-        frozen:
-          type: boolean
-          readOnly: true
-      required:
-      - fields
-    PhoneNumber:
-      description: Phone Number with Country Prefix
+          formatted: John Doe
+        emails:
+        - value: john@example.com
+        preferredLanguage: en
+        locale: en-us
+        externalId: id-in-external-system
+        assignedAssociates: []
+    JsonIdentifier:
       type: string
-      pattern: ^(?:(?:\+|00 ?|011 ?|010 ?|0011 ?)?(1|20|212|213|216|218|220|221|222|223|224|225|226|227|228|229|230|231|232|233|234|235|236|237|238|239|240|241|242|243|244|245|248|249|250|251|252|253|254|255|256|257|258|260|261|262|263|264|265|266|267|269|27|290|291|297|298|299|30|31|32|33|34|350|351|352|353|354|355|356|357|358|359|36|370|371|372|373|374|375|376|377|378|380|381|382|385|386|387|389|39|40|41|420|421|423|43|44|45|46|47|48|49|500|501|502|503|504|505|506|507|508|509|51|52|53|54|55|56|57|58|590|591|592|593|594|595|596|597|598|60|61|62|63|64|65|66|670|672|673|674|675|676|677|678|679|680|681|682|683|685|686|687|688|689|690|691|692|7|81|82|84|852|853|855|856|86|880|886|90|91|92|93|94|95|960|961|962|963|964|965|966|967|968|970|971|972|973|974|975|976|977|98|992|993|994|995|996|998))((?:\)?[ -.]?\(?\d){6,11})$
-      example: +1 555 999 8877
-    JsonNestedIdentifier:
-      type: string
-      description: JSON field name, optionally nested, e.g., 'field1.subfield2'
-      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
-    AssetPrices:
-      type: array
-      items:
-        type: object
-        additionalProperties: false
-        properties:
-          id:
-            type: string
-            description: Unique asset price identifier (used for price sharing)
-          title:
-            type: string
-          fixed:
-            type: boolean
-            description: Can the price be edited during buy/sell transaction
-          amount:
-            type: number
-            minimum: 0
-          currency:
-            type: string
-            minLength: 3
-            maxLength: 3
-          min:
-            type: number
-            minimum: 0
-          max:
-            type: number
-            minimum: 0
-        required:
-        - id
-        - amount
-        - currency
-    Id:
-      title: Id
-      type: string
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
+      description: JSON field name
+      pattern: ^[$a-zA-Z_][\da-zA-Z_]*$
     ProfileEmail:
       oneOf:
       - allOf:
@@ -1492,6 +1143,92 @@ components:
         format: email
         minLength: 1
         example: user@example.com
+    FragmentField:
+      title: Fragment Field
+      type: object
+      required:
+      - fragmentId
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - fragment
+        fragmentId:
+          type: string
+          minLength: 16
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        placeholder:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        descriptionVariant:
+          $ref: '#/components/schemas/DescriptionVariant'
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        $entityId:
+          type: string
+        requiredIf:
+          type: string
+        visibleIf:
+          type: string
+        required:
+          type: boolean
+        importanceArea:
+          $ref: '#/components/schemas/FormFieldImportance'
+        frozen:
+          type: boolean
+          readOnly: true
+        primary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        globalPrimary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        uniqueAcrossInstances:
+          type: boolean
+          description: Unique across section instances when form section is repeatable
+        formula:
+          type: string
+          description: Formula for calculated mode of the field
+      additionalProperties: false
+    FormElementVisibility:
+      oneOf:
+      - type: object
+        description: Data-entry or profile form field visibility
+        required:
+        - approver
+        - reviewer
+        - responder
+        properties:
+          approver:
+            $ref: '#/components/schemas/ReadWriteVisibility'
+          reviewer:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+          responder:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+        additionalProperties: false
+      - type: object
+        description: Transaction form field visibility
+        required:
+        - initiator
+        - update-by-initiator
+        - participant
+        properties:
+          update-by-initiator:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+          participant:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+          initiator:
+            $ref: '#/components/schemas/ReadWriteHideVisibility'
+        additionalProperties: false
+    ReadWriteHideVisibility:
+      type: string
+      enum:
+      - hidden
+      - readonly
+      - edit
     Form:
       type: object
       title: Form
@@ -1680,73 +1417,10 @@ components:
               responder: edit
         sharing:
           level: shared
-    ProfileRequirements:
-      title: Profile with email, phoneNumber, identification document, or name and birthday
-      anyOf:
-      - title: emails not empty
-        properties:
-          emails:
-            minItems: 1
-        required:
-        - emails
-      - title: phoneNumbers not empty
-        properties:
-          phoneNumbers:
-            minItems: 1
-        required:
-        - phoneNumbers
-      - title: identification documents not empty
-        properties:
-          urn:banqu:schemas:scim:User:identification:
-            minItems: 1
-        required:
-        - urn:banqu:schemas:scim:User:identification
-      - title: name and birthday not empty
-        properties:
-          urn:banqu:schemas:scim:User:social:
-            required:
-            - birthday
-        required:
-        - name
-        - urn:banqu:schemas:scim:User:social
-      - title: name and userName not empty
-        required:
-        - name
-        - userName
-    JsonIdentifier:
-      type: string
-      description: JSON field name
-      pattern: ^[$a-zA-Z_][\da-zA-Z_]*$
-    DescriptionVariant:
-      type: string
-      enum:
-      - text
-      - tooltip
-      - long-text
-    ReadWriteHideVisibility:
-      type: string
-      enum:
-      - hidden
-      - readonly
-      - edit
-    FormFieldImportance:
-      type: object
-      properties:
-        ui:
-          type: boolean
-          description: Field is important for UI
-        reporting:
-          type: boolean
-          description: Field is important for reporting
-        coc:
-          type: boolean
-          description: Field is important for CoC
-      additionalProperties: false
-    OptionalLocalizedString:
-      type: object
-      additionalProperties:
-        type: string
-        description: Strings in different languages
+    Attachments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Attachment'
     CheckboxField:
       title: Checkbox Field
       type: object
@@ -1794,6 +1468,271 @@ components:
       required:
       - name
       - type
+    ReadWriteVisibility:
+      type: string
+      enum:
+      - readonly
+      - edit
+    Profile:
+      title: User Profile
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: The name of the user, suitable for displaying to other parties
+          readOnly: true
+        name:
+          title: Structured User Name
+          allOf:
+          - type: object
+            additionalProperties: false
+            properties:
+              formatted:
+                type: string
+                description: The full name, including all middle names, titles, and suffixes as appropriate, formatted for display
+                example: Ms. Barbara Jane Jensen, III
+              honorificPrefix:
+                type: string
+                description: The honorific prefix(es) of the User, or title in most Western languages.
+                example: Ms.
+              givenName:
+                type: string
+                description: The given name of the User, or first name in most Western languages.
+                example: Barbara
+              middleName:
+                type: string
+                description: The middle name(s) of the User.
+                example: Jane
+              familyName:
+                type: string
+                description: The family name of the User, or last name in most Western languages.
+                example: Jensen
+              honorificSuffix:
+                type: string
+                description: The honorific suffix(es) of the User, or suffix in most Western languages.
+                example: III
+          - anyOf:
+            - title: formatted name not empty
+              required:
+              - formatted
+            - title: givenName and familyName not empty
+              required:
+              - givenName
+              - familyName
+        userName:
+          type: string
+          minLength: 5
+          maxLength: 50
+          pattern: ^[a-zA-Z]{2}\w+$
+          description: A unique, manually-set identifier for the user in BanQu system (requires additional account permissions to be used)
+        emails:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/ProfileEmail'
+        phoneNumbers:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/ProfilePhoneNumber'
+        ims:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/ProfileProperty'
+        photos:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/ProfilePhoto'
+        addresses:
+          type: array
+          uniqueItems: true
+          items:
+            type: object
+            description: A physical mailing address for this user
+            additionalProperties: false
+            properties:
+              type:
+                type: string
+                description: Canonical type values of "work", "home", and "other"
+                example: home
+              formatted:
+                type: string
+                description: The full mailing address, formatted for display or use with a mailing label
+              streetAddress:
+                type: string
+                description: The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information.
+              locality:
+                type: string
+                description: The city or locality component
+              region:
+                type: string
+                description: The state or region component
+              postalCode:
+                type: string
+                description: The zipcode or postal code component
+              country:
+                type: string
+                description: The country name component. When specified the value MUST be in ISO 3166-1 alpha 2 "short" code format [ISO3166]
+                example: US
+        preferredLanguage:
+          type: string
+          description: Indicates the user's preferred written or spoken languages and is generally used for selecting a localized User interface. The value indicates the set of natural languages that are preferred.
+          example: en
+        locale:
+          type: string
+          enum:
+          - en-us
+          - en-gb
+          - en-za
+          - uk-ua
+          description: Used to indicate the User's default location for purposes of localizing such items as currency, date time format, or numerical representations. A valid value is a language tag as defined in [RFC5646](https://tools.ietf.org/html/rfc5646). Computer languages are explicitly excluded.
+        urn:banqu:schemas:scim:User:social:
+          title: User social profile
+          type: object
+          properties:
+            gender:
+              type: string
+              enum:
+              - ''
+              - O
+              - M
+              - F
+              example: M
+              description: 'Letter of a gender: "M" for male, "F" for female, "O" for other, or empty value not to specify it'
+            birthday:
+              type: string
+              format: date
+              example: '1985-04-17'
+        urn:banqu:schemas:scim:User:identification:
+          title: User identification documents
+          type: array
+          uniqueItems: true
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              type:
+                type: string
+                minLength: 1
+              $entityId:
+                type: string
+                minLength: 1
+              country:
+                type: string
+                description: The country name component. When specified the value MUST be in ISO 3166-1 alpha 2 "short" code format [ISO3166]
+                example: US
+                minLength: 2
+                maxLength: 2
+              expiresOn:
+                type: string
+                format: date
+              issuedBy:
+                type: string
+              issuedOn:
+                type: string
+                format: date
+              id:
+                type: string
+                minLength: 1
+              attachments:
+                $ref: '#/components/schemas/Attachment'
+            required:
+            - type
+            - id
+      patternProperties:
+        ^urn:banqu:schemas:([a-f\d]{32}|scim):User:[a-zA-Z_][\da-zA-Z_]*$:
+          anyOf:
+          - type: object
+          - type: array
+    ExistentProfile:
+      allOf:
+      - type: object
+        properties:
+          id:
+            $ref: '#/components/schemas/ImmutableId'
+      - $ref: '#/components/schemas/Profile'
+      unevaluatedProperties: false
+    ScimResourceMetadata:
+      type: object
+      readOnly: true
+      properties:
+        displayName:
+          type: string
+          readOnly: true
+        meta:
+          type: object
+          properties:
+            resourceType:
+              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
+      required:
+      - displayName
+      - meta
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
+    FormMarkupElement:
+      title: Form Markup Element
+      type: object
+      required:
+      - title
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - legend
+          - static
+        url:
+          type: string
+          format: url
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        $entityId:
+          type: string
+        requiredIf:
+          type: string
+        visibleIf:
+          type: string
+      additionalProperties: false
+    DescriptionVariant:
+      type: string
+      enum:
+      - text
+      - tooltip
+      - long-text
+    ProfilePhoneNumber:
+      oneOf:
+      - allOf:
+        - $ref: '#/components/schemas/ProfileProperty'
+        - properties:
+            value:
+              $ref: '#/components/schemas/PhoneNumber'
+      - $ref: '#/components/schemas/PhoneNumber'
     FormFieldWithItems:
       title: Form Field with Items
       type: object
@@ -1888,84 +1827,133 @@ components:
       - type
       - title
       - required
-    ConnectionFilter:
+    ImmutableId:
+      type: string
+      readOnly: true
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    Asset:
       type: object
-      properties:
-        criteria:
-          type: array
-          items:
-            type: object
-            properties:
-              action:
-                type: string
-                enum:
-                - '='
-                - '>'
-                - <
-                - '!='
-                - in
-                - notIn
-                - contains
-              formId:
-                description: Id of user or org profile form
-                type: string
-              name:
-                description: Field JSON name. For multiple sections format is sectionName[].fieldName
-                type: string
-              value:
-                description: 'type: string, number, boolean, array<string> value that should be compared against in specified field of found profiles'
-                anyOf:
-                - type: object
-                - type: string
-                - type: number
-                - type: boolean
-            required:
-            - action
-            - formId
-            - name
-            - value
-        match:
-          type: string
-          enum:
-          - any
-          - all
-      required:
-      - filter
-      - match
-    FormGroup:
-      type: object
+      additionalProperties: false
       properties:
         id:
-          type: string
-        title:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        parentId:
-          type: string
-          description: Identifier of the group this sub-group belongs to
-        weight:
+          $ref: '#/components/schemas/ImmutableId'
+        ownerId:
+          $ref: '#/components/schemas/Id'
+        creatorId:
+          $ref: '#/components/schemas/ImmutableId'
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        attachments:
+          $ref: '#/components/schemas/Attachments'
+        isCredit:
+          type: boolean
+          default: false
+          description: Indicates whether the asset will be used as a normal resource or as a credit balance
+        qty:
           type: number
-          minimum: 0
-          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
-        threshold:
+          default: 0
+          writeOnly: true
+        minQty:
           type: number
-          minimum: 0
-          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
-      additionalProperties: false
+        balance:
+          type: number
+          readOnly: true
+        confirmedBalance:
+          type: number
+          readOnly: true
+        rejectedAmount:
+          type: number
+          readOnly: true
+        archived:
+          type: boolean
+          readOnly: true
+        transferPropertiesForm:
+          $ref: '#/components/schemas/Form'
+        prices:
+          $ref: '#/components/schemas/AssetPrices'
+        allowOtherCurrencies:
+          type: boolean
+          description: Indicates if currencies other than listed in `prices` can be used in transactions
+          default: false
+        requireExplicitSources:
+          description: Indicates if explicit transfer sources must be specified for every transfer
+          type: boolean
+          default: false
+        autoFilterProperties:
+          description: Indicates if automatic filtering by matching properties should occur when selecting sources or sellers
+          type: boolean
+          default: false
+        allowDoubleSourcing:
+          description: Indicates that operations of this asset can be used as sources multiple times without tracing availability
+          type: boolean
+          default: false
+        usagePreferences:
+          $ref: '#/components/schemas/AssetUsagePreferences'
+        confirmationPropagationMode:
+          type: string
+          enum:
+          - none
+          - proportional
+          - scot-free
       required:
-      - id
+      - code
+      - uom
+      - qty
+    FormFieldImportance:
+      type: object
+      properties:
+        ui:
+          type: boolean
+          description: Field is important for UI
+        reporting:
+          type: boolean
+          description: Field is important for reporting
+        coc:
+          type: boolean
+          description: Field is important for CoC
+      additionalProperties: false
+    AssetUom:
+      title: Asset Unit of Measurement
+      type: string
+      enum:
+      - BR
+      - BO
+      - BX
+      - BU
+      - CN
+      - CA
+      - CH
+      - DO
+      - EA
+      - FO
+      - FT
+      - GA
+      - GR
+      - HR
+      - JA
+      - KG
+      - KK
+      - LT
+      - Q3
+      - MR
+      - MG
+      - M4
+      - OZ
+      - PK
+      - PR
+      - PC
+      - LB
+      - SJ
+      - VS
+      - YD
+      example: KG
   responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '409':
-      description: "HTTP 409 - Conflict \nThe request could not be completed due to a conflict with the current state of the target resource"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
     '403':
       description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
     NewProfileTimestamp:
@@ -1979,7 +1967,33 @@ components:
                 type: number
                 description: If profile was modified, contains new `lastModified` timestamp
                 example: 1568894551000
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '409':
+      description: "HTTP 409 - Conflict \nThe request could not be completed due to a conflict with the current state of the target resource"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
   parameters:
+    connectionId:
+      name: connectionId
+      description: Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)
+      in: path
+      schema:
+        type: string
+      required: true
+    Search:
+      name: search
+      in: query
+      schema:
+        type: string
+      description: A space-separated list of keywords to search items by
+      required: false
     Limit:
       name: limit
       in: query
@@ -1989,6 +2003,13 @@ components:
         minimum: 1
       description: Number or items per page
       required: false
+    SortBy:
+      name: sortBy
+      in: query
+      schema:
+        type: string
+      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
+      required: false
     Offset:
       name: offset
       in: query
@@ -1997,27 +2018,6 @@ components:
         minimum: 0
         default: 0
       description: 0-based index of the first element
-      required: false
-    Search:
-      name: search
-      in: query
-      schema:
-        type: string
-      description: A space-separated list of keywords to search items by
-      required: false
-    connectionId:
-      name: connectionId
-      description: Connection identifier (userId, orgId, inviteId, verified email, verified phoneNumber, userName, or externalId)
-      in: path
-      schema:
-        type: string
-      required: true
-    SortBy:
-      name: sortBy
-      in: query
-      schema:
-        type: string
-      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
       required: false
   securitySchemes:
     Bearer:

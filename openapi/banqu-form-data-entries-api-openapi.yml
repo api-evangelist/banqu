@@ -534,6 +534,12 @@ components:
         $ref: '#/components/schemas/Id'
       minItems: 1
       uniqueItems: true
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
     OptionalComment:
       title: Optional Comment
       properties:
@@ -541,28 +547,14 @@ components:
           type: string
     ReviewDataEntry:
       $ref: '#/components/schemas/OptionalComment'
+    DenyDataEntry:
+      $ref: '#/components/schemas/RequiredComment'
     RevokeDataEntryApproval:
       $ref: '#/components/schemas/OptionalComment'
-    LocalizedString:
-      type: object
-      required:
-      - en
-      additionalProperties:
-        type: string
-        description: Strings in different languages
-      properties:
-        en:
-          type: string
-          description: Default English localization string
-    RequiredComment:
-      title: Required Comment
-      properties:
-        comment:
-          type: string
-      required:
-      - comment
-    RejectFormData:
-      $ref: '#/components/schemas/RequiredComment'
+    ApproveDataEntry:
+      $ref: '#/components/schemas/OptionalComment'
+    RevokeDataEntryDenial:
+      $ref: '#/components/schemas/OptionalComment'
     FormDataEntry:
       description: Form data entry, assigned by a connected identity or created manually
       properties:
@@ -805,7 +797,7 @@ components:
           type: boolean
           readOnly: true
           title: Is Archived
-    DenyDataEntry:
+    RejectFormData:
       $ref: '#/components/schemas/RequiredComment'
     AddFormDataResponders:
       title: Add Form Data Responders Payload
@@ -814,21 +806,56 @@ components:
         $ref: '#/components/schemas/Id'
       minItems: 1
       uniqueItems: true
-    Id:
-      title: Id
-      type: string
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
     FormData:
       description: Form data that matches parent form schema
       type: object
       properties: {}
-    ApproveDataEntry:
-      $ref: '#/components/schemas/OptionalComment'
-    RevokeDataEntryDenial:
-      $ref: '#/components/schemas/OptionalComment'
+    RequiredComment:
+      title: Required Comment
+      properties:
+        comment:
+          type: string
+      required:
+      - comment
+  responses:
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
   parameters:
+    preventNotify:
+      name: preventNotify
+      in: query
+      schema:
+        type: boolean
+      required: false
+      description: If truthy, the notifications triggered by the endpoint will be suppressed
     formIdOrAll:
       name: formId
       in: path
@@ -836,6 +863,13 @@ components:
         type: string
       required: true
       description: Parent form ID, can be set to "all"
+    Search:
+      name: search
+      in: query
+      schema:
+        type: string
+      description: A space-separated list of keywords to search items by
+      required: false
     Limit:
       name: limit
       in: query
@@ -845,14 +879,13 @@ components:
         minimum: 1
       description: Number or items per page
       required: false
-    entryIdOrPrimaryKey:
-      name: entryId
-      in: path
+    SortBy:
+      name: sortBy
+      in: query
       schema:
         type: string
-      description: BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be "all" for such request.
-      example: value1||value 2||value-3
-      required: true
+      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
+      required: false
     Offset:
       name: offset
       in: query
@@ -862,47 +895,14 @@ components:
         default: 0
       description: 0-based index of the first element
       required: false
-    Search:
-      name: search
-      in: query
+    entryIdOrPrimaryKey:
+      name: entryId
+      in: path
       schema:
         type: string
-      description: A space-separated list of keywords to search items by
-      required: false
-    preventNotify:
-      name: preventNotify
-      in: query
-      schema:
-        type: boolean
-      required: false
-      description: If truthy, the notifications triggered by the endpoint will be suppressed
-    SortBy:
-      name: sortBy
-      in: query
-      schema:
-        type: string
-      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
-      required: false
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+      description: BQ Id of the entry or double-pipe-separated (||) list of globally primary field values. Order is the same as fields appear on UI. FormId cannot be "all" for such request.
+      example: value1||value 2||value-3
+      required: true
   securitySchemes:
     Bearer:
       type: http

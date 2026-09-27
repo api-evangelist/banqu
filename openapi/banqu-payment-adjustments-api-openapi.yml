@@ -180,38 +180,6 @@ components:
       - type
       - flexible
       - calculationType
-    ScimResourceMetadata:
-      type: object
-      readOnly: true
-      properties:
-        displayName:
-          type: string
-          readOnly: true
-        meta:
-          type: object
-          properties:
-            resourceType:
-              type: string
-              readOnly: true
-            created:
-              type: number
-              readOnly: true
-            lastModified:
-              type: number
-              readOnly: true
-          required:
-          - resourceType
-          - created
-          - lastModified
-      required:
-      - displayName
-      - meta
-    PaymentAdjustmentList:
-      type: array
-      items:
-        allOf:
-        - $ref: '#/components/schemas/PaymentAdjustment'
-        - $ref: '#/components/schemas/ScimResourceMetadata'
     CurrencyPaymentAdjustment:
       type: object
       properties:
@@ -248,15 +216,61 @@ components:
       - flexible
       - calculationType
       - currency
+    ScimResourceMetadata:
+      type: object
+      readOnly: true
+      properties:
+        displayName:
+          type: string
+          readOnly: true
+        meta:
+          type: object
+          properties:
+            resourceType:
+              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
+      required:
+      - displayName
+      - meta
+    PaymentAdjustmentList:
+      type: array
+      items:
+        allOf:
+        - $ref: '#/components/schemas/PaymentAdjustment'
+        - $ref: '#/components/schemas/ScimResourceMetadata'
+  responses:
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
   parameters:
-    Limit:
-      name: limit
+    SortBy:
+      name: sortBy
       in: query
       schema:
-        type: number
-        default: 20
-        minimum: 1
-      description: Number or items per page
+        type: string
+      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
       required: false
     Offset:
       name: offset
@@ -267,29 +281,15 @@ components:
         default: 0
       description: 0-based index of the first element
       required: false
-    SortBy:
-      name: sortBy
+    Limit:
+      name: limit
       in: query
       schema:
-        type: string
-      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
+        type: number
+        default: 20
+        minimum: 1
+      description: Number or items per page
       required: false
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   securitySchemes:
     Bearer:
       type: http

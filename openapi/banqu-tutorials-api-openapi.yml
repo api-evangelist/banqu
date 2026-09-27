@@ -72,6 +72,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
     TutorialStep:
       type: object
       required:
@@ -96,17 +107,6 @@ components:
               $ref: '#/components/schemas/LocalizedString'
             position:
               type: string
-    LocalizedString:
-      type: object
-      required:
-      - en
-      additionalProperties:
-        type: string
-        description: Strings in different languages
-      properties:
-        en:
-          type: string
-          description: Default English localization string
   securitySchemes:
     Bearer:
       type: http
