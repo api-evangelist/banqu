@@ -143,43 +143,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PaymentAdjustmentList:
+      type: array
+      items:
+        allOf:
+        - $ref: '#/components/schemas/PaymentAdjustment'
+        - $ref: '#/components/schemas/ScimResourceMetadata'
     PaymentAdjustment:
       oneOf:
       - $ref: '#/components/schemas/PercentagePaymentAdjustment'
       - $ref: '#/components/schemas/CurrencyPaymentAdjustment'
-    PercentagePaymentAdjustment:
-      type: object
-      properties:
-        title:
-          type: string
-        type:
-          type: string
-          enum:
-          - charge
-          - allowance
-        calculationType:
-          type: string
-          enum:
-          - percentage
-        percent:
-          type: number
-          minimum: 0
-        flexible:
-          type: boolean
-        min:
-          type: number
-          minimum: 0
-        max:
-          type: number
-          minimum: 0
-        archived:
-          type: boolean
-          readOnly: true
-      required:
-      - title
-      - type
-      - flexible
-      - calculationType
     CurrencyPaymentAdjustment:
       type: object
       properties:
@@ -242,21 +215,44 @@ components:
       required:
       - displayName
       - meta
-    PaymentAdjustmentList:
-      type: array
-      items:
-        allOf:
-        - $ref: '#/components/schemas/PaymentAdjustment'
-        - $ref: '#/components/schemas/ScimResourceMetadata'
+    PercentagePaymentAdjustment:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+          - charge
+          - allowance
+        calculationType:
+          type: string
+          enum:
+          - percentage
+        percent:
+          type: number
+          minimum: 0
+        flexible:
+          type: boolean
+        min:
+          type: number
+          minimum: 0
+        max:
+          type: number
+          minimum: 0
+        archived:
+          type: boolean
+          readOnly: true
+      required:
+      - title
+      - type
+      - flexible
+      - calculationType
   responses:
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
     '204':
       description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
     '201':
       description: HTTP 201 - Created
       headers:
@@ -264,6 +260,10 @@ components:
           schema:
             type: string
           description: Url of the created entity
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   parameters:
     SortBy:
       name: sortBy

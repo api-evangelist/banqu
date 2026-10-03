@@ -32,14 +32,32 @@ paths:
       operationId: postAssetsTransformations
       x-operation-id-source: derived
 components:
-  responses:
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
   schemas:
+    EffectiveDate:
+      allOf:
+      - $ref: '#/components/schemas/DateTime'
+      - title: Effective Transfer Date
+        description: The effective date and time of the transfer in ISO format with timezone defined.
+    GeoCoordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        lon:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+      additionalProperties: false
+      required:
+      - lat
+      - lon
+      example:
+        lat: 37.7749
+        lon: -122.4194
     TransformAssetRequest:
       type: object
       properties:
@@ -97,40 +115,12 @@ components:
       required:
       - sources
       - destinations
-    GeoCoordinates:
-      type: object
-      properties:
-        lat:
-          type: number
-          format: double
-          minimum: -90
-          maximum: 90
-        lon:
-          type: number
-          format: double
-          minimum: -180
-          maximum: 180
-      additionalProperties: false
-      required:
-      - lat
-      - lon
-      example:
-        lat: 37.7749
-        lon: -122.4194
     Id:
       title: Id
       type: string
       minLength: 32
       maxLength: 32
       example: '00000000000000000000000000000000'
-    EffectiveLocation:
-      allOf:
-      - $ref: '#/components/schemas/GeoCoordinates'
-      - title: Effective Transfer Geo Location
-        description: The effective location coordinates of a transfer instead of an automatically determined
-    DateTime:
-      type: string
-      format: date-time
     SourceOperations:
       type: array
       description: List of incoming asset transfers that are used as sources for this transaction
@@ -148,11 +138,21 @@ components:
         required:
         - id
         - sourcedQty
-    EffectiveDate:
+    EffectiveLocation:
       allOf:
-      - $ref: '#/components/schemas/DateTime'
-      - title: Effective Transfer Date
-        description: The effective date and time of the transfer in ISO format with timezone defined.
+      - $ref: '#/components/schemas/GeoCoordinates'
+      - title: Effective Transfer Geo Location
+        description: The effective location coordinates of a transfer instead of an automatically determined
+    DateTime:
+      type: string
+      format: date-time
+  responses:
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   securitySchemes:
     Bearer:
       type: http

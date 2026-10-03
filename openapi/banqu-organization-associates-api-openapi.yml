@@ -119,12 +119,25 @@ components:
         - title: phoneNumber not empty
           required:
           - phoneNumber
+    ImmutableTimestamp:
+      type: number
+      readOnly: true
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
     ImmutableId:
       type: string
       readOnly: true
       minLength: 32
       maxLength: 32
       example: '00000000000000000000000000000000'
+    OrgAssociatePatch:
+      type: object
+      additionalProperties: false
+      properties:
+        roles:
+          $ref: '#/components/schemas/OrgAssociateRoles'
+      required:
+      - roles
     OrgAssociate:
       type: object
       additionalProperties: false
@@ -155,24 +168,11 @@ components:
         title: Role ID
         type: string
         minLength: 1
-    OrgAssociatePatch:
-      type: object
-      additionalProperties: false
-      properties:
-        roles:
-          $ref: '#/components/schemas/OrgAssociateRoles'
-      required:
-      - roles
-    ImmutableTimestamp:
-      type: number
-      readOnly: true
-      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
-      example: 1568894551000
   responses:
-    '202':
-      description: "HTTP 202 - Accepted \nThe request has been accepted for processing, but the processing has not been completed."
     '204':
       description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '202':
+      description: "HTTP 202 - Accepted \nThe request has been accepted for processing, but the processing has not been completed."
     '201':
       description: HTTP 201 - Created
       headers:

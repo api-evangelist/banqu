@@ -163,55 +163,25 @@ paths:
       operationId: postValidationWorkflowsByWorkflowIdRestore
       x-operation-id-source: derived
 components:
-  responses:
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '422':
-      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
   schemas:
-    WorkflowSteps:
-      title: Workflow Steps
-      type: array
-      items:
-        oneOf:
-        - $ref: '#/components/schemas/WorkflowMapping'
-        - $ref: '#/components/schemas/WorkflowFilter'
-        - $ref: '#/components/schemas/WorkflowUniquenessFilter'
-        - $ref: '#/components/schemas/WorkflowAction'
-        - $ref: '#/components/schemas/WorkflowRequest'
+    Mapping:
+      type: object
+      properties:
+        from:
+          type: string
+          description: Context source to map data from
+        forEach:
+          type: string
+          description: Array context source to map data from
+        map:
+          type: object
+          description: Object fields mapping
+      additionalProperties: true
       example:
-      - type: filter
-        condition: selectedAssetId !== '' && receiverId !== ''
-      - type: map
-        mapping:
-          map:
-            assetId: selectedAssetId
-            body:
-              map:
-                receiverId: receiverId
-                qty: '1'
-                destinationId: 'null'
-                price: '0'
-                priceCurrency: '''USD'''
-      - type: action
-        action: eyJwYXRoIjoiL2Fzc2V0cy97YXNzZXRJZH0vdHJhbnNmZXJzIiwibWV0aG9kIjoicG9zdCJ9
-    WorkflowMapping:
-      title: Workflow Mapping
+        map:
+          outputField: inputField
+    WorkflowFilter:
+      title: Workflow Filter
       type: object
       additionalProperties: false
       properties:
@@ -222,12 +192,13 @@ components:
         type:
           type: string
           enum:
-          - map
-        mapping:
-          $ref: '#/components/schemas/Mapping'
+          - filter
+        condition:
+          type: string
+          description: JS expression in a 'filter' step that returns `true` or `false` to indicate if execution should proceed
       required:
       - type
-      - mapping
+      - condition
     ValidationWorkflowSummary:
       type: object
       additionalProperties: false
@@ -257,8 +228,14 @@ components:
               readOnly: true
       required:
       - title
-    WorkflowAction:
-      title: Workflow Action
+    WorkflowStepInput:
+      type:
+      - string
+      - 'null'
+      description: Name of one of the previous steps that should be used as a primary input. By default the latest step name is used
+      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+    WorkflowMapping:
+      title: Workflow Mapping
       type: object
       additionalProperties: false
       properties:
@@ -269,82 +246,38 @@ components:
         type:
           type: string
           enum:
-          - action
-        action:
-          type: string
-          description: ID of the Open API endpoint to execute. Base64 encoded JSON object containing endpint properties `{ method, path }`
+          - map
+        mapping:
+          $ref: '#/components/schemas/Mapping'
       required:
       - type
-      - action
-    Mapping:
-      type: object
-      properties:
-        from:
-          type: string
-          description: Context source to map data from
-        forEach:
-          type: string
-          description: Array context source to map data from
-        map:
-          type: object
-          description: Object fields mapping
-      additionalProperties: true
+      - mapping
+    WorkflowSteps:
+      title: Workflow Steps
+      type: array
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/WorkflowMapping'
+        - $ref: '#/components/schemas/WorkflowFilter'
+        - $ref: '#/components/schemas/WorkflowUniquenessFilter'
+        - $ref: '#/components/schemas/WorkflowAction'
+        - $ref: '#/components/schemas/WorkflowRequest'
       example:
-        map:
-          outputField: inputField
-    WorkflowUniquenessFilter:
-      title: Workflow Uniqueness Filter
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - unique
-        criteria:
-          type: string
-          description: JS expression in a 'unique' step that returns a key used to identify object uniquenss
-      required:
-      - type
-      - criteria
-    WorkflowRequest:
-      title: Workflow Request
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - request
-        method:
-          type: string
-          enum:
-          - get
-          - list
-          - post
-          - put
-          - patch
-          - delete
-          - head
-          - options
-        url:
-          type: string
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - type
-      - method
-      - url
+      - type: filter
+        condition: selectedAssetId !== '' && receiverId !== ''
+      - type: map
+        mapping:
+          map:
+            assetId: selectedAssetId
+            body:
+              map:
+                receiverId: receiverId
+                qty: '1'
+                destinationId: 'null'
+                price: '0'
+                priceCurrency: '''USD'''
+      - type: action
+        action: eyJwYXRoIjoiL2Fzc2V0cy97YXNzZXRJZH0vdHJhbnNmZXJzIiwibWV0aG9kIjoicG9zdCJ9
     WorkflowStepName:
       type:
       - string
@@ -377,6 +310,25 @@ components:
       required:
       - displayName
       - meta
+    WorkflowAction:
+      title: Workflow Action
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - action
+        action:
+          type: string
+          description: ID of the Open API endpoint to execute. Base64 encoded JSON object containing endpint properties `{ method, path }`
+      required:
+      - type
+      - action
     ValidationWorkflowDetails:
       type: object
       additionalProperties: false
@@ -424,8 +376,8 @@ components:
       required:
       - title
       - workflow
-    WorkflowFilter:
-      title: Workflow Filter
+    WorkflowUniquenessFilter:
+      title: Workflow Uniqueness Filter
       type: object
       additionalProperties: false
       properties:
@@ -436,25 +388,73 @@ components:
         type:
           type: string
           enum:
-          - filter
-        condition:
+          - unique
+        criteria:
           type: string
-          description: JS expression in a 'filter' step that returns `true` or `false` to indicate if execution should proceed
+          description: JS expression in a 'unique' step that returns a key used to identify object uniquenss
       required:
       - type
-      - condition
+      - criteria
     ImmutableId:
       type: string
       readOnly: true
       minLength: 32
       maxLength: 32
       example: '00000000000000000000000000000000'
-    WorkflowStepInput:
-      type:
-      - string
-      - 'null'
-      description: Name of one of the previous steps that should be used as a primary input. By default the latest step name is used
-      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+    WorkflowRequest:
+      title: Workflow Request
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - request
+        method:
+          type: string
+          enum:
+          - get
+          - list
+          - post
+          - put
+          - patch
+          - delete
+          - head
+          - options
+        url:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - type
+      - method
+      - url
+  responses:
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '422':
+      description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
   securitySchemes:
     Bearer:
       type: http

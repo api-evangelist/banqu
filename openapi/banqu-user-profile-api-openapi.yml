@@ -209,264 +209,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FormSection:
-      title: Form Section
-      type: object
-      properties:
-        $entityId:
-          type: string
-          description: Internal unique identifier for the section
-        title:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        description:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        name:
-          $ref: '#/components/schemas/JsonIdentifier'
-        multiple:
-          type: boolean
-          description: If multiple instances of the section are allowed
-        required:
-          type: boolean
-          description: If at least one of the section instances is required
-        requiredIf:
-          type: string
-        visibleIf:
-          type: string
-        weight:
-          type: number
-          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
-        threshold:
-          type: number
-          minimum: 0
-          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
-        layout:
-          type: string
-          description: Section markup layout
-          enum:
-          - horizontal
-          - vertical
-          - table
-        fields:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/FormField'
-            - $ref: '#/components/schemas/CheckboxField'
-            - $ref: '#/components/schemas/FormFieldWithItems'
-            - $ref: '#/components/schemas/FormMarkupElement'
-            - $ref: '#/components/schemas/FragmentField'
-        groupId:
-          type: string
-          description: Identifier of the group this section belongs to
-        frozen:
-          type: boolean
-          readOnly: true
-      required:
-      - fields
-    Id:
-      title: Id
-      type: string
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
-    ParentFieldName:
-      type: string
-      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\[\]\.([a-zA-Z_][\da-zA-Z_]*))?(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
-      description: Name of a parent field whose selected value filters options in this field. E.g., selecting a connection filters related data entries
-    ProfileProperty:
-      title: Profile Property
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
-          minLength: 1
-        primary:
-          type: boolean
-      required:
-      - value
-    ProfilePhoto:
-      allOf:
-      - $ref: '#/components/schemas/ProfileProperty'
-      - properties:
-          etag:
-            type: string
-            minLength: 32
-            maxLength: 32
-            example: '00000000000000000000000000000000'
-          value:
-            type: string
-            format: url
-            example: https://example.com/avatar.jpg
-    ProfileSectionsList:
-      type: array
-      items:
-        $ref: '#/components/schemas/ProfileSection'
-    JsonNestedIdentifier:
-      type: string
-      description: JSON field name, optionally nested, e.g., 'field1.subfield2'
-      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
-    PhoneNumber:
-      description: Phone Number with Country Prefix
-      type: string
-      pattern: ^(?:(?:\+|00 ?|011 ?|010 ?|0011 ?)?(1|20|212|213|216|218|220|221|222|223|224|225|226|227|228|229|230|231|232|233|234|235|236|237|238|239|240|241|242|243|244|245|248|249|250|251|252|253|254|255|256|257|258|260|261|262|263|264|265|266|267|269|27|290|291|297|298|299|30|31|32|33|34|350|351|352|353|354|355|356|357|358|359|36|370|371|372|373|374|375|376|377|378|380|381|382|385|386|387|389|39|40|41|420|421|423|43|44|45|46|47|48|49|500|501|502|503|504|505|506|507|508|509|51|52|53|54|55|56|57|58|590|591|592|593|594|595|596|597|598|60|61|62|63|64|65|66|670|672|673|674|675|676|677|678|679|680|681|682|683|685|686|687|688|689|690|691|692|7|81|82|84|852|853|855|856|86|880|886|90|91|92|93|94|95|960|961|962|963|964|965|966|967|968|970|971|972|973|974|975|976|977|98|992|993|994|995|996|998))((?:\)?[ -.]?\(?\d){6,11})$
-      example: +1 555 999 8877
-    FormGroup:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        parentId:
-          type: string
-          description: Identifier of the group this sub-group belongs to
-        weight:
-          type: number
-          minimum: 0
-          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
-        threshold:
-          type: number
-          minimum: 0
-          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
-      additionalProperties: false
-      required:
-      - id
-    Attachment:
-      type: object
-      additionalProperties: false
-      properties:
-        downloadUrl:
-          type: string
-          format: url
-        fileName:
-          type: string
-          minLength: 1
-        fileSize:
-          type: number
-          minimum: 0
-        mimeType:
-          type: string
-          minLength: 1
-          example: image/jpeg
-        md5:
-          type: string
-          minLength: 32
-          maxLength: 32
-          pattern: ^[a-f0-9]{32}$
-      required:
-      - downloadUrl
-    OptionalLocalizedString:
-      type: object
-      additionalProperties:
-        type: string
-        description: Strings in different languages
-    FormField:
-      title: Form Field
-      type: object
-      properties:
-        $entityId:
-          type: string
-          description: Internal unique identifier for the field
-        name:
-          $ref: '#/components/schemas/JsonNestedIdentifier'
-        type:
-          type: string
-          enum:
-          - text
-          - textarea
-          - connectionSelect
-          - assetSelect
-          - countrySelect
-          - currencySelect
-          - dataEntrySelect
-          - datetime
-          - file
-          - geoPosition
-          - polygon
-          - barcode
-        title:
-          $ref: '#/components/schemas/LocalizedString'
-        placeholder:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        description:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        descriptionVariant:
-          $ref: '#/components/schemas/DescriptionVariant'
-        required:
-          type: boolean
-        validation:
-          type: string
-        parentFieldName:
-          $ref: '#/components/schemas/ParentFieldName'
-        visibility:
-          $ref: '#/components/schemas/FormElementVisibility'
-        format:
-          type: string
-          description: Format of 'datetime' field type
-          enum:
-          - date
-          - time
-          - date-time
-        primary:
-          type: boolean
-          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
-        globalPrimary:
-          type: boolean
-          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
-        uniqueAcrossInstances:
-          type: boolean
-          description: Unique across section instances when form section is repeatable
-        size:
-          type: integer
-          description: The number of slots preserved for the field in a table column
-          minimum: 1
-          maximum: 12
-        displayTotals:
-          type: boolean
-          description: When enabled, the sum of all field values is displayed in the totals row on the UI
-        weight:
-          type: number
-          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
-        isParent:
-          type: boolean
-          description: Mark the selected connection as a parent of the data entry
-        connectionType:
-          type: string
-          description: Connection type to filter connections in the connection select field
-          enum:
-          - org
-          - user
-        importanceArea:
-          $ref: '#/components/schemas/FormFieldImportance'
-        frozen:
-          type: boolean
-          readOnly: true
-        formula:
-          type: string
-          description: Formula for calculated mode of the field
-      required:
-      - name
-      - type
-      - title
-    JsonIdentifier:
-      type: string
-      description: JSON field name
-      pattern: ^[$a-zA-Z_][\da-zA-Z_]*$
-    ProfileEmail:
-      oneOf:
-      - allOf:
-        - $ref: '#/components/schemas/ProfileProperty'
-        - properties:
-            value:
-              type: string
-              format: email
-              example: user@example.com
-      - type: string
-        format: email
-        minLength: 1
-        example: user@example.com
     FragmentField:
       title: Fragment Field
       type: object
@@ -517,6 +259,19 @@ components:
           type: string
           description: Formula for calculated mode of the field
       additionalProperties: false
+    ProfilePhoneNumber:
+      oneOf:
+      - allOf:
+        - $ref: '#/components/schemas/ProfileProperty'
+        - properties:
+            value:
+              $ref: '#/components/schemas/PhoneNumber'
+      - $ref: '#/components/schemas/PhoneNumber'
+    ReadWriteVisibility:
+      type: string
+      enum:
+      - readonly
+      - edit
     FormElementVisibility:
       oneOf:
       - type: object
@@ -547,24 +302,40 @@ components:
           initiator:
             $ref: '#/components/schemas/ReadWriteHideVisibility'
         additionalProperties: false
-    ProfileSection:
+    JsonIdentifier:
+      type: string
+      description: JSON field name
+      pattern: ^[$a-zA-Z_][\da-zA-Z_]*$
+    ProfileProperty:
+      title: Profile Property
       type: object
       properties:
-        formId:
-          $ref: '#/components/schemas/Id'
-        title:
+        type:
           type: string
-        name:
+        value:
           type: string
-        priority:
-          type: number
-          description: Defines order of profile sections. Standard sections are numbered 100, 200, 300, etc.
-    ReadWriteHideVisibility:
-      type: string
-      enum:
-      - hidden
-      - readonly
-      - edit
+          minLength: 1
+        primary:
+          type: boolean
+      required:
+      - value
+    FormFieldImportance:
+      type: object
+      properties:
+        ui:
+          type: boolean
+          description: Field is important for UI
+        reporting:
+          type: boolean
+          description: Field is important for reporting
+        coc:
+          type: boolean
+          description: Field is important for CoC
+      additionalProperties: false
+    ProfileSectionsList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProfileSection'
     Profile:
       title: User Profile
       type: object
@@ -738,6 +509,353 @@ components:
           anyOf:
           - type: object
           - type: array
+    FormSection:
+      title: Form Section
+      type: object
+      properties:
+        $entityId:
+          type: string
+          description: Internal unique identifier for the section
+        title:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        name:
+          $ref: '#/components/schemas/JsonIdentifier'
+        multiple:
+          type: boolean
+          description: If multiple instances of the section are allowed
+        required:
+          type: boolean
+          description: If at least one of the section instances is required
+        requiredIf:
+          type: string
+        visibleIf:
+          type: string
+        weight:
+          type: number
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        threshold:
+          type: number
+          minimum: 0
+          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
+        layout:
+          type: string
+          description: Section markup layout
+          enum:
+          - horizontal
+          - vertical
+          - table
+        fields:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/FormField'
+            - $ref: '#/components/schemas/CheckboxField'
+            - $ref: '#/components/schemas/FormFieldWithItems'
+            - $ref: '#/components/schemas/FormMarkupElement'
+            - $ref: '#/components/schemas/FragmentField'
+        groupId:
+          type: string
+          description: Identifier of the group this section belongs to
+        frozen:
+          type: boolean
+          readOnly: true
+      required:
+      - fields
+    JsonNestedIdentifier:
+      type: string
+      description: JSON field name, optionally nested, e.g., 'field1.subfield2'
+      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
+    DescriptionVariant:
+      type: string
+      enum:
+      - text
+      - tooltip
+      - long-text
+    FormGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        parentId:
+          type: string
+          description: Identifier of the group this sub-group belongs to
+        weight:
+          type: number
+          minimum: 0
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        threshold:
+          type: number
+          minimum: 0
+          description: A specific value that the score must meet or exceed for a particular action or decision to be triggered.
+      additionalProperties: false
+      required:
+      - id
+    FormMarkupElement:
+      title: Form Markup Element
+      type: object
+      required:
+      - title
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - legend
+          - static
+        url:
+          type: string
+          format: url
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        $entityId:
+          type: string
+        requiredIf:
+          type: string
+        visibleIf:
+          type: string
+      additionalProperties: false
+    FormFieldWithItems:
+      title: Form Field with Items
+      type: object
+      properties:
+        $entityId:
+          type: string
+          description: Internal unique identifier for the field
+        name:
+          $ref: '#/components/schemas/JsonNestedIdentifier'
+        type:
+          type: string
+          enum:
+          - select
+          - multiSelect
+          - radio
+        displayAs:
+          type: string
+          enum:
+          - dropdown
+          - list
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        descriptionVariant:
+          $ref: '#/components/schemas/DescriptionVariant'
+        required:
+          type: boolean
+        validation:
+          type: string
+        parentFieldName:
+          $ref: '#/components/schemas/ParentFieldName'
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Internal unique identifier for the item
+              title:
+                $ref: '#/components/schemas/OptionalLocalizedString'
+              value:
+                type: string
+              weight:
+                type: number
+                minimum: -1
+                description: A numerical value representing the importance of this item in the overall score calculation. Higher values indicate greater importance.
+              frozen:
+                type: boolean
+                description: Indicates if the item is frozen and cannot be modified
+              parentValue:
+                type: string
+                description: Value of a parent field that this item belongs to. Used to filter items in a select field based on the parent field value
+            required:
+            - value
+            additionalProperties: false
+        allowOther:
+          type: boolean
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        primary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        globalPrimary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        uniqueAcrossInstances:
+          type: boolean
+          description: Unique across section instances when form section is repeatable
+        size:
+          type: integer
+          description: The number of slots preserved for the field in a table column
+          minimum: 1
+          maximum: 12
+        displayTotals:
+          type: boolean
+          description: When enabled, the sum of all field values is displayed in the totals row on the UI
+        weight:
+          type: number
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        isParent:
+          type: boolean
+          description: Mark the selected connection as a parent of the data entry
+        importanceArea:
+          $ref: '#/components/schemas/FormFieldImportance'
+        frozen:
+          type: boolean
+          readOnly: true
+      required:
+      - name
+      - type
+      - title
+      - required
+    ProfilePhoto:
+      allOf:
+      - $ref: '#/components/schemas/ProfileProperty'
+      - properties:
+          etag:
+            type: string
+            minLength: 32
+            maxLength: 32
+            example: '00000000000000000000000000000000'
+          value:
+            type: string
+            format: url
+            example: https://example.com/avatar.jpg
+    PhoneNumber:
+      description: Phone Number with Country Prefix
+      type: string
+      pattern: ^(?:(?:\+|00 ?|011 ?|010 ?|0011 ?)?(1|20|212|213|216|218|220|221|222|223|224|225|226|227|228|229|230|231|232|233|234|235|236|237|238|239|240|241|242|243|244|245|248|249|250|251|252|253|254|255|256|257|258|260|261|262|263|264|265|266|267|269|27|290|291|297|298|299|30|31|32|33|34|350|351|352|353|354|355|356|357|358|359|36|370|371|372|373|374|375|376|377|378|380|381|382|385|386|387|389|39|40|41|420|421|423|43|44|45|46|47|48|49|500|501|502|503|504|505|506|507|508|509|51|52|53|54|55|56|57|58|590|591|592|593|594|595|596|597|598|60|61|62|63|64|65|66|670|672|673|674|675|676|677|678|679|680|681|682|683|685|686|687|688|689|690|691|692|7|81|82|84|852|853|855|856|86|880|886|90|91|92|93|94|95|960|961|962|963|964|965|966|967|968|970|971|972|973|974|975|976|977|98|992|993|994|995|996|998))((?:\)?[ -.]?\(?\d){6,11})$
+      example: +1 555 999 8877
+    Attachment:
+      type: object
+      additionalProperties: false
+      properties:
+        downloadUrl:
+          type: string
+          format: url
+        fileName:
+          type: string
+          minLength: 1
+        fileSize:
+          type: number
+          minimum: 0
+        mimeType:
+          type: string
+          minLength: 1
+          example: image/jpeg
+        md5:
+          type: string
+          minLength: 32
+          maxLength: 32
+          pattern: ^[a-f0-9]{32}$
+      required:
+      - downloadUrl
+    FormField:
+      title: Form Field
+      type: object
+      properties:
+        $entityId:
+          type: string
+          description: Internal unique identifier for the field
+        name:
+          $ref: '#/components/schemas/JsonNestedIdentifier'
+        type:
+          type: string
+          enum:
+          - text
+          - textarea
+          - connectionSelect
+          - assetSelect
+          - countrySelect
+          - currencySelect
+          - dataEntrySelect
+          - datetime
+          - file
+          - geoPosition
+          - polygon
+          - barcode
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        placeholder:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        description:
+          $ref: '#/components/schemas/OptionalLocalizedString'
+        descriptionVariant:
+          $ref: '#/components/schemas/DescriptionVariant'
+        required:
+          type: boolean
+        validation:
+          type: string
+        parentFieldName:
+          $ref: '#/components/schemas/ParentFieldName'
+        visibility:
+          $ref: '#/components/schemas/FormElementVisibility'
+        format:
+          type: string
+          description: Format of 'datetime' field type
+          enum:
+          - date
+          - time
+          - date-time
+        primary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        globalPrimary:
+          type: boolean
+          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
+        uniqueAcrossInstances:
+          type: boolean
+          description: Unique across section instances when form section is repeatable
+        size:
+          type: integer
+          description: The number of slots preserved for the field in a table column
+          minimum: 1
+          maximum: 12
+        displayTotals:
+          type: boolean
+          description: When enabled, the sum of all field values is displayed in the totals row on the UI
+        weight:
+          type: number
+          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
+        isParent:
+          type: boolean
+          description: Mark the selected connection as a parent of the data entry
+        connectionType:
+          type: string
+          description: Connection type to filter connections in the connection select field
+          enum:
+          - org
+          - user
+        importanceArea:
+          $ref: '#/components/schemas/FormFieldImportance'
+        frozen:
+          type: boolean
+          readOnly: true
+        formula:
+          type: string
+          description: Formula for calculated mode of the field
+      required:
+      - name
+      - type
+      - title
+    ParentFieldName:
+      type: string
+      pattern: ^[a-zA-Z_][\da-zA-Z_]*(\[\]\.([a-zA-Z_][\da-zA-Z_]*))?(\.([a-zA-Z_][\da-zA-Z_]*|\d+))*$
+      description: Name of a parent field whose selected value filters options in this field. E.g., selecting a connection filters related data entries
+    Id:
+      title: Id
+      type: string
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
     Form:
       type: object
       title: Form
@@ -926,6 +1044,37 @@ components:
               responder: edit
         sharing:
           level: shared
+    OptionalLocalizedString:
+      type: object
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+    ExistentProfile:
+      allOf:
+      - type: object
+        properties:
+          id:
+            $ref: '#/components/schemas/ImmutableId'
+      - $ref: '#/components/schemas/Profile'
+      unevaluatedProperties: false
+    ReadWriteHideVisibility:
+      type: string
+      enum:
+      - hidden
+      - readonly
+      - edit
+    ProfileSection:
+      type: object
+      properties:
+        formId:
+          $ref: '#/components/schemas/Id'
+        title:
+          type: string
+        name:
+          type: string
+        priority:
+          type: number
+          description: Defines order of profile sections. Standard sections are numbered 100, 200, 300, etc.
     CheckboxField:
       title: Checkbox Field
       type: object
@@ -973,19 +1122,25 @@ components:
       required:
       - name
       - type
-    ReadWriteVisibility:
+    ProfileEmail:
+      oneOf:
+      - allOf:
+        - $ref: '#/components/schemas/ProfileProperty'
+        - properties:
+            value:
+              type: string
+              format: email
+              example: user@example.com
+      - type: string
+        format: email
+        minLength: 1
+        example: user@example.com
+    ImmutableId:
       type: string
-      enum:
-      - readonly
-      - edit
-    ExistentProfile:
-      allOf:
-      - type: object
-        properties:
-          id:
-            $ref: '#/components/schemas/ImmutableId'
-      - $ref: '#/components/schemas/Profile'
-      unevaluatedProperties: false
+      readOnly: true
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
     LocalizedString:
       type: object
       required:
@@ -997,168 +1152,7 @@ components:
         en:
           type: string
           description: Default English localization string
-    FormMarkupElement:
-      title: Form Markup Element
-      type: object
-      required:
-      - title
-      - type
-      properties:
-        type:
-          type: string
-          enum:
-          - legend
-          - static
-        url:
-          type: string
-          format: url
-        title:
-          $ref: '#/components/schemas/LocalizedString'
-        description:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        visibility:
-          $ref: '#/components/schemas/FormElementVisibility'
-        $entityId:
-          type: string
-        requiredIf:
-          type: string
-        visibleIf:
-          type: string
-      additionalProperties: false
-    DescriptionVariant:
-      type: string
-      enum:
-      - text
-      - tooltip
-      - long-text
-    ProfilePhoneNumber:
-      oneOf:
-      - allOf:
-        - $ref: '#/components/schemas/ProfileProperty'
-        - properties:
-            value:
-              $ref: '#/components/schemas/PhoneNumber'
-      - $ref: '#/components/schemas/PhoneNumber'
-    ImmutableId:
-      type: string
-      readOnly: true
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
-    FormFieldWithItems:
-      title: Form Field with Items
-      type: object
-      properties:
-        $entityId:
-          type: string
-          description: Internal unique identifier for the field
-        name:
-          $ref: '#/components/schemas/JsonNestedIdentifier'
-        type:
-          type: string
-          enum:
-          - select
-          - multiSelect
-          - radio
-        displayAs:
-          type: string
-          enum:
-          - dropdown
-          - list
-        title:
-          $ref: '#/components/schemas/LocalizedString'
-        description:
-          $ref: '#/components/schemas/OptionalLocalizedString'
-        descriptionVariant:
-          $ref: '#/components/schemas/DescriptionVariant'
-        required:
-          type: boolean
-        validation:
-          type: string
-        parentFieldName:
-          $ref: '#/components/schemas/ParentFieldName'
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: Internal unique identifier for the item
-              title:
-                $ref: '#/components/schemas/OptionalLocalizedString'
-              value:
-                type: string
-              weight:
-                type: number
-                minimum: -1
-                description: A numerical value representing the importance of this item in the overall score calculation. Higher values indicate greater importance.
-              frozen:
-                type: boolean
-                description: Indicates if the item is frozen and cannot be modified
-              parentValue:
-                type: string
-                description: Value of a parent field that this item belongs to. Used to filter items in a select field based on the parent field value
-            required:
-            - value
-            additionalProperties: false
-        allowOther:
-          type: boolean
-        visibility:
-          $ref: '#/components/schemas/FormElementVisibility'
-        primary:
-          type: boolean
-          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
-        globalPrimary:
-          type: boolean
-          description: Whether field is a primary key or part of a primary key. Primary key values should be unique across multiple form data entries of a same user
-        uniqueAcrossInstances:
-          type: boolean
-          description: Unique across section instances when form section is repeatable
-        size:
-          type: integer
-          description: The number of slots preserved for the field in a table column
-          minimum: 1
-          maximum: 12
-        displayTotals:
-          type: boolean
-          description: When enabled, the sum of all field values is displayed in the totals row on the UI
-        weight:
-          type: number
-          description: A numerical value representing the importance of this field in the overall score calculation. Higher values indicate greater importance.
-        isParent:
-          type: boolean
-          description: Mark the selected connection as a parent of the data entry
-        importanceArea:
-          $ref: '#/components/schemas/FormFieldImportance'
-        frozen:
-          type: boolean
-          readOnly: true
-      required:
-      - name
-      - type
-      - title
-      - required
-    FormFieldImportance:
-      type: object
-      properties:
-        ui:
-          type: boolean
-          description: Field is important for UI
-        reporting:
-          type: boolean
-          description: Field is important for reporting
-        coc:
-          type: boolean
-          description: Field is important for CoC
-      additionalProperties: false
   responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
     '201':
       description: HTTP 201 - Created
       headers:
@@ -1166,6 +1160,12 @@ components:
           schema:
             type: string
           description: Url of the created entity
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
   securitySchemes:
     Bearer:
       type: http

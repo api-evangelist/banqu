@@ -130,18 +130,52 @@ paths:
       operationId: getOrgsCurrentCapabilities
       x-operation-id-source: derived
 components:
+  responses:
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   schemas:
-    LocalizedString:
+    OrgCapabilities:
       type: object
-      required:
-      - en
+      description: Capabilities of organization account
       additionalProperties:
-        type: string
-        description: Strings in different languages
-      properties:
-        en:
+        type: array
+        items:
           type: string
-          description: Default English localization string
+          enum:
+          - create
+          - read
+          - update
+          - delete
+        uniqueItems: true
+    LocalizedDescription:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            maxLength: 80
+        additionalProperties:
+          maxLength: 80
+    LocalizedName:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            minLength: 2
+            maxLength: 20
+        additionalProperties:
+          minLength: 2
+          maxLength: 20
     EditableOrgRole:
       type: object
       description: Organization role
@@ -168,27 +202,43 @@ components:
           type: string
           maxLength: 32
       additionalProperties: false
-    LocalizedDescription:
-      allOf:
-      - $ref: '#/components/schemas/LocalizedString'
-      - properties:
-          en:
-            maxLength: 80
-        additionalProperties:
-          maxLength: 80
-    OrgCapabilities:
+    ScimResourceMetadata:
       type: object
-      description: Capabilities of organization account
-      additionalProperties:
-        type: array
-        items:
+      readOnly: true
+      properties:
+        displayName:
           type: string
-          enum:
-          - create
-          - read
-          - update
-          - delete
-        uniqueItems: true
+          readOnly: true
+        meta:
+          type: object
+          properties:
+            resourceType:
+              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
+      required:
+      - displayName
+      - meta
+    LocalizedString:
+      type: object
+      required:
+      - en
+      additionalProperties:
+        type: string
+        description: Strings in different languages
+      properties:
+        en:
+          type: string
+          description: Default English localization string
     OrgRole:
       type: object
       description: Organization role
@@ -223,56 +273,6 @@ components:
       - description
       - permissions
       - type
-    LocalizedName:
-      allOf:
-      - $ref: '#/components/schemas/LocalizedString'
-      - properties:
-          en:
-            minLength: 2
-            maxLength: 20
-        additionalProperties:
-          minLength: 2
-          maxLength: 20
-    ScimResourceMetadata:
-      type: object
-      readOnly: true
-      properties:
-        displayName:
-          type: string
-          readOnly: true
-        meta:
-          type: object
-          properties:
-            resourceType:
-              type: string
-              readOnly: true
-            created:
-              type: number
-              readOnly: true
-            lastModified:
-              type: number
-              readOnly: true
-          required:
-          - resourceType
-          - created
-          - lastModified
-      required:
-      - displayName
-      - meta
-  responses:
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
   securitySchemes:
     Bearer:
       type: http
