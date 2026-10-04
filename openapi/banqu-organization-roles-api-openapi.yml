@@ -130,104 +130,7 @@ paths:
       operationId: getOrgsCurrentCapabilities
       x-operation-id-source: derived
 components:
-  responses:
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
   schemas:
-    OrgCapabilities:
-      type: object
-      description: Capabilities of organization account
-      additionalProperties:
-        type: array
-        items:
-          type: string
-          enum:
-          - create
-          - read
-          - update
-          - delete
-        uniqueItems: true
-    LocalizedDescription:
-      allOf:
-      - $ref: '#/components/schemas/LocalizedString'
-      - properties:
-          en:
-            maxLength: 80
-        additionalProperties:
-          maxLength: 80
-    LocalizedName:
-      allOf:
-      - $ref: '#/components/schemas/LocalizedString'
-      - properties:
-          en:
-            minLength: 2
-            maxLength: 20
-        additionalProperties:
-          minLength: 2
-          maxLength: 20
-    EditableOrgRole:
-      type: object
-      description: Organization role
-      properties:
-        id:
-          type: string
-        name:
-          $ref: '#/components/schemas/LocalizedName'
-        type:
-          type: string
-          enum:
-          - associate
-          - connection
-        description:
-          $ref: '#/components/schemas/LocalizedDescription'
-        permissions:
-          type: object
-          additionalProperties:
-            type: array
-            uniqueItems: true
-            items:
-              type: string
-        ownerId:
-          type: string
-          maxLength: 32
-      additionalProperties: false
-    ScimResourceMetadata:
-      type: object
-      readOnly: true
-      properties:
-        displayName:
-          type: string
-          readOnly: true
-        meta:
-          type: object
-          properties:
-            resourceType:
-              type: string
-              readOnly: true
-            created:
-              type: number
-              readOnly: true
-            lastModified:
-              type: number
-              readOnly: true
-          required:
-          - resourceType
-          - created
-          - lastModified
-      required:
-      - displayName
-      - meta
     LocalizedString:
       type: object
       required:
@@ -273,6 +176,103 @@ components:
       - description
       - permissions
       - type
+    ScimResourceMetadata:
+      type: object
+      readOnly: true
+      properties:
+        displayName:
+          type: string
+          readOnly: true
+        meta:
+          type: object
+          properties:
+            resourceType:
+              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
+      required:
+      - displayName
+      - meta
+    LocalizedName:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            minLength: 2
+            maxLength: 20
+        additionalProperties:
+          minLength: 2
+          maxLength: 20
+    LocalizedDescription:
+      allOf:
+      - $ref: '#/components/schemas/LocalizedString'
+      - properties:
+          en:
+            maxLength: 80
+        additionalProperties:
+          maxLength: 80
+    EditableOrgRole:
+      type: object
+      description: Organization role
+      properties:
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/LocalizedName'
+        type:
+          type: string
+          enum:
+          - associate
+          - connection
+        description:
+          $ref: '#/components/schemas/LocalizedDescription'
+        permissions:
+          type: object
+          additionalProperties:
+            type: array
+            uniqueItems: true
+            items:
+              type: string
+        ownerId:
+          type: string
+          maxLength: 32
+      additionalProperties: false
+    OrgCapabilities:
+      type: object
+      description: Capabilities of organization account
+      additionalProperties:
+        type: array
+        items:
+          type: string
+          enum:
+          - create
+          - read
+          - update
+          - delete
+        uniqueItems: true
+  responses:
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
   securitySchemes:
     Bearer:
       type: http

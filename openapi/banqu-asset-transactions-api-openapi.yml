@@ -385,7 +385,46 @@ paths:
       operationId: postTransactionsBatch
       x-operation-id-source: derived
 components:
+  responses:
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+    '201':
+      description: HTTP 201 - Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: Url of the created entity
+    '400':
+      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
+    '404':
+      description: "HTTP 404 - Not Found \nRequested resource could not be found"
   parameters:
+    SortBy:
+      name: sortBy
+      in: query
+      schema:
+        type: string
+      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
+      required: false
+    TransactionKind:
+      name: transactionKind
+      in: query
+      schema:
+        type: string
+        enum:
+        - buy
+        - sell
+        - transfer
+        - deposit
+        - transformation
+        - draft-locked
+        - draft-unlocked
+      required: false
     AssetCodes:
       name: codes
       in: query
@@ -402,27 +441,6 @@ components:
         default: 0
       description: 0-based index of the first element
       required: false
-    TransactionKind:
-      name: transactionKind
-      in: query
-      schema:
-        type: string
-        enum:
-        - buy
-        - sell
-        - transfer
-        - deposit
-        - transformation
-        - draft-locked
-        - draft-unlocked
-      required: false
-    SortBy:
-      name: sortBy
-      in: query
-      schema:
-        type: string
-      description: Comma-separated list of fields to sort the collection by (i.e. "status:asc,created:desc")
-      required: false
     Limit:
       name: limit
       in: query
@@ -433,307 +451,6 @@ components:
       description: Number or items per page
       required: false
   schemas:
-    ImmutableTimestamp:
-      type: number
-      readOnly: true
-      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
-      example: 1568894551000
-    AssetTransformationTransaction:
-      type: object
-      description: Asset Transformation
-      additionalProperties: false
-      properties:
-        sources:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/TransformingAsset'
-        destinations:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/TransformingAsset'
-        creator:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/ImmutableId'
-            name:
-              type: string
-        id:
-          type: string
-        transactionId:
-          type: string
-        sent:
-          type: number
-        allCodes:
-          type: array
-          items:
-            type: string
-        assetIds:
-          type: array
-          items:
-            type: string
-      required:
-      - destinations
-      - sources
-      - creator
-      - id
-      - transactionId
-      - sent
-    FinalizeDraftTransactionRequest:
-      type: array
-      minItems: 1
-      items:
-        anyOf:
-        - $ref: '#/components/schemas/PaymentAdjustmentOperation'
-        - title: Persisted payment adjustment operation
-          description: Persisted payment adjustment operation with changed quantity
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/Id'
-            quantity:
-              type: number
-          additionalProperties: false
-          required:
-          - id
-          - quantity
-        - title: Persisted asset operation
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/Id'
-            quantity:
-              type: number
-              minimum: 0
-            price:
-              type: number
-              minimum: 0
-            priceCurrency:
-              type: string
-              minLength: 3
-              maxLength: 3
-              example: USD
-            properties:
-              type: object
-              additionalProperties: true
-          additionalProperties: false
-          required:
-          - id
-          - quantity
-        - $ref: '#/components/schemas/PaymentOperation'
-        - title: Persisted payment operation
-          description: Persisted payment operation with changed quantity or/and destination provider
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/Id'
-            quantity:
-              type: number
-              minimum: 0
-            destinationProvider:
-              $ref: '#/components/schemas/PaymentDestinationProvider'
-            destinationId:
-              $ref: '#/components/schemas/PaymentDestinationId'
-            destinationType:
-              $ref: '#/components/schemas/PaymentDestinationType'
-          additionalProperties: false
-          required:
-          - quantity
-          - id
-        - $ref: '#/components/schemas/AssetTransferOperation'
-    SourceOperations:
-      type: array
-      description: List of incoming asset transfers that are used as sources for this transaction
-      items:
-        type: object
-        additionalProperties: false
-        properties:
-          id:
-            allOf:
-            - $ref: '#/components/schemas/Id'
-            - description: Source operation Id
-          sourcedQty:
-            type: number
-            exclusiveMinimum: 0
-        required:
-        - id
-        - sourcedQty
-    PaymentOperation:
-      title: Payment
-      type: object
-      additionalProperties: false
-      properties:
-        isDraft:
-          type: boolean
-          enum:
-          - false
-          writeOnly: true
-        assetId:
-          $ref: '#/components/schemas/Id'
-        quantity:
-          title: Payment Amount
-          type: number
-          minimum: 0
-        senderId:
-          $ref: '#/components/schemas/Id'
-        receiverId:
-          $ref: '#/components/schemas/Id'
-        destinationProvider:
-          $ref: '#/components/schemas/PaymentDestinationProvider'
-        destinationId:
-          $ref: '#/components/schemas/PaymentDestinationId'
-        destinationType:
-          $ref: '#/components/schemas/PaymentDestinationType'
-      required:
-      - senderId
-      - receiverId
-      - assetId
-      - quantity
-      - destinationProvider
-    AssetMobileDestination:
-      type: object
-      title: Mobile Payment Destination
-      description: Mobile wallet where the monetary transfer was sent to
-      properties:
-        provider:
-          $ref: '#/components/schemas/PaymentDestinationProvider'
-        id:
-          $ref: '#/components/schemas/PaymentDestinationId'
-        type:
-          $ref: '#/components/schemas/PaymentDestinationType'
-      required:
-      - id
-      - provider
-      readOnly: true
-    PaymentAdjustmentOperation:
-      title: Payment Adjustment
-      description: Change transaction amount using global or asset related adjustments
-      type: object
-      additionalProperties: false
-      properties:
-        paymentAdjustmentId:
-          type: string
-          minLength: 1
-        appliedToAssetId:
-          $ref: '#/components/schemas/Id'
-        quantity:
-          type: number
-          minimum: 0
-      required:
-      - paymentAdjustmentId
-      - quantity
-    ChainedOperation:
-      type: object
-      properties:
-        qty:
-          title: Quantity
-          description: The transaction amount or the amount of an existing transaction selected as a source
-          type: number
-        asset:
-          type: object
-          properties:
-            uom:
-              title: Unit of Measure
-              type: string
-            name:
-              title: Asset Name
-              type: string
-            code:
-              title: Asset Code
-              type: string
-            id:
-              title: Asset ID
-              type: string
-        sent:
-          title: Date
-          type: number
-          format: date-time
-        type:
-          title: Type
-          description: 'transfer - an asset moving from one connection to another
-
-            transformation - the inputs of a transformation (one or more assets turned into another asset)
-
-            transformation-result - the output of a transformation'
-          type: string
-          enum:
-          - transfer
-          - deposit
-          - transformation
-          - transformation-result
-        properties:
-          type: object
-          properties: {}
-          additionalProperties: true
-        from:
-          type: object
-          properties:
-            id:
-              title: From ID
-              type: string
-              minLength: 32
-              maxLength: 32
-              example: '00000000000000000000000000000000'
-            displayName:
-              title: From
-              type: string
-            isOrg:
-              type: boolean
-            photoUrl:
-              type: string
-              format: url
-            photoEtag:
-              type: string
-        to:
-          type: object
-          properties:
-            id:
-              title: To ID
-              type: string
-              minLength: 32
-              maxLength: 32
-              example: '00000000000000000000000000000000'
-            displayName:
-              title: To
-              type: string
-            isOrg:
-              type: boolean
-            photoUrl:
-              type: string
-              format: url
-            photoEtag:
-              type: string
-        usageInUnits:
-          title: Mass sourced to the top
-          type: number
-          description: how much of this operation made it to the top of chain, in asset's units of measure
-        transferredQty:
-          title: Quantity in Original Operation
-          description: The full amount of the original transaction the source is selected from
-          type: number
-        immediateUsage:
-          title: Mass % sourced from this operation
-          type: number
-          format: percent
-          description: how much of this operation made to the one level higher in chain, in percents
-        usage:
-          title: Quantity % sourced to the top
-          type: number
-          format: percent
-          description: how much of this operation made it to the top of chain, in percents
-        path:
-          type: array
-          title: Historical Order
-          items:
-            type: string
-          description: operation's parents' and own name to rebuild tree from the list
-        depth:
-          type: string
-        id:
-          title: Operation ID
-          type: string
     PaymentDestinationProvider:
       title: Payment Destination Provider
       description: Payment provider where the payment should be delivered to
@@ -748,11 +465,10 @@ components:
       - airtel
       - zamtel
       - vodacom
-    AnyAssetOperation:
-      oneOf:
-      - $ref: '#/components/schemas/AssetTransferOperation'
-      - $ref: '#/components/schemas/AssetTransformationOperation'
-      - $ref: '#/components/schemas/AssetDeposit'
+    PaymentDestinationId:
+      title: Destination Identifier
+      description: Destination phone number for mobile providers; BanQu agency ID for banqu-agency provider
+      type: string
     ExcelTableTheme:
       type: string
       enum:
@@ -906,49 +622,427 @@ components:
       - senderId
       - transfers
       additionalProperties: false
-    PaymentDestinationId:
-      title: Destination Identifier
-      description: Destination phone number for mobile providers; BanQu agency ID for banqu-agency provider
+    EffectiveLocation:
+      allOf:
+      - $ref: '#/components/schemas/GeoCoordinates'
+      - title: Effective Transfer Geo Location
+        description: The effective location coordinates of a transfer instead of an automatically determined
+    Id:
+      title: Id
       type: string
-    JsonSchema:
-      title: JSON Schema
-      description: https://json-schema.org/draft-07/schema#
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    Transaction:
+      oneOf:
+      - $ref: '#/components/schemas/RevertTransaction'
+      - $ref: '#/components/schemas/AssetDepositTransaction'
+      - $ref: '#/components/schemas/ExchangeTransaction'
+      - $ref: '#/components/schemas/AssetTransformationTransaction'
+    TransactionParty:
       type: object
+      readOnly: true
       properties:
-        title:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        name:
           type: string
-        description:
+          readOnly: true
+        photoUrl:
           type: string
-        type:
+          format: url
+          readOnly: true
+        photoEtag:
           type: string
+          readOnly: true
+        isOrg:
+          type: boolean
+    PaymentDestination:
+      oneOf:
+      - $ref: '#/components/schemas/AssetMobileDestination'
+      - $ref: '#/components/schemas/AssetAgencyDestination'
+    AssetDescription:
+      type: string
+      minLength: 0
+      maxLength: 200
+    PaymentAdjustmentOperation:
+      title: Payment Adjustment
+      description: Change transaction amount using global or asset related adjustments
+      type: object
+      additionalProperties: false
+      properties:
+        paymentAdjustmentId:
+          type: string
+          minLength: 1
+        appliedToAssetId:
+          $ref: '#/components/schemas/Id'
+        quantity:
+          type: number
+          minimum: 0
+      required:
+      - paymentAdjustmentId
+      - quantity
+    PaymentOperation:
+      title: Payment
+      type: object
+      additionalProperties: false
+      properties:
+        isDraft:
+          type: boolean
           enum:
-          - array
-          - boolean
-          - integer
-          - 'null'
-          - number
-          - object
-          - string
-          example: object
-        required:
+          - false
+          writeOnly: true
+        assetId:
+          $ref: '#/components/schemas/Id'
+        quantity:
+          title: Payment Amount
+          type: number
+          minimum: 0
+        senderId:
+          $ref: '#/components/schemas/Id'
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        destinationProvider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        destinationId:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        destinationType:
+          $ref: '#/components/schemas/PaymentDestinationType'
+      required:
+      - senderId
+      - receiverId
+      - assetId
+      - quantity
+      - destinationProvider
+    AnyAssetOperation:
+      oneOf:
+      - $ref: '#/components/schemas/AssetTransferOperation'
+      - $ref: '#/components/schemas/AssetTransformationOperation'
+      - $ref: '#/components/schemas/AssetDeposit'
+    ExchangeTransaction:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/ImmutableId'
+        allCodes:
           type: array
           items:
             type: string
-          uniqueItems: true
-        additionalProperties:
-          oneOf:
-          - type: boolean
-          - type: object
+        assetIds:
+          type: array
+          items:
+            type: string
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        type:
+          type: string
+          enum:
+          - batch
+          - trade
+          - exchange
+          - transfer
+        unconfirmedAssetIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Id'
+        destinationProvider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        destinationId:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        destinationType:
+          $ref: '#/components/schemas/PaymentDestinationType'
+        initiatedBy:
+          $ref: '#/components/schemas/TransactionParty'
+        initiatedByUser:
+          allOf:
+          - $ref: '#/components/schemas/TransactionParty'
+          - readOnly: true
+        sender:
+          $ref: '#/components/schemas/TransactionParty'
+        receiver:
+          $ref: '#/components/schemas/TransactionParty'
+        agency:
+          $ref: '#/components/schemas/TransactionParty'
+        agent:
+          $ref: '#/components/schemas/TransactionParty'
+        qty:
+          type: number
+          exclusiveMinimum: 0
+        price:
+          type: number
+          minimum: 0
+        priceCurrency:
+          type: string
+          minLength: 3
+          maxLength: 3
+          example: USD
+        sent:
+          type: number
+          readOnly: true
+        claimed:
+          type: number
+          readOnly: true
+        received:
+          type: number
+          readOnly: true
         properties:
           type: object
-      example:
-        type: object
-        properties:
-          field1:
+        message:
+          type: string
+        transactionId:
+          type: string
+        direction:
+          type: string
+        code:
+          type: string
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        description:
+          type: string
+        initiatedByUserId:
+          type: string
+        assetAttachments:
+          $ref: '#/components/schemas/Attachments'
+        participants:
+          type: array
+          items:
             type: string
-        required:
-        - field1
-        additionalProperties: false
+      required:
+      - receiverId
+      - qty
+    AssetUom:
+      title: Asset Unit of Measurement
+      type: string
+      enum:
+      - BR
+      - BO
+      - BX
+      - BU
+      - CN
+      - CA
+      - CH
+      - DO
+      - EA
+      - FO
+      - FT
+      - GA
+      - GR
+      - HR
+      - JA
+      - KG
+      - KK
+      - LT
+      - Q3
+      - MR
+      - MG
+      - M4
+      - OZ
+      - PK
+      - PR
+      - PC
+      - LB
+      - SJ
+      - VS
+      - YD
+      example: KG
+    ImmutableId:
+      type: string
+      readOnly: true
+      minLength: 32
+      maxLength: 32
+      example: '00000000000000000000000000000000'
+    PaymentDestinationType:
+      title: Destination Type
+      description: mobile for payments by phone number; payCode for 6DOT50 partner transfer
+      enum:
+      - mobile
+      - new-mobile
+      - payCode
+    AssetTransformationOperation:
+      type: object
+      description: Operation that indicates asset(s) transformation into an arbitrary amount of some different asset(s)
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        transactionId:
+          $ref: '#/components/schemas/Id'
+        assetId:
+          $ref: '#/components/schemas/Id'
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
+        sources:
+          type: array
+          description: Transformed assets. For each transformed asset there is a separate operation within the transaction. This list always includes asset transformed by this operation
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        destinations:
+          type: array
+          description: Resulting assets. This list always includes resulting asset from this operation
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        direction:
+          type: string
+        qty:
+          type: number
+          minimum: 0
+        sent:
+          type: number
+        sourceOperations:
+          $ref: '#/components/schemas/SourceOperations'
+        sourcesCount:
+          $ref: '#/components/schemas/SourcesCount'
+        creator:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        creatorUser:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        holder:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+      required:
+      - id
+      - transactionId
+      - assetId
+      - code
+      - uom
+      - destinations
+      - direction
+      - qty
+      - sent
+    SourcesCount:
+      type: number
+      description: Indicates number of operations that serve as explicit or implicit sources for this asset operation. Appears in the object when request contains sourcesGroupingMethod in query
+    ChainedOperation:
+      type: object
+      properties:
+        qty:
+          title: Quantity
+          description: The transaction amount or the amount of an existing transaction selected as a source
+          type: number
+        asset:
+          type: object
+          properties:
+            uom:
+              title: Unit of Measure
+              type: string
+            name:
+              title: Asset Name
+              type: string
+            code:
+              title: Asset Code
+              type: string
+            id:
+              title: Asset ID
+              type: string
+        sent:
+          title: Date
+          type: number
+          format: date-time
+        type:
+          title: Type
+          description: 'transfer - an asset moving from one connection to another
+
+            transformation - the inputs of a transformation (one or more assets turned into another asset)
+
+            transformation-result - the output of a transformation'
+          type: string
+          enum:
+          - transfer
+          - deposit
+          - transformation
+          - transformation-result
+        properties:
+          type: object
+          properties: {}
+          additionalProperties: true
+        from:
+          type: object
+          properties:
+            id:
+              title: From ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            displayName:
+              title: From
+              type: string
+            isOrg:
+              type: boolean
+            photoUrl:
+              type: string
+              format: url
+            photoEtag:
+              type: string
+        to:
+          type: object
+          properties:
+            id:
+              title: To ID
+              type: string
+              minLength: 32
+              maxLength: 32
+              example: '00000000000000000000000000000000'
+            displayName:
+              title: To
+              type: string
+            isOrg:
+              type: boolean
+            photoUrl:
+              type: string
+              format: url
+            photoEtag:
+              type: string
+        usageInUnits:
+          title: Mass sourced to the top
+          type: number
+          description: how much of this operation made it to the top of chain, in asset's units of measure
+        transferredQty:
+          title: Quantity in Original Operation
+          description: The full amount of the original transaction the source is selected from
+          type: number
+        immediateUsage:
+          title: Mass % sourced from this operation
+          type: number
+          format: percent
+          description: how much of this operation made to the one level higher in chain, in percents
+        usage:
+          title: Quantity % sourced to the top
+          type: number
+          format: percent
+          description: how much of this operation made it to the top of chain, in percents
+        path:
+          type: array
+          title: Historical Order
+          items:
+            type: string
+          description: operation's parents' and own name to rebuild tree from the list
+        depth:
+          type: string
+        id:
+          title: Operation ID
+          type: string
+    DateTime:
+      type: string
+      format: date-time
     AssetTransferOperation:
       type: object
       title: Asset Transfer
@@ -1200,6 +1294,26 @@ components:
       - receiverId
       - assetId
       - quantity
+    GeoCoordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+        lon:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+      additionalProperties: false
+      required:
+      - lat
+      - lon
+      example:
+        lat: 37.7749
+        lon: -122.4194
     RevertTransaction:
       type: object
       properties:
@@ -1213,274 +1327,127 @@ components:
       required:
       - reason
       additionalProperties: false
+    JsonSchema:
+      title: JSON Schema
+      description: https://json-schema.org/draft-07/schema#
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - array
+          - boolean
+          - integer
+          - 'null'
+          - number
+          - object
+          - string
+          example: object
+        required:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        additionalProperties:
+          oneOf:
+          - type: boolean
+          - type: object
+        properties:
+          type: object
+      example:
+        type: object
+        properties:
+          field1:
+            type: string
+        required:
+        - field1
+        additionalProperties: false
+    DraftPaymentOperation:
+      title: Payment Draft
+      type: object
+      additionalProperties: false
+      properties:
+        isDraft:
+          type: boolean
+          enum:
+          - true
+          writeOnly: true
+        assetId:
+          $ref: '#/components/schemas/Id'
+        quantity:
+          title: Payment Amount
+          type: number
+          minimum: 0
+        senderId:
+          $ref: '#/components/schemas/Id'
+        receiverId:
+          $ref: '#/components/schemas/Id'
+        destinationProvider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        effectiveDate:
+          $ref: '#/components/schemas/EffectiveDate'
+        destinationId:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        destinationType:
+          $ref: '#/components/schemas/PaymentDestinationType'
+      required:
+      - isDraft
+      - senderId
+      - receiverId
+      - assetId
+      - quantity
+    CreateTransactionRequest:
+      type: array
+      minItems: 1
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/AssetTransferOperation'
+        - $ref: '#/components/schemas/PaymentOperation'
+        - $ref: '#/components/schemas/DraftPaymentOperation'
+        - $ref: '#/components/schemas/PaymentAdjustmentOperation'
+      example:
+      - assetId: 0d903320a0c5494d85c325fc4936dcad
+        exchangingAssetId: 2992356a55b242f2a97b140d46930ffa
+        quantity: 2000
+        senderId: 247521e4ce06472ebaf5bdf08d3c4a3e
+        receiverId: 8f4f517528464f428afddce6880128b6
+        properties:
+          distance: 150
+        price: 1.4
+        priceCurrency: USD
+      - isDraft: false
+        assetId: 2992356a55b242f2a97b140d46930ffa
+        quantity: 2800
+        senderId: 8f4f517528464f428afddce6880128b6
+        receiverId: 247521e4ce06472ebaf5bdf08d3c4a3e
+    AssetMobileDestination:
+      type: object
+      title: Mobile Payment Destination
+      description: Mobile wallet where the monetary transfer was sent to
+      properties:
+        provider:
+          $ref: '#/components/schemas/PaymentDestinationProvider'
+        id:
+          $ref: '#/components/schemas/PaymentDestinationId'
+        type:
+          $ref: '#/components/schemas/PaymentDestinationType'
+      required:
+      - id
+      - provider
+      readOnly: true
     EffectiveDate:
       allOf:
       - $ref: '#/components/schemas/DateTime'
       - title: Effective Transfer Date
         description: The effective date and time of the transfer in ISO format with timezone defined.
-    AssetTransformationOperation:
-      type: object
-      description: Operation that indicates asset(s) transformation into an arbitrary amount of some different asset(s)
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        transactionId:
-          $ref: '#/components/schemas/Id'
-        assetId:
-          $ref: '#/components/schemas/Id'
-        code:
-          $ref: '#/components/schemas/AssetCode'
-        description:
-          $ref: '#/components/schemas/AssetDescription'
-        uom:
-          $ref: '#/components/schemas/AssetUom'
-        sources:
-          type: array
-          description: Transformed assets. For each transformed asset there is a separate operation within the transaction. This list always includes asset transformed by this operation
-          items:
-            $ref: '#/components/schemas/TransformingAsset'
-        destinations:
-          type: array
-          description: Resulting assets. This list always includes resulting asset from this operation
-          items:
-            $ref: '#/components/schemas/TransformingAsset'
-        direction:
-          type: string
-        qty:
-          type: number
-          minimum: 0
-        sent:
-          type: number
-        sourceOperations:
-          $ref: '#/components/schemas/SourceOperations'
-        sourcesCount:
-          $ref: '#/components/schemas/SourcesCount'
-        creator:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/ImmutableId'
-            name:
-              type: string
-        creatorUser:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/ImmutableId'
-            name:
-              type: string
-        holder:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/ImmutableId'
-            name:
-              type: string
-      required:
-      - id
-      - transactionId
-      - assetId
-      - code
-      - uom
-      - destinations
-      - direction
-      - qty
-      - sent
-    Attachment:
-      type: object
-      additionalProperties: false
-      properties:
-        downloadUrl:
-          type: string
-          format: url
-        fileName:
-          type: string
-          minLength: 1
-        fileSize:
-          type: number
-          minimum: 0
-        mimeType:
-          type: string
-          minLength: 1
-          example: image/jpeg
-        md5:
-          type: string
-          minLength: 32
-          maxLength: 32
-          pattern: ^[a-f0-9]{32}$
-      required:
-      - downloadUrl
-    TransactionParty:
-      type: object
-      readOnly: true
-      properties:
-        id:
-          $ref: '#/components/schemas/ImmutableId'
-        name:
-          type: string
-          readOnly: true
-        photoUrl:
-          type: string
-          format: url
-          readOnly: true
-        photoEtag:
-          type: string
-          readOnly: true
-        isOrg:
-          type: boolean
-    SourcesCount:
-      type: number
-      description: Indicates number of operations that serve as explicit or implicit sources for this asset operation. Appears in the object when request contains sourcesGroupingMethod in query
-    TransformingAsset:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        code:
-          $ref: '#/components/schemas/AssetCode'
-        description:
-          $ref: '#/components/schemas/AssetDescription'
-        uom:
-          $ref: '#/components/schemas/AssetUom'
-      required:
-      - id
-      - code
-      - uom
-    ExchangeTransaction:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/ImmutableId'
-        allCodes:
-          type: array
-          items:
-            type: string
-        assetIds:
-          type: array
-          items:
-            type: string
-        receiverId:
-          $ref: '#/components/schemas/Id'
-        type:
-          type: string
-          enum:
-          - batch
-          - trade
-          - exchange
-          - transfer
-        unconfirmedAssetIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Id'
-        destinationProvider:
-          $ref: '#/components/schemas/PaymentDestinationProvider'
-        destinationId:
-          $ref: '#/components/schemas/PaymentDestinationId'
-        destinationType:
-          $ref: '#/components/schemas/PaymentDestinationType'
-        initiatedBy:
-          $ref: '#/components/schemas/TransactionParty'
-        initiatedByUser:
-          allOf:
-          - $ref: '#/components/schemas/TransactionParty'
-          - readOnly: true
-        sender:
-          $ref: '#/components/schemas/TransactionParty'
-        receiver:
-          $ref: '#/components/schemas/TransactionParty'
-        agency:
-          $ref: '#/components/schemas/TransactionParty'
-        agent:
-          $ref: '#/components/schemas/TransactionParty'
-        qty:
-          type: number
-          exclusiveMinimum: 0
-        price:
-          type: number
-          minimum: 0
-        priceCurrency:
-          type: string
-          minLength: 3
-          maxLength: 3
-          example: USD
-        sent:
-          type: number
-          readOnly: true
-        claimed:
-          type: number
-          readOnly: true
-        received:
-          type: number
-          readOnly: true
-        properties:
-          type: object
-        message:
-          type: string
-        transactionId:
-          type: string
-        direction:
-          type: string
-        code:
-          type: string
-        uom:
-          $ref: '#/components/schemas/AssetUom'
-        description:
-          type: string
-        initiatedByUserId:
-          type: string
-        assetAttachments:
-          $ref: '#/components/schemas/Attachments'
-        participants:
-          type: array
-          items:
-            type: string
-      required:
-      - receiverId
-      - qty
-    Attachments:
-      type: array
-      items:
-        $ref: '#/components/schemas/Attachment'
-    Id:
-      title: Id
+    AssetCode:
       type: string
-      minLength: 32
+      minLength: 2
       maxLength: 32
-      example: '00000000000000000000000000000000'
-    AssetAgencyDestination:
-      type: object
-      title: Agency Payment Destination
-      description: Where the transfer was sent to (i.e. BanQu agency)
-      properties:
-        id:
-          title: Destination ID
-          type: string
-          description: Receiver phone number (for transfers to mobile wallets)
-        name:
-          title: Destination Name
-          type: string
-          description: Name of BanQu agency (for transfers to specific BanQu agency)
-        address:
-          title: Destination Address
-          type: string
-          description: Address of BanQu agency (for transfers to specific BanQu agency)
-      required:
-      - id
-      - name
-      readOnly: true
-    Transaction:
-      oneOf:
-      - $ref: '#/components/schemas/RevertTransaction'
-      - $ref: '#/components/schemas/AssetDepositTransaction'
-      - $ref: '#/components/schemas/ExchangeTransaction'
-      - $ref: '#/components/schemas/AssetTransformationTransaction'
-    EffectiveLocation:
-      allOf:
-      - $ref: '#/components/schemas/GeoCoordinates'
-      - title: Effective Transfer Geo Location
-        description: The effective location coordinates of a transfer instead of an automatically determined
     AssetDepositTransaction:
       type: object
       properties:
@@ -1542,165 +1509,198 @@ components:
       - allCodes
       - transfers
       - participants
-    PaymentDestinationType:
-      title: Destination Type
-      description: mobile for payments by phone number; payCode for 6DOT50 partner transfer
-      enum:
-      - mobile
-      - new-mobile
-      - payCode
-    AssetDescription:
-      type: string
-      minLength: 0
-      maxLength: 200
-    GeoCoordinates:
+    AssetTransformationTransaction:
       type: object
-      properties:
-        lat:
-          type: number
-          format: double
-          minimum: -90
-          maximum: 90
-        lon:
-          type: number
-          format: double
-          minimum: -180
-          maximum: 180
+      description: Asset Transformation
       additionalProperties: false
+      properties:
+        sources:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        destinations:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TransformingAsset'
+        creator:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/ImmutableId'
+            name:
+              type: string
+        id:
+          type: string
+        transactionId:
+          type: string
+        sent:
+          type: number
+        allCodes:
+          type: array
+          items:
+            type: string
+        assetIds:
+          type: array
+          items:
+            type: string
       required:
-      - lat
-      - lon
-      example:
-        lat: 37.7749
-        lon: -122.4194
-    PaymentDestination:
-      oneOf:
-      - $ref: '#/components/schemas/AssetMobileDestination'
-      - $ref: '#/components/schemas/AssetAgencyDestination'
-    CreateTransactionRequest:
+      - destinations
+      - sources
+      - creator
+      - id
+      - transactionId
+      - sent
+    SourceOperations:
+      type: array
+      description: List of incoming asset transfers that are used as sources for this transaction
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          id:
+            allOf:
+            - $ref: '#/components/schemas/Id'
+            - description: Source operation Id
+          sourcedQty:
+            type: number
+            exclusiveMinimum: 0
+        required:
+        - id
+        - sourcedQty
+    AssetAgencyDestination:
+      type: object
+      title: Agency Payment Destination
+      description: Where the transfer was sent to (i.e. BanQu agency)
+      properties:
+        id:
+          title: Destination ID
+          type: string
+          description: Receiver phone number (for transfers to mobile wallets)
+        name:
+          title: Destination Name
+          type: string
+          description: Name of BanQu agency (for transfers to specific BanQu agency)
+        address:
+          title: Destination Address
+          type: string
+          description: Address of BanQu agency (for transfers to specific BanQu agency)
+      required:
+      - id
+      - name
+      readOnly: true
+    Attachment:
+      type: object
+      additionalProperties: false
+      properties:
+        downloadUrl:
+          type: string
+          format: url
+        fileName:
+          type: string
+          minLength: 1
+        fileSize:
+          type: number
+          minimum: 0
+        mimeType:
+          type: string
+          minLength: 1
+          example: image/jpeg
+        md5:
+          type: string
+          minLength: 32
+          maxLength: 32
+          pattern: ^[a-f0-9]{32}$
+      required:
+      - downloadUrl
+    Attachments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Attachment'
+    FinalizeDraftTransactionRequest:
       type: array
       minItems: 1
       items:
-        oneOf:
-        - $ref: '#/components/schemas/AssetTransferOperation'
-        - $ref: '#/components/schemas/PaymentOperation'
-        - $ref: '#/components/schemas/DraftPaymentOperation'
+        anyOf:
         - $ref: '#/components/schemas/PaymentAdjustmentOperation'
-      example:
-      - assetId: 0d903320a0c5494d85c325fc4936dcad
-        exchangingAssetId: 2992356a55b242f2a97b140d46930ffa
-        quantity: 2000
-        senderId: 247521e4ce06472ebaf5bdf08d3c4a3e
-        receiverId: 8f4f517528464f428afddce6880128b6
-        properties:
-          distance: 150
-        price: 1.4
-        priceCurrency: USD
-      - isDraft: false
-        assetId: 2992356a55b242f2a97b140d46930ffa
-        quantity: 2800
-        senderId: 8f4f517528464f428afddce6880128b6
-        receiverId: 247521e4ce06472ebaf5bdf08d3c4a3e
-    AssetCode:
-      type: string
-      minLength: 2
-      maxLength: 32
-    DraftPaymentOperation:
-      title: Payment Draft
+        - title: Persisted payment adjustment operation
+          description: Persisted payment adjustment operation with changed quantity
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'
+            quantity:
+              type: number
+          additionalProperties: false
+          required:
+          - id
+          - quantity
+        - title: Persisted asset operation
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'
+            quantity:
+              type: number
+              minimum: 0
+            price:
+              type: number
+              minimum: 0
+            priceCurrency:
+              type: string
+              minLength: 3
+              maxLength: 3
+              example: USD
+            properties:
+              type: object
+              additionalProperties: true
+          additionalProperties: false
+          required:
+          - id
+          - quantity
+        - $ref: '#/components/schemas/PaymentOperation'
+        - title: Persisted payment operation
+          description: Persisted payment operation with changed quantity or/and destination provider
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/Id'
+            quantity:
+              type: number
+              minimum: 0
+            destinationProvider:
+              $ref: '#/components/schemas/PaymentDestinationProvider'
+            destinationId:
+              $ref: '#/components/schemas/PaymentDestinationId'
+            destinationType:
+              $ref: '#/components/schemas/PaymentDestinationType'
+          additionalProperties: false
+          required:
+          - quantity
+          - id
+        - $ref: '#/components/schemas/AssetTransferOperation'
+    TransformingAsset:
       type: object
       additionalProperties: false
       properties:
-        isDraft:
-          type: boolean
-          enum:
-          - true
-          writeOnly: true
-        assetId:
+        id:
           $ref: '#/components/schemas/Id'
-        quantity:
-          title: Payment Amount
-          type: number
-          minimum: 0
-        senderId:
-          $ref: '#/components/schemas/Id'
-        receiverId:
-          $ref: '#/components/schemas/Id'
-        destinationProvider:
-          $ref: '#/components/schemas/PaymentDestinationProvider'
-        effectiveDate:
-          $ref: '#/components/schemas/EffectiveDate'
-        destinationId:
-          $ref: '#/components/schemas/PaymentDestinationId'
-        destinationType:
-          $ref: '#/components/schemas/PaymentDestinationType'
+        code:
+          $ref: '#/components/schemas/AssetCode'
+        description:
+          $ref: '#/components/schemas/AssetDescription'
+        uom:
+          $ref: '#/components/schemas/AssetUom'
       required:
-      - isDraft
-      - senderId
-      - receiverId
-      - assetId
-      - quantity
-    ImmutableId:
-      type: string
+      - id
+      - code
+      - uom
+    ImmutableTimestamp:
+      type: number
       readOnly: true
-      minLength: 32
-      maxLength: 32
-      example: '00000000000000000000000000000000'
-    DateTime:
-      type: string
-      format: date-time
-    AssetUom:
-      title: Asset Unit of Measurement
-      type: string
-      enum:
-      - BR
-      - BO
-      - BX
-      - BU
-      - CN
-      - CA
-      - CH
-      - DO
-      - EA
-      - FO
-      - FT
-      - GA
-      - GR
-      - HR
-      - JA
-      - KG
-      - KK
-      - LT
-      - Q3
-      - MR
-      - MG
-      - M4
-      - OZ
-      - PK
-      - PR
-      - PC
-      - LB
-      - SJ
-      - VS
-      - YD
-      example: KG
-  responses:
-    '201':
-      description: HTTP 201 - Created
-      headers:
-        Location:
-          schema:
-            type: string
-          description: Url of the created entity
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
-    '400':
-      description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
-    '404':
-      description: "HTTP 404 - Not Found \nRequested resource could not be found"
+      description: Number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+      example: 1568894551000
   securitySchemes:
     Bearer:
       type: http

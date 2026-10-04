@@ -55,10 +55,10 @@ paths:
       x-operation-id-source: derived
 components:
   responses:
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
     '403':
       description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
   securitySchemes:
     Bearer:
       type: http

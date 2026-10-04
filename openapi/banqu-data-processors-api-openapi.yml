@@ -291,22 +291,58 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Mapping:
+    WorkflowAction:
+      title: Workflow Action
       type: object
+      additionalProperties: false
       properties:
-        from:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
           type: string
-          description: Context source to map data from
-        forEach:
+          enum:
+          - action
+        action:
           type: string
-          description: Array context source to map data from
-        map:
+          description: ID of the Open API endpoint to execute. Base64 encoded JSON object containing endpint properties `{ method, path }`
+      required:
+      - type
+      - action
+    DataProcessorCsvParser:
+      type: object
+      title: CSV Parser Configuration
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+          - csv
+        config:
           type: object
-          description: Object fields mapping
-      additionalProperties: true
-      example:
-        map:
-          outputField: inputField
+          properties:
+            linesToSkip:
+              type: number
+              default: 0
+            timeForChunk:
+              type: number
+              default: 20
+            containsHeader:
+              type: boolean
+              default: true
+            parseDirection:
+              type: string
+              enum:
+              - top-to-bottom
+              - left-to-right
+            schema:
+              $ref: '#/components/schemas/JsonSchema'
+            separator:
+              type: string
+      required:
+      - type
+      - config
     WorkflowFilter:
       title: Workflow Filter
       type: object
@@ -400,14 +436,55 @@ components:
       required:
       - type
       - config
-    WorkflowStepInput:
-      type:
-      - string
-      - 'null'
-      description: Name of one of the previous steps that should be used as a primary input. By default the latest step name is used
-      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
-    WorkflowMapping:
-      title: Workflow Mapping
+    Mapping:
+      type: object
+      properties:
+        from:
+          type: string
+          description: Context source to map data from
+        forEach:
+          type: string
+          description: Array context source to map data from
+        map:
+          type: object
+          description: Object fields mapping
+      additionalProperties: true
+      example:
+        map:
+          outputField: inputField
+    DataProcessor:
+      type: object
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+          description: Data processor title
+        description:
+          type:
+          - string
+          - 'null'
+        sample:
+          oneOf:
+          - $ref: '#/components/schemas/Attachment'
+          - type: 'null'
+        workflow:
+          type: object
+          additionalProperties: false
+          properties:
+            parser:
+              oneOf:
+              - $ref: '#/components/schemas/DataProcessorXlsxParser'
+              - $ref: '#/components/schemas/DataProcessorCsvParser'
+            steps:
+              $ref: '#/components/schemas/WorkflowSteps'
+          required:
+          - parser
+          - steps
+        ownerId:
+          type: string
+          readOnly: true
+    WorkflowUniquenessFilter:
+      title: Workflow Uniqueness Filter
       type: object
       additionalProperties: false
       properties:
@@ -418,45 +495,39 @@ components:
         type:
           type: string
           enum:
-          - map
-        mapping:
-          $ref: '#/components/schemas/Mapping'
+          - unique
+        criteria:
+          type: string
+          description: JS expression in a 'unique' step that returns a key used to identify object uniquenss
       required:
       - type
-      - mapping
-    DataProcessorCsvParser:
+      - criteria
+    ScimResourceMetadata:
       type: object
-      title: CSV Parser Configuration
-      additionalProperties: false
+      readOnly: true
       properties:
-        type:
+        displayName:
           type: string
-          enum:
-          - csv
-        config:
+          readOnly: true
+        meta:
           type: object
           properties:
-            linesToSkip:
-              type: number
-              default: 0
-            timeForChunk:
-              type: number
-              default: 20
-            containsHeader:
-              type: boolean
-              default: true
-            parseDirection:
+            resourceType:
               type: string
-              enum:
-              - top-to-bottom
-              - left-to-right
-            schema:
-              $ref: '#/components/schemas/JsonSchema'
-            separator:
-              type: string
+              readOnly: true
+            created:
+              type: number
+              readOnly: true
+            lastModified:
+              type: number
+              readOnly: true
+          required:
+          - resourceType
+          - created
+          - lastModified
       required:
-      - type
-      - config
+      - displayName
+      - meta
     JsonSchema:
       title: JSON Schema
       description: https://json-schema.org/draft-07/schema#
@@ -496,6 +567,94 @@ components:
         required:
         - field1
         additionalProperties: false
+    WorkflowStepInput:
+      type:
+      - string
+      - 'null'
+      description: Name of one of the previous steps that should be used as a primary input. By default the latest step name is used
+      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+    WorkflowStepName:
+      type:
+      - string
+      - 'null'
+      description: Optional unique alpha-numeric name of the step. Data produced during the step execution can be referred by this name
+      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
+    WorkflowMapping:
+      title: Workflow Mapping
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - map
+        mapping:
+          $ref: '#/components/schemas/Mapping'
+      required:
+      - type
+      - mapping
+    WorkflowRequest:
+      title: Workflow Request
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/WorkflowStepName'
+        input:
+          $ref: '#/components/schemas/WorkflowStepInput'
+        type:
+          type: string
+          enum:
+          - request
+        method:
+          type: string
+          enum:
+          - get
+          - list
+          - post
+          - put
+          - patch
+          - delete
+          - head
+          - options
+        url:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - type
+      - method
+      - url
+    Attachment:
+      type: object
+      additionalProperties: false
+      properties:
+        downloadUrl:
+          type: string
+          format: url
+        fileName:
+          type: string
+          minLength: 1
+        fileSize:
+          type: number
+          minimum: 0
+        mimeType:
+          type: string
+          minLength: 1
+          example: image/jpeg
+        md5:
+          type: string
+          minLength: 32
+          maxLength: 32
+          pattern: ^[a-f0-9]{32}$
+      required:
+      - downloadUrl
     WorkflowSteps:
       title: Workflow Steps
       type: array
@@ -522,36 +681,6 @@ components:
                 priceCurrency: '''USD'''
       - type: action
         action: eyJwYXRoIjoiL2Fzc2V0cy97YXNzZXRJZH0vdHJhbnNmZXJzIiwibWV0aG9kIjoicG9zdCJ9
-    Attachment:
-      type: object
-      additionalProperties: false
-      properties:
-        downloadUrl:
-          type: string
-          format: url
-        fileName:
-          type: string
-          minLength: 1
-        fileSize:
-          type: number
-          minimum: 0
-        mimeType:
-          type: string
-          minLength: 1
-          example: image/jpeg
-        md5:
-          type: string
-          minLength: 32
-          maxLength: 32
-          pattern: ^[a-f0-9]{32}$
-      required:
-      - downloadUrl
-    WorkflowStepName:
-      type:
-      - string
-      - 'null'
-      description: Optional unique alpha-numeric name of the step. Data produced during the step execution can be referred by this name
-      pattern: ^[a-zA-Z_$][\da-zA-Z_]*$
     DataProcessorResult:
       type: object
       properties:
@@ -599,136 +728,13 @@ components:
                                 type: object
                               total:
                                 type: number
-    ScimResourceMetadata:
-      type: object
-      readOnly: true
-      properties:
-        displayName:
-          type: string
-          readOnly: true
-        meta:
-          type: object
-          properties:
-            resourceType:
-              type: string
-              readOnly: true
-            created:
-              type: number
-              readOnly: true
-            lastModified:
-              type: number
-              readOnly: true
-          required:
-          - resourceType
-          - created
-          - lastModified
-      required:
-      - displayName
-      - meta
-    WorkflowAction:
-      title: Workflow Action
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - action
-        action:
-          type: string
-          description: ID of the Open API endpoint to execute. Base64 encoded JSON object containing endpint properties `{ method, path }`
-      required:
-      - type
-      - action
-    WorkflowUniquenessFilter:
-      title: Workflow Uniqueness Filter
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - unique
-        criteria:
-          type: string
-          description: JS expression in a 'unique' step that returns a key used to identify object uniquenss
-      required:
-      - type
-      - criteria
-    WorkflowRequest:
-      title: Workflow Request
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowStepName'
-        input:
-          $ref: '#/components/schemas/WorkflowStepInput'
-        type:
-          type: string
-          enum:
-          - request
-        method:
-          type: string
-          enum:
-          - get
-          - list
-          - post
-          - put
-          - patch
-          - delete
-          - head
-          - options
-        url:
-          type: string
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - type
-      - method
-      - url
-    DataProcessor:
-      type: object
-      additionalProperties: false
-      properties:
-        title:
-          type: string
-          description: Data processor title
-        description:
-          type:
-          - string
-          - 'null'
-        sample:
-          oneOf:
-          - $ref: '#/components/schemas/Attachment'
-          - type: 'null'
-        workflow:
-          type: object
-          additionalProperties: false
-          properties:
-            parser:
-              oneOf:
-              - $ref: '#/components/schemas/DataProcessorXlsxParser'
-              - $ref: '#/components/schemas/DataProcessorCsvParser'
-            steps:
-              $ref: '#/components/schemas/WorkflowSteps'
-          required:
-          - parser
-          - steps
-        ownerId:
-          type: string
-          readOnly: true
   responses:
+    '401':
+      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
+    '204':
+      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
+    '403':
+      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
     '201':
       description: HTTP 201 - Created
       headers:
@@ -736,16 +742,10 @@ components:
           schema:
             type: string
           description: Url of the created entity
-    '401':
-      description: "HTTP 401 - Unauthorized \nUser is not authenticated or session has expired"
-    '403':
-      description: "HTTP 403 - Forbidden \nNot authorized to access selected resource"
     '400':
       description: "HTTP 400 - Bad Request \nThe request is formatted incorrectly, most likely some of the required parameters are missed"
     '422':
       description: "HTTP 422 - Unprocessable Request \nThe server understands the content type of the request entity and the syntax of the request is correct, but was unable to process the contained instructions"
-    '204':
-      description: "HTTP 204 - No Content \nThe request has been processed, but no content will be provided in response"
     '404':
       description: "HTTP 404 - Not Found \nRequested resource could not be found"
   securitySchemes:
