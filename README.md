@@ -64,5 +64,161 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-BanQu is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.hiive.com/securities/banqu-stock
+BanQu is a Minnetonka, Minnesota supply-chain traceability and sustainability software company whose blockchain-backed (non-crypto, distributed-ledger) platform gives brands farm-to-shelf visibility across agriculture, recycling, apparel, beauty, and mining supply chains. The platform records assets, transfers, transactions, and supplier form data against verifiable identities for smallholder farmers, waste pickers, and other last-mile suppliers, and layers on compliance and reporting products for EUDR due diligence, Extended Producer Responsibility, B-BBEE, Scope 3 carbon accounting, lifecycle assessment, plastic and carbon credits, living income and wage, and anti-forced/child-labour screening. Its production REST API (OpenAPI 3.0.3, 134 paths / 191 operations, served live at https://banqu.app/api/v1/schema) covers authentication and API tokens, profiles and profile sharing, organizations, roles and capabilities, connections, assets and asset categories, transfers, transactions, transformations, payment adjustments, forms and form data entries, attachments, notifications, and three automation surfaces — Smart Contracts, Data Processors, and Validation Workflows.
+
+**Areas:** Supply Chain · Traceability · Sustainability · ESG · Agriculture · Procurement · Compliance · Blockchain · EUDR · Carbon Accounting · Recycling · smallholder-farmers
+
+## BanQu on APIs.io
+
+Everything profiled for BanQu is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/banqu/](https://apis.io/providers/banqu/)** — or go straight to one of the APIs or properties below.
+
+### APIs (25)
+
+- [BanQu Asset Categories API](https://apis.io/apis/banqu/banqu-asset-categories-api/) — The Asset Categories API from BanQu — 2 operation(s) for asset categories.
+- [BanQu Asset Sharing API](https://apis.io/apis/banqu/banqu-asset-sharing-api/) — The Asset Sharing API from BanQu — 6 operation(s) for asset sharing.
+- [BanQu Asset Transactions API](https://apis.io/apis/banqu/banqu-asset-transactions-api/) — Asset exchange/buy/sell transactions that consist of multiple asset transfers
+- [BanQu Asset Transfer Claiming API](https://apis.io/apis/banqu/banqu-asset-transfer-claiming-api/) — The Asset Transfer Claiming API from BanQu — 3 operation(s) for asset transfer claiming.
+- [BanQu Asset Transfers API](https://apis.io/apis/banqu/banqu-asset-transfers-api/) — Asset transfers from one owner to another
+- [BanQu Asset Transformations API](https://apis.io/apis/banqu/banqu-asset-transformations-api/) — The Asset Transformations API from BanQu — 1 operation(s) for asset transformations.
+- [BanQu Assets API](https://apis.io/apis/banqu/banqu-assets-api/) — The Assets API from BanQu — 4 operation(s) for assets.
+- [BanQu Attachments API](https://apis.io/apis/banqu/banqu-attachments-api/) — The Attachments API from BanQu — 1 operation(s) for attachments.
+- [BanQu Authentication API](https://apis.io/apis/banqu/banqu-authentication-api/) — The Authentication API from BanQu — 6 operation(s) for authentication.
+- [BanQu Connections API](https://apis.io/apis/banqu/banqu-connections-api/) — Connected organizations and identitites
+- [BanQu Data Processors API](https://apis.io/apis/banqu/banqu-data-processors-api/) — Automation workflows for custom formats import
+- [BanQu Form Data Entries API](https://apis.io/apis/banqu/banqu-form-data-entries-api/) — Form assignments and submitted form data entries
+- [BanQu Forms API](https://apis.io/apis/banqu/banqu-forms-api/) — The Forms API from BanQu — 6 operation(s) for forms.
+- [BanQu Notifications API](https://apis.io/apis/banqu/banqu-notifications-api/) — The Notifications API from BanQu — 1 operation(s) for notifications.
+- [BanQu Organization Associates API](https://apis.io/apis/banqu/banqu-organization-associates-api/) — The Organization Associates API from BanQu — 2 operation(s) for organization associates.
+- [BanQu Organization Features API](https://apis.io/apis/banqu/banqu-organization-features-api/) — The Organization Features API from BanQu — 1 operation(s) for organization features.
+- [BanQu Organization Roles API](https://apis.io/apis/banqu/banqu-organization-roles-api/) — Organization Roles and Permissions
+- [BanQu Organizations API](https://apis.io/apis/banqu/banqu-organizations-api/) — Organization accounts
+- [BanQu Payment Adjustments API](https://apis.io/apis/banqu/banqu-payment-adjustments-api/) — Adjustments of payments on buy/sell transactions
+- [BanQu Public Profiles API](https://apis.io/apis/banqu/banqu-public-profiles-api/) — The Public Profiles API from BanQu — 10 operation(s) for public profiles.
+- [BanQu Smart Contracts API](https://apis.io/apis/banqu/banqu-smart-contracts-api/) — Automation workflows that react to system events
+- [BanQu Tutorials API](https://apis.io/apis/banqu/banqu-tutorials-api/) — Interactive system guides
+- [BanQu User Profile API](https://apis.io/apis/banqu/banqu-user-profile-api/) — The User Profile API from BanQu — 7 operation(s) for user profile.
+- [BanQu User Profile Sharing API](https://apis.io/apis/banqu/banqu-user-profile-sharing-api/) — The User Profile Sharing API from BanQu — 11 operation(s) for user profile sharing.
+- [BanQu Validation Workflows API](https://apis.io/apis/banqu/banqu-validation-workflows-api/) — Automation workflows for custom validations on any write API actions
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Banqu Webhooks](https://apis.io/asyncapis/banqu/banqu-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [banqu](https://apis.io/servers/banqu/banqu/)
+
+#### Collections (25)
+
+Postman and Open Collection request collections.
+
+- [BanQu Asset Categories API](https://apis.io/collections/banqu/open-banqu-asset-categories-api/)
+- [BanQu Asset Sharing API](https://apis.io/collections/banqu/open-banqu-asset-sharing-api/)
+- [BanQu Asset Transactions API](https://apis.io/collections/banqu/open-banqu-asset-transactions-api/)
+- [BanQu Asset Transfer Claiming API](https://apis.io/collections/banqu/open-banqu-asset-transfer-claiming-api/)
+- [BanQu Asset Transfers API](https://apis.io/collections/banqu/open-banqu-asset-transfers-api/)
+- [BanQu Asset Transformations API](https://apis.io/collections/banqu/open-banqu-asset-transformations-api/)
+- [BanQu Assets API](https://apis.io/collections/banqu/open-banqu-assets-api/)
+- [BanQu Attachments API](https://apis.io/collections/banqu/open-banqu-attachments-api/)
+- [BanQu Authentication API](https://apis.io/collections/banqu/open-banqu-authentication-api/)
+- [BanQu Connections API](https://apis.io/collections/banqu/open-banqu-connections-api/)
+- [BanQu Data Processors API](https://apis.io/collections/banqu/open-banqu-data-processors-api/)
+- [BanQu Form Data Entries API](https://apis.io/collections/banqu/open-banqu-form-data-entries-api/)
+- [BanQu Forms API](https://apis.io/collections/banqu/open-banqu-forms-api/)
+- [BanQu Notifications API](https://apis.io/collections/banqu/open-banqu-notifications-api/)
+- [BanQu Organization Associates API](https://apis.io/collections/banqu/open-banqu-organization-associates-api/)
+- [BanQu Organization Features API](https://apis.io/collections/banqu/open-banqu-organization-features-api/)
+- [BanQu Organization Roles API](https://apis.io/collections/banqu/open-banqu-organization-roles-api/)
+- [BanQu Organizations API](https://apis.io/collections/banqu/open-banqu-organizations-api/)
+- [BanQu Payment Adjustments API](https://apis.io/collections/banqu/open-banqu-payment-adjustments-api/)
+- [BanQu Public Profiles API](https://apis.io/collections/banqu/open-banqu-public-profiles-api/)
+- [BanQu Smart Contracts API](https://apis.io/collections/banqu/open-banqu-smart-contracts-api/)
+- [BanQu Tutorials API](https://apis.io/collections/banqu/open-banqu-tutorials-api/)
+- [BanQu User Profile API](https://apis.io/collections/banqu/open-banqu-user-profile-api/)
+- [BanQu User Profile Sharing API](https://apis.io/collections/banqu/open-banqu-user-profile-sharing-api/)
+- [BanQu Validation Workflows API](https://apis.io/collections/banqu/open-banqu-validation-workflows-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Banqu Openapi Overlay](https://apis.io/overlays/banqu/banqu-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Banqu Authentication](https://apis.io/security/banqu/banqu-authentication/)
+- [Banqu Domain Security](https://apis.io/security/banqu/banqu-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.banqu.co/)
+- [Documentation](https://api.banqu.app/openapi)
+- [API reference](https://api.banqu.app/openapi)
+- [Support](https://www.banqu.co/support-policy)
+- [Blog](https://www.banqu.co/blog)
+- [Privacy policy](https://www.banqu.co/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 36.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 56.6 |
+| Contract governance | 4.5 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 37.5 |
+| Access clarity | 17.1 |
+
+**Agent readiness 19.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/banqu/](https://apis.io/providers/banqu/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for BanQu: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/banqu/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
